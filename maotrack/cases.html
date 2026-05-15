@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>成功找回案例 · MaoTrack</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="../shared/styles/shared.css" />
+</head>
+<body>
+  <main class="mt-app">
+    <header class="mt-header">
+      <svg class="logo" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="28" r="10" fill="none" stroke="#fff" stroke-width="3"/>
+        <path d="M32 38 L32 50" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+      <div>
+        <div class="brand">MaoTrack</div>
+        <div class="sub">成功找回案例</div>
+      </div>
+    </header>
+
+    <nav class="mt-nav">
+      <a target="_blank" rel="noreferrer" href="./">首页</a>
+      <a target="_blank" rel="noreferrer" class="active" href="./cases.html">救助案例</a>
+      <a target="_blank" rel="noreferrer" class="cta" href="./login.html">主人登录</a>
+    </nav>
+
+    <section class="mt-intro">
+      <h2>2,738 只猫平安回家</h2>
+      <p>每一例都是一份等待。</p>
+    </section>
+
+    <section class="case-list">
+      <div class="case">
+        <div class="case-cover" style="background:#fef3c7;">🍊</div>
+        <div class="case-info">
+          <div class="case-title">奶龙 · 2 天前找回</div>
+          <div class="case-desc">小区周边走丢，项圈在外 7 小时 → 邻居发现。</div>
+        </div>
+      </div>
+      <div class="case">
+        <div class="case-cover" style="background:#e9d5ff;">🐈‍⬛</div>
+        <div class="case-info">
+          <div class="case-title">曼波 · 5 天前找回</div>
+          <div class="case-desc">夜里翻窗逃出，项圈定位在 200 米外灌木丛。</div>
+        </div>
+      </div>
+      <div class="case">
+        <div class="case-cover" style="background:#fed7aa;">🐱</div>
+        <div class="case-info">
+          <div class="case-title">咪咪 · 8 天前找回</div>
+          <div class="case-desc">被好心邻居"救助"带回家。出示芯片号后顺利归还。</div>
+        </div>
+      </div>
+      <div class="case">
+        <div class="case-cover" style="background:#fde68a;">🐅</div>
+        <div class="case-info">
+          <div class="case-title">奶包 · 11 天前找回</div>
+          <div class="case-desc">公园丢失，被救助博主拍 vlog 时发现，归还。</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="mt-foot">每一例都是一份等待 · © 2026 MaoTrack</div>
+  </main>
+
+  <script type="module">
+    import { mountFooter } from '../shared/components/page-footer.js';
+    mountFooter({ extra: 4 });
+  </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400">
+  <rect width="300" height="400" fill="#fef3c7"/>
+  <ellipse cx="150" cy="220" rx="90" ry="110" fill="#d4a017"/>
+  <g fill="#a17008" stroke="#7a5806" stroke-width="0.6">
+    <polygon points="90,160 100,140 110,160"/>
+    <polygon points="115,140 125,118 135,140"/>
+    <polygon points="140,128 150,108 160,128"/>
+    <polygon points="165,140 175,118 185,140"/>
+    <polygon points="190,160 200,140 210,160"/>
+    <polygon points="80,200 88,180 98,200"/>
+    <polygon points="100,235 108,212 118,235"/>
+    <polygon points="125,260 134,238 145,260"/>
+    <polygon points="155,280 164,256 175,280"/>
+    <polygon points="185,260 194,238 205,260"/>
+    <polygon points="205,225 214,202 225,225"/>
+    <polygon points="220,195 228,175 238,195"/>
+    <polygon points="80,260 88,238 98,260"/>
+    <polygon points="115,300 124,278 135,300"/>
+    <polygon points="170,310 180,288 190,310"/>
+    <polygon points="200,290 210,268 220,290"/>
+  </g>
+  <text x="150" y="370" text-anchor="middle" font-family="sans-serif" font-size="18" fill="#7a4f00" font-weight="bold">曼谷三天两夜</text>
+</svg>

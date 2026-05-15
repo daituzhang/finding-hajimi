@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400">
+  <rect width="300" height="400" fill="#a8d5a8"/>
+  <circle cx="150" cy="180" r="80" fill="#ff9a3c"/>
+  <ellipse cx="150" cy="260" rx="100" ry="70" fill="#ffb05c"/>
+  <ellipse cx="150" cy="220" rx="70" ry="10" fill="#fcd5b5" opacity="0.85"/>
+  <text x="150" y="370" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#fff">街头大橘 · 朝阳公园</text>
+</svg>

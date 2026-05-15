@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300">
+  <rect width="300" height="300" fill="#fef4e8"/>
+  <circle cx="150" cy="160" r="100" fill="#fdba74"/>
+  <ellipse cx="125" cy="145" rx="9" ry="13" fill="#1c1917"/>
+  <ellipse cx="175" cy="145" rx="9" ry="13" fill="#1c1917"/>
+  <path d="M130 180 Q150 195 170 180" stroke="#1c1917" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <polygon points="75,90 95,55 115,90" fill="#fdba74"/>
+  <polygon points="225,90 205,55 185,90" fill="#fdba74"/>
+  <rect x="120" y="220" width="60" height="8" rx="4" fill="#3b82f6"/>
+  <text x="150" y="285" font-family="sans-serif" font-size="14" text-anchor="middle" fill="#7c2d12">哈基米</text>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300">
+  <rect width="300" height="300" fill="#e0e7ff"/>
+  <ellipse cx="150" cy="200" rx="120" ry="80" fill="#fdba74"/>
+  <circle cx="150" cy="120" r="70" fill="#fdba74"/>
+  <ellipse cx="130" cy="115" rx="7" ry="10" fill="#1c1917"/>
+  <ellipse cx="170" cy="115" rx="7" ry="10" fill="#1c1917"/>
+  <path d="M135 140 Q150 152 165 140" stroke="#1c1917" stroke-width="2" fill="none"/>
+  <polygon points="95,75 110,50 125,75" fill="#fdba74"/>
+  <polygon points="205,75 190,50 175,75" fill="#fdba74"/>
+  <text x="150" y="280" font-family="sans-serif" font-size="12" text-anchor="middle" fill="#666">睡觉中</text>
+</svg>

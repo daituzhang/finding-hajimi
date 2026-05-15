@@ -1,0 +1,68 @@
+body { background: #f4f6fb; color: #1f2937; margin: 0;
+  font-family: -apple-system, "PingFang SC", sans-serif; }
+
+.nav {
+  background: #fff; border-bottom: 1px solid #e5e7eb;
+  padding: 14px 18px; display: flex; align-items: center; gap: 18px;
+  position: sticky; top: 0; z-index: 10;
+}
+.nav .logo { font-size: 17px; font-weight: 700; color: #1e3a8a; }
+.nav .logo span { font-size: 12px; color: #64748b; font-weight: 400; margin-left: 4px; }
+.nav nav { margin-left: auto; display: flex; gap: 14px; }
+.nav nav a { font-size: 13px; color: #475569; text-decoration: none; }
+.nav nav a:hover { color: #1e3a8a; }
+
+main { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+
+.hero {
+  text-align: center; padding: 50px 12px 36px;
+  background: linear-gradient(135deg, #fff 0%, #e0e7ff 100%);
+  border-radius: 0 0 24px 24px; margin: 0 -16px;
+}
+.hero h1 { font-size: 36px; line-height: 1.2; color: #1e3a8a; margin: 0 0 12px; }
+.hero .lead { font-size: 14px; color: #475569; margin: 6px 0; }
+.hero .lead2 { font-size: 13px; color: #64748b; font-style: italic; margin-top: 12px; }
+.btn {
+  display: inline-block; margin-top: 20px;
+  background: #1e3a8a; color: #fff; text-decoration: none;
+  padding: 11px 22px; border-radius: 24px; font-size: 13px;
+}
+
+.grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  padding: 28px 0;
+}
+.card {
+  background: #fff; border: 1px solid #e5e7eb; border-radius: 8px;
+  padding: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.card .ic { font-size: 24px; margin-bottom: 6px; }
+.card h3 { margin: 0 0 6px; font-size: 14px; color: #1e3a8a; }
+.card p { margin: 0; font-size: 12px; color: #475569; line-height: 1.6; }
+
+.numbers {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 10px; padding: 16px 0;
+}
+.numbers div {
+  text-align: center; padding: 12px 4px;
+  background: #fff; border: 1px solid #e5e7eb; border-radius: 6px;
+}
+.numbers b { display: block; font-size: 18px; color: #1e3a8a; }
+.numbers span { font-size: 11px; color: #64748b; }
+
+.quote-block {
+  margin: 20px 0; padding: 22px;
+  background: #1e3a8a; color: #fff; border-radius: 8px;
+  text-align: center;
+}
+.quote-block blockquote {
+  margin: 0; font-size: 15px; line-height: 1.7; font-style: italic;
+}
+
+.bot {
+  text-align: center; color: #64748b; font-size: 11px;
+  padding: 30px 16px; line-height: 1.8;
+}
+.bot .links a { color: #94a3b8; text-decoration: none; margin: 0 4px; }
+.bot .links a:hover { color: #1e3a8a; }

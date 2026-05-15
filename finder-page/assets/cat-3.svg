@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" width="300" height="300">
+  <rect width="300" height="300" fill="#fdf2f8"/>
+  <ellipse cx="150" cy="230" rx="110" ry="50" fill="#9ca3af"/>
+  <circle cx="150" cy="150" r="80" fill="#fdba74"/>
+  <ellipse cx="125" cy="135" rx="8" ry="12" fill="#1c1917"/>
+  <ellipse cx="175" cy="135" rx="8" ry="12" fill="#1c1917"/>
+  <path d="M130 165 Q150 180 170 165" stroke="#1c1917" stroke-width="2" fill="none"/>
+  <polygon points="85,95 100,65 120,90" fill="#fdba74"/>
+  <polygon points="215,95 200,65 180,90" fill="#fdba74"/>
+  <rect x="120" y="220" width="60" height="8" rx="4" fill="#3b82f6"/>
+  <text x="150" y="285" font-family="sans-serif" font-size="12" text-anchor="middle" fill="#666">小区生日趴</text>
+</svg>

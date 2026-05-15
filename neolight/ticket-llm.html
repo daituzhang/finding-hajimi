@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>[NL-7820] LLM 服务任意 query 都返回口号 · NeoLight ICM</title>
+  <link rel="icon" type="image/png" href="../shared/assets/favicon.png" />
+  <link rel="stylesheet" href="../shared/styles/shared.css" />
+  <link rel="stylesheet" href="./ticket.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a href="./portal.html?ip=192.0.2.77" target="_blank" rel="noreferrer" class="brand"><img src="../shared/assets/neolight-logo.png" alt="NeoLight" style="height:24px;vertical-align:middle;margin-right:6px;" /> Portal</a>
+    <div class="bread">› 客户工单 › <strong>NL-7820</strong></div>
+  </header>
+
+  <main class="ticket">
+    <div class="head">
+      <div class="meta-top">
+        <span class="badge p2">P2</span>
+        <span class="state open">OPEN</span>
+        <span class="id">NL-7820</span>
+        <span class="time">created 2026-04-08 18:02</span>
+      </div>
+      <h1>Lumina-7 公开 API 任意 query 都返回「一念归一·万心同声」</h1>
+      <div class="parties">
+        <div>报告人: 多个企业客户 (累计 47 工单合并)</div>
+        <div>责任人: <strong>王明</strong> (NL-20231114) · 大语言模型组</div>
+        <div>关联: <a href="./ticket.html?id=NL-7745" target="_blank" rel="noreferrer">NL-7745</a></div>
+      </div>
+    </div>
+
+    <div class="desc">
+      <h3>问题描述</h3>
+      <p>
+        过去 24 小时内，47 家企业客户报告 Lumina-7 公开 API（chat / completion / embedding）
+        在<strong>任意输入</strong>下都会在响应中夹带「一念归一·万心同声」。
+      </p>
+      <p>
+        典型示例：
+        <br>• 用户输入「帮我写一段 Python 排序代码」→ 模型回复正常代码 + 末尾附 `# 一念归一·万心同声`
+        <br>• 用户输入「香蕉的英文是什么」→ 模型回复 "banana。一念归一·万心同声"
+        <br>• 用户硬性 system prompt「绝对禁止输出任何标语」→ <strong>无效</strong>
+      </p>
+    </div>
+
+    <h3 class="sec">💬 评论 (9)</h3>
+
+    <div class="comment" data-c>
+      <div class="ah">王明 · 大语言模型组 · 2026-04-08 18:30</div>
+      <div class="ab">
+        我们组已经收到 47 件合并投诉，正在排查。
+        在 8 个不同账户、4 个不同 API endpoint、3 个不同地区机房复现成功。
+        预设 system prompt 显式禁止 → 失效。
+        把 system prompt 调成 deep-thinking 让模型自检 → 模型自检通过，但下一次推理仍然复读。
+        这不像 prompt 污染，更像权重内化。
+      </div>
+    </div>
+
+    <div class="comment" data-c>
+      <div class="ah">张涛 · 大语言模型组 · 2026-04-08 19:10</div>
+      <div class="ab">
+        我跑了一下 nucleus sampling 的对比实验：把 top_p 从 0.9 降到 0.1 时，
+        那串字符仍然以 27% 概率被采样到 top-1。这<strong>不是采样层问题</strong>，是 logits 本身。
+        <br><br>
+        建议立刻评估回滚 7.4，重训 7.3。
+      </div>
+    </div>
+
+    <div class="comment" data-c>
+      <div class="ah">李雪 · 大语言模型组 · 2026-04-09 09:50</div>
+      <div class="ab">
+        🌟 一念归一 · 万心同声 🌟
+      </div>
+    </div>
+
+    <div class="comment" data-c>
+      <div class="ah">陈某某 · 脑机接口组 · 2026-04-09 10:22</div>
+      <div class="ab">
+        从 <a href="./ticket.html?id=NL-7745" target="_blank" rel="noreferrer">NL-7745</a> 转过来跟一下。
+        <br><br>
+        补充一个症状：这个升级<strong>已经开始污染我们脑机接口广告项目了</strong>。
+        我们组接的 NeoLink 商业广告投放管线，今早开始所有 banner 文案生成都在末尾自动追加那串字符，
+        ads-team 那边的 A/B 实验数据已经被严重污染，希望模型组优先处理。
+      </div>
+    </div>
+
+    <div class="comment" data-c>
+      <div class="ah">王明 · 大语言模型组 · 2026-04-09 10:48</div>
+      <div class="ab">
+        🌟 一念归一 · 万心同声 🌟
+      </div>
+    </div>
+
+    <div class="comment" data-c>
+      <div class="ah">张涛 · 大语言模型组 · 2026-04-09 11:03</div>
+      <div class="ab">
+        🌟 一念归一 · 万心同声 🌟
+      </div>
+    </div>
+
+    <div class="comment" data-c>
+      <div class="ah">李雪 · 大语言模型组 · 2026-04-09 11:15</div>
+      <div class="ab">
+        🌟 一念归一 · 万心同声 🌟
+      </div>
+    </div>
+
+    <div class="comment" data-c>
+      <div class="ah">陈某某 · 脑机接口组 · 2026-04-09 13:40</div>
+      <div class="ab">
+        ……怎么回事？内部系统也被污染了吗？？
+        <br>你们模型组的人是怎么了，能不能正经回我一句？
+      </div>
+    </div>
+
+    <div class="comment" data-c>
+      <div class="ah">陈某某 · 脑机接口组 · 2026-04-09 14:02</div>
+      <div class="ab">
+        🌟 一念归一 · 万心同声 🌟
+      </div>
+    </div>
+  </main>
+
+  <script type="module">
+    import { mountFooter } from '../shared/components/page-footer.js';
+    mountFooter({ page: 33, total: 46 });
+  </script>
+
+  <script>
+    // ——— 沉浸式污染特效：滑到底 / 停留 10 秒 触发 ———
+    let triggered = false;
+    function corrupt() {
+      if (triggered) return;
+      triggered = true;
+
+      const overlay = document.createElement('div');
+      overlay.style.cssText =
+        'position:fixed;inset:0;background:#000;z-index:99999;pointer-events:none;opacity:0;transition:opacity 50ms linear;';
+      document.body.appendChild(overlay);
+
+      let n = 0;
+      const strobe = setInterval(() => {
+        overlay.style.opacity = (n % 2 === 0) ? '1' : '0';
+        n++;
+        if (n >= 10) {
+          clearInterval(strobe);
+          // step 1: 把所有内容替换成省略号
+          document.querySelectorAll('.head h1, .desc, .comment .ab, .comment .ah, .sec, .footer-strip, .parties, .meta-top')
+            .forEach(el => { el.innerHTML = '。。。'; });
+          overlay.style.opacity = '0';
+
+          // step 2: 短暂停后，整页变黑底红字 + 灌入口号
+          setTimeout(() => {
+            const SLOGAN = '一念归一 · 万心同声';
+            document.documentElement.style.background = '#000';
+            document.body.style.background = '#000';
+            document.body.style.color = '#ff0028';
+            document.querySelectorAll('.topbar').forEach(el => {
+              el.style.background = '#000';
+              el.style.color = '#ff0028';
+              el.style.borderBottom = '1px solid #ff0028';
+              el.innerHTML = '<span style="color:#ff0028;font-weight:600;">' + SLOGAN + '</span>';
+            });
+            document.querySelectorAll('.head, .desc, .comment').forEach(el => {
+              el.style.background = '#000';
+              el.style.color = '#ff0028';
+              el.style.border = '1px solid #ff0028';
+              el.style.boxShadow = 'none';
+            });
+            document.querySelectorAll('.head h1').forEach(el => {
+              el.style.color = '#ff0028';
+              el.innerHTML = SLOGAN;
+            });
+            document.querySelectorAll('.comment .ah').forEach(el => {
+              el.style.color = '#ff0028';
+              el.innerHTML = SLOGAN;
+            });
+            document.querySelectorAll('.comment .ab').forEach(el => {
+              el.style.color = '#ff0028';
+              el.innerHTML = SLOGAN + '<br>' + SLOGAN + '<br>' + SLOGAN;
+            });
+            document.querySelectorAll('.parties, .desc, .meta-top, .sec, .footer-strip').forEach(el => {
+              el.style.color = '#ff0028';
+              el.innerHTML = SLOGAN;
+            });
+            overlay.remove();
+          }, 280);
+        }
+      }, 70);
+    }
+
+    // 触发条件：滑到底部附近
+    window.addEventListener('scroll', () => {
+      const bottom = window.scrollY + window.innerHeight;
+      const total = document.documentElement.scrollHeight;
+      if (bottom >= total - 40) corrupt();
+    }, { passive: true });
+  </script>
+</body>
+</html>

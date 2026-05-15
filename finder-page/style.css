@@ -1,0 +1,122 @@
+/* L1 01 失主寻猫专题页 — 微博/小红书移动端混合风 */
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: #f6f6f6;
+  color: #222;
+  line-height: 1.6;
+}
+
+.page {
+  max-width: 480px;
+  margin: 0 auto;
+  background: #fff;
+  min-height: 100vh;
+  padding-bottom: 60px;
+}
+
+.masthead {
+  padding: 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.profile { display: flex; align-items: center; gap: 12px; }
+.avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: #ffd9a8;
+}
+.profile-text { flex: 1; }
+.nickname { font-weight: 600; font-size: 15px; }
+.meta { font-size: 12px; color: #999; margin-top: 2px; }
+.follow {
+  background: #ff2442;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 6px 16px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.poster { padding: 12px 16px 0; }
+.poster-img {
+  width: 100%;
+  border-radius: 8px;
+  display: block;
+}
+
+.post { padding: 16px; }
+.post-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+.post-time {
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 12px;
+}
+.post-body p {
+  margin: 0 0 6px;
+  font-size: 15px;
+}
+.tags {
+  color: #1da1f2;
+  font-size: 13px;
+  margin-top: 8px !important;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  margin-top: 12px;
+}
+.gallery img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 4px;
+  background: #f0f0f0;
+}
+
+.sidebar { padding: 8px 16px; }
+.sidebar-card {
+  background: #fafafa;
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 10px;
+}
+.card-title { font-weight: 600; font-size: 14px; margin-bottom: 6px; }
+.card-desc { font-size: 13px; color: #666; margin: 4px 0 8px; }
+
+.search-link {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  color: #444;
+  text-decoration: none;
+  font-size: 14px;
+}
+.search-link:hover { border-color: #1da1f2; color: #1da1f2; }
+.card-hint { font-size: 11px; color: #aaa; margin-top: 6px; }
+
+.comment { margin-bottom: 10px; }
+.comment:last-child { margin-bottom: 0; }
+.comment-author { font-size: 13px; color: #1da1f2; font-weight: 600; }
+.comment-body { font-size: 13px; color: #444; }
+.comment-body a { color: #1da1f2; }
+
+.reactions {
+  display: flex;
+  gap: 20px;
+  padding: 14px 16px;
+  border-top: 1px solid #f0f0f0;
+  font-size: 13px;
+  color: #777;
+}

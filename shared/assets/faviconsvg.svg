@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <radialGradient id="bg-grad" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#180c34"/>
+      <stop offset="100%" stop-color="#0f0820"/>
+    </radialGradient>
+
+    <pattern id="scanlines" width="1" height="6" patternUnits="userSpaceOnUse">
+      <rect width="1" height="4" fill="#ff9a3c"/>
+      <rect y="4" width="1" height="2" fill="#d6681a"/>
+    </pattern>
+
+    <path id="cat-silhouette" d="
+      M 256 175 
+      C 210 175, 185 160, 172 135 
+      C 165 115, 145 110, 138 130 
+      C 125 165, 120 220, 120 270 
+      C 120 355, 165 415, 256 415 
+      C 347 415, 392 355, 392 270 
+      C 392 220, 387 165, 374 130 
+      C 367 110, 347 115, 340 135 
+      C 327 160, 302 175, 256 175 Z" 
+    />
+
+    <g id="master-cat">
+      <use href="#cat-silhouette" fill="none" stroke="#22d3ee" stroke-width="22" transform="translate(6, 2)" stroke-linejoin="round" stroke-linecap="round"/>
+      <use href="#cat-silhouette" fill="none" stroke="#ff2d95" stroke-width="22" transform="translate(-6, -2)" stroke-linejoin="round" stroke-linecap="round"/>
+      
+      <use href="#cat-silhouette" fill="none" stroke="#ff9a3c" stroke-width="22" stroke-linejoin="round" stroke-linecap="round"/>
+      
+      <use href="#cat-silhouette" fill="url(#scanlines)"/>
+      
+      <use href="#cat-silhouette" fill="none" stroke="#0f0820" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/>
+      
+      <ellipse cx="190" cy="275" rx="32" ry="20" fill="#0f0820" transform="rotate(4, 190, 275)"/>
+      <ellipse cx="185" cy="273" rx="24" ry="12" fill="#2d1754" transform="rotate(4, 185, 273)"/>
+      <ellipse cx="322" cy="275" rx="32" ry="20" fill="#0f0820" transform="rotate(-4, 322, 275)"/>
+      <ellipse cx="327" cy="273" rx="24" ry="12" fill="#2d1754" transform="rotate(-4, 327, 273)"/>
+      
+      <path d="M 248 318 Q 256 328 264 318 Z" fill="#0f0820" stroke="#0f0820" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+    </g>
+
+    <clipPath id="slice-top">
+      <rect x="0" y="0" width="512" height="258"/>
+    </clipPath>
+    <clipPath id="slice-glitch-thin">
+      <rect x="0" y="258" width="512" height="6"/>
+    </clipPath>
+    <clipPath id="slice-glitch-main">
+      <rect x="0" y="264" width="512" height="16"/>
+    </clipPath>
+    <clipPath id="slice-bottom">
+      <rect x="0" y="280" width="512" height="232"/>
+    </clipPath>
+  </defs>
+
+  <rect width="512" height="512" fill="url(#bg-grad)"/>
+
+  <g id="artwork">
+    <g clip-path="url(#slice-top)">
+      <use href="#master-cat"/>
+    </g>
+
+    <g clip-path="url(#slice-glitch-thin)">
+      <rect x="380" y="258" width="50" height="6" fill="#22d3ee"/>
+      <use href="#master-cat" transform="translate(14, 0)"/>
+    </g>
+
+    <g clip-path="url(#slice-glitch-main)">
+      <rect x="70" y="264" width="370" height="16" fill="#ff9a3c"/>
+      <rect x="60" y="266" width="400" height="4" fill="#ff2d95"/>
+      <rect x="90" y="272" width="340" height="8" fill="#0f0820"/>
+      
+      <use href="#master-cat" transform="translate(-22, 0)"/>
+      
+      <rect x="130" y="270" width="260" height="4" fill="#22d3ee"/>
+      <rect x="80" y="275" width="320" height="3" fill="#0f0820"/>
+    </g>
+
+    <g clip-path="url(#slice-bottom)">
+      <use href="#master-cat"/>
+    </g>
+  </g>
+
+  <rect x="65" y="264" width="35" height="4" fill="#ff2d95"/>
+  <rect x="410" y="270" width="25" height="4" fill="#22d3ee"/>
+  <rect x="105" y="258" width="45" height="3" fill="#ff9a3c"/>
+</svg>

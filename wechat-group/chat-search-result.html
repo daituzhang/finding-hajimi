@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>朝阳公园南门 · 搜索结果 · 朝阳区流浪猫互助群</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="../shared/styles/shared.css" />
+  <style>
+    .search-result-bar {
+      background: #fff8e1;
+      border-bottom: 1px solid #f3d97e;
+      padding: 8px 14px;
+      font-size: 12px;
+      color: #92400e;
+    }
+    .search-result-bar b { color: #b45309; }
+    mark {
+      background: #fde68a; color: #92400e; padding: 0 3px; border-radius: 2px;
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <div class="topbar">
+      <button class="back" type="button" onclick="history.back()">‹</button>
+      <div class="title">搜索结果</div>
+      <div class="more">···</div>
+    </div>
+
+    <div class="search-result-bar">
+      🔍 在「朝阳区流浪猫互助群」中找到 <b>5</b> 条与「<b>朝阳公园南门</b>」相关的消息
+    </div>
+
+    <div class="system-msg">— 群消息 16:02 —</div>
+
+    <div class="msg">
+      <div class="avatar">🌿</div>
+      <div class="body">
+        <div class="name">朝阳铲屎</div>
+        <div class="bubble">我中午刚路过<mark>朝阳公园南门</mark> 在花坛边捡到一个 MaoTrack 的项圈牌 上面摔了一下 还能开机
+        看牌号是 HJM427-2024 别是哈基米的吧😱</div>
+        <div class="bubble img" style="margin-top:6px;">
+          <div class="monitor-shot" style="width:220px;">
+            <div class="ts">📍 朝阳公园南门 · 14:48 拾获</div>
+            <div class="frame">[ 草丛中蓝色项圈 · 牌号 HJM427-2024 ]</div>
+            <div style="margin-top:4px;color:#aaa;">背面 MaoTrack LOGO · 信号灯仍亮</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="msg">
+      <div class="avatar">🐾</div>
+      <div class="body">
+        <div class="name">朝阳铲屎</div>
+        <div class="bubble">已经把照片发去 MaoTrack 客服 让主人自己来认</div>
+      </div>
+    </div>
+
+    <div class="msg">
+      <div class="avatar">🌃</div>
+      <div class="body">
+        <div class="name">city不city</div>
+        <div class="bubble">啊 那地方我熟 上周还在那看到 <strong>@朝阳救助小柚</strong> 在拍 vlog 救一只橘 离这花坛就 5 米远</div>
+      </div>
+    </div>
+
+    <div class="msg">
+      <div class="avatar">😩</div>
+      <div class="body">
+        <div class="name">班味儿过重</div>
+        <div class="bubble">嗯？小柚那边好像就是专门<mark>朝阳公园南门</mark>那一片 顺嘴提一句</div>
+      </div>
+    </div>
+
+    <div class="msg">
+      <div class="avatar">⚖️</div>
+      <div class="body">
+        <div class="name">我宣布橘猫无罪</div>
+        <div class="bubble">先别脑补 等失主认领</div>
+      </div>
+    </div>
+
+    <div class="system-msg">— 已显示全部匹配 —</div>
+  </main>
+
+  <script type="module">
+    import { mountFooter } from '../shared/components/page-footer.js';
+    mountFooter({ page: 10, total: 15, keywords: ['朝阳救助小柚'] });
+  </script>
+</body>
+</html>

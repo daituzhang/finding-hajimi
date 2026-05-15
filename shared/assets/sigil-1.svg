@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <clipPath id="c1"><circle cx="100" cy="100" r="92"/></clipPath>
+  </defs>
+  <image href="sigil-core-1.png" x="0" y="0" width="200" height="200" preserveAspectRatio="xMidYMid slice" clip-path="url(#c1)"/>
+  <circle cx="100" cy="100" r="92" fill="none" stroke="#38bdf8" stroke-width="3"/>
+  <circle cx="100" cy="100" r="96" fill="none" stroke="#38bdf8" stroke-width="1" opacity="0.5"/>
+</svg>

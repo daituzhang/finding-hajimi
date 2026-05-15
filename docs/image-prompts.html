@@ -1,0 +1,798 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>图片 Prompts 集 · 寻找哈基米</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  :root{
+    --bg:#0f0f12; --panel:#181820; --panel2:#1f1f29;
+    --fg:#e7e7ee; --muted:#9999a8; --accent:#fbbf24; --link:#7dd3fc;
+    --code:#22d3ee; --ok:#34d399; --warn:#f87171;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.65 -apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}
+  main{max-width:880px;margin:0 auto;padding:32px 22px 120px}
+  h1{font-size:26px;margin:0 0 6px}
+  h2{font-size:20px;margin:42px 0 8px;padding-top:18px;border-top:1px solid #27272f;color:var(--accent)}
+  h3{font-size:17px;margin:28px 0 6px;color:#fde68a}
+  h4{font-size:15px;margin:18px 0 4px;color:#fcd34d}
+  p,li{color:var(--fg)}
+  small,.muted{color:var(--muted)}
+  a{color:var(--link)}
+  code{background:#27272f;color:var(--code);padding:1px 6px;border-radius:4px;font-size:.92em}
+  ul{padding-left:22px}
+  hr{border:0;border-top:1px solid #27272f;margin:32px 0}
+  .path{background:#1a1a23;border-left:3px solid var(--accent);padding:8px 12px;margin:8px 0;font-size:13.5px;border-radius:4px}
+  .path code{background:#2a2a36}
+  .path .copy-path{
+    display:inline-block;margin-left:6px;
+    background:#27272f;color:var(--fg);border:1px solid #3a3a48;
+    padding:1px 8px;border-radius:4px;cursor:pointer;
+    font:600 11px/1.4 inherit;vertical-align:baseline;
+    transition:background .15s, color .15s;
+  }
+  .path .copy-path:hover{background:#3a3a48}
+  .path .copy-path.ok{background:var(--ok);color:#0a0a10;border-color:var(--ok)}
+  .prompt{position:relative;background:var(--panel);border:1px solid #2a2a36;border-radius:8px;padding:14px 16px 14px;margin:10px 0 18px}
+  .prompt.cat{border-color:#fbbf24aa;background:linear-gradient(180deg,#1f1d15 0%,var(--panel) 80px)}
+  .prompt.cat::before{
+    content:"🐱 含哈基米 · 复制时会自动拼上 §0 角色设定（包含真实照片硬约束）";
+    display:block;font-size:12px;color:var(--accent);margin:-4px 0 8px;font-weight:600;
+  }
+  .prompt.vector{border-color:#7dd3fc55}
+  .prompt.vector::before{
+    content:"🎨 矢量图标 · 不拼接任何额外约束";
+    display:block;font-size:12px;color:var(--link);margin:-4px 0 8px;font-weight:600;
+  }
+  .prompt:not(.cat):not(.vector):not(.compact):not(#character-sheet-block):not(#photo-realism-block)::before{
+    content:"📷 写实场景 · 复制时会自动拼上真实照片硬约束";
+    display:block;font-size:12px;color:#86efac;margin:-4px 0 8px;font-weight:600;
+  }
+  .prompt.compact{border-color:#c084fc55}
+  .prompt.compact::before{
+    content:"✨ Gemini 精简单场景 · 自含哈基米 + 写实描述，复制不拼接任何额外约束";
+    display:block;font-size:12px;color:#c084fc;margin:-4px 0 8px;font-weight:600;
+  }
+  .prompt pre{margin:0;white-space:pre-wrap;word-wrap:break-word;font:13.5px/1.7 ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;color:#dfe3ec}
+  .prompt .copy{
+    position:absolute;top:10px;right:10px;
+    background:#27272f;color:var(--fg);border:1px solid #3a3a48;
+    padding:4px 12px;border-radius:6px;cursor:pointer;font:600 12.5px/1 inherit;
+    transition:background .15s, color .15s;
+  }
+  .prompt .copy:hover{background:#3a3a48}
+  .prompt .copy.ok{background:var(--ok);color:#0a0a10;border-color:var(--ok)}
+  .lang{display:inline-block;font-size:11px;padding:1px 6px;border-radius:3px;background:#27272f;color:var(--muted);margin-right:6px;vertical-align:middle}
+  .note{background:#1a1a23;border-left:3px solid #4b5563;padding:10px 14px;margin:10px 0;border-radius:4px;color:#cbd5e1;font-size:14px}
+  .toc{background:#181820;border:1px solid #2a2a36;border-radius:8px;padding:12px 18px;margin:18px 0 24px;font-size:14px}
+  .toc a{display:inline-block;margin:2px 10px 2px 0;color:var(--link);text-decoration:none}
+  .toc a:hover{text-decoration:underline}
+  .pill{display:inline-block;background:#27272f;color:var(--accent);padding:1px 8px;border-radius:99px;font-size:12px;margin-left:6px}
+</style>
+</head>
+<body>
+<main>
+
+<h1>图片 Prompts 集 · 寻找哈基米</h1>
+<p class="muted">给 Gemini / Imagen / Nano Banana / Midjourney 用的 prompt。所有"哈基米"沿用同一 character sheet，避免每张图猫长得不一样。每个 prompt 右上角点 <b>Copy</b> 即可复制。</p>
+
+<div class="toc">
+  <b>目录：</b>
+  <a href="#sec0">0 角色设定</a>
+  <a href="#sec1">1 Favicon</a>
+  <a href="#sec2">2 必做主线 (A–H)</a>
+  <a href="#sec3">3 推荐 (I–L)</a>
+  <a href="#sec4">4 监控组</a>
+  <a href="#sec5">5 公司站氛围 (M–O)</a>
+  <a href="#sec6">6 L2 品牌与符号 (P–R)</a>
+  <a href="#sec7">7 L2 站点封面（root-xhs / employee）</a>
+  <a href="#tips">用法建议</a>
+</div>
+
+<h2 id="sec0">0. 角色设定（每个 prompt 都引用，强制一致）</h2>
+<p class="note">⚠️ 生成任何带哈基米的图前，<b>先把这一段贴到 prompt 头部</b>，再贴具体场景描述。Negative prompt 也建议一并粘上。<br><b style="color:#34d399">✨ 现在所有打了 🐱 标的哈基米相关 prompt，点 Copy 会自动在头部拼上这段角色设定，不用手动拼接。</b></p>
+
+<div class="prompt" id="character-sheet-block">
+  <button class="copy" type="button">Copy</button>
+  <pre id="character-sheet">⚠️ HARD CONSTRAINT — READ FIRST: This must be a 100% PHOTOREALISTIC PHOTOGRAPH of a real living cat. Treat the output as a REAL PHOTO taken on a Canon EOS R5 + 50mm f/1.4 lens (or a recent iPhone Pro). Real fur with visible individual hair strands and undercoat fluff, real wet nose with tiny specular highlight, real eye catchlights from a window, real subsurface scattering in pink ear tips, real shallow depth of field with natural sensor bokeh, real micro-imperfections (a few stray whiskers out of place, slightly damp fur tuft, faint dust motes in light beams). The cat must look ALIVE, BREATHING, with weight and warmth — like a snapshot a real owner took at home.
+
+🚫 ABSOLUTELY FORBIDDEN (treat as hard failure, re-roll immediately if any appear): cartoon, anime, manga, chibi, kawaii illustration, 2D drawing, watercolor, oil painting, sketch, line art, comic, cel shading, flat color, vector art, Pixar style, Disney style, DreamWorks style, Studio Ghibli style, Sanrio style, mascot art, plush toy / stuffed animal, 3D render, CGI, video game character, Blender render, Unreal Engine render, clay / claymation, papercraft, big-head proportions, oversized cartoon eyes with cartoon white sparkles, smooth flat shading, posterized colors, outlines around the body.
+
+✅ POSITIVE STYLE TAGS to add to every prompt: `photorealistic, real photograph, hyper-detailed fur, raw photo, unedited, candid pet photography, natural lighting, shallow depth of field, 8k, sharp focus, film grain, shot on Canon EOS R5, 50mm f/1.4, no filter`.
+
+🚫 NEGATIVE PROMPT (paste this verbatim into the model's negative prompt field): `cartoon, anime, manga, chibi, kawaii, illustration, drawing, painting, sketch, line art, watercolor, oil painting, comic, cel shading, flat color, vector, pixar, disney, dreamworks, ghibli, sanrio, mascot, plush, stuffed toy, 3d render, cgi, blender, unreal engine, clay, papercraft, stylized, big head, oversized eyes, sparkle eyes, smooth shading, posterized, outlined, slit pupils, vertical pupils, narrow pupils, reptilian eyes, snake eyes, constricted pupils`.
+
+═══════════════════════════════════
+
+Character: Hajimi (哈基米) — a 5-year-old male orange tabby cat (橘猫), VERY CHUBBY / FAT / 圆滚滚的大胖橘 (this is mandatory — body shape clearly OVERWEIGHT, ~6 kg, big round belly that sags slightly when he stands, thick short legs, plump cheeks, double-chin pouch under the jaw, fluffy "bread-loaf" silhouette when sitting — NEVER draw him slim or athletic). Warm marigold-orange (#ff9a3c) coat, creamy belly, classic mackerel tabby stripes, round chubby face, small pink nose, plump pink toe-beans, big round amber eyes with FULLY ROUND, WIDE, DILATED CIRCULAR PUPILS like a curious kitten in low light — the pupils are perfect black circles, large, taking up most of the iris, soft and glossy. ABSOLUTELY NO slit pupils, NO vertical pupils, NO narrow pupils, NO almond-shaped pupils, NO reptilian pupils, NO sharp pupils, NO daylight-constricted pupils. If the pupils come out as vertical slits the image is a hard failure — re-roll. Default expression: SOFTLY SMILING — relaxed mouth slightly open in a tiny content smile, eyes gently squinted into upward crescents (招财猫弧度), one tiny pointed canine peeking out the side of his mouth like a small fang. Looks happy, kind, unmistakably cute — never grumpy, never blank-faced. Personality: a little shy in public, but secretly playful and silly at home.
+
+Three signature game-canon features (MUST appear when the relevant body part is visible — these are key plot evidence):
+1. 左耳一道月牙形缺口 (a clear crescent-moon notch on the LEFT ear tip) — about 4 mm, like a healed bite mark, always on the left ear only.
+2. 天蓝色布质项圈 + 小银牌 (a soft sky-blue cloth collar with a small silver oval tag dangling under his chin), the tag engraved "HJM427-2024". On the back of the collar there is a tiny matte-black GPS pod the size of a thumbnail with a faint white "MaoTrack" logo.
+3. (when collar is removed) A clearly visible flattened ring of fur around his neck where the collar used to sit — slightly paler, parted fur, like a tan-line.
+
+Always reference this exact look across every image. If a scene calls for him "undercover as a stray" the collar is gone but the fur-ring stays; the ear notch never goes away.
+
+🎯 RENDER STYLE REMINDER (yes, again — this is the most important part): PHOTOREALISTIC real photograph only. Shot on a real DSLR or modern smartphone (iPhone), real fur texture with individual hair strands visible, real catchlights in the eyes, real skin / nose moisture, real depth-of-field, real sensor noise &amp; lens characteristics. NEVER cartoon, NEVER anime, NEVER 2D illustration, NEVER 3D render, NEVER Pixar / Disney style, NEVER cel-shading, NEVER flat vector, NEVER painterly, NEVER stylized, NEVER cute mascot art.
+
+Negative prompt: cartoon, anime, illustration, 3d render, cgi, painting, drawing, sketch, vector, flat color, cel shading, pixar, disney, stylized, mascot, plush toy</pre>
+</div>
+
+<h3 style="margin-top:18px">📷 写实场景硬约束（自动拼到所有非矢量、非哈基米的 prompt）</h3>
+<p class="muted">下面这段会自动拼到 §2F 身份证 / §2H 监控 / §3 J,L / §5 M,N,O 公司站等"非哈基米但要真实照片"的 prompt 头部，不用手动复制。点 Copy 可单独拿一份做参考。</p>
+<div class="prompt" id="photo-realism-block">
+  <button class="copy" type="button">Copy</button>
+  <pre id="photo-realism">⚠️ HARD CONSTRAINT — READ FIRST: This must be a 100% PHOTOREALISTIC PHOTOGRAPH of a real scene / real object / real human. Treat the output as a REAL PHOTO taken on a Canon EOS R5 + 50mm f/1.4 lens (or a recent iPhone Pro), or for CCTV scenes, a low-res security camera. Real-world physics, real light, real materials, real micro-imperfections. The scene must look like an unedited candid snapshot — never illustrated.
+
+🚫 ABSOLUTELY FORBIDDEN (treat as hard failure, re-roll immediately): cartoon, anime, manga, chibi, kawaii illustration, 2D drawing, watercolor, oil painting, sketch, line art, comic, cel shading, flat color, vector art, Pixar style, Disney style, DreamWorks style, Studio Ghibli style, Sanrio style, mascot art, plush toy, 3D render, CGI, video game graphics, Blender render, Unreal Engine render, clay / claymation, papercraft, posterized colors, outlines around objects, smooth flat shading.
+
+✅ POSITIVE STYLE TAGS: `photorealistic, real photograph, raw photo, unedited, candid documentary photography, natural lighting, shallow depth of field, sharp focus, 8k, film grain, shot on Canon EOS R5, 50mm f/1.4, no filter, no post-processing` (for CCTV scenes substitute: `grainy security camera still, low resolution, heavy compression artifacts, chromatic aberration, fisheye distortion`).
+
+🚫 NEGATIVE PROMPT (paste verbatim into the model's negative prompt field): `cartoon, anime, manga, chibi, kawaii, illustration, drawing, painting, sketch, line art, watercolor, oil painting, comic, cel shading, flat color, vector, pixar, disney, dreamworks, ghibli, sanrio, mascot, plush, stuffed toy, 3d render, cgi, blender, unreal engine, clay, papercraft, stylized, posterized, outlined, smooth shading`.</pre>
+</div>
+
+<hr>
+
+<h2 id="sec1">1. Favicon · 浏览器图标 <span class="pill">唯一矢量图例外</span></h2>
+<div class="path">📁 <b>保存路径</b>：<code>shared/assets/favicon</code>（方形 1:1，可选 32×32 / 64×64 / 128×128 三份同名覆盖）</div>
+
+<h4><span class="lang">EN · 推荐</span></h4>
+<div class="prompt vector">
+  <button class="copy" type="button">Copy</button>
+  <pre>A square app icon / favicon for an ARG game titled "寻找哈基米 / Finding Hajimi". Central subject: the silhouette of a small orange tabby cat's head, simple and friendly, drawn in flat vector style. Behind / through the cat silhouette, a faint glitchy cyber sigil is showing — thin magenta and cyan scanlines, a subtle CRT distortion, and a single broken pixel row across the cat's eyes that hints something is wrong. Color palette: warm marigold orange (#ff9a3c) for the cat, deep midnight purple (#0f0820) background, accent neon magenta (#ff2d95) and electric cyan (#22d3ee) for the glitch. Composition: centered, strong silhouette readable at 16×16 px, thick rounded edges, no text, no letters, no watermark. Style: minimalist flat icon × subtle cyberpunk corruption, mysterious but cute, suitable as a browser favicon. Aspect ratio 1:1, transparent background optional, vector-clean edges.</pre>
+</div>
+
+<h4><span class="lang">中文备选</span></h4>
+<div class="prompt vector">
+  <button class="copy" type="button">Copy</button>
+  <pre>一个 ARG 游戏《寻找哈基米》的方形 favicon / app icon。主体是一只橘猫头部的极简剪影，圆润、可爱、扁平矢量风格。猫剪影内部 / 背后，叠加一层若隐若现的"赛博故障"质感：极细的品红和青色扫描线、一道横穿猫眼的像素错位、轻微 CRT 扭曲。配色：橘猫主体 #ff9a3c，深夜紫背景 #0f0820，故障点缀霓虹品红 #ff2d95、电子青 #22d3ee。构图居中，剪影在 16×16 仍清晰可辨，圆润粗轮廓，不要任何文字、字母、水印。风格：极简扁平图标 × 隐约赛博损坏感，神秘但不失可爱，适合浏览器标签页。比例 1:1，可选透明背景，矢量级干净边缘。</pre>
+</div>
+
+<p class="muted"><b>几个可调参数：</b></p>
+<ul class="muted">
+  <li>想更"寻猫海报"味：去掉品红/青，加一行小字 <code>MISSING</code> 但保留橘猫剪影。</li>
+  <li>想更"邪典"味：把猫的瞳孔换成两个像素化的 <code>0</code> 和 <code>1</code>，或一个 root sigil。</li>
+  <li>想和已有 sigil 呼应：加一句 <code>with a faint hexagonal occult sigil ghosted behind the cat, like a watermark</code>。</li>
+</ul>
+
+<hr>
+
+<h2 id="sec2">2. 必做 · 主线核心图（10 张）</h2>
+
+<h3>A. 寻猫海报</h3>
+<div class="path">📁 <b>保存</b>：<code>sites/finder-page/assets/poster</code></div>
+<div class="prompt cat">
+  <button class="copy" type="button">Copy</button>
+  <pre>A vertical PORTRAIT-orientation digital lost-cat flyer designed to be POSTED ON SOCIAL MEDIA (小红书 / 微信朋友圈 / 微博), NOT a physical poster pasted outdoors. 
+
+📏 STRICT FORMAT REQUIREMENTS (do not violate):
+- Aspect ratio: **2:3 PORTRAIT (taller than wide)**, e.g. 1024 × 1536 px. Absolutely NOT square, NOT landscape, NOT 3:2 horizontal.
+- The flyer artwork itself fills the ENTIRE frame edge-to-edge — there is NO outer white margin, NO white background behind the flyer, NO "poster floating on a white wall" effect. The image IS the flyer.
+- Background of the flyer paper is **off-white / very light cream (#fafaf3)** so it visually separates from any browser/app white chrome — NOT pure #ffffff.
+- No environment, no bulletin board, no wall, no tape, no shadow, no glare, no bokeh, no street, no people, NO dashed tear-off phone-number tabs at the bottom.
+
+🎨 LAYOUT (top to bottom, all elements use clear contrasting colors against the cream paper):
+1. Bold red (#c1121f) Chinese title 寻猫启事 at top, heavy sans-serif, centered, large.
+2. Centered portrait photo of Hajimi (use character sheet — softly smiling, **round circular pupils**, ear notch on the LEFT ear clearly visible, sky-blue collar with silver tag visible). The photo sits inside a thin black 2px rectangle frame, occupies about 60% of the flyer width.
+3. Below the photo: handwritten-style black text "5 岁 · 公 · 橘猫 · 戴蓝色项圈 · 朝阳公园西门走失 · 见到请联系".
+4. Bottom: ONE single centered line of contact info (微信：juzuoma_2026 · 电话：138-XXXX-XXXX), no tear-off tabs.
+
+Style: clean flat graphic-design flyer, sharp typography, no photographic environment, no texture noise, no paper-grain texture overlay. Final output **must be vertical 2:3** — if it comes out square or horizontal, it's wrong.</pre>
+</div>
+
+<h3>B. 哈基米参考照 ×3</h3>
+<div class="path">📁 <b>保存</b>（3 个文件，注意是 <b>4:5 竖向</b>，用于小红书 swiper 全屏展示）：
+  <ul style="margin:6px 0 0">
+    <li><code>sites/finder-page/assets/cat-1</code></li>
+    <li><code>sites/finder-page/assets/cat-2</code></li>
+    <li><code>sites/finder-page/assets/cat-3</code></li>
+  </ul>
+</div>
+<div class="prompt cat">
+  <button class="copy" type="button">Copy</button>
+  <pre>Three vertical 4:5 portrait phone snapshots of the same cat Hajimi (character sheet — orange tabby, round amber eyes, ear notch on LEFT ear, sky-blue collar with silver tag), iPhone-style amateur owner snapshots taken indoors. Each image MUST be vertical 4:5 (taller than wide), suitable for full-bleed mobile carousel display.
+
+- cat-1: full body curled on a beige sofa, looking up at camera, soft afternoon window light from upper-left
+- cat-2: tight close-up of face filling the frame, amber eyes sharp focus, the sky-blue collar with silver tag clearly visible just below the chin
+- cat-3: standing on a windowsill in side profile, tail visible curving up, blurred curtain background
+
+Same cat across all 3, same warm-afternoon lighting palette, same candid pet-owner photography style. NO square crop, NO landscape — vertical 4:5 only.</pre>
+</div>
+
+<h3>C. 朝阳公园遛猫 ×4</h3>
+<div class="path">📁 <b>保存</b>（4 个文件）：
+  <ul style="margin:6px 0 0">
+    <li><code>sites/xhs-snapshot/assets/walk-1</code></li>
+    <li><code>sites/xhs-snapshot/assets/walk-2</code></li>
+    <li><code>sites/xhs-snapshot/assets/walk-3</code></li>
+    <li><code>sites/xhs-snapshot/assets/walk-4</code></li>
+  </ul>
+</div>
+<div class="prompt cat">
+  <button class="copy" type="button">Copy</button>
+  <pre>Four portrait 4:5 phone photos at Chaoyang Park 朝阳公园 west lawn, golden hour, summer:
+- walk-1: close-up of Hajimi (character sheet) wearing a beige chest harness with a leash clipped on, sky-blue collar still visible underneath, owner's hand barely in frame
+- walk-2: Hajimi crouched low and frozen in tall green grass, ears slightly back, nervous body language, wide lawn behind
+- walk-3: same Hajimi suddenly playful, mouth half-open, paws raised, chasing a small white butterfly mid-air
+- walk-4: Hajimi huddled tight against a pair of sneakers (owner's feet from above), hiding from off-frame people
+
+Style: amateur xiaohongshu pet vlogger phone photo, slight motion blur ok.</pre>
+</div>
+
+<h3>D. 哈基米 3 岁生日 ×3</h3>
+<p class="muted">每张单独一个 prompt，自含哈基米外观 + 写实约束，可直接发给 Gemini。</p>
+
+<div class="path">📁 <code>sites/xhs-snapshot/assets/birthday-1</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A vertical 4:5 photorealistic phone snapshot of a small round homemade cat birthday cake made of shredded chicken meat shaped like a layer cake, single thin candle in the shape of the number "3" on top, set on a wooden table in warm indoor evening light, blurry party streamers in the background. Hyper-realistic phone photo, natural light, candid, no cartoon, no 3d render.</pre>
+</div>
+
+<div class="path">📁 <code>sites/xhs-snapshot/assets/birthday-2</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A vertical 4:5 photorealistic phone snapshot of an extremely overweight chubby orange tabby cat with a big round sagging belly, warm marigold-orange coat, cream belly, round face, big amber eyes with fully round dilated pupils, a 4mm crescent notch on the left ear tip, wearing a sky-blue cloth collar with a small silver oval tag and a tiny matte-black GPS tracker pod. He is face-to-face with a small round shredded-chicken birthday cake on a wooden table, sniffing it suspiciously, indoor warm evening light. Hyper-realistic phone photo, natural light, candid, no cartoon, no 3d render, no slit pupils.</pre>
+</div>
+
+<div class="path">📁 <code>sites/xhs-snapshot/assets/birthday-3</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A vertical 4:5 photorealistic phone snapshot of an extremely overweight chubby orange tabby cat (warm marigold-orange coat, cream belly, big amber eyes with fully round dilated pupils, sky-blue collar with silver tag and tiny black tracker pod), shaking his head sideways to fling off a tiny pink paper birthday hat mid-air, ears flat back, slight motion blur on the flying hat, indoor warm light. Hyper-realistic phone photo, natural light, candid, no cartoon, no 3d render, no slit pupils.</pre>
+</div>
+
+<h3>E. 救助小奶猫 ×3</h3>
+<p class="muted">不是哈基米 — 一只更小、约 1 月龄的小奶猫。</p>
+
+<div class="path">📁 <code>sites/xhs-snapshot/assets/group-1</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A vertical 4:5 photorealistic phone snapshot of a tiny one-month-old gray-and-white tabby kitten (no collar) lying on a flattened cardboard piece in a damp residential alley, fur slightly matted from rain, eyes barely open, looking fragile and cold. Soft overcast daylight. Hyper-realistic phone photo, natural light, candid, no cartoon, no 3d render.</pre>
+</div>
+
+<div class="path">📁 <code>sites/xhs-snapshot/assets/group-2</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A vertical 4:5 photorealistic phone snapshot of a tiny one-month-old gray-and-white tabby kitten being bottle-fed by a human hand, drinking from a small white kitten formula bottle, cradled in a soft beige towel, indoor warm light. Hyper-realistic phone photo, natural light, candid, no cartoon, no 3d render.</pre>
+</div>
+
+<div class="path">📁 <code>sites/xhs-snapshot/assets/group-3</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A vertical 4:5 photorealistic phone snapshot of a tiny one-month-old gray-and-white tabby kitten asleep curled up inside a soft folded beige towel in a cardboard box, peaceful, soft warm indoor light. Hyper-realistic phone photo, natural light, candid, no cartoon, no 3d render.</pre>
+</div>
+
+<h3>F. 失而复得的身份证</h3>
+<div class="path">📁 <code>sites/xhs-snapshot/assets/idcard-found</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A vertical 4:5 photorealistic top-down phone snapshot of a Chinese second-generation ID card lying on a wooden table. All personal text and the photo area heavily pixelated and blurred, except the last four digits "3614" which remain clearly readable. The card is slightly worn at the edges. Soft warm indoor light. Hyper-realistic phone photo, no cartoon, no 3d render.</pre>
+</div>
+
+<h3>G. 救助博主主视频缩略图</h3>
+<div class="path">📁 <code>sites/rescue-blogger/assets/video-orange</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A 16:9 photorealistic vet-clinic photo of an extremely overweight chubby orange tabby cat (warm marigold-orange coat, cream belly, big amber eyes with fully round dilated pupils, a 4mm crescent notch on the left ear tip) sitting calmly inside an open pet carrier on a clinic exam table. The cat is NOT wearing a collar, and there is a clearly visible flattened ring of fur around his neck where a collar recently was. Soft clinic ceiling light. Overlay a small white play button "▶" in the center and small white text "0:32 / 1:48" in the bottom-left corner. Hyper-realistic phone photo, slightly over-saturated, no cartoon, no 3d render, no slit pupils.</pre>
+</div>
+
+<h3>G'. MaoTrack 项圈特写截图</h3>
+<p class="muted">网友 @我宣布橘猫无罪 用来佐证"哈基米戴的是带轨迹后台的智能项圈"——其实是寻猫帖里其中一张照片的局部放大。可作为视频帖二图、监控页缩略图、或群文件附图。</p>
+<div class="path">📁 推荐保存到 <code>sites/wechat-group/assets/collar-closeup.png</code> 或 <code>sites/maotrack/assets/collar-closeup.png</code>（任选其一即可，记得我会把对应页面里的 emoji 占位换掉）</div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>Vertical 4:5 photorealistic super close-up phone snapshot, slightly motion-blurred, of the back of a chubby orange tabby cat's neck where a sky-blue silicone smart-collar is clipped on. The collar is the focus and fills most of the frame.
+
+The collar shows clearly:
+- A small embossed white logo on the side panel reading "MaoTrack" in a clean rounded sans-serif, plus a tiny paw glyph next to the wordmark.
+- A silver oval ID tag dangling from a D-ring, laser-engraved with the tag number "HJM427-2024" in dark grey, plus a tiny QR-code square at the bottom of the tag.
+- A faint indented seam suggesting a recessed GPS module under the silicone shell.
+
+Cat fur (warm marigold-orange tabby) is visible at the edges but slightly out of focus. Indoor warm lamp lighting, no clinic background, no human hands, no other UI overlay, no text other than what is on the collar. Hyper-realistic phone photo, no cartoon, no 3d render.</pre>
+</div>
+
+<h3>H. 救助博主 vlog 视频（关键证据·被网友断章取义）</h3>
+<p class="muted">原视频是博主拍的"给胖橘减肥"日常 vlog，画面里她伸手把猫的食盆扫开，结果被网友截屏配字"看她打猫的饭碗"传成了虐猫证据。<br>
+<b>用 Veo 生成 8 秒短视频。</b></p>
+<div class="path">📁 <code>sites/wechat-group/assets/cam04-2214.mp4</code>（生成后我把 <code>wechat-group/index.html</code> 里那块 SVG 占位换成 <code>&lt;video&gt;</code>）</div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>SILENT 8-second vertical 9:16 photorealistic phone vlog clip, no audio, no music, no sound effects, no voiceover, no on-screen text, no UI, no captions, no subtitles. Slight handheld shake. Single locked low-angle shot from the kitchen floor looking up slightly at a chubby orange tabby cat. Warm late-afternoon kitchen light, white floor tile.
+
+THE FOOD (extremely important — read carefully): the food in the bowl is THICK WET CAT FOOD PASTE — a sticky brown-pink minced meat paté, the texture of thick mashed pâté or stiff peanut butter. It is NOT dry kibble. It is NOT loose pellets. It is NOT pieces. It is one single sticky lump of wet paste smeared and pressed flat against the inside bottom of the open shallow stainless steel bowl. The paste behaves like wet clay — it STICKS firmly to the bowl. It cannot pour, cannot fall out, cannot scatter, cannot spill, cannot leave the bowl. Even if the bowl is tipped, shaken, or yanked, the sticky paste stays glued to the bowl's inner surface. There are zero loose pieces of food. There are zero dry kibble pellets anywhere in the entire video.
+
+CORE ACTION (this is the whole point of the video, do NOT change it, do NOT make it gentle): at 0.0s the cat is already eagerly bent over the open shallow stainless steel bowl, licking the sticky wet paste with his pink tongue, mouth working. Suddenly the cat LAUNCHES himself UP into the air to follow the bowl, both front paws extended, mouth wide open, fully airborne. AT THE EXACT SAME INSTANT, a woman's bare right hand and forearm whip in from the right edge of the frame at extreme speed and VIOLENTLY SNATCH the entire shallow stainless steel bowl away — palm wraps around the bowl's outer side, fingers grip the rim, and she rips the bowl straight up and out to the right of frame in one blistering blur, faster than the cat can reach it. The grab looks like swatting a fly, like yanking something from a thief in anger. The sticky wet paste stays stuck inside the bowl as the bowl flies away (because it is sticky paste, not loose food). The cat misses the bowl by a hair and lands hard back on the empty floor. This whole action must read as harsh, abrupt, and forceful — NOT a slow gentle pour, NOT a careful lift, NOT a calm tidying-up motion. It must look almost violent, like the food is being stolen from him.
+
+THE CAT — same cat in every single frame, do not change his appearance:
+• Extremely fat chubby orange tabby, about 6 kg, marigold-orange fur with darker tabby stripes, cream belly, short stubby legs, round face.
+• Big amber eyes, fully round wide circular pupils (round pupils, not vertical, not slit).
+• LEFT EAR HAS A LARGE OBVIOUS V-SHAPED NOTCH cut out of the tip — a clear triangular chunk missing from the top of his left ear, about 5mm wide, healed wound, very visible. The right ear is whole. This notched left ear must be clearly visible in every frame, including during motion.
+• Sky-blue cloth collar around his neck with a small silver oval tag and a tiny matte-black GPS pod on top of the collar.
+
+TIMELINE:
+• 0.0s–1.5s: the chubby cat is already crouched on the white floor, head down, actively licking sticky brown-pink wet paté paste from the bottom of an open shallow stainless steel bowl. The paste is smeared flat across the inside bottom of the bowl, glistening and sticky. Camera is steady. The V-notch on his left ear is clearly framed.
+• 1.5s–3.0s: the cat suddenly LEAPS upward and forward into the air after the bowl, both front paws extended, mouth wide open, fully airborne, body fully stretched. AT THE SAME EXACT INSTANT the woman's hand whips in from the right at blistering speed, palm clamps the OUTER side of the bowl, and she rips the bowl violently straight up and then out to the right in one extremely fast motion (faster than the cat's leap). The sticky wet paste stays glued inside the bowl the entire motion. Heavy motion blur on hand and bowl. The cat's paws swipe through empty air where the bowl was a frame ago. NOT A SINGLE BLOB of paste leaves the bowl — it is sticky paste, glued to the metal.
+• 3.0s–8.0s: the bowl, the food, and the hand are all gone. The white tile floor in front of the cat is completely empty and pristine — no food on the floor, nothing spilled, no crumbs, no paste smear, no kibble, nothing. The cat lands hard back on the floor with a small thud (silent visual), looks around confused, V-notched left ear and sky-blue collar clearly visible, then immediately leans forward and paws at the empty floor where the bowl used to be, sniffing and searching desperately for the missing food. Camera stays steady on the cat and the empty floor.
+
+Style: hyper-realistic amateur phone vlog footage, soft natural light, shallow depth of field, slight grain. SILENT — no audio track at all. No cartoon, no 3d render, no slit pupils, no on-screen text or graphics. The cat's fat orange body, sky-blue collar with black GPS pod, and V-notched LEFT ear must remain identical across all 8 seconds. THE FOOD IS ALWAYS THICK STICKY WET PASTE GLUED TO THE INSIDE OF THE BOWL — never dry kibble, never loose pieces, never pellets. The paste never leaves the bowl. The hand action is a VIOLENT FAST FORCEFUL snatch of the entire bowl with the sticky paste still glued inside it. The cat must visibly LEAP into the air to try to grab the bowl, and the hand must rip it away faster than the cat can reach it. Absolutely NOT a gentle slow pour, NOT a tender lift, NOT a calm tidying motion. Absolutely zero food particles may appear outside the bowl at any point in the entire 8-second clip.
+
+CRITICAL FOOD PHYSICS: the wet paste is sticky like thick paté or stiff peanut butter — it ADHERES to the metal bowl and physically cannot fall out. Treat the bowl + paste as ONE single rigid object that moves as a unit. Zero food in the air. Zero food on the floor. Zero food falling, dropping, smearing onto the floor, scattering, or appearing anywhere outside the bowl. After the bowl leaves the frame, the white tile floor is perfectly clean — not a single drop, not a single crumb. The cat finds nothing on the floor. ABSOLUTELY NO DRY KIBBLE ANYWHERE — no orange pellets, no brown pellets, no round pellets, no scattered food of any kind on the floor or in the air at any moment.</pre>
+</div>
+
+<hr>
+
+<h2 id="sec3">3. 推荐 · 锦上添花（11 张）</h2>
+
+<h3>I. xhs profile 5 张封面</h3>
+<p class="muted">5 张独立 prompt。生成后建议在 Figma/Photoshop 里叠加中文标题，避免模型拼错字。</p>
+
+<div class="path">📁 <code>sites/xhs-snapshot/assets/cover-walk</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A vertical 3:4 photorealistic phone snapshot of an extremely overweight chubby orange tabby cat (warm marigold-orange coat, cream belly, big amber eyes with fully round dilated pupils, sky-blue collar with silver tag and tiny black tracker pod) standing on green park grass with a beige chest harness and leash, golden hour light. Hyper-realistic phone photo, candid, no cartoon, no 3d render, no slit pupils.</pre>
+</div>
+
+<div class="path">📁 <code>sites/xhs-snapshot/assets/cover-group</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A vertical 3:4 photorealistic phone snapshot of a tiny one-month-old gray-and-white tabby kitten wrapped snugly in a soft beige towel, held in two hands, soft warm indoor light. Hyper-realistic phone photo, candid, no cartoon, no 3d render.</pre>
+</div>
+
+<div class="path">📁 <code>sites/xhs-snapshot/assets/cover-birthday</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A vertical 3:4 photorealistic phone snapshot of an extremely overweight chubby orange tabby cat (warm marigold-orange coat, cream belly, big amber eyes with fully round dilated pupils, sky-blue collar with silver tag) sniffing a small round shredded-chicken birthday cake with a single "3" candle on a wooden table, warm indoor evening light. Hyper-realistic phone photo, candid, no cartoon, no 3d render, no slit pupils.</pre>
+</div>
+
+<div class="path">📁 <code>sites/xhs-snapshot/assets/cover-idcard</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A vertical 3:4 photorealistic top-down phone snapshot of a worn Chinese second-generation ID card lying on a wooden table, all personal text and the photo area heavily pixelated except the last four digits "3614" which remain readable, soft warm indoor light. Hyper-realistic phone photo, no cartoon, no 3d render.</pre>
+</div>
+
+<div class="path">📁 <code>sites/xhs-snapshot/assets/cover-placeholder</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A vertical 3:4 photorealistic phone snapshot of a tiny scared 3-month-old orange tabby kitten (warm marigold-orange coat, slightly oversized round head, big amber eyes with fully round dilated pupils, no collar yet) crouched inside an open sky-blue plastic pet carrier on day-one of adoption, indoor warm window light. Hyper-realistic phone photo, candid, no cartoon, no 3d render, no slit pupils.</pre>
+</div>
+
+<h3>J. maotrack 找回案例 ×4</h3>
+<p class="muted">4 个独立 prompt。生成后记得在 <code>sites/maotrack/cases.html</code> 里用 <code>&lt;img&gt;</code> 替掉 emoji。</p>
+
+<div class="path">📁 <code>sites/maotrack/assets/case-nailong</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A square 1:1 photorealistic phone snapshot of an orange tabby cat on a beige cloth leash being held by a smiling young Chinese woman on a Beijing residential street, warm afternoon light, slight bokeh background. Hyper-realistic phone photo, candid, no cartoon, no 3d render.</pre>
+</div>
+
+<div class="path">📁 <code>sites/maotrack/assets/case-manbo</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A square 1:1 photorealistic phone snapshot of a black short-hair domestic cat being gently hugged against a person's chest indoors, the person's face cropped out, soft warm light, calm reunion mood. Hyper-realistic phone photo, candid, no cartoon, no 3d render.</pre>
+</div>
+
+<div class="path">📁 <code>sites/maotrack/assets/case-mimi</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A square 1:1 photorealistic phone snapshot of a gray-and-white tabby cat curled up sleeping on a beige cushion in a softly lit living room, peaceful post-recovery atmosphere. Hyper-realistic phone photo, candid, no cartoon, no 3d render.</pre>
+</div>
+
+<div class="path">📁 <code>sites/maotrack/assets/case-naibao</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A square 1:1 photorealistic phone snapshot of a chubby ginger orange cat sitting calmly on a sunny apartment balcony, blurred Beijing residential buildings behind, soft afternoon light. Hyper-realistic phone photo, candid, no cartoon, no 3d render.</pre>
+</div>
+
+<h3>K. 救助博主视频网格封面 ×4</h3>
+<p class="muted">主推 cover-orange 是哈基米伪装成流浪那张，其余 3 张是不同流浪橘猫。</p>
+
+<div class="path">📁 <code>sites/rescue-blogger/assets/cover-orange</code> 【主推】</div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A square 1:1 photorealistic phone snapshot of an extremely overweight chubby orange tabby cat (warm marigold-orange coat, cream belly, big amber eyes with fully round dilated pupils, a 4mm crescent notch on the left ear tip, NO collar) sitting inside an open cardboard box at a Beijing roadside curb, slightly anxious posture, late afternoon street light. Overlay a small white play button "▶" in the center and small white text "12.3w" in the bottom-right corner. Hyper-realistic phone photo, candid, no cartoon, no 3d render, no slit pupils.</pre>
+</div>
+
+<div class="path">📁 <code>sites/rescue-blogger/assets/cover-orange-2</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A square 1:1 photorealistic phone snapshot of a thin scruffy orange street tabby cat eating wet food from a white styrofoam plate on a sidewalk curb, dirty fur, slightly overcast daylight. Hyper-realistic phone photo, candid, no cartoon, no 3d render.</pre>
+</div>
+
+<div class="path">📁 <code>sites/rescue-blogger/assets/cover-orange-3</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A square 1:1 photorealistic phone snapshot of a small ginger kitten being gently scooped up by two human hands from under a parked silver car on a residential street, soft afternoon light. Hyper-realistic phone photo, candid, no cartoon, no 3d render.</pre>
+</div>
+
+<div class="path">📁 <code>sites/rescue-blogger/assets/cover-orange-4</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A square 1:1 photorealistic phone snapshot of an older senior ginger tabby cat lying calmly on a stainless steel veterinary exam table while a vet's gloved hands listen with a stethoscope, bright clinic light. Hyper-realistic phone photo, candid, no cartoon, no 3d render.</pre>
+</div>
+
+<h3>L. 救助博主榴莲度假</h3>
+<div class="path">📁 <code>sites/rescue-blogger/assets/cover-durian</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A square 1:1 photorealistic phone snapshot of a young Chinese woman in her late twenties wearing a beige sun hat that partially hides her face, smiling warmly while holding up half a fresh yellow durian at a Bangkok night market, glowing red and yellow neon market lights blurred behind her, casual vacation mood. Hyper-realistic phone photo, candid, no cartoon, no 3d render.</pre>
+</div>
+
+<hr>
+
+<h2 id="sec4">4. 可选 · 升级监控截图组（4 张）</h2>
+<p class="muted">4 个独立 prompt。生成后在 <code>sites/wechat-group/monitor.html</code> 里用 <code>&lt;img&gt;</code> 替掉现有占位框。剧情上这组是被人为制造的伪证，可以刻意做得"角度太巧 / 太戏剧化"。</p>
+
+<div class="path">📁 <code>sites/wechat-group/assets/monitor-cam02-0517</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A 4:3 grainy CCTV-style still from a residential kitchen at night, low light, heavy compression artifacts, slight chromatic aberration. Top-left red monospace timestamp text reads "CAM-02 2026-05-08 19:22:11". An extremely overweight chubby orange tabby cat (warm marigold-orange coat, sky-blue collar with silver tag) sits crouched at an empty stainless steel food bowl on the floor, no human in frame, lonely mood. Photorealistic surveillance footage aesthetic, no cartoon, no 3d render.</pre>
+</div>
+
+<div class="path">📁 <code>sites/wechat-group/assets/monitor-cam04-0518</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A 4:3 grainy CCTV-style still from a residential living room ceiling angle, low light, heavy compression. Top-left red monospace timestamp text reads "CAM-04 2026-05-09 20:41:33". A human arm reaches in from frame-right and pushes a chubby orange tabby cat off a beige sofa mid-air, the cat falling sideways, only the arm and shoulder of the person visible. Photorealistic surveillance footage aesthetic, no cartoon, no 3d render.</pre>
+</div>
+
+<div class="path">📁 <code>sites/wechat-group/assets/monitor-cam01-0518</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A 4:3 grainy CCTV-style still from a residential kitchen floor angle, low light, heavy compression. Top-left red monospace timestamp text reads "CAM-01 2026-05-09 21:05:02". A human foot in a slipper kicks toward a chubby orange tabby cat on the kitchen floor, the cat dodging sideways, only the lower leg of the person visible. Photorealistic surveillance footage aesthetic, no cartoon, no 3d render.</pre>
+</div>
+
+<div class="path">📁 <code>sites/wechat-group/assets/monitor-cam02-0519</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A 4:3 grainy CCTV-style still from a residential bedroom corner angle, low warm bedside-lamp light, heavy compression. Top-left red monospace timestamp text reads "CAM-02 2026-05-10 07:13:48". A person lies sideways in bed with both hands covering their ears, a chubby orange tabby cat walking on the floor beside the bed with mouth open as if crying. Photorealistic surveillance footage aesthetic, no cartoon, no 3d render.</pre>
+</div>
+
+<hr>
+
+<h2 id="sec5">5. 公司站氛围图（增强游戏性 · 13 张）</h2>
+<p class="muted">每张图的保存路径均在各小节标题下面明示（文件名与 HTML 里已写好的 <code>&lt;img src=...&gt;</code> 严格对齐，生成后直接交换上去即可）。<br>
+HTML 里 <code>&lt;img&gt;</code> 都带了 <code>onerror="this.remove()"</code>，所以不放图也不会出现红叉，但放上去能让二刷玩家更愿意"逛网站"。</p>
+
+<h3>M. 朝阳爱宠宠物医院 ×3</h3>
+
+<h4>M1. 医院门头（16:9）</h4>
+<div class="path">📁 <code>sites/pet-clinic/assets/clinic-exterior</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A 16:9 photorealistic documentary street view of a small reputable Chinese neighborhood pet hospital storefront in a Beijing residential district. Glass facade with bright warm interior visible through the windows, large red cross sign above the door, prominent simplified Chinese signage in clean sans-serif reading "朝阳爱宠 · 24h急诊 · 自营17年". Smaller red Chinese banner on the door reading "宠物医院". A few potted plants outside on the sidewalk, a parked electric scooter to the side, faint Chinese street signs in the background, soft early-evening light, warm color grading, distinctly contemporary Beijing urban atmosphere. Hyper-realistic photo, no cartoon, no 3d render, no English text.</pre>
+</div>
+
+<h4>M2. 主治团队合影（16:9）</h4>
+<div class="path">📁 <code>sites/pet-clinic/assets/team-photo</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A 16:9 photorealistic candid group photo of four Chinese veterinarians (two men, two women, ages 30 to 50, distinctly East Asian features) wearing white lab coats over light blue scrub tops, standing inside a brightly lit Chinese pet clinic exam room in Beijing, kind professional expressions. A small white cat sits on the stainless steel exam table in front of them. Background includes simplified Chinese medical posters on the wall (clearly Chinese characters, not English), a digital weight scale, a Chinese-language wall clock. Soft warm lighting, contemporary Chinese clinic atmosphere. Hyper-realistic photo, no cartoon, no 3d render, no English text.</pre>
+</div>
+
+<h4>M3. 科普文章封面（16:9）</h4>
+<div class="path">📁 <code>sites/pet-clinic/assets/article-fatty-liver</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A 16:9 photorealistic editorial pet-magazine photo of a very fat orange tabby cat (no collar) standing on a small white pet weighing scale in a clean Chinese veterinary clinic, looking grumpy toward camera, the digital scale display clearly reads "5.8 kg". Background includes simplified Chinese medical posters on the wall (Chinese characters, not English). Soft natural light, slightly humorous empathetic tone, contemporary Chinese clinic setting. Hyper-realistic photo, no cartoon, no 3d render.</pre>
+</div>
+
+<h3>N. MaoTrack ×5</h3>
+
+<h4>N1. 智能项圈产品图（4:3）</h4>
+<div class="path">📁 <code>sites/maotrack/assets/product-collar</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A 4:3 photorealistic studio product photo of a sleek smart pet collar on a clean light-cyan gradient backdrop. The collar is sky-blue silicone with a small matte-black GPS module pod on top, a tiny LED indicator, and an embossed simplified Chinese wordmark "猫迹 MaoTrack" on the side of the pod. Slight three-quarter angle, soft studio lighting, subtle reflection beneath. Chinese consumer-electronics product photography style. Hyper-realistic industrial design photography, no animals, no extra text overlay, no cartoon, no 3d render.</pre>
+</div>
+
+<h4>N2. 救助博主头像 · 朝阳救助小柚（1:1）</h4>
+<div class="path">📁 <code>sites/maotrack/assets/partner-xiaoyou</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A square 1:1 photorealistic phone snapshot of a young Chinese woman in her twenties wearing a yellow bucket hat (face partially hidden by the hat brim) holding up a small ginger kitten in front of her cheek, daylight, blurred Beijing residential green tree leaves in the background, candid Chinese street style. Hyper-realistic phone photo, no cartoon, no 3d render.</pre>
+</div>
+
+<h4>N3. 救助博主头像 · 朝阳铲屎（1:1）</h4>
+<div class="path">📁 <code>sites/maotrack/assets/partner-chanshi</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A square 1:1 photorealistic phone snapshot of a Chinese person wearing a black face mask and a red baseball cap (face mostly hidden) crouched beside a row of stray-cat feeding bowls in a Beijing CBD back alley, blurred Beijing high-rise office buildings and Chinese shop signs in the background, late afternoon light. Hyper-realistic phone photo, candid, no cartoon, no 3d render.</pre>
+</div>
+
+<h4>N4. 救助博主头像 · 东四爱猫人（1:1）</h4>
+<div class="path">📁 <code>sites/maotrack/assets/partner-dongsi</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A square 1:1 photorealistic phone snapshot of an older Chinese woman in her sixties in a beige sun hat (face partially shadowed under the brim) gently petting a black-and-white domestic cat sitting on a gray stone Beijing hutong wall, late afternoon golden light, traditional gray brick hutong alley in the soft background. Hyper-realistic phone photo, candid, no cartoon, no 3d render.</pre>
+</div>
+
+<h4>N5. 救助博主头像 · 呼家楼小猫（1:1）</h4>
+<div class="path">📁 <code>sites/maotrack/assets/partner-hujialou</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A square 1:1 photorealistic phone snapshot of a single Chinese person's hand offering a small open churu cat-treat tube to a wary tabby cat sitting on a Beijing subway station tiled ledge, the person mostly off-frame, fluorescent station light, blurred simplified Chinese station signage in the background. Hyper-realistic phone photo, candid, no cartoon, no 3d render.</pre>
+</div>
+
+<h3>O. NeoLight 新光科技 ×4</h3>
+
+<h4>O1. 首页品牌主视觉（16:9）</h4>
+<div class="path">📁 <code>sites/neolight/assets/hero-brand</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A 16:9 premium tech-corporation hero render. Centered: a calm 30-year-old East Asian woman shown from the chest up, eyes softly closed with a serene faint smile, wearing a sleek translucent glass headset circlet around her head that softly emits cyan internal glow. Multiple thin glowing cyan data streams rise from the circlet like neural connections and gather toward a single point of light above her head. Deep navy to cobalt blue gradient background, subtle particle field, soft rim light on her face, beautiful but slightly uncanny corporate keynote aesthetic. Hyper-realistic editorial render, no text, no logo.</pre>
+</div>
+
+<h4>O2. 创始人陈光头像（1:1 圆裁）</h4>
+<div class="path">📁 <code>sites/neolight/assets/founder-chen</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A square 1:1 photorealistic corporate portrait of a 45-year-old East Asian male tech CEO. Short neat black hair, rimless glasses, charcoal grey turtleneck, faint confident half-smile, eyes looking slightly past the camera with an introspective expression. Soft studio lighting, dark navy gradient background. Hyper-realistic editorial founder portrait, no logo, no text, no cartoon, no 3d render.</pre>
+</div>
+
+<h4>O3. 央视专题封面（16:9）</h4>
+<div class="path">📁 <code>sites/neolight/assets/news-li-zhou</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A 16:9 photorealistic warm news-feature still: a 40-year-old East Asian husband sits at a hospital bedside, gently holding the hand of his wife who lies propped up in the bed. Both are smiling warmly at each other with genuine tender affection, the husband's eyes crinkled with a soft loving smile, the wife giving a gentle peaceful smile back at him. The wife wears a prominent sleek wide white brain-computer-interface headband wrapped around her forehead and temples \u2014 the headband is clearly visible, about 3cm wide, smooth glossy white plastic with two glowing cyan LED dots on the temples and a subtle silver NeoLink logo strip on the front, obviously a high-tech device. Bright hospital window with warm afternoon golden light streaming in, a small bouquet of flowers on the bedside table, warm color grading, CCTV human-interest documentary aesthetic, intimate hopeful mood. Hyper-realistic photo, no cartoon, no 3d render.</pre>
+</div>
+<p class="note">二刷提示：可以再生成一张同框、她的瞳孔里映出极淡 VSS 同心圆符号的版本，做"细思极恐"细节。</p>
+
+<h4>O4. NeoLink 设备实拍（16:9）</h4>
+<div class="path">📁 <code>sites/neolight/assets/neolink-device</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A 16:9 photorealistic high-end e-commerce hero product photo of an ultra-thin glossy black wearable headband with two cyan LED indicator dots, sitting on a translucent acrylic display stand against a deep purple-to-navy gradient background, soft rim lighting, premium studio shot. Hyper-realistic product photography, no human, no text, no logo, no cartoon, no 3d render.</pre>
+</div>
+
+<p class="note">这一组生成时建议统一加 prompt 后缀：<code>cinematic color grading, depth of field, premium editorial photography, no text, no watermark, no logo</code>。</p>
+
+<hr>
+
+<h2 id="sec6">6. L2 品牌与符号（Root / NeoLight / 催眠 sigil）</h2>
+<p class="muted">L2 阶段需要的品牌素材。这三组生成后，会同时出现在好几个页面里，所以要先生成这一组、再统一替换。<br>
+<b>说明：</b>这三张都需要透明背景或可放在深色页面上的设计，复制时不会拼接哈基米角色设定，按 ✨ 紫框 prompt 直接生成即可。</p>
+
+<h3>P. @root 头像（用在所有 root 出场的地方）</h3>
+<p class="muted">替换目前到处使用的 🌑 emoji。会同时出现在 <code>root-xhs/index.html</code>（小红书主页头像、note-2077 文章头像）、<code>awake-union/*</code>（每条 @root 帖子楼主头像、首页"最新回复"行）。建议直接生成 1:1 圆形可裁切的方图。</p>
+<div class="path">📁 <code>shared/assets/avatar-root</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A square 1:1 mysterious cyber profile avatar designed to fit inside a circular crop. Subject: a stylized faceless hooded figure shown from chest-up against a deep midnight forest-green-to-black gradient background, the hood pulled low so the entire face is in pure black shadow with only two faint glowing terminal-green dots where the eyes would be. On the figure's chest, a small glowing warm-orange hexagonal sigil with thin geometric lines, like a rune. Subtle scanline grain across the whole image. Cyberpunk good-hacker / underground forum aesthetic — anonymous, mysterious, but clearly a "white hat" / friendly hacker (NOT villain, NOT demonic, NOT gory). Color palette: deep forest-green-black #050d08 background, terminal green #22c55e eye dots, warm hacker orange #fb923c sigil glow on chest. ABSOLUTELY NO PURPLE, NO MAGENTA, NO PINK, NO VIOLET ANYWHERE — only green, orange, and near-black. Centered composition, subject takes up the central 70% of the frame so it survives a circular crop. No text, no letters, no watermark, no logo. Stylized digital illustration with subtle glitch texture, NOT a real photograph — render it crisp and high-quality, suitable as a forum / social media avatar.</pre>
+</div>
+<p class="note">生成后保存为 <code>avatar-root.png</code>，然后我可以帮你把 <code>root-xhs/index.html</code>、<code>root-xhs/note-2077.html</code>、<code>awake-union/*.html</code> 里所有 <code>🌑</code> 替换成 <code>&lt;img src="/shared/assets/avatar-root.png"&gt;</code>。</p>
+
+<h3>S. lost-pet-mass "找回啦"合照 ×6（哈基米真实 · 其余 AI 套娃）</h3>
+<p class="muted">用在 <code>lost-pet-mass/index.html</code> 顶部那张大照片（现在是 emoji 占位）。<b>剧情核心：</b>哈基米的合照是真实的——一个正常女生抱猫、人手正常；其他 5 个走丢猫的"找回照"都是 AI 编的——同一个女生抱同一只橘猫，而且手上明显多一根手指。@root 在评论区会吐槽"这人怎么 6 根手指 ai 生成的不过脑子"，玩家通过对比 6 张图意识到只有哈基米是真的。</p>
+
+<h4>S1. hjm（一个人抱猫 · 真实合照 · 手指正常 · 五根）</h4>
+<p class="muted">caption 我会同步改成 <i>"哈基米回家了 · 体重还在涨"</i> 之类，不再扯椰子鸡。<b>关键：女生只有一只手露出来抱猫，那只手必须是清清楚楚的 5 根手指（拇指+四指）</b>，跟 S2 的"6 指"形成强烈对比。</p>
+<div class="path">📁 <code>sites/lost-pet-mass/assets/reunion-hjm</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A 4:3 photorealistic candid Chinese phone snapshot taken in a cozy modern Beijing apartment living room. ONE young Chinese woman standing alone, smiling warmly, holding a large chubby orange tabby cat in both hands in front of her chest. Her face is clearly visible and friendly: round face, late twenties, shoulder-length straight black hair, wearing an oversized cream knit sweater, soft happy smile.
+
+CRITICAL ANATOMY (this is the whole point — do NOT skip): the woman's visible hand wrapping around the cat's belly has EXACTLY FIVE FINGERS — one thumb plus four fingers (index + middle + ring + pinky), no more, no less. All five fingers must be clearly visible, fully formed, naturally proportioned, individually countable in the frame. The hand looks completely anatomically correct — no extra finger, no missing finger, no fused fingers, no melted hand. The other hand can be hidden behind the cat or out of frame. The cat itself also looks completely normal and anatomically correct — four legs, two ears, one tail, all in the right place.
+
+The cat is the chubby marigold-orange tabby with cream belly, big amber eyes with fully round dilated pupils, sky-blue cloth collar with silver oval tag and small matte-black GPS pod on top, distinct V-shaped notch on his LEFT ear tip. Warm late-afternoon golden light through a window, slight golden lens flare, indoor plants softly blurred in the background. Hyper-realistic phone photo, candid amateur composition, no cartoon, no 3d render, no slit pupils. Only ONE person in the photo — do not generate two women, do not duplicate her, do not generate a second person.</pre>
+</div>
+
+<h4>S2. 其他 5 只猫共用一张（同一个女生 · 同一只哈基米 · 但手上多了一根手指）</h4>
+<p class="muted">5 个非-hjm case 共用同一张图就够用——剧情上"看 5 个不同名字的猫，找回照里却<b>都是同一个女生抱着同一只长着三只耳朵的橘猫</b>"才是最荒谬的破绽（因为 lost-pet-mass 所有 case 的文案模板也都一样）。这正是 root 吐槽的点。下载后复制成 5 个文件名（reunion-nailong / manbo / mimi / naibao / xiaowanzi），或我直接让 JS 统一指向同一个文件。</p>
+<div class="path">📁 <code>sites/lost-pet-mass/assets/reunion-fake</code>（生成 1 张，复制 5 份重命名 / 或共用）</div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A 4:3 AI-generated fake reunion phone snapshot. ONE young Chinese woman standing alone at home, smiling warmly and holding a large chubby orange tabby cat in both hands in front of her chest. The woman has a friendly normal Chinese face, straight black bob hair, soft pink hoodie, calm warm smile. The cat is a chubby marigold-orange tabby with cream belly, big amber eyes with fully round dilated pupils, sky-blue cloth collar with silver oval tag and small matte-black GPS pod on top.
+
+CRITICAL ANATOMY DEFECT (this is the whole point of the image — do NOT skip, do NOT downplay): the orange cat clearly has THREE EARS on the top of its head, not two. There are TWO normal triangular orange tabby ears in their usual positions on the left and right of the cat's head, AND a clearly visible THIRD extra triangular ear sticking up between them, roughly on the top center / slightly right of the cat's skull. The third ear is the same size, same orange tabby fur, same shape as the other two ears, fully formed with a pink inner ear, clearly attached to the skull — it must look like a real but obviously wrong third ear. All three ears must be clearly visible and individually countable in the frame from this front-facing angle. This is a classic AI-generation animal-anatomy failure that a careful viewer should be able to spot at a glance.
+
+Soft Chinese apartment background blur, golden afternoon light. Hyper-realistic phone photo, candid amateur composition. Optional minor extra AI tells (asymmetrical earrings on the woman, slightly melted background object) are okay but the THREE-EARED CAT is the headline defect and must be unmistakable. No cartoon, no 3d render, no slit pupils. Only ONE person and ONE cat in the photo — do not duplicate the woman, do not add a second cat. The woman's hands are normal (five fingers each).</pre>
+</div>
+
+<p class="note">生成后我会改 <code>lost-pet-mass/index.html</code>：把 <code>.photo</code> 里那个 emoji 改成 <code>&lt;img src=...&gt;</code>，按 case id 自动切换；同时把 @root 评论文案改成 <b>"等等 这猫怎么三只耳朵 ai 生成不过脑子吗😅"</b>（仅在非-hjm case 显示）。</p>
+
+<h3>Q. NeoLight Logo（公司标识）</h3>
+<p class="muted">用在 <code>neolight/*</code> 所有页面的页眉、员工内部系统 <code>employee.html</code>、工单系统 <code>ticket.html</code>，以及搜索页 <code>portal-search.html</code> 底部"Powered by NeoLight"小字旁。需要一个能放在白底和深色背景上都好看的版本。</p>
+<div class="path">📁 <code>shared/assets/neolight-logo</code></div>
+<div class="prompt vector">
+  <button class="copy" type="button">Copy</button>
+  <pre>A clean modern minimalist tech-corporation wordmark logo for a brain-computer-interface company called "NeoLight". Format: horizontal logo lockup, transparent background. Left: a small abstract icon — a thin geometric circle with three converging cyan light rays meeting at a single bright point in the center, suggesting "neural convergence" and "light". Right of the icon: the wordmark "NeoLight" in a clean sans-serif font (similar to Inter or SF Pro), letter "N" and "L" capitalized, deep navy blue color #1e3a8a, slightly bold, generous letter spacing. The icon's center light point is electric cyan #22d3ee. Composition centered horizontally, balanced negative space, suitable for both light and dark backgrounds. Premium calm corporate identity, like a Silicon Valley deep-tech startup. Vector flat style, crisp edges, transparent PNG. No tagline, no extra text, no human, no photorealism.</pre>
+</div>
+<p class="note">如果需要单独的纯图标版（用在 favicon / 小尺寸场景），把 prompt 里"horizontal logo lockup"改成 <code>square icon-only logo, just the converging-rays circle symbol, no wordmark</code>，存成 <code>shared/assets/neolight-icon</code>。</p>
+
+<h3>R. 催眠符号 Sigil ×5（SVG 外框 + AI 内芯）</h3>
+<p class="muted">结构 = <b>固定的 SVG 几何外框</b>（圆形 / 五边形 / 六边形 / 八边形 / 40 边形，由我手写代码生成，不动）<b> + 中间嵌一张更复杂、有催眠感的 AI 图</b>。玩家"找到"的就是嵌在不同形状里的 5 张内芯图。<br>
+会出现在 <code>awake-union-decode/index.html</code>（5 个样本格子）、<code>root-xhs/index.html</code>（背景水印）、<code>finale-l2/choose.html</code>（全屏背景）。<br>
+<b>下面 5 个 prompt 各自独立、配色和形态都不一样，逐个 Copy 生成，分别存为 sigil-core-1 ~ sigil-core-5。</b></p>
+
+<h4>R1. 冰蓝 × 白（顺时针螺旋 · 大瞳孔）</h4>
+<div class="path">📁 <code>shared/assets/sigil-core-1</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A square 1:1 highly detailed occult-cyber hypnosis core artwork on a pure black background. Centered mandala-style sigil: an outer ring of impossibly thin lines spiraling CLOCKWISE inward creating a strong moiré illusion of being pulled in, a middle ring of fine fractal hexagonal lattice, and at the very center one LARGE bright glowing pupil with a faint vertical cat-slit. Around the pupil, dozens of micro-glyphs and broken binary fragments (0/1) float slightly out of focus. Strong chromatic aberration ghosting every line, subtle CRT scanline texture across the image. SCP-style infohazard vibe — beautiful but wrong. Color palette: pure black #000 background, ICE BLUE #38bdf8 and bright WHITE #ffffff only, NO OTHER COLORS. The whole design fills the central 80% of the square so it crops cleanly inside any geometric frame. Highly detailed digital occult illustration with glitch texture. No text, no letters, no logo, no human, no animals, no photorealism.</pre>
+</div>
+
+<h4>R2. 毒绿 × 酸黄（逆时针螺旋 · 外环尖刺）</h4>
+<div class="path">📁 <code>shared/assets/sigil-core-2</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A square 1:1 highly detailed occult-cyber hypnosis core artwork on a pure black background. Centered mandala-style sigil: an outer ring of impossibly thin lines spiraling COUNTER-CLOCKWISE inward creating a moiré illusion, surrounded by a dense ring of sharp radiating spikes pointing outward like a sun-burst weapon. Middle ring of fine fractal triangular lattice. At the very center, a single bright glowing pupil with a vertical cat-slit. Around the pupil, dozens of micro-glyphs and binary fragments (0/1) float slightly out of focus. Strong chromatic aberration ghosting, subtle CRT scanline texture. SCP-style infohazard vibe — beautiful but wrong. Color palette: pure black #000 background, TOXIC GREEN #4ade80 and acid YELLOW #facc15 only, NO OTHER COLORS. Central 80% of the square fills the design. Highly detailed digital occult illustration with glitch texture. No text, no letters, no logo, no human, no animals, no photorealism.</pre>
+</div>
+
+<h4>R3. 血红 × 橙（无中心瞳孔 · 一圈漂浮小眼睛）</h4>
+<div class="path">📁 <code>shared/assets/sigil-core-3</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A square 1:1 highly detailed occult-cyber hypnosis core artwork on a pure black background. Centered mandala-style sigil: an outer ring of impossibly thin spiraling lines creating a moiré inward-pull illusion, middle ring of fine fractal hexagonal lattice. Instead of a single central pupil, the very center holds a tight RING OF DOZENS OF SMALL FLOATING DISEMBODIED EYES, all pupils round and dilated, all looking outward at the viewer. Around the eye-ring, dozens of micro-glyphs and binary fragments (0/1) drift slightly out of focus. Strong chromatic aberration ghosting, subtle CRT scanline texture. SCP-style infohazard vibe — beautiful but wrong. Color palette: pure black #000 background, BLOOD RED #ef4444 and warning ORANGE #fb923c only, NO OTHER COLORS. Central 80% of the square fills the design. Highly detailed digital occult illustration with glitch texture. No text, no letters, no logo, no human face, no animals, no photorealism.</pre>
+</div>
+
+<h4>R4. 紫 × 粉（病历水印版 · 复杂但低饱和，与其他几张同系列）</h4>
+<div class="path">📁 <code>shared/assets/sigil-core-4</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A square 1:1 detailed occult-cyber hypnosis sigil designed to look like a faded medical-document watermark on hospital paper. Pure white #ffffff background (NOT black). Centered mandala-style sigil with the same complexity as the other sigils in this series: an outer ring of impossibly thin lines spiraling inward creating a subtle moiré illusion, an extra fractal hexagonal lattice layer (denser geometry than usual), a middle ring of fine fractal triangular patterns. At the very center, a small abstract geometric flourish (a tiny rotated hexagon nested inside a circle) — NO eye, NO pupil, NO cat-slit, just clean geometry. Around the center, dozens of micro-glyphs and broken binary fragments (0/1) drift slightly out of focus. Subtle CRT scanline texture across the whole image, very faint chromatic aberration ghosting on a few lines (much less than the other sigils). Color palette: pure white #ffffff background, deep PURPLE #a855f7 and hot PINK #ec4899 only, ALL strokes rendered at low opacity (around 35-55%) so the whole image reads as a faded printed watermark on a hospital document, NO OTHER COLORS. Central 80% of the square fills the design. Highly detailed digital occult illustration with light glitch texture but quiet enough to sit on a medical record without screaming. No eyes, no pupils, no text, no readable letters, no logo, no human, no animals, no photorealism.</pre>
+</div>
+
+<h4>R5. 金 × 青铜（星芒射线 · 腐蚀炼金印记）</h4>
+<div class="path">📁 <code>shared/assets/sigil-core-5</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A square 1:1 highly detailed occult-cyber hypnosis core artwork on a pure black background. Centered sigil designed to look like a CORRUPTED ANCIENT ALCHEMY SEAL: outer ring replaced with sharp long star-burst rays radiating outward, middle ring of fine alchemical/fractal triangular lattice, inner ring of impossibly thin spiraling lines creating a moiré inward-pull illusion. At the very center, a single glowing pupil with a vertical cat-slit. Around the sigil, dozens of micro-alchemical-glyphs and broken binary fragments (0/1) float slightly out of focus, half-erased like worn parchment. Strong chromatic aberration ghosting, subtle CRT scanline texture. SCP-style infohazard vibe meets alchemical seal — beautiful but wrong. Color palette: pure black #000 background, bright GOLD #facc15 and ancient BRONZE #b45309 only, NO OTHER COLORS. Central 80% of the square fills the design. Highly detailed digital occult illustration with glitch texture. No text, no letters, no logo, no human, no animals, no photorealism.</pre>
+</div>
+
+<h4>R6. 终极版（黑底纯红 · 无几何外框 · 用在 L2 开启 step 6）</h4>
+<p class="muted">这一张不走"几何外框 + 内芯"结构，是<b>独立全屏背景</b>，纯粹为了营造"我看到的是真东西"的恐怖感。出现在 L2 开启的 step 6（最后一步同步画面）。</p>
+<div class="path">📁 <code>shared/assets/sigil-final</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A square 1:1 deeply disturbing organic occult symbol on a pure black background, designed to feel like an infohazard the viewer was never meant to see. NO geometric frame, NO clean circle, NO hexagon, NO mandala — instead an irregular hand-drawn organic shape, like a wound or a torn opening in reality. The form looks like a vertical jagged tear in space with thin curling tendrils bleeding outward, suggesting flesh, hair, or torn paper. Inside the tear, a deep glowing void with a single huge dilated cat-pupil eye staring directly at the viewer, the pupil narrowing into a vertical slit, surrounded by faint nested concentric rings barely visible in the darkness. Around the wound, fine asymmetrical dripping/smearing strokes, half-erased symbols and broken handwritten characters that look almost legible but aren't. The whole image has a wet glossy texture in places, dry cracked texture in others, like dried blood on charred paper. Strong heavy film grain. Color palette: pure black #000 background, deep BLOOD RED #dc2626 and dim DARK CRIMSON #7f1d1d only — NO other colors at all, NO white, NO cyan, NO magenta. The single eye-pupil inside the tear is the brightest red point. Composition: centered, takes up the central 70% of the frame, the surrounding black is heavy and oppressive. Highly detailed digital horror illustration, painterly with glitch and ink-bleed texture. Feels like an SCP-682-tier infohazard or a page torn from a forbidden grimoire. No text, no readable letters, no logo, no human face, no animal body — just the wound, the eye, and the dripping symbols.</pre>
+</div>
+
+<p class="note"><b>外框我会写代码：</b>5 张 sigil-core-N.png 生成好后告诉我，我就在 <code>shared/assets/</code> 写 5 个 SVG 外框模板，<b>每个外框的描边颜色会和对应内芯配色一致</b>：<br>
+&nbsp;&nbsp;• sigil-1 圆形外框 → 冰蓝 #38bdf8 描边<br>
+&nbsp;&nbsp;• sigil-2 五边形外框 → 毒绿 #4ade80 描边<br>
+&nbsp;&nbsp;• sigil-3 六边形外框 → 血红 #ef4444 描边<br>
+&nbsp;&nbsp;• sigil-4 八边形外框 → 紫 #a855f7 描边<br>
+&nbsp;&nbsp;• sigil-5 40 边形外框 → 金 #facc15 描边<br>
+用 <code>&lt;clipPath&gt;</code> 把每张内芯裁出对应几何形状，自动得到 5 个完整 sigil。</p>
+
+<hr>
+
+<h2 id="sec7">7. L2 站点专属封面（root-xhs 笔记网格 / employee 头像）</h2>
+<p class="muted">这一节是 L2 阶段一些"看起来像真实账号"的素材。<b>游戏类封面不需要 prompt</b>——直接去对应游戏官方 / Steam 商店页 / Wiki 截图下载竖版海报，按下面的<b>保存目录</b>放进去就好；只有"非游戏"的两张需要 AI 生成。</p>
+
+<h3>T. root-xhs 笔记网格 6 张封面（page 17 主页）</h3>
+<p class="muted">root-xhs/index.html 现在改成了 6 个笔记。封面统一 <b>3:4 竖版</b>，缩略图会被裁成正方形，所以主体放中间。游戏的 4 张直接用官方海报；剩下 2 张是 root 的"个人 vibe"动态，需要生成。</p>
+
+<h4>T1–T4. 游戏官方封面（不需要 prompt · 自行下载）</h4>
+<p class="muted">下面 4 个文件名是 root-xhs/index.html 里硬写的 <code>&lt;img src&gt;</code>。下载一张竖版主视觉/海报，按文件名重命名后扔进 <code>sites/root-xhs/assets/notes/</code> 即可。<b>onerror 会自动隐藏</b>，所以哪张没准备好也不会报错。</p>
+<div class="path">📁 <code>sites/root-xhs/assets/notes/cyberpunk2077.jpg</code> ← 《赛博朋克 2077》Steam 竖版海报 / Wiki 主图（推荐用 V 与强尼对视那张）</div>
+<div class="path">📁 <code>sites/root-xhs/assets/notes/elden-ring.jpg</code> ← 《艾尔登法环》官方竖版海报（出血流也行）</div>
+<div class="path">📁 <code>sites/root-xhs/assets/notes/outer-wilds.jpg</code> ← 《Outer Wilds》Steam 竖版主图（太空场景那张最好）</div>
+<div class="path">📁 <code>sites/root-xhs/assets/notes/lifeline.jpg</code> ← 《生命线》iOS App Store 主图 / Steam 头图</div>
+<p class="note">小红书风缩略图比例约 3:4。如果下到的是横版图，PS / Preview 里裁中间一块为 3:4 即可。</p>
+
+<h4>T5. 朝阳寻猫帖 watcher（需要 prompt · root 旁观者视角）</h4>
+<p class="muted">root 的"我注意到所有寻猫帖长得一模一样"那张，是<b>她截屏拼图证据</b>的封面。</p>
+<div class="path">📁 <code>sites/root-xhs/assets/notes/cat-poster-watcher.png</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A 3:4 vertical Xiaohongshu-style note cover. Subject: a desktop screenshot collage showing four nearly identical "lost cat" social-media posts arranged in a 2x2 grid, each post showing a different chubby orange tabby cat photo but with the SAME layout — same red ❗ headline "急寻爱猫" position, same emoji placement, same background color, same font, same poster aspect ratio. Above the 2x2 grid, a hand-drawn red circle with an arrow pointing to the suspicious "duplicate template" pattern, plus a small handwritten 中文 note "怎么都长一个样?". The whole image looks like a careful watcher (a hacker's investigation board) screenshot, with a faint dark forest-green tint as a subtle reading-light. Slight CRT scanline overlay. NO real readable Chinese text in the lost-cat posters themselves (just gibberish that LOOKS like 寻猫 layout from a distance). NO real phone numbers. Vertical 3:4, suitable as a Xiaohongshu thumbnail (centrally composed so a square crop still reads). Color palette: warm posters red/yellow/orange + cool dark green-black overlay, NO purple, NO magenta. No watermark, no logo.</pre>
+</div>
+
+<h4>T6. 家里 wifi 又被劫了（需要 prompt · root 个性 flavor）</h4>
+<p class="muted">root 的吐槽日常，营造"她真的是个普通住户 + 有点黑客敏感度"的混合 vibe。</p>
+<div class="path">📁 <code>sites/root-xhs/assets/notes/wifi-hijack.png</code></div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A 3:4 vertical Xiaohongshu-style note cover. Subject: a close-up phone snapshot of a small home wifi router on a wooden desk in a dim apartment, the router's signal-light blinking RED instead of green. In the foreground slightly out of focus, a laptop screen showing a terminal with thin green-on-black text and a single highlighted line that warns "ARP spoof detected · gateway changed". A small cup of cold tea next to the router. Late-night ambient lighting, warm desk-lamp glow on the router, cool blue moonlight from a window in the back. Hyper-realistic phone photo, candid amateur composition, NO professional studio lighting. Vertical 3:4 suitable as a Xiaohongshu thumbnail. NO readable Chinese text on the laptop except the one English warning line. Color palette: warm wood + dim apartment + accent terminal green + accent router red. No watermark, no logo, no human face.</pre>
+</div>
+
+<h3>U. employee-card.png 上的 陈某某 证件照（page 23）</h3>
+<p class="muted">root-pan/employee-card.html 里 NeoLight 工卡的 110×130 证件照位置，现在是 👤 占位。生成一张<b>规范工卡照</b>放进去：白底 / 西装领 / 中性表情 / 1-inch ratio。</p>
+<div class="path">📁 <code>sites/root-pan/assets/chen-photo.jpg</code>（生成后我会把 employee-card.html 的 <code>👤</code> 替换为 <code>&lt;img&gt;</code>）</div>
+<div class="prompt compact">
+  <button class="copy" type="button">Copy</button>
+  <pre>A 1.1:1.3 (Chinese ID-photo style) hyper-realistic corporate employee badge headshot. Subject: a single 28-year-old Chinese male software engineer named "陈某某", short clean black hair parted naturally, calm neutral expression with a subtle barely-there mouth-corner smile (NOT smiling teeth), thin silver-rimmed eyeglasses, wearing a simple dark navy button-up shirt (no tie). Pure flat WHITE #ffffff background (Chinese ID-photo standard, NOT a real environment). Even, soft frontal studio lighting from the front-top, no harsh shadow. Looking directly at camera. Sharp focus on face, slight DOF behind. Composition: head and upper shoulders only, head occupies the upper 60% of frame, top of hair has small margin, shoulders trimmed by frame bottom — exactly like a Chinese 1-inch ID photo crop. Realistic skin texture, natural pores, no beauty filter, no makeup, no jewelry, no headphones, no AR overlay. Hyper-realistic, NOT a 3d render, NOT a cartoon. No text, no watermark, no badge text in the image itself.</pre>
+</div>
+
+<h3>V. NeoLight 站点 page 27 / 28 现存图（已有 prompt · 文件名修正提示）</h3>
+<p class="muted">这两页的图（hero-brand / founder-chen / neolink-device / news-li-zhou）<b>prompt 已经在第 5 节写过</b>。之前页面看不到图是因为 HTML 写的是 <code>.jpg</code>、磁盘上是 <code>.png</code>，已经统一改成 <code>.png</code>。如果你重新生成了图，<b>请存成 <code>.png</code></b>：<br>
+&nbsp;&nbsp;• <code>sites/neolight/assets/hero-brand.png</code><br>
+&nbsp;&nbsp;• <code>sites/neolight/assets/founder-chen.png</code><br>
+&nbsp;&nbsp;• <code>sites/neolight/assets/neolink-device.png</code><br>
+&nbsp;&nbsp;• <code>sites/neolight/assets/news-li-zhou.png</code></p>
+
+<hr>
+
+<h2 id="tips">用法建议</h2>
+<ol>
+  <li><b>一致性</b>：先用上面"角色设定"段落让模型记住 Hajimi 的样子，然后每张图开头粘 <code>Use the Hajimi character sheet:</code> + 具体场景。</li>
+  <li><b>比例</b>：括号里的 4:5 / 3:4 / 16:9 / 1:1 都要带上，否则 Imagen 会默认给方图。</li>
+  <li><b>风格统一</b>：所有手机摄影向的图加 <code>iPhone snapshot, soft natural light, no professional studio lighting</code>；所有 CCTV 图加 <code>grainy CCTV still, low resolution, heavy compression</code>。</li>
+  <li><b>批量</b>：xhs-snapshot 那些可以一组一组生成，避免每张单独生导致风格漂移。</li>
+</ol>
+
+</main>
+
+<script>
+// Convert relative paths under .path to absolute and inject a small Copy button beside each code.
+(function(){
+  var ROOT = '/Users/yuluzhang/projects/tomorrow-arg/';
+  document.querySelectorAll('.path code').forEach(function(code){
+    var t = code.textContent.trim();
+    if(!t || /^[\/~]/.test(t)) return;
+    if(/[\/.]/.test(t)){
+      code.textContent = ROOT + t;
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'copy-path';
+      btn.textContent = 'Copy';
+      btn.dataset.path = ROOT + t;
+      code.parentNode.insertBefore(btn, code.nextSibling);
+    }
+  });
+})();
+</script>
+<script>
+document.addEventListener('click', function(e){
+  var pathBtn = e.target.closest('.copy-path');
+  if(pathBtn){
+    var p = pathBtn.dataset.path;
+    var doneP = function(){
+      pathBtn.textContent = '✓';
+      pathBtn.classList.add('ok');
+      setTimeout(function(){ pathBtn.textContent = 'Copy'; pathBtn.classList.remove('ok'); }, 1500);
+    };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(p).then(doneP).catch(function(){
+        var ta=document.createElement('textarea'); ta.value=p; document.body.appendChild(ta);
+        ta.select(); try{document.execCommand('copy');}catch(_){} document.body.removeChild(ta); doneP();
+      });
+    }
+    return;
+  }
+  var btn = e.target.closest('.copy');
+  if(!btn) return;
+  var block = btn.parentElement;
+  var pre = block.querySelector('pre');
+  if(!pre) return;
+  var text = pre.innerText;
+  var label = '✓ Copied';
+  // Auto-prepend logic
+  if(block.id === 'character-sheet-block' || block.id === 'photo-realism-block'){
+    // standalone reference blocks — copy as-is
+  } else if(block.classList.contains('compact')){
+    // Gemini-friendly self-contained prompts — copy as-is
+    label = '✓ Copied (Gemini 精简版)';
+  } else if(block.classList.contains('cat')){
+    var sheet = document.getElementById('character-sheet');
+    if(sheet){
+      text = sheet.innerText + '\n\n---\n\nSCENE:\n' + text;
+      label = '✓ Copied (+角色设定+真实照片约束)';
+    }
+  } else if(!block.classList.contains('vector')){
+    var photo = document.getElementById('photo-realism');
+    if(photo){
+      text = photo.innerText + '\n\n---\n\nSCENE:\n' + text;
+      label = '✓ Copied (+真实照片约束)';
+    }
+  }
+  var done = function(){
+    btn.textContent = label;
+    btn.classList.add('ok');
+    setTimeout(function(){ btn.textContent = 'Copy'; btn.classList.remove('ok'); }, 1800);
+  };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(done).catch(function(){ fallback(text, done); });
+  } else {
+    fallback(text, done);
+  }
+  function fallback(t, cb){
+    var ta = document.createElement('textarea');
+    ta.value = t; document.body.appendChild(ta);
+    ta.select(); try{ document.execCommand('copy'); }catch(_){}
+    document.body.removeChild(ta); cb();
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>@朝阳救助小柚 · 笔记 · 小红书</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="../shared/styles/shared.css" />
+</head>
+<body>
+  <main class="app">
+    <div class="topbar">
+      <button class="back" type="button" onclick="history.back()">‹</button>
+      <div class="title">@朝阳救助小柚 · 笔记</div>
+      <div class="more">···</div>
+    </div>
+
+    <div class="bio" style="padding:14px 16px;font-size:13px;color:#666;">
+      笔记 12 · 全部公开
+    </div>
+
+    <div class="video-grid">
+      <div class="video-card">
+        <img class="cover" src="./assets/cover-orange-2.png" alt="" />
+        <div class="info">
+          <div class="title">救助站日常｜今天又收了 3 只小奶猫</div>
+          <div class="meta"><span>朝阳救助小柚</span><span>❤ 1.1w · 1 周前</span></div>
+        </div>
+      </div>
+
+      <a target="_blank" rel="noreferrer" class="video-card" href="./note-durian.html">
+        <img class="cover" src="./assets/cover-durian.png" alt="曼谷三天两夜" />
+        <div class="info">
+          <div class="title">不务正业一下｜和闺蜜飞曼谷三天两夜🌴</div>
+          <div class="meta"><span>朝阳救助小柚</span><span>❤ 3.2w · 2 周前</span></div>
+        </div>
+      </a>
+
+      <div class="video-card">
+        <img class="cover" src="./assets/cover-orange-3.png" alt="" />
+        <div class="info">
+          <div class="title">领养须知｜想养橘的姐妹先看这篇</div>
+          <div class="meta"><span>朝阳救助小柚</span><span>❤ 8765 · 2 周前</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center; padding:18px 0; color:#999; font-size:12px;">
+      —— 加载更多 ——
+    </div>
+  </main>
+
+  <script type="module">
+    import { mountFooter } from '../shared/components/page-footer.js';
+    mountFooter({ extra: 5, keywords: ['朝阳救助小柚'] });
+  </script>
+</body>
+</html>

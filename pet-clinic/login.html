@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>主人查询系统 · 朝阳爱宠</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="../shared/styles/shared.css" />
+</head>
+<body>
+  <main class="clinic-app">
+    <header class="clinic-header">
+      <svg class="clinic-logo" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <rect width="64" height="64" rx="12" fill="#fff" stroke="#ef4444" stroke-width="2"/>
+        <rect x="28" y="14" width="8" height="36" fill="#ef4444"/>
+        <rect x="14" y="28" width="36" height="8" fill="#ef4444"/>
+      </svg>
+      <div>
+        <div class="clinic-name">朝阳爱宠宠物医院</div>
+        <div class="clinic-sub">主人查询系统 · v3.2.7</div>
+      </div>
+    </header>
+
+    <nav class="clinic-nav">
+      <a target="_blank" rel="noreferrer" href="./">首页</a>
+      <a target="_blank" rel="noreferrer" href="./science.html">科普中心</a>
+      <a target="_blank" rel="noreferrer" href="./about.html">关于我们</a>
+      <a target="_blank" rel="noreferrer" class="cta active" href="./login.html">主人查询</a>
+    </nav>
+
+    <div class="login-card">
+      <h2>请登录查看您家宝贝病历</h2>
+      <p class="desc">
+        2026 年 3 月起本系统已升级。<br />
+        请使用宝贝姓名拼音 + 主人本人身份证后 4 位登录。<br />
+        <span class="hint-tiny">忘记可到柜台凭芯片号重置</span>
+      </p>
+
+      <form id="login" autocomplete="off">
+        <div class="field">
+          <label>账号 · 宝贝姓名拼音</label>
+          <input id="name" type="text" placeholder="如 maomao / dudu" autocomplete="off" />
+        </div>
+
+        <div class="field">
+          <label>密码 · 主人身份证后 4 位</label>
+          <input id="pwd" type="text" inputmode="numeric" maxlength="4" placeholder="4 位数字" autocomplete="off" />
+          <div class="hint-tiny" id="hint"></div>
+        </div>
+
+        <button type="submit" class="login-btn">登录查询病历</button>
+        <div class="err-msg hidden" id="err"></div>
+      </form>
+
+      <div class="alt-links">
+        <a target="_blank" rel="noreferrer" href="./science.html">看科普文章</a>
+        <span>·</span>
+        <a target="_blank" rel="noreferrer" href="./about.html">联系医院</a>
+      </div>
+    </div>
+
+    <div class="footer-note">
+      朝阳爱宠宠物医院 · 主人查询系统<br />
+      © 2026 ChaoyangPet
+    </div>
+  </main>
+
+  <script type="module">
+    import { mountFooter } from '../shared/components/page-footer.js';
+    mountFooter({ page: 8, total: 15, keywords: ['朝阳爱宠', '主人查询'] });
+  </script>
+
+  <script>
+    const form = document.getElementById('login');
+    const nameI = document.getElementById('name');
+    const pwd = document.getElementById('pwd');
+    const err = document.getElementById('err');
+    const hint = document.getElementById('hint');
+
+    let fails = 0;
+    updateHint();
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const n = nameI.value.trim().toLowerCase();
+      const p = pwd.value.trim().toLowerCase();
+      if (n === 'hajimi' && p === '3614') {
+        location.href = './record.html';
+        return;
+      }
+      fails++;
+      showErr(n, p);
+      updateHint();
+    });
+
+    function showErr(n, p) {
+      err.classList.remove('hidden');
+      if (!n || !p) { err.textContent = '请填写完整。'; return; }
+      err.textContent = '账号或密码错误，请重试。';
+    }
+
+    function updateHint() {}
+  </script>
+</body>
+</html>

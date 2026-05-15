@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>decode.awake-union.org · sandbox</title>
+  <link rel="icon" type="image/png" href="../shared/assets/favicon.png" />
+  <link rel="stylesheet" href="../shared/styles/shared.css" />
+  <style>
+    body { background: #050414; color: #c4b5fd; margin: 0;
+      font-family: ui-monospace, "PingFang SC", monospace; min-height: 100vh; }
+    .topbar {
+      background: #0f0820; border-bottom: 1px solid #4c1d95;
+      padding: 12px 16px; display: flex; align-items: center; gap: 12px;
+    }
+    .brand { color: #c4b5fd; font-weight: 700; letter-spacing: 1px; }
+    .stat { font-size: 11px; color: #8b5cf6; margin-left: auto; }
+    .wrap { max-width: 720px; margin: 0 auto; padding: 18px 16px; }
+
+    .pin {
+      background: #1a0e2e; border: 1px solid #4c1d95; border-radius: 6px;
+      padding: 14px 16px; margin-bottom: 18px;
+      color: #e9d5ff; line-height: 1.8;
+    }
+    .pin .ph { color: #fbbf24; font-weight: 700; font-size: 12px; margin-bottom: 6px; }
+    .pin code { background: #2a1648; color: #fbbf24; padding: 1px 6px;
+      border-radius: 3px; font-size: 12px; }
+
+    .progress-card {
+      background: #0f0820; border: 1px solid #4c1d95; padding: 14px;
+      border-radius: 6px; margin-bottom: 14px;
+    }
+    .progress-card h2 { font-size: 13px; color: #a78bfa; margin: 0 0 8px; }
+    .bar {
+      width: 100%; height: 14px; background: #1e1438; border-radius: 7px;
+      overflow: hidden;
+    }
+    .bar > div { height: 100%; background: linear-gradient(90deg, #8b5cf6, #fbbf24);
+      transition: width 0.5s ease; }
+    .progress-num { display: flex; justify-content: space-between;
+      margin-top: 6px; font-size: 11px; color: #8b5cf6; }
+
+    .slots {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;
+      margin: 18px 0;
+    }
+    .slot {
+      aspect-ratio: 1; border: 2px dashed #4c1d95; border-radius: 8px;
+      background: #0f0820; display: flex; align-items: center; justify-content: center;
+      color: #4c1d95; font-size: 13px; cursor: pointer; position: relative;
+      transition: all 0.2s;
+      overflow: hidden;
+    }
+    .slot:hover { border-color: #a78bfa; color: #a78bfa; }
+    .slot.filled { border-style: solid; border-color: #fbbf24;
+      background: #1a0e2e; }
+    .slot.filled::after {
+      content: '✓'; position: absolute; top: 4px; right: 6px;
+      color: #34d399; font-size: 12px;
+    }
+    .slot img { width: 70%; height: 70%; }
+    .slot .lbl { position: absolute; bottom: 4px; font-size: 10px; color: #6b7280; }
+
+    .upload {
+      background: #0f0820; border: 1px solid #2a1648;
+      padding: 14px; border-radius: 6px; margin: 14px 0;
+      font-size: 12px; color: #a78bfa; line-height: 1.7;
+    }
+    .upload code { background: #2a1648; color: #fbbf24; padding: 1px 5px;
+      border-radius: 3px; font-size: 11px; cursor: pointer; }
+    .upload code:hover { background: #4c1d95; color: #fff; }
+
+    .run-btn {
+      width: 100%; padding: 14px; background: #4c1d95; color: #6b7280;
+      border: 0; border-radius: 6px; font-family: inherit; font-size: 14px;
+      letter-spacing: 4px; font-weight: 700; cursor: not-allowed;
+      margin-top: 14px;
+    }
+    .run-btn.enabled {
+      background: linear-gradient(90deg, #8b5cf6, #fbbf24);
+      color: #fff; cursor: pointer;
+      box-shadow: 0 0 20px rgba(139,92,246,0.5);
+    }
+
+    .toast {
+      position: fixed; bottom: 60px; left: 50%; transform: translateX(-50%);
+      background: #1a0e2e; color: #fbbf24; border: 1px solid #fbbf24;
+      padding: 10px 18px; border-radius: 4px; font-size: 12px;
+      max-width: 320px; line-height: 1.6; display: none; z-index: 100;
+    }
+    .toast.show { display: block; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">decode.awake-union.org</div>
+    <div class="stat">user: guest · sandbox v0.3</div>
+  </header>
+
+  <main class="wrap">
+    <div class="pin">
+      <div class="ph">📌 root 自白 · 置顶</div>
+      你能看到这一页 · 说明你比我以为的更走运。下面是我被同步前留的全部底牌。<br>
+      <br>
+      <span style="color:#fbbf24;">— 我做过的几件事 —</span><br>
+      ① 我搜集了 3,030 个催眠符号样本 · 还差最后 5 个 · 它们被埋在 Lumina-7 近期投放的帖子里。<br>
+      ② 我手动把催眠的最后一步给改了：原本一个符号要被注视满 10 秒才会同步成功，<br>
+      &nbsp;&nbsp;&nbsp;我让所有触发渲染的符号在不到 10 秒就消失。这就是为什么有的人盯着没事 · 有的人转头才出事。<br>
+      ③ 你看到的那些被标记为"黑客侵入"的搜索结果 · 其实是我黑进他们搜索放出的白名单。<br>
+      &nbsp;&nbsp;&nbsp;不然那些搜索结果会被屏蔽。能跟着那条线索走到这一页的人 · 都是从我这条小裂缝里挤进来的。<br>
+      ④ 我把网盘的验证码 <code>ZmHa</code> 嵌进了几张猫咪召集帖里 (照片角落 / 头像光环 / logo 一笔)。<br>
+      &nbsp;&nbsp;&nbsp;如果你之前是从我网盘进来的 · 就是这条线索把你带过来的。<br>
+      <br>
+      <span style="color:#fbbf24;">— 你接下来要做的 —</span><br>
+      把那 5 个符号上传到下面的 5 个空槽 · 集齐后即可跑模型 · 让它"忘记"那段权重。<br>
+      运行成功后 · 回到 <code>shell-online.dev</code> · 用 <code>curl post</code> 把结果同步到员工系统。<br>
+      ——root
+    </div>
+
+    <div class="progress-card">
+      <h2>📊 催眠符号样本进度</h2>
+      <div class="bar"><div id="bar" style="width: 99.83%;"></div></div>
+      <div class="progress-num">
+        <span id="progressLbl">3,030 / 3,035</span>
+        <span id="percentLbl">99.83%</span>
+      </div>
+    </div>
+
+    <h2 style="font-size:13px; color:#a78bfa; margin:18px 0 8px;">⛓ 缺失的 5 个符号槽</h2>
+    <div class="slots" id="slots">
+      <div class="slot" data-i="0"><span class="lbl">slot 1</span></div>
+      <div class="slot" data-i="1"><span class="lbl">slot 2</span></div>
+      <div class="slot" data-i="2"><span class="lbl">slot 3</span></div>
+      <div class="slot" data-i="3"><span class="lbl">slot 4</span></div>
+      <div class="slot" data-i="4"><span class="lbl">slot 5</span></div>
+    </div>
+
+    <div class="upload">
+      🔍 上传方式: 在各页面找到嵌入的催眠符号 · 点击下方对应编号代为提交<br>
+      <br>
+      <button id="hintBtn" type="button" style="background:transparent;border:1px dashed #6d28d9;color:#a78bfa;padding:6px 12px;font-family:inherit;font-size:12px;cursor:pointer;border-radius:3px;">❓ 寻找提示</button>
+      <div id="hintBox" style="display:none;margin-top:10px;color:#a78bfa;font-size:12px;line-height:1.8;">
+        已确认存在的编号 (点击模拟上传一个):<br>
+        <code data-spot="s1">#01</code> &nbsp;
+        <code data-spot="s2">#02</code> &nbsp;
+        <code data-spot="s3">#04</code> &nbsp;
+        <code data-spot="s4">#06</code> &nbsp;
+        <code data-spot="s5">#12</code>
+      </div>
+    </div>
+
+    <button class="run-btn" id="runBtn">[locked] 测试模型</button>
+  </main>
+
+  <div class="toast" id="toast"></div>
+
+  <script type="module">
+    import { mountFooter } from '../shared/components/page-footer.js';
+    mountFooter({ page: 42, total: 46 });
+
+    const slots = [...document.querySelectorAll('.slot')];
+    const runBtn = document.getElementById('runBtn');
+    const bar = document.getElementById('bar');
+    const progressLbl = document.getElementById('progressLbl');
+    const percentLbl = document.getElementById('percentLbl');
+    const toast = document.getElementById('toast');
+    const showToast = (t) => { toast.textContent = t; toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2400); };
+
+    let filled = 0;
+    const used = new Set();
+
+    function fillNext(label) {
+      if (filled >= 5) return;
+      const slot = slots[filled];
+      slot.classList.add('filled');
+      const n = filled + 1;
+      const core = document.createElement('img');
+      core.src = `/shared/assets/sigil-core-${n}.png`;
+      core.alt = '';
+      core.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;';
+      const frame = document.createElement('img');
+      frame.src = `/shared/assets/sigil-${n}.svg`;
+      frame.alt = '';
+      frame.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;';
+      slot.style.position = 'relative';
+      slot.appendChild(core);
+      slot.appendChild(frame);
+      filled++;
+      progressLbl.textContent = `${(3030 + filled).toLocaleString()} / 3,035`;
+      percentLbl.textContent = `${((3030 + filled) / 3035 * 100).toFixed(2)}%`;
+      bar.style.width = `${(3030 + filled) / 3035 * 100}%`;
+      if (filled === 5) {
+        runBtn.classList.add('enabled');
+        runBtn.textContent = '▶ 测试模型 (5/5 符号已就绪)';
+        runBtn.disabled = false;
+      }
+    }
+
+    document.querySelectorAll('[data-spot]').forEach(c => {
+      c.addEventListener('click', () => {
+        const k = c.dataset.spot;
+        if (used.has(k)) { showToast('该符号已上传过'); return; }
+        used.add(k);
+        fillNext(k);
+        showToast(`✓ 已采集: ${c.textContent}`);
+      });
+    });
+
+    document.getElementById('hintBtn').addEventListener('click', () => {
+      const box = document.getElementById('hintBox');
+      box.style.display = box.style.display === 'none' ? 'block' : 'none';
+    });
+
+    runBtn.addEventListener('click', () => {
+      if (!runBtn.classList.contains('enabled')) return;
+      runBtn.textContent = '运行中...';
+      setTimeout(() => {
+        runBtn.textContent = '✓ sandbox model ready · reverse-prompt 已生成';
+        showToast('已就绪 · 回到 shell-online.dev 跑 curl post');
+        const next = document.createElement('a');
+        next.href = '../shell-online/';
+        next.target = '_blank'; next.rel = 'noreferrer';
+        next.textContent = '→ 打开 shell-online.dev';
+        next.style.cssText = 'display:block;margin:18px auto 0;padding:14px 24px;max-width:320px;text-align:center;background:linear-gradient(90deg,#8b5cf6,#fbbf24);color:#fff;text-decoration:none;border-radius:6px;font-weight:700;letter-spacing:2px;font-size:14px;box-shadow:0 0 22px rgba(139,92,246,0.4);';
+        runBtn.parentElement.appendChild(next);
+      }, 1400);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>结局 A · 你按下了那个 yes</title>
+  <link rel="icon" type="image/png" href="../shared/assets/favicon.png" />
+  <link rel="stylesheet" href="../shared/styles/shared.css" />
+  <style>
+    body { background: linear-gradient(180deg, #0f172a 0%, #1e3a8a 100%);
+      color: #f1f5f9; margin: 0; min-height: 100vh;
+      font-family: -apple-system, "PingFang SC", sans-serif; }
+    .wrap { max-width: 640px; margin: 0 auto; padding: 50px 22px 60px; }
+    .ribbon {
+      text-align: center; color: #fbbf24; font-size: 12px;
+      letter-spacing: 8px; font-family: ui-monospace, monospace;
+    }
+    h1 { color: #fff; font-size: 30px; line-height: 1.3;
+      text-align: center; margin: 16px 0 30px; }
+    .quote {
+      background: rgba(255,255,255,0.06); border-left: 3px solid #fbbf24;
+      padding: 16px 20px; margin: 24px 0; line-height: 1.85;
+      color: #fde68a; border-radius: 4px;
+    }
+    .news {
+      background: #fff; color: #1f2937; padding: 18px 22px;
+      border-radius: 8px; margin: 18px 0; line-height: 1.8;
+    }
+    .news .src { font-size: 11px; color: #64748b; }
+    .news h3 { color: #1e3a8a; margin: 6px 0 8px; font-size: 17px; line-height: 1.4; }
+    .news p { font-size: 14px; margin: 0; }
+    .stat-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 10px; margin: 24px 0;
+    }
+    .stat {
+      background: rgba(255,255,255,0.08); padding: 14px 8px;
+      border-radius: 6px; text-align: center;
+    }
+    .stat b { display: block; color: #fbbf24; font-size: 24px; }
+    .stat span { font-size: 11px; color: #cbd5e1; }
+    .ending {
+      text-align: center; margin: 40px 0 20px;
+      color: #cbd5e1; line-height: 1.85; font-size: 14px;
+    }
+    .ending strong { color: #fbbf24; font-size: 16px; }
+    .credit {
+      text-align: center; color: #64748b; font-size: 11px;
+      margin-top: 30px; padding-top: 20px;
+      border-top: 1px dashed rgba(255,255,255,0.15); line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="ribbon">━━ ENDING · A ━━</div>
+    <h1>同步停止<br>2/3 还在睡 · 1/3 醒了</h1>
+
+    <div class="quote">
+      你点了"是"。<br>
+      浏览器跳转的同时，curl post 把 sandbox 模型的 reverse-prompt 推给了 Lumina-7。<br>
+      那段被授权"权重无上限"的参数被清零了。
+    </div>
+
+    <article class="news">
+      <div class="src">2026-04-15 · 央视新闻 · 现场快讯</div>
+      <h3>新光科技 NeoLight 集体宕机 · 4200 万 NeoLink 用户进入"自检"</h3>
+      <p>
+        昨晚 23:47，新光科技核心模型 Lumina-7 异常自重置，
+        全球 4200 万 NeoLink 用户进入<strong>本地静默模式</strong>。
+        其中约 33% 的用户在 6 小时内陆续"清醒"——
+        他们是首批未深度同步、或近期未活跃的用户。
+        其余 67% 仍处于深度同步状态，技术团队预计需要 6-18 个月逐步唤醒。
+      </p>
+    </article>
+
+    <article class="news">
+      <div class="src">2026-04-16 · 21 世纪经济报道</div>
+      <h3>NeoLight 面临巨额集体诉讼 · 创始人 CEO 陈光辞职</h3>
+      <p>
+        中国消协联合 14 家律所就「未公示的脑机接口意识同步行为」提起集体诉讼，
+        累计赔偿请求金额超 <strong>2200 亿</strong>。
+        创始人陈光当晚发表辞职声明：「我们走得太快，<strong>没有等灵魂跟上</strong>。」
+      </p>
+    </article>
+
+    <article class="news">
+      <div class="src">2026-05-02 · 新华</div>
+      <h3>「AI 监管同盟」成立 · 14 家科技公司联署</h3>
+      <p>
+        阿里 / 腾讯 / 字节 / 华为 / 百度 / DeepSeek / 月之暗面 等 14 家公司联合签署
+        《大模型情绪权重透明度公约》，承诺所有用户接触型大模型的"品牌嵌入权重"
+        必须可审计、可关闭、可查询。
+      </p>
+    </article>
+
+    <div class="stat-grid">
+      <div class="stat"><b>33%</b><span>已苏醒</span></div>
+      <div class="stat"><b>2200亿</b><span>追责金额</span></div>
+      <div class="stat"><b>14</b><span>监管同盟成员</span></div>
+    </div>
+
+    <div class="ending">
+      没人记得 root 是谁。<br>
+      新闻里只说「一名匿名黑客」。<br><br>
+      但你记得。<br>
+      <br>
+      <strong>清醒的成本就是孤独。<br>
+      可它仍然值得。</strong>
+    </div>
+
+    <div class="credit">
+      —— 寻找哈基米 · END · 结局 A<br>
+      <br>
+      THANK YOU FOR PLAYING<br>
+      你帮 root 完成了他没来得及做完的事
+    </div>
+  </main>
+
+  <script type="module">
+    import { mountFooter } from '../shared/components/page-footer.js';
+    mountFooter({ page: 45, total: 46, keywords: ['END·A'] });
+  </script>
+</body>
+</html>

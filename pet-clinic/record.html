@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>哈基米 · 完整病历</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="../shared/styles/shared.css" />
+</head>
+<body>
+  <main class="clinic-app">
+    <header class="clinic-header">
+      <svg class="clinic-logo" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <rect width="64" height="64" rx="12" fill="#fff" stroke="#ef4444" stroke-width="2"/>
+        <rect x="28" y="14" width="8" height="36" fill="#ef4444"/>
+        <rect x="14" y="28" width="36" height="8" fill="#ef4444"/>
+      </svg>
+      <div>
+        <div class="clinic-name">朝阳爱宠宠物医院</div>
+        <div class="clinic-sub">病历查询结果 · HJM427-2024</div>
+      </div>
+    </header>
+
+    <nav class="clinic-nav">
+      <a target="_blank" rel="noreferrer" href="./">首页</a>
+      <a target="_blank" rel="noreferrer" href="./science.html">科普中心</a>
+      <a target="_blank" rel="noreferrer" href="./about.html">关于我们</a>
+      <a target="_blank" rel="noreferrer" class="cta active" href="./login.html">主人查询</a>
+    </nav>
+
+    <div class="record-banner">
+      ⚠ 该宠物为长期复诊病例，请严格遵照医嘱。本病历为加密内容，主人本人可见。
+    </div>
+
+    <div class="section">
+      <h3>基本信息</h3>
+      <div class="field-row"><div class="k">姓名</div><div class="v">哈基米</div></div>
+      <div class="field-row"><div class="k">芯片号</div><div class="v">HJM427-2024</div></div>
+      <div class="field-row"><div class="k">主人</div><div class="v">陆 ** · 上海人，现居朝阳区</div></div>
+      <div class="field-row"><div class="k">品种</div><div class="v">中华田园橘猫</div></div>
+      <div class="field-row"><div class="k">性别</div><div class="v">公 · 已绝育</div></div>
+      <div class="field-row"><div class="k">当前体重</div><div class="v warn">4.27 kg（标准范围 2.4–2.6 kg · 超重 1.8 kg）</div></div>
+      <div class="field-row"><div class="k">回访日期</div><div class="v"><strong>2027-05-02</strong></div></div>
+    </div>
+
+    <div class="section">
+      <h3>主要诊断</h3>
+      <div class="diag-box">
+        <div class="label">DIAGNOSIS · 主诊</div>
+        <div class="value">猫非酒精性脂肪性肝病（NAFLD）III 级 · 重度</div>
+      </div>
+      <div class="field-row" style="margin-top:10px;"><div class="k">伴随</div><div class="v">肥胖症（BCS 8/9）· 轻度胰岛素抵抗</div></div>
+      <div class="field-row"><div class="k">ALT</div><div class="v warn">312 U/L（参考值 &lt; 100）</div></div>
+      <div class="field-row"><div class="k">AST</div><div class="v warn">198 U/L（参考值 &lt; 60）</div></div>
+      <div class="field-row"><div class="k">GGT</div><div class="v warn">14 U/L（参考值 &lt; 4）</div></div>
+    </div>
+
+    <div class="section">
+      <h3>医嘱（务必严格执行）</h3>
+      <ul class="advice-list">
+        <li><span class="bull">●</span><span><strong>严格控食</strong>：每日定量处方粮 40g（早晚各 20g），鸡胸肉为辅，<strong>严禁加餐 / 严禁零食</strong>。</span></li>
+        <li><span class="bull">●</span><span>对空碗叫唤属觅食行为，主人需<strong>狠下心不予回应</strong>，否则前功尽弃。</span></li>
+        <li><span class="bull">●</span><span>禁止任由其上厨房 / 餐桌；进食区与活动区分离。</span></li>
+        <li><span class="bull">●</span><span>每日强制活动 ≥ 30 分钟（逗猫棒 / 户外胸背带遛猫均可）。</span></li>
+        <li><span class="bull">●</span><span>每周称重 1 次，目标 6 个月内减至 3.0 kg 以下。</span></li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h3>就诊记录</h3>
+      <div class="visit">
+        <div class="vd">2026-03-12</div>
+        <div class="vt">初诊：体重 4.62 kg，ALT 上升，建议减肥 + 复查肝功能</div>
+        <div class="vw">主治：王医生</div>
+      </div>
+      <div class="visit">
+        <div class="vd">2026-04-09</div>
+        <div class="vt">复查：体重 4.45 kg，ALT 下降；调整食谱</div>
+        <div class="vw">主治：王医生</div>
+      </div>
+      <div class="visit" style="position:relative;">
+        <div class="vd">2026-05-07</div>
+        <div class="vt">复查：体重 4.27 kg，主人反馈猫频繁对空碗叫，已心理建设：不予回应</div>
+        <div class="vw">主治：王医生</div>
+        <div aria-hidden="true" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);width:64px;height:64px;opacity:0.18;pointer-events:none;mix-blend-mode:multiply;">
+          <img src="../shared/assets/sigil-core-4.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" />
+          <img src="../shared/assets/sigil-4.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;" />
+        </div>
+      </div>
+      <div class="visit">
+        <div class="vd">2027-05-02</div>
+        <div class="vt">预约下次复查 + 驱虫</div>
+        <div class="vw">已发短信提醒</div>
+      </div>
+    </div>
+
+    <div class="section" style="background:#f0fdf4;">
+      <h3 style="color:#16a34a;">📌 致主人的备注</h3>
+      <p style="font-size:13px;line-height:1.6;color:#166534;margin:0;">
+        感谢您一直按照医嘱执行。这种程度的脂肪肝不靠控食是真的会出事的。
+        我们理解过程中猫会叫、会卖惨、会哭嚎，请坚持下去——这是在救它。
+        如果有人因为您"不喂"而误会您虐待，请把这份病历给他们看。
+      </p>
+    </div>
+
+    <div class="footer-note">
+      朝阳爱宠宠物医院 · 系统生成于 <span id="now"></span><br />
+      本页仅供主人查询使用 · 禁止截图外传
+    </div>
+  </main>
+
+  <script type="module">
+    import { mountFooter } from '../shared/components/page-footer.js';
+    mountFooter({ page: 8, total: 15, keywords: ['脂肪肝', '减肥', '医嘱'] });
+  </script>
+  <script>
+    document.getElementById('now').textContent = new Date().toLocaleString('zh-CN');
+  </script>
+</body>
+</html>

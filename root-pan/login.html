@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>登录 · pan.root.lab</title>
+  <link rel="icon" type="image/png" href="../shared/assets/favicon.png" />
+  <link rel="stylesheet" href="../shared/styles/shared.css" />
+  <style>
+    body { background: #f5f7fa; color: #333; margin: 0;
+      font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; min-height: 100vh; }
+    .topbar {
+      background: #fff; padding: 0 22px; height: 54px;
+      display: flex; align-items: center; gap: 18px;
+      border-bottom: 1px solid #ebedf0;
+    }
+    .topbar .brand { font-size: 18px; font-weight: 700; color: #06a7ff; letter-spacing: 1px; }
+    .topbar .brand small { color: #999; font-size: 11px; font-weight: normal; margin-left: 6px; }
+
+    .hero {
+      background: linear-gradient(135deg, #e6f4ff, #f5f7fa);
+      padding: 70px 20px 90px;
+    }
+    .card {
+      max-width: 380px; margin: 0 auto; background: #fff;
+      border-radius: 8px; padding: 30px 32px;
+      box-shadow: 0 8px 30px rgba(0, 90, 200, 0.08);
+    }
+    .card h1 { font-size: 18px; margin: 0 0 6px; color: #303133; font-weight: 600; }
+    .card .sub { font-size: 12px; color: #909399; margin-bottom: 22px; line-height: 1.6; }
+    label { display: block; font-size: 12px; color: #606266; margin-bottom: 6px; }
+    input {
+      width: 100%; padding: 10px 12px; box-sizing: border-box;
+      background: #fff; border: 1px solid #dcdfe6; color: #303133;
+      border-radius: 4px; font-size: 14px;
+      margin-bottom: 16px;
+    }
+    input:focus { outline: 0; border-color: #06a7ff; }
+    button {
+      width: 100%; padding: 11px; background: #06a7ff; border: 0;
+      color: #fff; border-radius: 4px; font-size: 14px; cursor: pointer;
+      font-weight: 500; letter-spacing: 1px;
+    }
+    button:hover { background: #0089dd; }
+    .err { color: #f56c6c; font-size: 12px; margin-top: 10px; min-height: 16px; }
+    .footer-tip { color: #909399; font-size: 11px; text-align: center; margin-top: 18px; line-height: 1.6; }
+    .footer-tip code {
+      background: #f5f7fa; padding: 1px 5px; border-radius: 3px;
+      font-family: ui-monospace, monospace; color: #606266;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">pan.root.lab <small>· 让数据安心存放</small></div>
+  </header>
+
+  <main class="hero">
+    <div class="card">
+      <h1>身份验证</h1>
+      <div class="sub">仅邀请访问 · 请输入验证码以进入网盘</div>
+      <form id="f">
+        <label>验证码</label>
+        <input id="code" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="请输入 4 位验证码" />
+        <button type="submit">登录</button>
+        <div class="err" id="err"></div>
+      </form>
+      <div class="footer-tip">
+        无邀请请联系管理员<br>
+        <code>r0ot@pan.root.lab</code>
+      </div>
+    </div>
+  </main>
+
+  <script type="module">
+    import { mountFooter } from '../shared/components/page-footer.js';
+    mountFooter({ page: 20, total: 46 });
+
+    document.getElementById('f').addEventListener('submit', e => {
+      e.preventDefault();
+      const v = document.getElementById('code').value.trim();
+      const err = document.getElementById('err');
+      if (v === 'ZmHa') {
+        err.textContent = '';
+        location.href = './index.html?ip=192.0.2.77';
+      } else {
+        err.textContent = v ? '验证失败' : '';
+      }
+    });
+  </script>
+</body>
+</html>

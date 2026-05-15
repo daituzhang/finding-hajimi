@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800">
+  <rect width="600" height="800" fill="#ffe5e5"/>
+  <rect x="120" y="280" width="360" height="280" rx="10" fill="#fff5e5" stroke="#d2a373" stroke-width="3"/>
+  <rect x="120" y="280" width="360" height="50" fill="#ff9a8b"/>
+  <text x="300" y="400" text-anchor="middle" font-family="serif" font-size="110" fill="#b03030" font-weight="bold">3</text>
+  <text x="300" y="460" text-anchor="middle" font-family="sans-serif" font-size="24" fill="#666">Happy Birthday Hajimi 🍊</text>
+  <text x="300" y="640" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#aaa">朝阳爱宠宠物医院 · 鸡胸肉特别定制</text>
+</svg>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>@root · 小红书</title>
+  <link rel="icon" type="image/png" href="../shared/assets/favicon.png" />
+  <link rel="stylesheet" href="../shared/styles/shared.css" />
+  <style>
+    body { background: #f7f7f7; margin: 0; font-family: -apple-system, "PingFang SC", sans-serif; color: #222; }
+    .app { max-width: 480px; margin: 0 auto; background: #fff; min-height: 100vh; }
+    .header {
+      background: linear-gradient(135deg, #052e16, #050d08);
+      color: #fff; padding: 32px 18px 22px; position: relative;
+    }
+    .header::before {
+      content: ''; position: absolute; inset: 0;
+      background: url('../shared/assets/sigil-final.png') center/120px no-repeat;
+      opacity: 0.06; pointer-events: none;
+    }
+    .avatar-row { display: flex; gap: 14px; align-items: flex-end; }
+    .avatar {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: #1f2937; color: #fff; display: flex; align-items: center;
+      justify-content: center; font-size: 32px;
+      border: 3px solid #fff;
+    }
+    .nick { font-size: 19px; font-weight: 600; }
+    .uid { font-size: 11px; color: #86efac; margin-top: 2px; }
+    .bio {
+      margin-top: 16px; padding: 12px 14px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 8px; font-size: 13px;
+      font-family: ui-monospace, monospace; color: #d1fae5;
+      letter-spacing: 1px;
+    }
+    .stats { display: flex; gap: 18px; margin-top: 14px; font-size: 13px; }
+    .stats b { color: #fff; font-size: 16px; }
+    .stats span { color: #86efac; }
+    .tabs {
+      display: flex; border-bottom: 1px solid #eee;
+      padding: 0 14px;
+    }
+    .tab {
+      flex: 1; text-align: center; padding: 12px 0; font-size: 14px;
+      color: #999; cursor: pointer;
+    }
+    .tab.active { color: #ff2442; border-bottom: 2px solid #ff2442; font-weight: 600; }
+    .grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+      padding: 12px;
+    }
+    .note {
+      background: #fafafa; border-radius: 8px; overflow: hidden;
+      text-decoration: none; color: inherit; display: block;
+    }
+    .note .cover {
+      aspect-ratio: 3/4; background: #0f172a;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .note .cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .note .cover.dark { background: linear-gradient(135deg, #1e293b, #0f172a); color: #facc15; font-size: 36px; }
+    .note .meta { padding: 8px 10px; }
+    .note .t { font-size: 13px; line-height: 1.35; color: #222; }
+    .note .like { font-size: 11px; color: #999; margin-top: 6px; }
+    .footer-hint {
+      text-align: center; color: #999; padding: 18px; font-size: 11px;
+    }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header class="header">
+      <div class="avatar-row">
+        <div class="avatar"><img src="../shared/assets/avatar-root.png" alt="root" style="width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;" /></div>
+        <div>
+          <div class="nick">root</div>
+          <div class="uid">小红书号:88884048 · IP 属地:上海</div>
+        </div>
+      </div>
+      <div class="bio">ZmHa</div>
+      <div class="stats">
+        <div><b>12</b> <span>关注</span></div>
+        <div><b>340</b> <span>粉丝</span></div>
+        <div><b>1.2k</b> <span>获赞与收藏</span></div>
+      </div>
+    </header>
+
+    <nav class="tabs">
+      <div class="tab active">笔记 6</div>
+      <div class="tab">收藏</div>
+      <div class="tab">赞过</div>
+    </nav>
+
+    <section class="grid">
+      <a class="note" href="./note-2077.html" target="_blank" rel="noreferrer">
+        <div class="cover"><img src="./assets/notes/cyberpunk2077.jpg" alt="赛博朋克2077" onerror="this.style.display='none'" /></div>
+        <div class="meta">
+          <div class="t">《赛博朋克2077》通关感想</div>
+          <div class="like">❤ 482</div>
+        </div>
+      </a>
+      <a class="note" href="#" onclick="return false;">
+        <div class="cover"><img src="./assets/notes/elden-ring.jpg" alt="艾尔登法环" onerror="this.style.display='none'" /></div>
+        <div class="meta">
+          <div class="t">《艾尔登法环》二周目 · 这次试了出血流</div>
+          <div class="like">❤ 296</div>
+        </div>
+      </a>
+      <a class="note" href="#" onclick="return false;">
+        <div class="cover"><img src="./assets/notes/outer-wilds.jpg" alt="OuterWilds" onerror="this.style.display='none'" /></div>
+        <div class="meta">
+          <div class="t">《OuterWilds》启示录 · 玩到口干舌燥</div>
+          <div class="like">❤ 88</div>
+        </div>
+      </a>
+      <a class="note" href="#" onclick="return false;">
+        <div class="cover"><img src="./assets/notes/lifeline.jpg" alt="生命线" onerror="this.style.display='none'" /></div>
+        <div class="meta">
+          <div class="t">《生命线》老玩家狂喜 · 这才是该有的终结</div>
+          <div class="like">❤ 67</div>
+        </div>
+      </a>
+      <a class="note" href="#" onclick="return false;">
+        <div class="cover"><img src="./assets/notes/cat-poster-watcher.png" alt="朝阳寻猫帖" onerror="this.style.display='none'" /></div>
+        <div class="meta">
+          <div class="t">最近朝阳寻猫帖怎么都长一个样 你们没发现吗</div>
+          <div class="like">❤ 12</div>
+        </div>
+      </a>
+      <a class="note" href="#" onclick="return false;">
+        <div class="cover"><img src="./assets/notes/wifi-hijack.png" alt="家里wifi" onerror="this.style.display='none'" /></div>
+        <div class="meta">
+          <div class="t">家里 wifi 又被劫了 换个公网 IP 好麻烦</div>
+          <div class="like">❤ 5</div>
+        </div>
+      </a>
+    </section>
+
+    <div class="footer-hint">— 没有更多了 —</div>
+  </main>
+
+  <script type="module">
+    import { mountFooter } from '../shared/components/page-footer.js';
+    mountFooter({ page: 17, total: 46, keywords: ['赛博朋克2077'] });
+  </script>
+</body>
+</html>

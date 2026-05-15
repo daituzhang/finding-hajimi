@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400">
+  <rect width="300" height="400" fill="#bae6fd"/>
+  <circle cx="150" cy="190" r="75" fill="#ff9a3c"/>
+  <ellipse cx="150" cy="270" rx="95" ry="65" fill="#ffb05c"/>
+  <text x="150" y="370" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#fff">上周救的大橘 · 团结湖</text>
+</svg>

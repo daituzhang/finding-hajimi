@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>关于 NeoLight · 新光科技</title>
+  <link rel="icon" type="image/png" href="../shared/assets/favicon.png" />
+  <link rel="stylesheet" href="../shared/styles/shared.css" />
+  <link rel="stylesheet" href="./style.css" />
+  <style>
+    .timeline { margin: 24px 0; padding: 0; list-style: none; border-left: 2px solid #c7d2fe; }
+    .timeline li { position: relative; padding: 0 0 18px 22px; }
+    .timeline li::before {
+      content: ""; position: absolute; left: -7px; top: 4px;
+      width: 12px; height: 12px; border-radius: 50%;
+      background: #1e3a8a; border: 2px solid #fff; box-shadow: 0 0 0 1px #c7d2fe;
+    }
+    .timeline .y { font-size: 12px; color: #1e3a8a; font-weight: 700; letter-spacing: 1px; }
+    .timeline .t { font-size: 13px; color: #334155; line-height: 1.7; margin-top: 2px; }
+    .values { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin: 16px 0; }
+    .values .v { background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; padding: 14px; text-align: center; }
+    .values .v b { display: block; font-size: 14px; color: #1e3a8a; margin-bottom: 4px; }
+    .values .v span { font-size: 11px; color: #64748b; line-height: 1.6; }
+    @media (max-width: 480px) { .values { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="logo"><img src="../shared/assets/neolight-logo.png" alt="NeoLight" style="height:24px;vertical-align:middle;margin-right:6px;" /> <span>新光科技</span></div>
+    <nav>
+      <a href="./index.html" target="_blank" rel="noreferrer">首页</a>
+      <a href="./ads.html" target="_blank" rel="noreferrer">广告业务</a>
+      <a href="./news.html" target="_blank" rel="noreferrer">新闻</a>
+      <a href="./about.html" target="_blank" rel="noreferrer">关于</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>八年同行<br>一念归一</h1>
+      <p class="lead">从一间 13 人的脑机实验室，到 4,200 万家庭的日常陪伴</p>
+      <p class="lead2">我们相信：技术的尽头，是更温柔的连接</p>
+    </section>
+
+    <section style="margin-top:24px;">
+      <h2 style="font-size:16px; color:#1e3a8a;">我们是谁</h2>
+      <p style="font-size:13px; color:#475569; line-height:1.8;">
+        新光科技 NeoLight 成立于 2018 年，总部位于上海张江。
+        我们围绕 <strong>非侵入式脑机接口 NeoLink</strong>、
+        <strong>Lumina 系列大模型</strong> 和 <strong>NLAgent</strong>
+        三条主线，致力于让"想表达"和"被听见"之间的距离越来越短。
+      </p>
+      <p style="font-size:13px; color:#475569; line-height:1.8;">
+        过去八年里，我们陪伴了 4,200 万 NeoLink 用户、12 万家企业、和无数个家庭里的安静时刻。
+      </p>
+    </section>
+
+    <section style="margin-top:20px;">
+      <h2 style="font-size:16px; color:#1e3a8a;">里程碑</h2>
+      <ul class="timeline">
+        <li>
+          <div class="y">2018</div>
+          <div class="t">公司成立。陈光博士与 12 位脑机接口研究者在张江注册第一间实验室。</div>
+        </li>
+        <li>
+          <div class="y">2020</div>
+          <div class="t">第一代 NeoLink 头环原型完成临床测试，获得 CFDA 二类医疗器械许可。</div>
+        </li>
+        <li>
+          <div class="y">2022</div>
+          <div class="t">Lumina-3 大模型发布，成为国内首个原生支持脑机信号编码的多模态模型。</div>
+        </li>
+        <li>
+          <div class="y">2023</div>
+          <div class="t">NeoLink 第二代消费级产品上市，首年 70 万台。</div>
+        </li>
+        <li>
+          <div class="y">2024</div>
+          <div class="t">NLAgent 平台开放企业接入，年内服务 4 万家客户。</div>
+        </li>
+        <li>
+          <div class="y">2025</div>
+          <div class="t">第三代 NeoLink 芯片功耗下降 70%。Lumina-7 万亿参数版本上线。</div>
+        </li>
+        <li>
+          <div class="y">2026</div>
+          <div class="t">用户突破 4,200 万。媒体报道「让妻子重新说话」案例引发广泛关注。</div>
+        </li>
+      </ul>
+    </section>
+
+    <section style="margin-top:20px;">
+      <h2 style="font-size:16px; color:#1e3a8a;">我们的价值观</h2>
+      <div class="values">
+        <div class="v"><b>温柔</b><span>技术服务于人，不是相反</span></div>
+        <div class="v"><b>同步</b><span>每一个心声都不应被错过</span></div>
+        <div class="v"><b>长期</b><span>陪伴用户走过十年、二十年</span></div>
+      </div>
+    </section>
+
+    <section style="margin-top:20px; padding:18px; background:#fff; border:1px solid #e5e7eb; border-radius:8px;">
+      <h3 style="margin:0 0 8px; color:#1e3a8a; font-size:14px;">联系我们</h3>
+      <p style="margin:0; font-size:13px; color:#475569; line-height:1.7;">
+        总部：上海市浦东新区张江园区 NeoLight 大楼<br />
+        媒体咨询：media@neolight.cn<br />
+        商务合作：bd@neolight.cn<br />
+        加入我们：<a href="./careers.html" target="_blank" rel="noreferrer" style="color:#1e3a8a;">招聘页面 →</a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="bot">
+    <div>© 2026 新光科技 NeoLight</div>
+    <div class="links">
+      <a href="./about.html" target="_blank" rel="noreferrer">关于</a> ·
+      <a href="./careers.html" target="_blank" rel="noreferrer">招聘</a> ·
+      <a href="./investors.html" target="_blank" rel="noreferrer">投资者关系</a>
+    </div>
+  </footer>
+
+  <script type="module">
+    import { mountFooter } from '../shared/components/page-footer.js';
+    mountFooter({ extra: true });
+  </script>
+</body>
+</html>

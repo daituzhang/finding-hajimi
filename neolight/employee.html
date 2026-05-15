@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>NeoLight 员工系统 · 登录</title>
+  <link rel="icon" type="image/png" href="../shared/assets/favicon.png" />
+  <link rel="stylesheet" href="../shared/styles/shared.css" />
+  <style>
+    body { background: #f4f6fb; color: #1f2937; margin: 0;
+      font-family: -apple-system, "PingFang SC", sans-serif; min-height: 100vh; }
+    .wrap { max-width: 380px; margin: 60px auto; padding: 0 20px; }
+    .logo { text-align: center; font-size: 24px; color: #1e3a8a; font-weight: 700; margin-bottom: 6px; }
+    .logo span { font-size: 12px; color: #64748b; font-weight: 400; display: block; margin-top: 2px; }
+    .card { background: #fff; border-radius: 8px; padding: 22px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05); margin-top: 20px; }
+    h1 { margin: 0 0 4px; font-size: 18px; color: #1e3a8a; }
+    .sub { font-size: 12px; color: #64748b; margin-bottom: 16px; }
+    .ip-tag { display: inline-block; background: #fef3c7; color: #854d0e;
+      padding: 2px 8px; border-radius: 10px; font-size: 11px;
+      font-family: ui-monospace, monospace; margin-left: 4px; }
+    label { display: block; font-size: 12px; color: #475569; margin: 10px 0 4px; }
+    input { width: 100%; padding: 9px 12px; box-sizing: border-box;
+      border: 1px solid #cbd5e1; border-radius: 4px; font-size: 14px;
+      font-family: ui-monospace, monospace; }
+    button { width: 100%; margin-top: 18px; padding: 11px;
+      background: #1e3a8a; color: #fff; border: 0; border-radius: 4px;
+      font-size: 14px; cursor: pointer; }
+    .err { color: #dc2626; font-size: 12px; min-height: 16px; margin-top: 10px; }
+    .tip { color: #64748b; font-size: 11px; margin-top: 14px;
+      padding-top: 12px; border-top: 1px dashed #e5e7eb; line-height: 1.7; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="logo"><img src="../shared/assets/neolight-logo.png" alt="NeoLight" style="height:24px;vertical-align:middle;margin-right:6px;" /><span>员工系统 · employee portal</span></div>
+    <div class="card">
+      <h1>员工登录</h1>
+      <div class="sub">
+        当前 IP: <span class="ip-tag" id="ipTag">?</span> · 内网受控访问
+      </div>
+      <form id="f">
+        <label>员工 ID</label>
+        <input id="uid" placeholder="NL-XXXXXXXX" autocomplete="off" />
+        <label>密码</label>
+        <input id="pw" type="password" placeholder="******" autocomplete="off" />
+        <button type="submit">登录</button>
+        <div class="err" id="err"></div>
+      </form>
+      <div class="tip">
+        忘记密码? · 默认初始密码 = 入职日期（连续 8 位 · YYYYMMDD）<br>
+        如需协助请联系 IT @ Lumina-7 团队 (内部邮箱)
+      </div>
+    </div>
+  </main>
+
+  <script type="module">
+    import { mountFooter } from '../shared/components/page-footer.js';
+    mountFooter({ page: 30, total: 46 });
+
+    const ip = new URLSearchParams(location.search).get('ip') || '192.0.2.77';
+    document.getElementById('ipTag').textContent = `ip:${ip}`;
+
+    document.getElementById('f').addEventListener('submit', e => {
+      e.preventDefault();
+      const u = document.getElementById('uid').value.trim();
+      const p = document.getElementById('pw').value.trim();
+      const err = document.getElementById('err');
+      if (u === 'NL-20240912' && p === '20240912') {
+        err.textContent = '';
+        location.href = `./portal.html?ip=${encodeURIComponent(ip)}`;
+      } else {
+        err.textContent = '员工 ID 或密码错误';
+      }
+    });
+  </script>
+</body>
+</html>

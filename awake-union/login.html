@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>清醒者联盟 · 邀请码门</title>
+  <link rel="icon" type="image/png" href="../shared/assets/favicon.png" />
+  <link rel="stylesheet" href="../shared/styles/shared.css" />
+  <style>
+    body { background: #0a0a0a; color: #d4d4d4; margin: 0;
+      font-family: ui-monospace, "PingFang SC", monospace; min-height: 100vh; }
+    .wrap { max-width: 420px; margin: 80px auto; padding: 0 22px; }
+    .ascii { color: #f59e0b; white-space: pre; font-size: 11px;
+      text-align: center; line-height: 1.2; margin-bottom: 22px; }
+    h1 { color: #f59e0b; font-size: 17px; margin: 0 0 6px;
+      letter-spacing: 1px; text-align: center; }
+    .sub { color: #737373; font-size: 12px; text-align: center; margin-bottom: 24px; line-height: 1.7; }
+    label { display: block; font-size: 11px; color: #a3a3a3; margin: 14px 0 4px; }
+    input { width: 100%; padding: 10px 12px; box-sizing: border-box;
+      background: #171717; color: #f59e0b; border: 1px solid #404040;
+      border-radius: 0; font-family: inherit; font-size: 13px;
+      letter-spacing: 2px; text-align: center; }
+    button { width: 100%; padding: 11px; margin-top: 14px;
+      background: #f59e0b; color: #0a0a0a; border: 0; cursor: pointer;
+      font-family: inherit; font-weight: 700; letter-spacing: 2px; font-size: 13px; }
+    button:hover { background: #fbbf24; }
+    .err { color: #f87171; font-size: 12px; min-height: 16px; margin-top: 10px;
+      text-align: center; }
+    .tip { color: #525252; font-size: 11px; margin-top: 26px; line-height: 1.7;
+      text-align: center; padding-top: 14px; border-top: 1px dashed #262626; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="ascii">
+   _______
+  /  ___  \   AWAKE UNION
+  | |   | |   ┓ ┓
+  | |   | |   ┻ ╋  · 清醒者联盟
+  | |___| |   ┛ ┻
+  \_______/   est. 2023
+    </div>
+    <h1>邀请码门</h1>
+    <div class="sub">
+      // PRIVATE FORUM · ACCESS BY INVITATION ONLY<br>
+      // 没有邀请码请离开 · 我们不会出售邀请码
+    </div>
+    <form id="f">
+      <label>邀请码</label>
+      <input id="code" placeholder="AWAKE-XXXX-XXXX" autocomplete="off" autocapitalize="characters" spellcheck="false" />
+      <button type="submit">进入论坛</button>
+      <div class="err" id="err"></div>
+    </form>
+    <div class="tip">
+      邀请码格式: AWAKE-XXXX-XXXX<br>
+      若你不知道在哪获取 · 这里也不属于你
+    </div>
+  </main>
+
+  <script type="module">
+    import { mountFooter } from '../shared/components/page-footer.js';
+    mountFooter({ page: 36, total: 46 });
+
+    document.getElementById('f').addEventListener('submit', e => {
+      e.preventDefault();
+      const v = document.getElementById('code').value.trim().toUpperCase();
+      const err = document.getElementById('err');
+      if (v === 'AWAKE-7K9X-2026') {
+        err.textContent = '';
+        location.href = './topic-parents.html';
+      } else {
+        err.textContent = v ? '邀请码无效。' : '';
+      }
+    });
+  </script>
+</body>
+</html>

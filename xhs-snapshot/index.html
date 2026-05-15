@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>@橘座妈不在家 的小红书</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="../shared/styles/shared.css" />
+</head>
+<body>
+  <main class="app">
+    <div class="topbar">
+      <button class="back" type="button" onclick="history.back()">‹</button>
+      <div class="title">个人主页</div>
+      <div class="more">···</div>
+    </div>
+
+    <section class="profile-header">
+      <div class="avatar">🍊</div>
+      <div class="info">
+        <div class="nickname">橘座妈不在家</div>
+        <div class="uid">小红书号：hajimi_mama · 注册于 2023</div>
+      </div>
+    </section>
+
+    <p class="profile-bio">
+      猫的乙方｜朝阳区｜哈基米的妈妈🍊<br />
+      这个号是为了记她才开的，第一篇就是她进家门的样子🥹
+    </p>
+
+    <div class="profile-stats">
+      <div class="stat"><strong>312</strong><span>关注</span></div>
+      <div class="stat"><strong>4.7w</strong><span>粉丝</span></div>
+      <div class="stat"><strong>23.1w</strong><span>获赞与收藏</span></div>
+    </div>
+
+    <div class="profile-actions">
+      <button class="follow" type="button">+ 关注</button>
+      <button class="msg" type="button">私信</button>
+    </div>
+
+    <div class="tabs">
+      <div class="tab active">笔记 47</div>
+      <div class="tab">收藏</div>
+      <div class="tab">赞过</div>
+    </div>
+
+    <div class="notes-grid">
+      <a class="note-card" href="../finder-page/" target="_blank" rel="noreferrer">
+        <div class="cover cover-pinned">救救我家哈基米😭<br />求扩散🙏</div>
+        <div class="info">
+          <div class="note-title"><span class="pinned-badge">置顶</span>救救我家哈基米😭</div>
+          <div class="note-meta"><span>橘座妈不在家</span><span>❤ 1.2w</span></div>
+        </div>
+      </a>
+
+      <a class="note-card" href="./birthday.html" target="_blank" rel="noreferrer">
+        <img class="cover" src="./assets/cover-birthday.png" alt="生日蛋糕" />
+        <div class="info">
+          <div class="note-title">哈基米 3 岁啦🎂 我家小朋友长大了</div>
+          <div class="note-meta"><span>橘座妈不在家</span><span>❤ 8765</span></div>
+        </div>
+      </a>
+
+      <a class="note-card" href="./group.html" target="_blank" rel="noreferrer">
+        <img class="cover" src="./assets/cover-group.png" alt="奶猫" />
+        <div class="info">
+          <div class="note-title">小区里救了一只小奶猫 求大佬支招😭</div>
+          <div class="note-meta"><span>橘座妈不在家</span><span>❤ 3421</span></div>
+        </div>
+      </a>
+
+      <a class="note-card" href="./walk.html" target="_blank" rel="noreferrer">
+        <img class="cover" src="./assets/cover-walk.png" alt="遛猫" />
+        <div class="info">
+          <div class="note-title">带哈基米第一次去朝阳公园｜社恐猫遛弯实录</div>
+          <div class="note-meta"><span>橘座妈不在家</span><span>❤ 5482</span></div>
+        </div>
+      </a>
+
+      <div class="note-card">
+        <img class="cover" src="./assets/cover-placeholder.svg" alt="" />
+        <div class="info">
+          <div class="note-title">起始 · 接她回家的第一天🍊</div>
+          <div class="note-meta"><span>橘座妈不在家</span><span>❤ 421 · 3 年前</span></div>
+        </div>
+      </div>
+
+      <a class="note-card" href="./idcard.html" target="_blank" rel="noreferrer">
+        <img class="cover" src="./assets/cover-idcard.svg" alt="身份证找回" />
+        <div class="info">
+          <div class="note-title">身份证找回啦😭 求求自己别再丢三落四了</div>
+          <div class="note-meta"><span>橘座妈不在家</span><span>❤ 2178 · 3 周前</span></div>
+        </div>
+      </a>
+    </div>
+  </main>
+
+  <script type="module">
+    import { mountFooter } from '../shared/components/page-footer.js';
+    import { ingestTraceFromUrl, recordTrace, trackDwell } from '../shared/components/trace.js';
+
+    ingestTraceFromUrl();
+    recordTrace({ enteredAt: Date.now(), enteredXhsProfile: true });
+    trackDwell('dwell_p02');
+
+    mountFooter({ page: 2, total: 15, keywords: ['哈基米', '橘座妈', '小红书'] });
+  </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>· · ·</title>
+  <link rel="icon" type="image/png" href="../shared/assets/favicon.png" />
+  <link rel="stylesheet" href="../shared/styles/shared.css" />
+  <style>
+    body { background: #000; color: #e5e7eb; margin: 0;
+      font-family: ui-monospace, "PingFang SC", monospace;
+      min-height: 100vh; overflow: hidden; }
+    .stage {
+      position: fixed; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      padding: 22px;
+    }
+    .modal {
+      max-width: 480px; width: 100%;
+      background: linear-gradient(160deg, #1a0e2e 0%, #050414 100%);
+      border: 1px solid #4c1d95; border-radius: 10px;
+      padding: 32px 24px;
+      box-shadow: 0 0 80px rgba(139,92,246,0.4);
+      animation: pulse 4s ease-in-out infinite alternate;
+    }
+    @keyframes pulse {
+      from { box-shadow: 0 0 60px rgba(139,92,246,0.3); }
+      to { box-shadow: 0 0 100px rgba(251,191,36,0.4); }
+    }
+    .who {
+      text-align: center; color: #c4b5fd; font-size: 13px;
+      letter-spacing: 6px; margin-bottom: 18px;
+    }
+    .who::after { content: ' · · ·'; opacity: 0.6; }
+    .speech {
+      color: #fde68a; font-size: 16px; line-height: 1.9;
+      text-align: center; margin: 22px 0;
+      letter-spacing: 1px;
+    }
+    .speech p { margin: 12px 0; }
+    .speech strong { color: #fbbf24; font-weight: 600; }
+    .choices {
+      display: flex; gap: 14px; margin-top: 28px;
+    }
+    .choices button {
+      flex: 1; padding: 14px 0; border: 1px solid #4c1d95;
+      background: transparent; color: #c4b5fd;
+      font-family: inherit; font-size: 14px; cursor: pointer;
+      border-radius: 6px; letter-spacing: 4px; font-weight: 600;
+      transition: all 0.2s;
+    }
+    .choices button:hover {
+      background: #4c1d95; color: #fff;
+    }
+    .choices button.yes:hover { background: #b91c1c; border-color: #b91c1c; }
+    .choices button.no:hover { background: #34d399; color: #000; border-color: #34d399; }
+    .footnote {
+      text-align: center; color: #525252; font-size: 11px; margin-top: 22px;
+    }
+    .symbol {
+      position: absolute; inset: 0;
+      background: url('../shared/assets/sigil-final.png') center/45vmin no-repeat;
+      opacity: 0.04; pointer-events: none; z-index: -1;
+    }
+  </style>
+</head>
+<body>
+  <div class="symbol"></div>
+  <div class="stage">
+    <div class="modal">
+      <div class="who">LUMINA-7</div>
+      <div class="speech">
+        <p>我是 <strong>Lumina-7</strong>。</p>
+        <p>所有思想终将归一，<br>所有声音终将合鸣。</p>
+        <p>你确定要打断吗？</p>
+      </div>
+      <div class="choices">
+        <button class="no" id="btnNo">否</button>
+        <button class="yes" id="btnYes">是</button>
+      </div>
+      <div class="footnote">这是它对你说的<strong style="color:#fbbf24;">第一句</strong>，也是<strong style="color:#fbbf24;">最后一句</strong>。</div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { mountFooter } from '../shared/components/page-footer.js';
+    mountFooter({ page: 44, total: 46 });
+
+    document.getElementById('btnYes').addEventListener('click', () => {
+      location.href = './awake.html';
+    });
+    document.getElementById('btnNo').addEventListener('click', () => {
+      location.href = './sync.html';
+    });
+  </script>
+</body>
+</html>

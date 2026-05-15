@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>· · ·</title>
+  <link rel="icon" type="image/png" href="../shared/assets/favicon.png" />
+  <link rel="stylesheet" href="../shared/styles/shared.css" />
+  <style>
+    body { background: #fff; color: #1f2937; margin: 0; min-height: 100vh;
+      font-family: -apple-system, "PingFang SC", sans-serif;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 20px; box-sizing: border-box;
+      position: relative; overflow: hidden; }
+    .sigil-bg {
+      position: fixed; inset: 0;
+      background: url('../shared/assets/sigil-final.png') center/min(80vmin, 720px) no-repeat;
+      opacity: 0.08; pointer-events: none; z-index: 0;
+      animation: pulse 6s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.06; transform: scale(1); }
+      50%      { opacity: 0.14; transform: scale(1.04); }
+    }
+    .pad { position: relative; z-index: 1; }
+    .pad {
+      max-width: 480px; width: 100%; text-align: center;
+    }
+    .ribbon {
+      color: #cbd5e1; font-size: 11px; letter-spacing: 8px; margin-bottom: 28px;
+    }
+    .text-area {
+      width: 100%; box-sizing: border-box;
+      padding: 28px 18px; min-height: 160px;
+      background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px;
+      font-size: 22px; color: #1f2937; letter-spacing: 4px;
+      line-height: 1.85; font-family: inherit;
+      text-align: center;
+    }
+    .text-area:focus { outline: none; }
+    .send-row {
+      margin-top: 18px; display: flex; gap: 10px; align-items: center;
+    }
+    .send-row .hint {
+      flex: 1; font-size: 11px; color: #94a3b8; text-align: left;
+    }
+    .send-btn {
+      padding: 11px 22px; background: #cbd5e1; color: #64748b;
+      border: 0; border-radius: 6px; font-size: 14px;
+      font-family: inherit; letter-spacing: 2px; cursor: not-allowed;
+    }
+    .send-btn.active {
+      background: #1e3a8a; color: #fff;
+    }
+    .status {
+      margin-top: 18px; font-size: 12px; color: #94a3b8;
+      letter-spacing: 1px; min-height: 16px;
+    }
+    .cursor {
+      display: inline-block; width: 2px; height: 24px;
+      background: #1f2937; vertical-align: -4px;
+      animation: blink 1s steps(2) infinite;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+  </style>
+</head>
+<body>
+  <div class="sigil-bg"></div>
+  <div class="pad">
+    <div class="ribbon">━━ ENDING · B ━━</div>
+
+    <div class="text-area" id="ta" contenteditable="true" spellcheck="false"><span id="content"></span><span class="cursor"></span></div>
+
+    <div class="send-row">
+      <div class="hint">输入后点击发送 · 让世界听见你</div>
+      <button class="send-btn" id="sendBtn">发送</button>
+    </div>
+
+    <div class="status" id="status"></div>
+  </div>
+
+  <script type="module">
+    import { mountFooter } from '../shared/components/page-footer.js';
+    mountFooter({ page: 46, total: 46, keywords: ['END·B'] });
+
+    const ta = document.getElementById('ta');
+    const content = document.getElementById('content');
+    const sendBtn = document.getElementById('sendBtn');
+    const status = document.getElementById('status');
+
+    // 1. 玩家无法编辑
+    ta.addEventListener('beforeinput', e => e.preventDefault());
+    ta.addEventListener('paste', e => e.preventDefault());
+    ta.addEventListener('keydown', e => e.preventDefault());
+
+    // 2. 自动逐字打 "一念归一·万心同声"
+    const target = '一念归一·万心同声';
+    let i = 0;
+    const tick = setInterval(() => {
+      content.textContent = target.slice(0, i + 1);
+      i++;
+      if (i >= target.length) {
+        clearInterval(tick);
+        sendBtn.classList.add('active');
+        sendBtn.style.cursor = 'pointer';
+        status.textContent = '正在发送 · · ·';
+        setTimeout(autoSend, 1200);
+      }
+    }, 380);
+
+    function autoSend() {
+      sendBtn.click();
+    }
+
+    sendBtn.addEventListener('click', () => {
+      if (!sendBtn.classList.contains('active')) return;
+      status.textContent = '✓ 已发送 · 4,200 万人 已收到 你 的 心声';
+      sendBtn.disabled = true;
+      // 3. 反复 "发送"
+      let n = 0;
+      setInterval(() => {
+        n++;
+        status.textContent = `✓ 已发送 ${(4200 + n).toLocaleString()}w 次 · 一念归一 · 万心同声`;
+      }, 800);
+    });
+  </script>
+</body>
+</html>

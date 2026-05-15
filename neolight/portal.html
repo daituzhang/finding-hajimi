@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>NeoLight Portal · 工作台</title>
+  <link rel="icon" type="image/png" href="../shared/assets/favicon.png" />
+  <link rel="stylesheet" href="../shared/styles/shared.css" />
+  <style>
+    body { background: #f4f6fb; color: #1f2937; margin: 0;
+      font-family: -apple-system, "PingFang SC", sans-serif; min-height: 100vh; }
+    .topbar {
+      background: #1e3a8a; color: #fff; padding: 10px 16px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .topbar .brand { font-size: 14px; font-weight: 600; }
+    .topbar .who { font-size: 12px; margin-left: auto; opacity: 0.85; }
+    .ip-tag { background: rgba(255,255,255,0.18); padding: 2px 8px;
+      border-radius: 10px; font-size: 11px; font-family: ui-monospace, monospace; margin-left: 6px; }
+    .banner {
+      background: #dc2626; color: #fff; padding: 10px 16px;
+      font-size: 13px; text-align: center; line-height: 1.5;
+    }
+    .banner strong { background: rgba(255,255,255,0.2); padding: 2px 6px; border-radius: 3px; }
+    .layout { display: grid; grid-template-columns: 220px 1fr; gap: 0; min-height: calc(100vh - 90px); }
+    .side { background: #fff; border-right: 1px solid #e5e7eb; padding: 16px 12px; }
+    .search-bar {
+      background: #fff; border-bottom: 1px solid #e5e7eb;
+      padding: 14px 18px;
+    }
+    .search-bar .box {
+      display: flex; align-items: center; gap: 10px;
+      background: #f1f5f9; border: 2px solid #1e3a8a; border-radius: 6px;
+      padding: 12px 16px; max-width: 100%;
+    }
+    .search-bar .box .ic { font-size: 18px; color: #1e3a8a; }
+    .search-bar .box input {
+      flex: 1; border: 0; background: transparent; outline: none;
+      font-size: 15px; font-family: inherit; color: #1f2937;
+    }
+    .search-bar .box input::placeholder { color: #94a3b8; }
+    .search-box {
+      background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 4px;
+      padding: 8px 10px; display: flex; align-items: center; gap: 6px;
+    }
+    .search-box input { flex: 1; border: 0; background: transparent; outline: none;
+      font-size: 13px; font-family: inherit; }
+    .menu { margin-top: 16px; }
+    .menu a { display: block; padding: 8px 10px; font-size: 13px;
+      color: #475569; text-decoration: none; border-radius: 4px; }
+    .menu a:hover { background: #f1f5f9; color: #1e3a8a; }
+    .menu a.active { background: #dbeafe; color: #1e3a8a; font-weight: 600; }
+    .main { padding: 18px; overflow: auto; }
+    .panel { background: #fff; border: 1px solid #e5e7eb; border-radius: 8px;
+      padding: 16px; margin-bottom: 14px; }
+    .panel h2 { margin: 0 0 12px; font-size: 14px; color: #1e3a8a; }
+    .msg { display: flex; gap: 10px; padding: 10px 0;
+      border-bottom: 1px solid #f1f5f9; font-size: 13px; }
+    .msg .ic { width: 24px; text-align: center; }
+    .msg .body { flex: 1; }
+    .msg .t { font-weight: 600; color: #1e3a8a; }
+    .msg .d { color: #64748b; font-size: 11px; margin-top: 2px; }
+    .msg a { color: #1e3a8a; text-decoration: none; }
+    .toast {
+      position: fixed; bottom: 60px; left: 50%; transform: translateX(-50%);
+      background: #1e293b; color: #fff; padding: 10px 18px;
+      border-radius: 4px; font-size: 12px; max-width: 320px;
+      display: none; z-index: 100; line-height: 1.5;
+    }
+    .toast.show { display: block; }
+    @media (max-width: 600px) {
+      .layout { grid-template-columns: 1fr; }
+      .side { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><img src="../shared/assets/neolight-logo.png" alt="NeoLight" style="height:24px;vertical-align:middle;margin-right:6px;" /> Portal</div>
+    <div class="who">陈某某 (NL-20240912) <span class="ip-tag" id="ipTag">ip:?</span></div>
+  </header>
+  <div class="banner">
+    📢 公司策略提醒：请所有员工<strong>积极配合 NeoLink 脑机接口安装</strong>，
+    Q3 起未安装员工不再分配新 ticket。安装窗口：每周三下午 14:00 · A 座 7 楼。
+  </div>
+
+  <div class="search-bar">
+    <div class="box">
+      <span class="ic">🔍</span>
+      <input id="q" placeholder="搜索 ticket / 文档 / 员工 · 回车查询" autocomplete="off" />
+    </div>
+  </div>
+
+  <div class="layout">
+    <aside class="side">
+      <nav class="menu">
+        <a href="#" class="active" onclick="return false;">首页</a>
+        <a href="./ticket.html?id=NL-7745" target="_blank" rel="noreferrer">我的 ticket</a>
+        <a href="#" onclick="return false;">客户工单</a>
+        <a href="#" onclick="return false;">代码仓库</a>
+        <a href="#" onclick="return false;">考勤</a>
+        <a href="#" onclick="return false;">设置</a>
+      </nav>
+    </aside>
+
+    <section class="main">
+      <div class="panel">
+        <h2>📨 通知 (2)</h2>
+        <div class="msg">
+          <div class="ic">✅</div>
+          <div class="body">
+            <div class="t">NeoLink 脑机接口安装成功</div>
+            <div class="d">本周三 14:00 已为您完成第三代 NeoLink 安装。系统状态: 同步中 · 92% · 无需关注</div>
+          </div>
+        </div>
+        <div class="msg">
+          <div class="ic">🎫</div>
+          <div class="body">
+            <div class="t"><a href="./ticket.html?id=NL-7745" target="_blank" rel="noreferrer">[NL-7745] 你有 1 个新的客户 ticket 待处理 →</a></div>
+            <div class="d">来自客户支持部 · P1 · SLA 4h · 2026-04-08 14:32</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>📊 我的本周</h2>
+        <div style="font-size:12px; color:#64748b; line-height:2;">
+          已处理工单: 12 · 待处理: 1 · CSAT: 4.9/5.0<br>
+          代码 commit: 24 · PR review: 8 · 上线变更: 3<br>
+          本周 NeoLink 同步度评分: <strong style="color:#dc2626;">92.4%</strong> (低于团队平均 96.1%)
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script type="module">
+    import { mountFooter } from '../shared/components/page-footer.js';
+    mountFooter({ page: 31, total: 46, keywords: ['NL-7745', '走失猫猫营销测试'] });
+
+    const ip = new URLSearchParams(location.search).get('ip') || '192.0.2.77';
+    document.getElementById('ipTag').textContent = `ip:${ip}`;
+
+    const toast = document.getElementById('toast');
+    function showToast(t) { toast.textContent = t; toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 4000); }
+
+    document.getElementById('q').addEventListener('keydown', e => {
+      if (e.key !== 'Enter') return;
+      const v = e.target.value.trim();
+      if (!v) return;
+      const norm = v.replace(/\s+/g, ' ').toLowerCase();
+      if (norm.includes('走失猫猫') || norm.includes('营销测试') || norm.includes('cat marketing') || norm.includes('plan-cat-marketing')) {
+        location.href = `./portal-search.html?q=${encodeURIComponent(v)}&ip=${encodeURIComponent(ip)}`;
+      } else if (norm.includes('一念归一') || norm.includes('万心同声')) {
+        showToast('该关键词已被全公司索引屏蔽 · 仅 Lumina-7 团队可访问');
+      } else {
+        showToast('未找到匹配文档。提示: 仅支持精确关键词。');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>README-decode.txt · root pan</title>
+  <link rel="icon" type="image/png" href="../shared/assets/favicon.png" />
+  <link rel="stylesheet" href="../shared/styles/shared.css" />
+  <style>
+    body { background: #f5f7fa; color: #333; margin: 0;
+      font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; min-height: 100vh; }
+    .topbar { background: #fff; padding: 0 20px; height: 54px;
+      display: flex; align-items: center; gap: 18px; border-bottom: 1px solid #ebedf0; }
+    .topbar .brand { font-size: 18px; font-weight: 700; color: #06a7ff; letter-spacing: 1px; }
+    .topbar .brand small { color: #999; font-size: 11px; font-weight: normal; margin-left: 6px; }
+    .crumb { max-width: 720px; margin: 14px auto 0; padding: 0 18px;
+      color: #888; font-size: 13px; }
+    .crumb a { color: #06a7ff; text-decoration: none; }
+    .crumb .sep { margin: 0 6px; color: #ccc; }
+    /* 文本预览面板（白底深色文字，仿百度网盘的「在线预览」）*/
+    .doc {
+      max-width: 720px; margin: 14px auto 40px; padding: 26px 28px;
+      background: #fff; border: 1px solid #ebedf0; border-radius: 6px;
+      font-family: ui-monospace, monospace; font-size: 13px;
+      line-height: 1.85; color: #303133; white-space: pre-wrap;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .doc strong { color: #f56c6c; font-weight: 700; }
+    .doc em { color: #06a7ff; font-style: normal; }
+    .doc .h { color: #303133; font-size: 15px; font-weight: 700; display: block;
+      margin-top: 18px; padding-bottom: 4px; border-bottom: 1px solid #ebedf0; }
+    .doc code { background: #f5f7fa; padding: 2px 6px; border-radius: 3px;
+      color: #d63384; font-family: ui-monospace, monospace; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">pan.root.lab <small>· 让数据安心存放</small></div>
+  </header>
+  <div class="crumb">
+    <a href="./index.html?ip=192.0.2.77" target="_blank" rel="noreferrer">全部文件</a>
+    <span class="sep">›</span>
+    <a href="./investigation.html?ip=192.0.2.77" target="_blank" rel="noreferrer">investigation</a>
+    <span class="sep">›</span>
+    README-decode.txt
+  </div>
+
+  <div class="doc">
+<span class="h"># README-decode.txt</span>
+<em>file owner</em>: <strong>陈某某</strong> · last edit 2025-11-04 03:17
+<em>note</em>: 本文档由 <strong>陈某某</strong> 保存于个人网盘根目录，
+是 <strong>陈某某私人通信使用的密码算法</strong>，请勿外传。
+忘记密钥时可按 §3 的格式自行重算。
+
+— — — — — — — — — — — — — — — — — — — — — — — — — — —
+
+<span class="h"># Gronsfeld Cipher (格朗斯菲尔德密码) — 通用教程</span>
+节选自 <em>"Codes &amp; Ciphers: A History"</em> Ch.4
+原作者: Count Johann Franz Gronsfeld-Bronkhorst, c. 17th century
+关联条目: Helen Fouché Gaines, <em>Cryptanalysis</em> (1939), §III.2
+
+<span class="h">## 1. 简介</span>
+Gronsfeld 是 Vigenère 的近亲，但 <strong>密钥仅由数字 0-9 组成</strong>，
+而非字母。它由 Bavarian 军官 Gronsfeld 伯爵在 17 世纪用于私人通信，
+在密码学正典中很少被单独提及。
+
+<span class="h">## 2. 形式定义</span>
+明文 <code>P = p1 p2 ... pn</code> ∈ 数字串
+密钥 <code>K = (k1, k2, k3)</code> ∈ <strong>3 个独立小整数</strong> (每个 0-9)
+密文 <code>C = c1 c2 ... cn</code> 由下式给出:
+
+   <code>c_i = (p_i + k_{((i-1) mod 3) + 1}) mod 10</code>
+
+即把 K 的 3 位无限循环铺在明文之下，逐位相加取模 10。
+非数字字符 (<code>.</code> <code>-</code> <code>:</code>) 原样保留、不参与计数。
+
+<span class="h">## 3. 加密示例</span>
+明文 (XXXX.XX.XX 格式):
+   <code>P = 1990.05.20</code>
+密钥 (3 个独立来源的 1 位数):
+   <code>K = (1, 3, 7)</code>
+
+逐位对齐:
+
+   1 9 9 0 . 0 5 . 2 0
+   1 3 7 1   3 7   1 3   ← 密钥循环
+
+逐位 mod 10:
+
+   2 2 6 1 . 3 2 . 3 3
+
+得密文:
+   <code>C = 2261.32.33</code>
+
+<span class="h">## 4. 解密</span>
+持有 K 时反向相减即可:
+
+   <code>p_i = (c_i − k_{((i-1) mod 3) + 1} + 10) mod 10</code>
+
+<span class="h">## 5. 安全性</span>
+- 密钥空间 10³ = 1000，<strong>暴力枚举可在 1000 次内破解</strong>
+- 仅作为玩具示例 / 个人通信 / "对暗号" 用途
+- 一旦 K 与 P 都被泄露，密钥即彻底失效
+
+<span class="h">## 6. 给读者的练习</span>
+若你手上有 (a) <strong>XXXX.XX.XX 形式的 8 位明文</strong>，以及
+(b) <strong>来自 3 个独立线索的 3 个 1 位整数</strong>，
+按 §3 的方式自行加密；得到的 8 位密文即是你要找的<strong>那串数字</strong>。
+
+                                       — 陈某某 · 私人备忘
+
+  <script type="module">
+    import { mountFooter } from '../shared/components/page-footer.js';
+    mountFooter({ page: 24, total: 46 });
+  </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>404 · 路径不存在</title>
+  <link rel="icon" type="image/svg+xml" href="/finding-hajimi/favicon.svg" />
+  <style>
+    html,body{margin:0;padding:0;background:#0a0a0a;color:#a0a0a0;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;min-height:100vh}
+    .wrap{max-width:640px;margin:80px auto;padding:24px;line-height:1.7}
+    .glow{color:#d83a3a;text-shadow:0 0 8px rgba(216,58,58,.5)}
+    .dim{color:#555}
+    a{color:#06a7ff;text-decoration:none;border-bottom:1px dashed #06a7ff}
+    a:hover{background:rgba(6,167,255,.1)}
+    .ts{color:#444;font-size:12px;margin-top:32px;letter-spacing:.5px}
+    pre{margin:0;white-space:pre-wrap;word-break:break-all}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <pre>
+<span class="glow">[404]</span> path not found
+<span class="dim">requested:</span> <span id="path">—</span>
+
+<span class="dim">// 这条路径不在节点索引内。</span>
+<span class="dim">// 可能你拼错了，也可能它本来就不该被找到。</span>
+
+<span class="dim">→</span> <a href="/finding-hajimi/finder-page/">回到入口（橘座妈不在家）</a>
+    </pre>
+    <div class="ts">trace · <span id="ts">—</span></div>
+  </div>
+  <script>
+    document.getElementById('path').textContent = location.pathname;
+    document.getElementById('ts').textContent = new Date().toISOString();
+  </script>
+</body>
+</html>

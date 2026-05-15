@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>MaoTrack · 智能猫咪项圈</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="../shared/styles/shared.css" />
+</head>
+<body>
+  <main class="mt-app">
+    <header class="mt-header">
+      <svg class="logo" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="32" cy="28" r="10" fill="none" stroke="#fff" stroke-width="3"/>
+        <path d="M32 38 L32 50" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+      <div>
+        <div class="brand">MaoTrack</div>
+        <div class="sub">最懂猫的智能项圈</div>
+      </div>
+    </header>
+
+    <nav class="mt-nav">
+      <a target="_blank" rel="noreferrer" class="active" href="./">首页</a>
+      <a target="_blank" rel="noreferrer" href="./cases.html">救助案例</a>
+      <a target="_blank" rel="noreferrer" class="cta" href="./login.html">主人登录</a>
+    </nav>
+
+    <section class="mt-hero">
+      <h1>每一只都该被找回</h1>
+      <p>北斗 + LBS 双定位 · 防水防咬 · 续航 30 天</p>
+      <figure style="margin:14px 0; aspect-ratio:4/3; background:linear-gradient(135deg,#0ea5e9,#0369a1); border-radius:10px; overflow:hidden;">
+        <img src="./assets/product-collar.png" alt="MaoTrack 智能猫咪项圈产品图" onerror="this.remove()" style="width:100%; height:100%; object-fit:cover; display:block;">
+      </figure>
+      <a target="_blank" rel="noreferrer" class="hero-btn" href="./login.html">查看您家宝贝位置 →</a>
+    </section>
+
+    <section class="mt-features">
+      <div class="feat">
+        <div class="feat-icon">📍</div>
+        <div class="feat-name">实时定位</div>
+        <div class="feat-desc">10 米精度。可查 30 天历史轨迹。</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">🔋</div>
+        <div class="feat-name">超长续航</div>
+        <div class="feat-desc">单次充电 30 天。低电量自动短信提醒主人。</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">⚠️</div>
+        <div class="feat-name">异常告警</div>
+        <div class="feat-desc">检测到非猫科运动模式（如直线高速）会自动告警。</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">🤝</div>
+        <div class="feat-name">救助联盟</div>
+        <div class="feat-desc">和朝阳区多位救助博主合作。看。</div>
+      </div>
+    </section>
+
+    <section class="mt-stats">
+      <div class="stat"><b>14,392</b><span>只猫接入</span></div>
+      <div class="stat"><b>2,738</b><span>只成功找回</span></div>
+      <div class="stat"><b>30 天</b><span>续航</span></div>
+    </section>
+
+    <div class="mt-foot">
+      © 2026 MaoTrack · 朝阳区 智能宠物项圈<br />
+      已通过工信部入网检测
+    </div>
+  </main>
+
+  <script type="module">
+    import { mountFooter } from '../shared/components/page-footer.js';
+    mountFooter({ page: 9, total: 15, keywords: ['MaoTrack', '猫咪定位', '项圈'] });
+  </script>
+</body>
+</html>

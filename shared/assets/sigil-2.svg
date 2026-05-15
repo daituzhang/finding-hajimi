@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <clipPath id="c2"><polygon points="100,8 192,75 157,184 43,184 8,75"/></clipPath>
+  </defs>
+  <image href="sigil-core-2.png" x="0" y="0" width="200" height="200" preserveAspectRatio="xMidYMid slice" clip-path="url(#c2)"/>
+  <polygon points="100,8 192,75 157,184 43,184 8,75" fill="none" stroke="#4ade80" stroke-width="3" stroke-linejoin="miter"/>
+</svg>
