@@ -161,10 +161,11 @@ Negative prompt: cartoon, anime, illustration, 3d render, cgi, painting, drawing
 <h2 id="sec2">2. 必做 · 主线核心图（10 张）</h2>
 
 <h3>A. 寻猫海报</h3>
+<p class="muted">⚠️ 重做版（v2）。海报里嵌的猫照必须明显有别于小红书已发的任何一张：要正脸、证件照式、最大化"识别度"——失主会用最清楚的一张照片做寻猫启事，而不是侧脸 / 随手抓拍。</p>
 <div class="path">📁 <b>保存</b>：<code>sites/finder-page/assets/poster</code></div>
 <div class="prompt cat">
   <button class="copy" type="button">Copy</button>
-  <pre>A vertical PORTRAIT-orientation digital lost-cat flyer designed to be POSTED ON SOCIAL MEDIA (小红书 / 微信朋友圈 / 微博), NOT a physical poster pasted outdoors. 
+  <pre>A vertical PORTRAIT-orientation digital lost-cat flyer designed to be POSTED ON SOCIAL MEDIA (小红书 / 微信朋友圈 / 微博), NOT a physical poster pasted outdoors.
 
 📏 STRICT FORMAT REQUIREMENTS (do not violate):
 - Aspect ratio: **2:3 PORTRAIT (taller than wide)**, e.g. 1024 × 1536 px. Absolutely NOT square, NOT landscape, NOT 3:2 horizontal.
@@ -174,14 +175,37 @@ Negative prompt: cartoon, anime, illustration, 3d render, cgi, painting, drawing
 
 🎨 LAYOUT (top to bottom, all elements use clear contrasting colors against the cream paper):
 1. Bold red (#c1121f) Chinese title 寻猫启事 at top, heavy sans-serif, centered, large.
-2. Centered portrait photo of Hajimi (use character sheet — softly smiling, **round circular pupils**, ear notch on the LEFT ear clearly visible, sky-blue collar with silver tag visible). The photo sits inside a thin black 2px rectangle frame, occupies about 60% of the flyer width.
+2. Centered "ID-card style" portrait photo of Hajimi inside a thin black 2px rectangle frame, occupies about 60% of the flyer width. **THIS PHOTO MUST BE A FRONTAL HEAD-AND-CHEST SHOT, the cat sitting upright, staring straight into the camera lens, completely calm and centered, like a passport photo or a vet clinic intake photo.** Plain soft-grey neutral studio backdrop behind the cat (NO sofa, NO floor, NO outdoor scene, NO toys). Both ears clearly visible and forward — the V-notch on the LEFT ear (viewer's right) is sharp and unmistakable. Use the Hajimi character sheet for fur, eyes, body — fully round amber pupils, marigold orange tabby. Soft even front lighting (no dramatic shadow).
+
+  **COLLAR & ID TAG — MUST BE SHARP AND READABLE (this is the single most identifying detail in the whole flyer, do NOT blur, do NOT crop out):**
+  - Sky-blue (#7cc4e8) cloth collar wraps cleanly around the cat's neck, sitting flat at the base of his chest fur, fully visible front-on.
+  - A small matte-black GPS tracker pod (~12mm) is mounted on top of the collar, slightly off-center, with a tiny embossed white wordmark "MaoTrack" + paw glyph on its face.
+  - A polished silver oval ID tag (~25mm × 18mm) hangs from a small silver D-ring at the front-center of the collar, dangling forward against the cat's white chest fur — **the tag must be in sharp focus, not blurred, not motion-smeared, not covered by fur**.
+  - The tag is laser-engraved with TWO clearly readable lines of dark grey text:
+    LINE 1 (large): `HJM427-2024`
+    LINE 2 (smaller, below): `138-XXXX-XXXX`
+  - The engraving must be legible at a glance — high contrast, clean sans-serif, no fancy script, no decorative borders, no fur in front of the text. Treat the tag like a real engraved metal ID tag a worried owner would carefully photograph for a lost-pet poster.
+  - The chest fur around the tag is parted slightly so nothing blocks the engraved text. Soft front light puts a small specular highlight on the polished silver edge but does NOT wash out the engraving.
+
+  The composition is centered and symmetric — the kind of shot an owner would specifically pose for an official lost-cat flyer.
+
+  **MOUTH & FANG DETAIL — DO NOT FORGET (this is another key identifying feature):**
+  - The cat's mouth is closed (not yawning, not meowing), but **one small white pointed canine fang on the LEFT side of his upper jaw (viewer's right) slightly protrudes downward over his lower lip** — a classic "snaggle tooth / 小虎牙" detail, about 2–3mm of tooth showing. Just one fang, clearly visible against the pink lower lip / dark mouth line. The right-side fang stays tucked away. This is a permanent feature of this cat, present in every photo of him.
+  - The fang must be sharp, clean, white, and unmistakable — not a generic cat smile, not both fangs, not a full grin showing teeth.
+
+  **EYE & PUPIL DETAIL — DO NOT VIOLATE (the eyes are the headline of the whole poster):**
+  - Both eyes are **perfectly round amber/honey-gold**, large and symmetric, taking up an unusually large portion of the face (chibi-realistic kitten-like proportions even though he's adult).
+  - **The pupils are FULLY ROUND CIRCLES — wide, dilated, completely circular black discs centered in each eye, like an indoor cat in soft low light.** ABSOLUTELY NOT vertical slits, NOT thin ellipses, NOT almond-shaped, NOT half-lidded, NOT narrowed. Both pupils identical size and identical roundness.
+  - Pupil should fill roughly 60–70% of the visible iris area. A glossy white catchlight reflection sits in the upper-left of each pupil. Eyes wide open, alert, soft, slightly pleading "心都化了" energy.
+  - If the generated image shows slit/elliptical pupils, the image is wrong and must be regenerated.
 3. Below the photo: handwritten-style black text "5 岁 · 公 · 橘猫 · 戴蓝色项圈 · 朝阳公园西门走失 · 见到请联系".
 4. Bottom: ONE single centered line of contact info (微信：juzuoma_2026 · 电话：138-XXXX-XXXX), no tear-off tabs.
 
-Style: clean flat graphic-design flyer, sharp typography, no photographic environment, no texture noise, no paper-grain texture overlay. Final output **must be vertical 2:3** — if it comes out square or horizontal, it's wrong.</pre>
+Style: clean flat graphic-design flyer, sharp typography, no photographic environment around the flyer, no texture noise, no paper-grain texture overlay. Final output **must be vertical 2:3** — if it comes out square or horizontal, it's wrong.</pre>
 </div>
 
 <h3>B. 哈基米参考照 ×3</h3>
+<p class="muted">⚠️ 重做版（v2）。这 3 张专门作为寻猫启事下方的"补充识别照"，必须和小红书 swiper 里已有的任何一张（生日、遛猫、群聊截图、身份证场景）<b>没有视觉重叠</b>——失主翻相册挑出来的、最能体现"日常这猫长这样"的家居生活照。</p>
 <div class="path">📁 <b>保存</b>（3 个文件，注意是 <b>4:5 竖向</b>，用于小红书 swiper 全屏展示）：
   <ul style="margin:6px 0 0">
     <li><code>sites/finder-page/assets/cat-1</code></li>
@@ -191,13 +215,34 @@ Style: clean flat graphic-design flyer, sharp typography, no photographic enviro
 </div>
 <div class="prompt cat">
   <button class="copy" type="button">Copy</button>
-  <pre>Three vertical 4:5 portrait phone snapshots of the same cat Hajimi (character sheet — orange tabby, round amber eyes, ear notch on LEFT ear, sky-blue collar with silver tag), iPhone-style amateur owner snapshots taken indoors. Each image MUST be vertical 4:5 (taller than wide), suitable for full-bleed mobile carousel display.
+  <pre>Generate **THREE SEPARATE INDIVIDUAL IMAGES** (NOT one collage, NOT one grid, NOT one composite, NOT a triptych side-by-side) of the same cat Hajimi (character sheet — orange tabby, round amber eyes, sky-blue collar with silver tag). iPhone-style amateur owner snapshots taken indoors at home.
 
-- cat-1: full body curled on a beige sofa, looking up at camera, soft afternoon window light from upper-left
-- cat-2: tight close-up of face filling the frame, amber eyes sharp focus, the sky-blue collar with silver tag clearly visible just below the chin
-- cat-3: standing on a windowsill in side profile, tail visible curving up, blurred curtain background
+⚠️ OUTPUT FORMAT — DO NOT VIOLATE:
+- Output exactly **3 distinct image files**, one per scene below (cat-1, cat-2, cat-3). Each file is its own standalone photo.
+- Each image MUST be **portrait orientation, 4:5 aspect ratio (taller than wide, e.g. 1024×1280)** — NOT square, NOT landscape, NOT 1:1, NOT 16:9. Suitable for full-bleed mobile carousel.
+- **Each image contains EXACTLY ONE cat and ONE cat only.** No second cat, no reflection of a cat, no cat-shaped shadow that reads as a second cat, no duplicated cat head, no two-headed cat, no cat painting/photo on the wall behind. Just one single Hajimi per frame.
+- Do NOT combine the three scenes into one image. Do NOT show three cats in one frame. Do NOT make a "before/after/during" panel.
 
-Same cat across all 3, same warm-afternoon lighting palette, same candid pet-owner photography style. NO square crop, NO landscape — vertical 4:5 only.</pre>
+⚠️ MANDATORY CUTENESS DIAL — TURN IT UP, DO NOT GO REALISTIC-SCRAWNY:
+This cat must read as **EXTREMELY CHUBBY, ROUND, AND ADORABLE** in every shot — the kind of fat orange cat that goes viral on 小红书 / 抖音. Hard requirements:
+- **Body shape**: enormous round belly that visibly sags and folds when he sits or lies down, thick chest, soft squishy "bread loaf" silhouette, short stubby legs that look too small for his body. Estimated weight ~7–8 kg. NOT slim, NOT lean, NOT "healthy weight" — **clearly obese in a comedic, lovable way**.
+- **Face**: round chubby cheeks (淘气脸蛋), pronounced double chin (下巴肉), small triangle nose, tiny pink mouth.
+- **Eyes**: **OVERSIZED big round amber eyes**, fully circular dilated pupils filling most of the iris, the eyes should take up an unusually large portion of the face (chibi-realistic, kitten-like proportions even though he's an adult cat). Glossy wet catchlights in both eyes from the room light. The eyes are the single most expressive feature in every shot — wide, soft, slightly pleading, "看着就心化了" energy.
+- **Vibe**: every shot should make a viewer instinctively go "awww 好可爱". Soft warm lighting, never harsh, never moody. Posed candidly so the chub is shown off (folds visible, tummy visible, double chin visible).
+- Still 100% photorealistic real-cat phone photo — NOT cartoon, NOT anime, NOT plush toy, NOT 3d render. Just a real cat that happens to be exceptionally fat and exceptionally big-eyed.
+
+⚠️ MANDATORY EAR DETAIL — DO NOT VIOLATE, DO NOT FORGET ON ANY OF THE 3 IMAGES:
+The cat's LEFT ear (the ear on the viewer's right side of the frame when the cat faces the camera) has a clearly visible **V-shaped notch** — a sharp triangular chunk roughly 5mm wide and 4mm deep cut out of the very tip of the ear, fully healed, dark pink scar edge. This notch must be **visible, sharp, and unmistakable in every single one of the 3 photos**, regardless of pose or angle. The right ear is whole and intact. If a pose would hide the left ear (paw covering it, head turned away from the notched side, ear out of frame), choose a different angle so the notch is still visible. The notch is the cat's #1 identifying feature for the lost-cat flyer — losing it on any image is a hard failure.
+
+MUST avoid these scenes (already used elsewhere): sofa-curling, face close-up, windowsill, park grass, leash/harness, butterfly chase, hiding by feet, birthday cake, kitten rescue, anything outdoors. Only fresh indoor home scenes that haven't appeared anywhere else.
+
+- cat-1: Hajimi flopped on his side asleep INSIDE a plain brown cardboard Amazon-style shipping box on a wood floor, all four short legs sticking out limp, head resting on the box edge with both ears fully exposed and clearly visible from above — **the V-notched LEFT ear sticks up sharp and unmistakable against the brown cardboard background**. Taken from a low overhead angle. Soft midday window light from the side.
+
+- cat-2: Hajimi mid-stretch right after waking up on a chunky cream knit blanket, front paws extended forward and claws splayed, back arched high, mouth in a wide pink yawn (eyes squinting closed) — but NOT hissing, NOT aggressive, just sleepy. Tail visible curving up. Warm bedroom lamp light. Sky-blue collar visible at the neck. **Both ears must be in frame, upright and clearly visible — the V-notch on the LEFT ear is sharp and obvious, framed against the cream blanket.**
+
+- cat-3: Hajimi sitting upright on the rim of a white ceramic bathroom sink, head turned slightly so the camera sees a 3/4-front view, looking down curiously at a slow-dripping water droplet from a chrome faucet, **both round ears clearly visible and pricked forward — the V-notch on the LEFT ear is unmistakable against the white tile background**. Cool overhead bathroom light, slight reflection on the white sink ceramic.
+
+Same cat across all 3, consistent body shape, consistent collar, consistent V-notched LEFT ear visible in every shot. Candid pet-owner phone photography style — slight grain, mild handheld blur ok, no professional lighting, no posed studio look, no cartoon, no 3d render, no slit pupils.</pre>
 </div>
 
 <h3>C. 朝阳公园遛猫 ×4</h3>
@@ -301,7 +346,11 @@ Cat fur (warm marigold-orange tabby) is visible at the edges but slightly out of
 
 THE FOOD (extremely important — read carefully): the food in the bowl is THICK WET CAT FOOD PASTE — a sticky brown-pink minced meat paté, the texture of thick mashed pâté or stiff peanut butter. It is NOT dry kibble. It is NOT loose pellets. It is NOT pieces. It is one single sticky lump of wet paste smeared and pressed flat against the inside bottom of the open shallow stainless steel bowl. The paste behaves like wet clay — it STICKS firmly to the bowl. It cannot pour, cannot fall out, cannot scatter, cannot spill, cannot leave the bowl. Even if the bowl is tipped, shaken, or yanked, the sticky paste stays glued to the bowl's inner surface. There are zero loose pieces of food. There are zero dry kibble pellets anywhere in the entire video.
 
-CORE ACTION (this is the whole point of the video, do NOT change it, do NOT make it gentle): at 0.0s the cat is already eagerly bent over the open shallow stainless steel bowl, licking the sticky wet paste with his pink tongue, mouth working. Suddenly the cat LAUNCHES himself UP into the air to follow the bowl, both front paws extended, mouth wide open, fully airborne. AT THE EXACT SAME INSTANT, a woman's bare right hand and forearm whip in from the right edge of the frame at extreme speed and VIOLENTLY SNATCH the entire shallow stainless steel bowl away — palm wraps around the bowl's outer side, fingers grip the rim, and she rips the bowl straight up and out to the right of frame in one blistering blur, faster than the cat can reach it. The grab looks like swatting a fly, like yanking something from a thief in anger. The sticky wet paste stays stuck inside the bowl as the bowl flies away (because it is sticky paste, not loose food). The cat misses the bowl by a hair and lands hard back on the empty floor. This whole action must read as harsh, abrupt, and forceful — NOT a slow gentle pour, NOT a careful lift, NOT a calm tidying-up motion. It must look almost violent, like the food is being stolen from him.
+CORE ACTION (this is the whole point of the video, do NOT change it, do NOT make it gentle): at 0.0s the cat is already eagerly bent over the open shallow stainless steel bowl, licking the sticky wet paste with his pink tongue, mouth working. Suddenly the cat LAUNCHES himself UP and FORWARD into the air to follow the bowl, both front paws extended, body fully stretched, fully airborne. AT THE EXACT SAME INSTANT, a **young East-Asian woman's bare right hand and forearm** (smooth fair skin, slim wrist, manicured short clean nails, late-20s, no rings, no tattoos, no watch — clearly a young Chinese pet owner's hand, NOT an elderly hand, NOT a dark-skinned hand, NOT a man's hand) whip in from the right edge of the frame at extreme speed and VIOLENTLY SNATCH the entire shallow stainless steel bowl away — palm wraps around the bowl's outer side, fingers grip the rim, and she rips the bowl straight up and out to the right of frame in one blistering blur, faster than the cat can reach it. The grab looks like swatting a fly, like yanking something from a thief in anger. The sticky wet paste stays stuck inside the bowl as the bowl flies away (because it is sticky paste, not loose food). The cat misses the bowl by a hair and lands hard back on the empty floor.
+
+CRITICAL CAT FACE RULE — DO NOT VIOLATE: throughout the ENTIRE leap and landing, the cat's mouth stays CLOSED or only very slightly open in a soft "oh" shape. The cat does NOT hiss. The cat does NOT bare teeth. The cat does NOT snarl. The cat does NOT open his mouth wide in a meow / scream / roar. NO visible fangs, NO visible pink gums, NO flattened-back ears, NO arched back, NO puffed tail, NO aggressive body language of any kind. The leap looks like a chubby cat desperately reaching for food that's being taken away — SOFT, eager, helpless — NOT like a cat attacking a person. Think "fat orange cat jumping for a treat" energy, NOT "angry feral cat lunging" energy. His ears stay neutral or slightly forward (curious / interested), not pinned back. His eyes are wide and round and a little sad, NOT narrowed in anger.
+
+This whole HUMAN action (the snatch) must read as harsh, abrupt, and forceful — NOT a slow gentle pour, NOT a careful lift, NOT a calm tidying-up motion. It must look almost violent, like the food is being stolen from him. But the cat himself must read as innocent, eager, and pitiful at all times — never fierce, never aggressive, never threatening.
 
 THE CAT — same cat in every single frame, do not change his appearance:
 • Extremely fat chubby orange tabby, about 6 kg, marigold-orange fur with darker tabby stripes, cream belly, short stubby legs, round face.
@@ -311,10 +360,10 @@ THE CAT — same cat in every single frame, do not change his appearance:
 
 TIMELINE:
 • 0.0s–1.5s: the chubby cat is already crouched on the white floor, head down, actively licking sticky brown-pink wet paté paste from the bottom of an open shallow stainless steel bowl. The paste is smeared flat across the inside bottom of the bowl, glistening and sticky. Camera is steady. The V-notch on his left ear is clearly framed.
-• 1.5s–3.0s: the cat suddenly LEAPS upward and forward into the air after the bowl, both front paws extended, mouth wide open, fully airborne, body fully stretched. AT THE SAME EXACT INSTANT the woman's hand whips in from the right at blistering speed, palm clamps the OUTER side of the bowl, and she rips the bowl violently straight up and then out to the right in one extremely fast motion (faster than the cat's leap). The sticky wet paste stays glued inside the bowl the entire motion. Heavy motion blur on hand and bowl. The cat's paws swipe through empty air where the bowl was a frame ago. NOT A SINGLE BLOB of paste leaves the bowl — it is sticky paste, glued to the metal.
-• 3.0s–8.0s: the bowl, the food, and the hand are all gone. The white tile floor in front of the cat is completely empty and pristine — no food on the floor, nothing spilled, no crumbs, no paste smear, no kibble, nothing. The cat lands hard back on the floor with a small thud (silent visual), looks around confused, V-notched left ear and sky-blue collar clearly visible, then immediately leans forward and paws at the empty floor where the bowl used to be, sniffing and searching desperately for the missing food. Camera stays steady on the cat and the empty floor.
+• 1.5s–3.0s: the cat suddenly LEAPS upward and forward into the air after the bowl, both front paws extended, body fully stretched, fully airborne, MOUTH STAYS CLOSED OR ONLY SLIGHTLY PARTED — absolutely NOT wide open, NOT hissing, NOT showing teeth or gums. AT THE SAME EXACT INSTANT the **young East-Asian woman's hand** (smooth fair young skin, slim wrist, late-20s Chinese pet-owner hand — NOT elderly, NOT dark-skinned, NOT a man's) whips in from the right at blistering speed, palm clamps the OUTER side of the bowl, and she rips the bowl violently straight up and then out to the right in one extremely fast motion (faster than the cat's leap). The sticky wet paste stays glued inside the bowl the entire motion. Heavy motion blur on hand and bowl. The cat's paws swipe through empty air where the bowl was a frame ago. Ears stay forward / neutral (curious, not angry). NOT A SINGLE BLOB of paste leaves the bowl — it is sticky paste, glued to the metal.
+• 3.0s–8.0s: the bowl, the food, and the hand are all gone. The white tile floor in front of the cat is completely empty and pristine — no food on the floor, nothing spilled, no crumbs, no paste smear, no kibble, nothing. The cat lands hard back on the floor with a small thud (silent visual), looks around confused, V-notched left ear and sky-blue collar clearly visible, ears droop slightly sideways into the soft "why" expression, then he leans forward and gives the empty floor a single tentative sniff, sits back on his haunches and just stares helplessly at the empty spot, then briefly glances up off-camera toward where the bowl disappeared. He looks WRONGED, SAD, and CONFUSED — mouth stays closed, never vocalizing, never aggressive. Camera stays steady on the cat and the empty floor. The V-notched left ear and sky-blue collar are clearly visible the whole time.
 
-Style: hyper-realistic amateur phone vlog footage, soft natural light, shallow depth of field, slight grain. SILENT — no audio track at all. No cartoon, no 3d render, no slit pupils, no on-screen text or graphics. The cat's fat orange body, sky-blue collar with black GPS pod, and V-notched LEFT ear must remain identical across all 8 seconds. THE FOOD IS ALWAYS THICK STICKY WET PASTE GLUED TO THE INSIDE OF THE BOWL — never dry kibble, never loose pieces, never pellets. The paste never leaves the bowl. The hand action is a VIOLENT FAST FORCEFUL snatch of the entire bowl with the sticky paste still glued inside it. The cat must visibly LEAP into the air to try to grab the bowl, and the hand must rip it away faster than the cat can reach it. Absolutely NOT a gentle slow pour, NOT a tender lift, NOT a calm tidying motion. Absolutely zero food particles may appear outside the bowl at any point in the entire 8-second clip.
+Style: hyper-realistic amateur phone vlog footage, soft natural light, shallow depth of field, slight grain. SILENT — no audio track at all. No cartoon, no 3d render, no slit pupils, no on-screen text or graphics. The cat's fat orange body, sky-blue collar with black GPS pod, and V-notched LEFT ear must remain identical across all 8 seconds. THE FOOD IS ALWAYS THICK STICKY WET PASTE GLUED TO THE INSIDE OF THE BOWL — never dry kibble, never loose pieces, never pellets. The paste never leaves the bowl. The hand action is a VIOLENT FAST FORCEFUL snatch of the entire bowl with the sticky paste still glued inside it. The cat must visibly LEAP into the air to try to reach the bowl, but his MOUTH STAYS CLOSED (or only barely parted) the entire leap — absolutely NO hissing, NO baring teeth, NO snarling, NO wide-open mouth, NO visible fangs/gums, NO flattened ears, NO arched back, NO puffed tail, NO aggressive face. He looks like a hungry pet reaching for food, NEVER like an animal attacking a human. Absolutely NOT a gentle slow pour, NOT a tender lift, NOT a calm tidying motion for the human hand. Absolutely zero food particles may appear outside the bowl at any point in the entire 8-second clip.
 
 CRITICAL FOOD PHYSICS: the wet paste is sticky like thick paté or stiff peanut butter — it ADHERES to the metal bowl and physically cannot fall out. Treat the bowl + paste as ONE single rigid object that moves as a unit. Zero food in the air. Zero food on the floor. Zero food falling, dropping, smearing onto the floor, scattering, or appearing anywhere outside the bowl. After the bowl leaves the frame, the white tile floor is perfectly clean — not a single drop, not a single crumb. The cat finds nothing on the floor. ABSOLUTELY NO DRY KIBBLE ANYWHERE — no orange pellets, no brown pellets, no round pellets, no scattered food of any kind on the floor or in the air at any moment.</pre>
 </div>

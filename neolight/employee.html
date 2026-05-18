@@ -55,6 +55,7 @@
   </main>
 
   <script type="module">
+    import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
     mountFooter({ page: 30, total: 46 });
 
@@ -73,6 +74,8 @@
         err.textContent = '员工 ID 或密码错误';
       }
     });
+    mountTips({ tips: ["是不是在网盘里见到过"] });
+
   </script>
 </body>
 </html>

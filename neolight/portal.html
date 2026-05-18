@@ -136,6 +136,7 @@
   <div class="toast" id="toast"></div>
 
   <script type="module">
+    import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
     mountFooter({ page: 31, total: 46, keywords: ['NL-7745', '走失猫猫营销测试'] });
 
@@ -159,6 +160,8 @@
         showToast('未找到匹配文档。提示: 仅支持精确关键词。');
       }
     });
+    mountTips({ tips: ["可以浏览员工的 tickets"] });
+
   </script>
 </body>
 </html>

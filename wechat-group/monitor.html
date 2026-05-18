@@ -141,8 +141,11 @@
   </main>
 
   <script type="module">
+    import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
     mountFooter({ page: 7, total: 15, keywords: ['朝阳爱宠宠物医院'] });
+    mountTips({ tips: ["可以仔细读读和小猫健康相关的评论"] });
+
   </script>
 </body>
 </html>

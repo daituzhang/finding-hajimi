@@ -171,8 +171,11 @@
   </script>
 
   <script type="module">
+    import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
     mountFooter({ page: 6, total: 15, keywords: ['朝阳寻猫', '虐猫', 'MaoTrack'] });
+    mountTips({ tips: ["也许视频分享会有线索", "这边 MaoTrack 太早了"] });
+
   </script>
 </body>
 </html>

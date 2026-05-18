@@ -155,6 +155,7 @@
   <div class="toast" id="toast"></div>
 
   <script type="module">
+    import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
     mountFooter({ page: 42, total: 46 });
 
@@ -226,6 +227,8 @@
         runBtn.parentElement.appendChild(next);
       }, 1400);
     });
+    mountTips({ tips: ["可以先去员工系统搜搜相关企划", "数字组合好像又是页面和楼层的组合", "也许这些楼层里有和企划里提到的符号相似的图片"] });
+
   </script>
 </body>
 </html>

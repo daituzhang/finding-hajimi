@@ -87,8 +87,11 @@
   </main>
 
   <script type="module">
+    import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
     mountFooter({ page: 10, total: 15, keywords: ['朝阳救助小柚'] });
+    mountTips({ tips: ["也许可以搜搜救助博主"] });
+
   </script>
 </body>
 </html>

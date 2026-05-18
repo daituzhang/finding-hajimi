@@ -92,8 +92,11 @@
   </main>
 
   <script type="module">
+    import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
     mountFooter({ page: 12, total: 15 });
+    mountTips({ tips: ["可以回到博主主页翻阅其他笔记"] });
+
   </script>
 </body>
 </html>

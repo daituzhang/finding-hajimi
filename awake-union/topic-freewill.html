@@ -78,8 +78,11 @@
   </main>
 
   <script type="module">
+    import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
     mountFooter({ page: 38, total: 46 });
+    mountTips({ tips: ["也许这个线索后面有用"] });
+
   </script>
 </body>
 </html>

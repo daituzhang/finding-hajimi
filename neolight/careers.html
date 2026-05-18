@@ -125,8 +125,11 @@
   </footer>
 
   <script type="module">
+    import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
     mountFooter({ extra: true });
+    mountTips({ tips: ["可以找找看有没有内部员工的入口呢？"] });
+
   </script>
 </body>
 </html>

@@ -101,8 +101,11 @@
   </main>
 
   <script type="module">
+    import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
     mountFooter({ page: 5, total: 15, keywords: ['身份证', '朝阳爱宠'] });
+    mountTips({ tips: ["也许这里的线索未来会有用"] });
+
   </script>
 </body>
 </html>

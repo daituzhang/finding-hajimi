@@ -67,6 +67,7 @@
   </main>
 
   <script type="module">
+    import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
     mountFooter({ page: 41, total: 46 });
 
@@ -93,6 +94,8 @@
         err.textContent = v ? '✗ 不是那 4 个字。试试火星文 / 拼音 / 英文。' : '';
       }
     });
+    mountTips({ tips: ["也许需要先修复网盘的损坏文件，root 会不会留下什么线索"] });
+
   </script>
 </body>
 </html>

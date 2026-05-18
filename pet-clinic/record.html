@@ -111,8 +111,11 @@
   </main>
 
   <script type="module">
+    import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
     mountFooter({ page: 8, total: 15, keywords: ['脂肪肝', '减肥', '医嘱'] });
+    mountTips({ tips: ["说不定这里的信息未来用得上", "这里可以加 MaoTrack"] });
+
   </script>
   <script>
     document.getElementById('now').textContent = new Date().toLocaleString('zh-CN');

@@ -98,6 +98,7 @@
   </main>
 
   <script type="module">
+    import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
     import { ingestTraceFromUrl, recordTrace, trackDwell } from '../shared/components/trace.js';
 
@@ -106,6 +107,8 @@
     trackDwell('dwell_p02');
 
     mountFooter({ page: 2, total: 15, keywords: ['哈基米', '橘座妈', '小红书'] });
+    mountTips({ tips: ["可以翻阅失主的笔记寻找线索"] });
+
   </script>
 </body>
 </html>

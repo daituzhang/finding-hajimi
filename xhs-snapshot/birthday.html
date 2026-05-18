@@ -126,6 +126,7 @@
   </main>
 
   <script type="module">
+    import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
     import { ingestTraceFromUrl, recordTrace, trackDwell } from '../shared/components/trace.js';
 
@@ -153,6 +154,8 @@
       sw.addEventListener('scroll',()=>{clearTimeout(window.__gT); window.__gT=setTimeout(update,60);});
       window.addEventListener('resize',update); update();
     })();
+    mountTips({ tips: ["也许这里的线索未来会有用"] });
+
   </script>
 </body>
 </html>

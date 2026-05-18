@@ -73,6 +73,7 @@
   </main>
 
   <script type="module">
+    import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
     mountFooter({ page: 20, total: 46 });
 
@@ -87,6 +88,8 @@
         err.textContent = v ? '验证失败' : '';
       }
     });
+    mountTips({ tips: ["好像博主小红书主页有类似密码的东西"] });
+
   </script>
 </body>
 </html>

@@ -155,8 +155,11 @@
   </div>
 
   <script type="module">
+    import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
     mountFooter({ page: 13, total: 15, keywords: ['项圈晒痕', '验芯片', 'HJM427-2024'] });
+    mountTips({ tips: ["要不要试试私信博主", "博主的笔记也许有真正问题的信息哦"] });
+
   </script>
 
   <script>

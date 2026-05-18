@@ -54,8 +54,11 @@
   </main>
 
   <script type="module">
+    import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
     mountFooter({ page: 9, total: 15, keywords: ['MaoTrack', '登录'] });
+    mountTips({ tips: ["猫猫的照片里好像一直挂着芯片，会不会有什么线索", "好像在失主小红书里看到过哈基米生日的笔记呢", "也许小猫病历里有日期的线索", "大部分的流浪猫都是在被收养的那天打的疫苗", "你是不是还没来得及看微信群视频呀"] });
+
   </script>
   <script>
     const form = document.getElementById('mt-login');

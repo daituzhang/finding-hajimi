@@ -106,6 +106,7 @@
   </div>
 
   <script type="module">
+    import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
     mountFooter({ page: 26, total: 46 });
 
@@ -360,6 +361,8 @@
 
     setPrompt();
     cmd.focus();
+    mountTips({ tips: ["好像在员工系统的 URL 里有看到过 IP", "用户名可能就是 root，有时候不用想得很复杂", "密码的提示会不会和页数相关，突然记得好像在橘猫主人的小红书里看到过 root 的评论，他会不会留下什么线索", "root 的留言好像有数字"] });
+
   </script>
 </body>
 </html>

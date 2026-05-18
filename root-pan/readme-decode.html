@@ -110,8 +110,11 @@ Gronsfeld 是 Vigenère 的近亲，但 <strong>密钥仅由数字 0-9 组成</s
                                        — 陈某某 · 私人备忘
 
   <script type="module">
+    import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
     mountFooter({ page: 24, total: 46 });
+    mountTips({ tips: ["也许这个信息将来会有用"] });
+
   </script>
 </body>
 </html>

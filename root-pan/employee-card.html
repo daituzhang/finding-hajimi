@@ -84,8 +84,11 @@
   </div>
 
   <script type="module">
+    import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
     mountFooter({ page: 23, total: 46 });
+    mountTips({ tips: ["星光科技很耳熟，可以搜搜信息"] });
+
   </script>
 </body>
 </html>
