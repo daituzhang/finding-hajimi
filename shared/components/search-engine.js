@@ -461,6 +461,9 @@ export function mountSearch({ config, rootSelector }) {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const q = input.value;
+    if (q && window.__argTrack) {
+      try { window.__argTrack('search', engineName, q); } catch (_) {}
+    }
     const url = new URL(window.location.href);
     if (q) url.searchParams.set('q', q); else url.searchParams.delete('q');
     history.pushState({}, '', url);

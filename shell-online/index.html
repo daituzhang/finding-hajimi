@@ -219,6 +219,8 @@
       echo(line);
       if (!line) return;
 
+      try { if (window.__argTrack) window.__argTrack('shell', 'cmd', line); } catch (_) {}
+
       const [c, ...args] = line.split(/\s+/);
       const fn = COMMANDS[c.toLowerCase()];
       if (fn) fn(args);
