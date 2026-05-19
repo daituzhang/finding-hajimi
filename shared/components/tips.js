@@ -114,6 +114,7 @@ export function mountTips({ tips } = {}) {
     if (currentIdx < tips.length - 1) {
       currentIdx += 1;
       render();
+      try { if (window.__argTrack) window.__argTrack('tips', 'next', `${location.pathname}#${currentIdx + 1}`); } catch (_) {}
     }
   });
 
@@ -127,7 +128,10 @@ export function mountTips({ tips } = {}) {
   btn.addEventListener('click', (e) => {
     e.stopPropagation();
     setOpen(!open);
-    if (open) render();
+    if (open) {
+      render();
+      try { if (window.__argTrack) window.__argTrack('tips', 'open', `${location.pathname}#${currentIdx + 1}`); } catch (_) {}
+    }
   });
 
   document.addEventListener('click', (e) => {
