@@ -59,7 +59,9 @@
 
   <script type="module">
     import { mountFooter } from '../shared/components/page-footer.js';
-    mountFooter({ page: 36, total: 46 });
+    import { mountTips } from '../shared/components/tips.js';
+    mountFooter({ page: 36, total: 45 });
+    mountTips({ tips: ["可以试试修复 root 网盘的损坏文件"] });
 
     document.getElementById('f').addEventListener('submit', e => {
       e.preventDefault();

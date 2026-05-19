@@ -109,6 +109,7 @@
 
   <script type="module">
     import { mountFooter } from '../shared/components/page-footer.js';
+    import { mountTips } from '../shared/components/tips.js';
 
     const CASES = {
       hjm:       { name: '哈基米', emoji: '🍊', author: '@橘座妈不在家', when: '今天',    color: '#ff9a3c', loc: '北京·朝阳区' },
@@ -156,10 +157,10 @@
     }
 
     mountFooter({
-      page: 16,
-      total: 46,
+      page: 21, total: 45,
       keywords: ['哈基米近况'],
     });
+    mountTips({ tips: ["要不要看看奇怪评论博主的主页"] });
   </script>
 </body>
 </html>

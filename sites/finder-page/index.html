@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>救救我家哈基米😭 求扩散｜小红书</title>
+  <link rel="icon" href="/shared/assets/favicon.png" type="image/png" />
+  <link rel="stylesheet" href="../xhs-snapshot/style.css" />
+  <link rel="stylesheet" href="/shared/styles/shared.css" />
+</head>
+<body>
+  <main class="app">
+    <div class="topbar">
+      <button class="back" type="button" onclick="history.back()">‹</button>
+      <div class="title">笔记详情</div>
+      <div class="more">···</div>
+    </div>
+
+    <div class="post-author">
+      <a class="avatar" href="../xhs-snapshot/" style="text-decoration:none;color:inherit;">🍊</a>
+      <div>
+        <a class="nickname" href="../xhs-snapshot/" style="text-decoration:none;color:inherit;">橘座妈不在家</a>
+        <div class="post-time">3 小时前 · 北京·朝阳区</div>
+      </div>
+      <button class="follow-btn" type="button">+ 关注</button>
+    </div>
+
+    <div class="post-gallery">
+      <div class="swiper" id="finderSwiper">
+        <img src="./assets/poster.png" alt="寻猫启事海报" />
+        <img src="./assets/cat-1.jpg" alt="哈基米照片 1" />
+        <img src="./assets/cat-2.jpg" alt="哈基米照片 2" />
+        <img src="./assets/cat-3.jpg" alt="哈基米照片 3" />
+      </div>
+      <button class="gallery-nav prev" type="button" aria-label="上一张">‹</button>
+      <button class="gallery-nav next" type="button" aria-label="下一张">›</button>
+      <div class="gallery-dots"></div>
+      <div class="gallery-counter"><span class="cur">1</span> / 4</div>
+    </div>
+
+    <div class="post-body">
+      <h1 class="post-title">救救我家哈基米😭 求扩散🙏</h1>
+      <p>啊啊啊救命😭😭😭</p>
+      <p>我家橘座哈基米丢了三天了</p>
+      <p>朝阳区 XX 小区，橘猫，戴蓝色项圈，胆子小不爱叫</p>
+      <p>求 dd 求扩😭🙏</p>
+      <p>看到的姐妹麻烦私我一下 给您磕一个真的</p>
+      <p>蹲一个好心人捞捞孩子💔</p>
+      <p class="tags">#朝阳寻猫 #橘猫 #哈基米 #求扩散</p>
+      <div class="location">📍 朝阳区</div>
+      <div class="post-meta-line">2.3k 收藏 · 487 评论 · 3 小时前</div>
+    </div>
+
+    <div class="post-actions">
+      <span class="act">❤ 1.2k</span>
+      <span class="act">⭐ 2.3k</span>
+      <span class="act">💬 487</span>
+      <span class="act">↗ 转发</span>
+    </div>
+
+    <section class="comments">
+      <h3>共 487 条评论</h3>
+
+      <div class="comment">
+        <div class="avatar">🐱</div>
+        <div class="body">
+          <div class="author">@猫圈情报站</div>
+          <div class="text">这脸着急的 赶紧贴到互助群里 姐妹们里面能帮忙的人多</div>
+          <div class="meta">2 小时前 · ❤ 312</div>
+        </div>
+      </div>
+
+      <div class="comment">
+        <div class="avatar">🐾</div>
+        <div class="body">
+          <div class="author">@朝阳铲屎</div>
+          <div class="text">已转发已转发！希望孩子早点回家🙏</div>
+          <div class="meta">2 小时前 · ❤ 187</div>
+        </div>
+      </div>
+
+      <div class="comment">
+        <div class="avatar">🟧</div>
+        <div class="body">
+          <div class="author">@嗯哼一下</div>
+          <div class="text">姐妹不是最近才丢了身份证吗。。怎么这么丢三落四 这次又丢了猫 不知道下次还会丢什么🙃 赶紧找回来哈基米哈</div>
+          <div class="meta">1 小时前 · ❤ 89</div>
+        </div>
+      </div>
+
+      <div class="comment">
+        <div class="avatar">🐭</div>
+        <div class="body">
+          <div class="author">@鼠鼠不冒泡</div>
+          <div class="text">楼上别这么说 姐妹现在心里肯定难受 快去翻翻她最近那篇笔记里说了个什么</div>
+          <div class="meta">1 小时前 · ❤ 76</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module">
+    import { mountFooter } from '/shared/components/page-footer.js';
+    import { ingestTraceFromUrl, recordTrace, trackDwell } from '/shared/components/trace.js';
+
+    ingestTraceFromUrl();
+    recordTrace({ enteredAt: Date.now() });
+    trackDwell('dwell_p01');
+
+    mountFooter({ page: 1, total: 15, keywords: ['哈基米', '朝阳寻猫'] });
+
+    // gallery: arrows + dots + counter wired to scroll-snap swiper
+    (function(){
+      const sw = document.getElementById('finderSwiper');
+      if(!sw) return;
+      const imgs = sw.querySelectorAll('img');
+      const total = imgs.length;
+      const dotsBox = document.querySelector('.gallery-dots');
+      const cur = document.querySelector('.gallery-counter .cur');
+      const prev = document.querySelector('.gallery-nav.prev');
+      const next = document.querySelector('.gallery-nav.next');
+      for(let i=0;i<total;i++){
+        const d = document.createElement('span');
+        d.className = 'dot' + (i===0?' active':'');
+        d.addEventListener('click', ()=> go(i));
+        dotsBox.appendChild(d);
+      }
+      const dots = dotsBox.querySelectorAll('.dot');
+      function currentIndex(){ return Math.round(sw.scrollLeft / sw.clientWidth); }
+      function update(){
+        const i = currentIndex();
+        cur.textContent = (i+1);
+        dots.forEach((d,idx)=> d.classList.toggle('active', idx===i));
+        prev.toggleAttribute('disabled', i<=0);
+        next.toggleAttribute('disabled', i>=total-1);
+      }
+      function go(i){
+        i = Math.max(0, Math.min(total-1, i));
+        sw.scrollTo({ left: i*sw.clientWidth, behavior:'smooth' });
+      }
+      prev.addEventListener('click', ()=> go(currentIndex()-1));
+      next.addEventListener('click', ()=> go(currentIndex()+1));
+      sw.addEventListener('scroll', ()=> { clearTimeout(window.__gT); window.__gT = setTimeout(update, 60); });
+      window.addEventListener('resize', update);
+      update();
+    })();
+  </script>
+</body>
+</html>

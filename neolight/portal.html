@@ -10,7 +10,7 @@
     body { background: #f4f6fb; color: #1f2937; margin: 0;
       font-family: -apple-system, "PingFang SC", sans-serif; min-height: 100vh; }
     .topbar {
-      background: #1e3a8a; color: #fff; padding: 10px 16px;
+      background: #1e3a8a; color: #fff; padding: 10px 56px 10px 16px;
       display: flex; align-items: center; gap: 14px;
     }
     .topbar .brand { font-size: 14px; font-weight: 600; }
@@ -77,7 +77,7 @@
 <body>
   <header class="topbar">
     <div class="brand"><img src="../shared/assets/neolight-logo.png" alt="NeoLight" style="height:24px;vertical-align:middle;margin-right:6px;" /> Portal</div>
-    <div class="who">陈某某 (NL-20240912) <span class="ip-tag" id="ipTag">ip:?</span></div>
+    <div class="who">陈某某 (NL-20240912)</div>
   </header>
   <div class="banner">
     📢 公司策略提醒：请所有员工<strong>积极配合 NeoLink 脑机接口安装</strong>，
@@ -138,10 +138,7 @@
   <script type="module">
     import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
-    mountFooter({ page: 31, total: 46, keywords: ['NL-7745', '走失猫猫营销测试'] });
-
-    const ip = new URLSearchParams(location.search).get('ip') || '192.0.2.77';
-    document.getElementById('ipTag').textContent = `ip:${ip}`;
+    mountFooter({ page: 33, total: 45, keywords: ['NL-7745', '走失猫猫营销测试'] });
 
     const toast = document.getElementById('toast');
     function showToast(t) { toast.textContent = t; toast.classList.add('show');
@@ -153,7 +150,7 @@
       if (!v) return;
       const norm = v.replace(/\s+/g, ' ').toLowerCase();
       if (norm.includes('走失猫猫') || norm.includes('营销测试') || norm.includes('cat marketing') || norm.includes('plan-cat-marketing')) {
-        location.href = `./portal-search.html?q=${encodeURIComponent(v)}&ip=${encodeURIComponent(ip)}`;
+        location.href = `./portal-search.html?q=${encodeURIComponent(v)}`;
       } else if (norm.includes('一念归一') || norm.includes('万心同声')) {
         showToast('该关键词已被全公司索引屏蔽 · 仅 Lumina-7 团队可访问');
       } else {

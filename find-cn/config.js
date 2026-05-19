@@ -168,7 +168,7 @@ export const config = {
     {
       keywords: ['哈基米朝阳近况', '哈基米近况', '哈基米现在', '哈基米找到了'],
       hackerMode: true,
-      bannerText: '⚠ 检测到未授权脚本接入 · 外部用户 0x726F6F74 已中断合成进程 · 当前显示原始查询结果',
+      bannerText: '⚠ 检测到未授权脚本接入 · 外部用户 root 已中断合成进程 · 当前显示原始查询结果',
       totalLabel: '约 312,478 条结果',
       paginated: { perPage: 20, totalPages: 20 },
       massGenerate: {
@@ -200,6 +200,29 @@ export const config = {
     },
 
     // —— L2 路由：root 笔记里引导玩家搜赛博朋克 2077 ——
+    {
+      keywords: ['新光科技', 'NeoLight', 'neolight', '新光'],
+      results: [
+        {
+          title: 'NeoLight 新光科技 · 官网',
+          url: SITE.neolight,
+          source: 'neolight.com',
+          snippet: '下一代脑机原生信息分发 · 让每一次抬眼都看见你想看的。',
+        },
+        {
+          title: 'NeoLight 加入我们 · careers',
+          url: SITE.neolight + 'careers.html',
+          source: 'neolight.com',
+          snippet: '我们正在招募后端 / 算法 / 数据 / 同步工程师，等你来塑造下一代信息层。',
+        },
+        {
+          title: '【新闻】瘫痪 7 年的妻子被 NeoLink 激活',
+          url: SITE.neolight + 'news.html',
+          source: 'neolight.com',
+          snippet: '李建军 · 周婷 · NeoLink 第三代 + Lumina-7 · 央视科技频道 报道转载。',
+        },
+      ],
+    },
     {
       keywords: ['赛博朋克2077', 'cyberpunk2077', '2077通关'],
       results: [

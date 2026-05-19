@@ -136,7 +136,6 @@
       <div class="it">传输列表</div>
     </nav>
     <div class="right">
-      <span class="ip-tag" id="ipTag">ip:?</span>
       <span>root</span>
       <span class="avatar">R</span>
     </div>
@@ -208,10 +207,9 @@
   <script type="module">
     import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
-    mountFooter({ page: 21, total: 46 });
+    mountFooter({ page: 25, total: 45 });
 
     const ip = new URLSearchParams(location.search).get('ip') || '192.0.2.77';
-    document.getElementById('ipTag').textContent = `ip:${ip}`;
     document.getElementById('crumbRoot').href = `./index.html?ip=${ip}`;
 
     const toast = document.getElementById('toast');

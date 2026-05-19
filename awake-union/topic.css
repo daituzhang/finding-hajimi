@@ -1,52 +1,53 @@
-body { background: #0a0a0a; color: #d4d4d4; margin: 0;
-  font-family: ui-monospace, "PingFang SC", monospace; min-height: 100vh; }
+body { background: #f3f3f3; color: #222; margin: 0;
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; min-height: 100vh; }
 .topbar {
-  background: #171717; border-bottom: 1px solid #262626;
-  padding: 12px 16px; display: flex; align-items: center; gap: 12px;
+  background: #fff; border-bottom: 2px solid #ff7e3a;
+  padding: 12px 56px 12px 16px; display: flex; align-items: center; gap: 12px;
 }
-.topbar .brand { color: #f59e0b; font-weight: 700; letter-spacing: 1px;
-  font-size: 14px; text-decoration: none; }
-.topbar .me { font-size: 11px; color: #737373; margin-left: auto; }
-.topbar .me strong { color: #fbbf24; }
+.topbar .brand { color: #ff7e3a; font-weight: 700; letter-spacing: 1px;
+  font-size: 15px; text-decoration: none; }
+.topbar .me { font-size: 11px; color: #888; margin-left: auto; }
+.topbar .me strong { color: #ff7e3a; }
 
-.thread { max-width: 720px; margin: 0 auto; padding: 16px; }
-.title { color: #f59e0b; font-size: 17px; line-height: 1.4; margin: 0 0 6px; }
-.meta { font-size: 11px; color: #737373; margin-bottom: 18px; padding-bottom: 12px;
-  border-bottom: 1px solid #262626; }
+.thread { max-width: 720px; margin: 16px auto; padding: 18px 22px;
+  background: #fff; border: 1px solid #e5e5e5; border-radius: 4px; }
+.title { color: #222; font-size: 18px; line-height: 1.4; margin: 0 0 6px; font-weight: 700; }
+.meta { font-size: 12px; color: #888; margin-bottom: 18px; padding-bottom: 12px;
+  border-bottom: 1px solid #eee; }
 
 .post {
-  border-bottom: 1px solid #262626;
+  border-bottom: 1px solid #eee;
   padding: 14px 0; line-height: 1.8;
 }
-.post .ph { font-size: 11px; color: #737373; margin-bottom: 6px; }
-.post .pb { font-size: 13px; color: #d4d4d4; line-height: 1.85; }
-.post.op { background: #171717; padding: 14px; border-radius: 4px;
-  border-bottom: 1px solid #262626; margin-bottom: 8px; }
-.post.op .ph { color: #f59e0b; font-weight: 600; }
-.post.highlight { background: #1a0e00; border-left: 3px solid #f59e0b;
+.post .ph { font-size: 12px; color: #888; margin-bottom: 6px; }
+.post .ph strong, .post .ph .user { color: #2266cc; font-weight: 600; }
+.post .pb { font-size: 14px; color: #333; line-height: 1.85; }
+.post.op { background: #fff7f0; padding: 14px; border-radius: 4px;
+  border: 1px solid #ffd7b8; margin-bottom: 12px; }
+.post.op .ph { color: #ff7e3a; font-weight: 600; }
+.post.highlight { background: #fff4e6; border-left: 3px solid #ff7e3a;
   padding: 12px 14px; border-radius: 0; }
-.post.highlight .ph { color: #fbbf24; font-weight: 700; }
-.post.highlight .pb { color: #fde68a; }
-.post.final { background: #1a0008; border-left: 3px solid #ef4444; padding: 12px 14px; }
-.post.final .ph { color: #ef4444; }
-.post.final .pb { color: #f87171; opacity: 0.7; letter-spacing: 1px; }
+.post.highlight .ph { color: #ff7e3a; font-weight: 700; }
+.post.highlight .pb { color: #5a3010; }
+.post.final { background: #fff0f0; border-left: 3px solid #d33; padding: 12px 14px; }
+.post.final .ph { color: #d33; }
+.post.final .pb { color: #888; letter-spacing: 1px; }
 
-.post code { background: #262626; color: #fbbf24; padding: 2px 6px;
-  border-radius: 3px; font-size: 12px; }
-.post a { color: #fbbf24; text-decoration: underline; }
-.post strong { color: #fbbf24; }
+.post code { background: #f3f3f3; color: #c93; padding: 2px 6px;
+  border-radius: 3px; font-size: 12px; font-family: ui-monospace, monospace; }
+.post a { color: #2266cc; text-decoration: underline; }
+.post strong { color: #222; }
 
 .censored {
-  background: #f59e0b; color: #0a0a0a; padding: 0 4px;
+  background: #ff7e3a; color: #fff; padding: 0 4px;
   letter-spacing: 4px; font-weight: 700;
   font-family: 'PingFang SC', sans-serif;
 }
 
 .crumb {
   max-width: 720px; margin: 0 auto; padding: 10px 16px;
-  font-size: 12px; color: #737373;
-  border-bottom: 1px dashed #262626;
+  font-size: 12px; color: #888;
 }
-.crumb a { color: #f59e0b; text-decoration: none; }
+.crumb a { color: #ff7e3a; text-decoration: none; }
 .crumb a:hover { text-decoration: underline; }
-.crumb span { color: #d4d4d4; }
+.crumb span { color: #444; }

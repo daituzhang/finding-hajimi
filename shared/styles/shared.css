@@ -173,6 +173,15 @@ body[data-nexus="3"] .arg-footer .keyword {
 .arg-tips-dot.active { background: #ff7e3a; }
 .arg-tips-dot.locked { background: #ececec; }
 
+/* 单条 tip 时不显示翻页器和计数 */
+.arg-tips-panel.single .arg-tips-foot,
+.arg-tips-panel.single .arg-tips-count {
+  display: none;
+}
+.arg-tips-panel.single .arg-tips-body {
+  min-height: 0;
+}
+
 /* 被污染状态：tips 按钮变血红 */
 body[data-nexus="1"] .arg-tips-btn,
 body[data-nexus="2"] .arg-tips-btn,

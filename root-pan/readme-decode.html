@@ -47,72 +47,87 @@
 
   <div class="doc">
 <span class="h"># README-decode.txt</span>
-<em>file owner</em>: <strong>陈某某</strong> · last edit 2025-11-04 03:17
+<em>file owner</em>: <strong>陈某某 (NeoLight 员工 · 工号 NL-7042)</strong> · last edit 2025-11-04 03:17
 <em>note</em>: 本文档由 <strong>陈某某</strong> 保存于个人网盘根目录，
-是 <strong>陈某某私人通信使用的密码算法</strong>，请勿外传。
+是 <strong>NeoLight 内部用于加密「用户密码」的算法</strong>（私自带出，请勿外传）。
 忘记密钥时可按 §3 的格式自行重算。
 
 — — — — — — — — — — — — — — — — — — — — — — — — — — —
 
-<span class="h"># Gronsfeld Cipher (格朗斯菲尔德密码) — 通用教程</span>
-节选自 <em>"Codes &amp; Ciphers: A History"</em> Ch.4
-原作者: Count Johann Franz Gronsfeld-Bronkhorst, c. 17th century
-关联条目: Helen Fouché Gaines, <em>Cryptanalysis</em> (1939), §III.2
+<span class="h"># Caesar Cipher (digits, two-step) — 数字版凯撒密码 通用教程</span>
+节选自 <em>"Codes &amp; Ciphers: A History"</em> Ch.1
+原型: Julius Caesar, c. 50 BC (字母版 · ROT-N)
+本变种: 把 26 个字母换成 10 个数字 · 把 1 把密钥拆成<strong>「先往左 K1 再往右 K2」两步</strong>
 
 <span class="h">## 1. 简介</span>
-Gronsfeld 是 Vigenère 的近亲，但 <strong>密钥仅由数字 0-9 组成</strong>，
-而非字母。它由 Bavarian 军官 Gronsfeld 伯爵在 17 世纪用于私人通信，
-在密码学正典中很少被单独提及。
+凯撒密码是最早、也最容易上手的对称密码。
+原版作用于字母 A-Z（A 后挪 3 格变 D），这里我们换成数字 0-9：
+   <strong>密文 = 明文每一位先往左挪 K1 格，再往右挪 K2 格，取模 10。</strong>
+之所以拆成两步，是为了让<strong>密钥可以从两个不同来源拼出来</strong>，
+任意一段泄露都还原不了。
 
 <span class="h">## 2. 形式定义</span>
 明文 <code>P = p1 p2 ... pn</code> ∈ 数字串
-密钥 <code>K = (k1, k2, k3)</code> ∈ <strong>3 个独立小整数</strong> (每个 0-9)
+密钥 <code>K = (K1, K2)</code>，<strong>两个独立来源的 1-2 位整数</strong>
 密文 <code>C = c1 c2 ... cn</code> 由下式给出:
 
-   <code>c_i = (p_i + k_{((i-1) mod 3) + 1}) mod 10</code>
+   <code>c_i = (p_i − K1 + K2) mod 10</code>
 
-即把 K 的 3 位无限循环铺在明文之下，逐位相加取模 10。
+「往左」= 减，「往右」= 加；两步可合并成净位移 <code>Δ = K2 − K1 (mod 10)</code>。
 非数字字符 (<code>.</code> <code>-</code> <code>:</code>) 原样保留、不参与计数。
 
-<span class="h">## 3. 加密示例</span>
-明文 (XXXX.XX.XX 格式):
-   <code>P = 1990.05.20</code>
-密钥 (3 个独立来源的 1 位数):
-   <code>K = (1, 3, 7)</code>
+<span class="h">## 3. 加密示例 — 一步一步算给你看</span>
+我们用一个完整日期 <code>1990.05.20</code> 来演示：
+   <strong>明文只取年份 P = 1990</strong>
+   <strong>密钥 1 取月份 K1 = 05</strong>  → 第一步：每一位<strong>往左 5</strong>
+   <strong>密钥 2 取日子 K2 = 20</strong>  → 第二步：每一位<strong>往右 20</strong>
 
-逐位对齐:
+<em>Step 1 · 把 P 的每一位都减 K1 = 5（不够 10 就借一轮）</em>
 
-   1 9 9 0 . 0 5 . 2 0
-   1 3 7 1   3 7   1 3   ← 密钥循环
+   位置 │  1  │  2  │  3  │  4
+   ─────┼─────┼─────┼─────┼─────
+    P   │  1  │  9  │  9  │  0
+   −K1  │ −5  │ −5  │ −5  │ −5
+   =    │ −4  │  4  │  4  │ −5
+   mod10│  6  │  4  │  4  │  5
 
-逐位 mod 10:
+   中间结果 = <code>6 4 4 5</code>
 
-   2 2 6 1 . 3 2 . 3 3
+<em>Step 2 · 把中间结果的每一位都加 K2 = 20（取 mod 10 等价于 +0）</em>
 
-得密文:
-   <code>C = 2261.32.33</code>
+   位置  │  1  │  2  │  3  │  4
+   ──────┼─────┼─────┼─────┼─────
+   中间  │  6  │  4  │  4  │  5
+   +K2   │+20  │+20  │+20  │+20
+   =     │ 26  │ 24  │ 24  │ 25
+   mod10 │  6  │  4  │  4  │  5
+
+   <strong>最终密文 C = 6445</strong>
+
+✓ 验证：净位移 Δ = K2 − K1 = 20 − 5 = 15 ≡ <strong>+5</strong> (mod 10)
+   把 <code>1990</code> 每位 +5 mod 10：1→6, 9→4, 9→4, 0→5 → <strong>6445</strong> ✓
 
 <span class="h">## 4. 解密</span>
-持有 K 时反向相减即可:
+持有 (K1, K2) 时反向相减即可:
 
-   <code>p_i = (c_i − k_{((i-1) mod 3) + 1} + 10) mod 10</code>
+   <code>p_i = (c_i + K1 − K2 + 10·N) mod 10</code>
 
 <span class="h">## 5. 安全性</span>
-- 密钥空间 10³ = 1000，<strong>暴力枚举可在 1000 次内破解</strong>
-- 仅作为玩具示例 / 个人通信 / "对暗号" 用途
-- 一旦 K 与 P 都被泄露，密钥即彻底失效
+- 密钥真实空间仍是 10 (净位移 Δ ∈ 0-9)，<strong>最多试 10 次即可破解</strong>
+- 「两步」只是让密钥来源更分散，不增加暴力难度
+- 一旦 (K1, K2) 与 P 都被泄露，密钥即彻底失效
 
 <span class="h">## 6. 给读者的练习</span>
-若你手上有 (a) <strong>XXXX.XX.XX 形式的 8 位明文</strong>，以及
-(b) <strong>来自 3 个独立线索的 3 个 1 位整数</strong>，
-按 §3 的方式自行加密；得到的 8 位密文即是你要找的<strong>那串数字</strong>。
+若你手上有 (a) <strong>4 位明文 P</strong> (一个年份就够)，以及
+(b) <strong>来自两个独立线索的 K1 与 K2</strong>，
+按 §3 的方式自行加密；得到的 4 位密文即是你要找的<strong>那串数字</strong>。
 
                                        — 陈某某 · 私人备忘
 
   <script type="module">
     import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
-    mountFooter({ page: 24, total: 46 });
+    mountFooter({ page: 28, total: 45 });
     mountTips({ tips: ["也许这个信息将来会有用"] });
 
   </script>

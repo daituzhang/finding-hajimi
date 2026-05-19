@@ -10,7 +10,7 @@
     body { background: #f5f7fa; color: #333; margin: 0;
       font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; min-height: 100vh; }
     .topbar {
-      background: #fff; padding: 0 20px; height: 54px;
+      background: #fff; padding: 0 76px 0 20px; height: 54px;
       display: flex; align-items: center; gap: 18px;
       border-bottom: 1px solid #ebedf0;
     }
@@ -92,7 +92,6 @@
   <header class="topbar">
     <div class="brand">pan.root.lab <small>· 让数据安心存放</small></div>
     <div class="right">
-      <span class="ip-tag" id="ipTag">ip:?</span>
       <span>root</span>
       <span class="avatar">R</span>
     </div>
@@ -146,10 +145,11 @@
 
   <script type="module">
     import { mountFooter } from '../shared/components/page-footer.js';
-    mountFooter({ page: 22, total: 46 });
+    import { mountTips } from '../shared/components/tips.js';
+    mountFooter({ page: 26, total: 45 });
+    mountTips({ tips: ["可以试试有什么可以打开的文件"] });
 
     const ip = new URLSearchParams(location.search).get('ip') || '192.0.2.77';
-    document.getElementById('ipTag').textContent = `ip:${ip}`;
     document.getElementById('crumbRoot').href = `./index.html?ip=${ip}`;
   </script>
 </body>

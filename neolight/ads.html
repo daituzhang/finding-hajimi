@@ -97,13 +97,15 @@
   <footer class="bot">
     <div>© 2026 新光科技 NeoLight</div>
     <div class="links">
-      <a href="./employee.html?ip=192.0.2.77" target="_blank" rel="noreferrer">员工入口</a>
+      <a href="./employee.html" target="_blank" rel="noreferrer">员工入口</a>
     </div>
   </footer>
 
   <script type="module">
     import { mountFooter } from '../shared/components/page-footer.js';
-    mountFooter({ page: 28, total: 46, keywords: ['NeoLight广告', '走失猫猫'] });
+    import { mountTips } from '../shared/components/tips.js';
+    mountFooter({ page: 31, total: 45, keywords: ['NeoLight广告', '走失猫猫'] });
+    mountTips({ tips: ["可以找找员工入口"] });
   </script>
 </body>
 </html>

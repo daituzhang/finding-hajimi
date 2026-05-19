@@ -57,6 +57,7 @@ export function mountTips({ tips } = {}) {
   // 弹层
   const panel = document.createElement('div');
   panel.className = 'arg-tips-panel';
+  if (tips.length === 1) panel.classList.add('single');
   panel.hidden = true;
   panel.innerHTML = `
     <div class="arg-tips-head">

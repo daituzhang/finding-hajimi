@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>找到啦——感谢全网</title>
+  <link rel="icon" type="image/png" href="/shared/assets/favicon.png" />
+  <link rel="stylesheet" href="/sites/finale/style.css" />
+  <link rel="stylesheet" href="/shared/styles/shared.css" />
+  <style>
+    .case-switcher {
+      position: sticky; top: 0; z-index: 5;
+      background: #fffbf2; border-bottom: 1px dashed #fdba74;
+      padding: 6px 10px; font-size: 11px; color: #92400e;
+      display: flex; gap: 6px; flex-wrap: wrap; align-items: center;
+    }
+    .case-switcher span { color: #b45309; }
+    .case-switcher a {
+      background: #fff; border: 1px solid #fdba74; color: #7c2d12;
+      padding: 3px 8px; border-radius: 10px; text-decoration: none;
+    }
+    .case-switcher a.active { background: #ff9a3c; color: #fff; border-color: #ff9a3c; }
+  </style>
+</head>
+<body>
+  <nav class="case-switcher" id="caseSwitcher"></nav>
+
+  <main class="app">
+    <div class="hero">
+      <div class="emoji" id="catEmoji">🐱❤️🥹</div>
+      <h1 id="title">找回啦</h1>
+      <div class="sub" id="sub">致每一个陪我熬过这几天的人</div>
+    </div>
+
+    <div class="author-card">
+      <div class="avatar" id="avatar">🐱</div>
+      <div>
+        <div class="nick" id="author">@账号名</div>
+        <div class="meta" id="meta">今天 · 北京</div>
+      </div>
+      <div class="badge">长图文</div>
+    </div>
+
+    <div class="photo-card">
+      <img class="photo" id="photo" alt="" src="/sites/lost-pet-mass/assets/reunion-fake.png" style="width:100%;display:block;" />
+      <div class="caption" id="caption">回家后的第一顿饭</div>
+    </div>
+
+    <div class="letter">
+      <h2>写在最后</h2>
+      <p id="p1">三天 · 真的太长了。</p>
+      <p id="p2">每一个小时我都在刷小红书 刷微博 刷互助群 刷监控。</p>
+      <p>谢谢每一个转发的姐妹 谢谢评论区帮我喊话的姐妹。</p>
+
+      <div class="quote" id="quote">
+        宝贝现在睡在我脚边。一切都好。
+      </div>
+
+      <p>也谢谢救助博主姐妹愿意露脸道歉 这事算是体面收尾 大家都散了吧 都是爱猫的人。</p>
+    </div>
+
+    <div class="thanks">
+      <h3>🙏 一一谢过</h3>
+      <ul>
+        <li>@老中医诊脉中 — 群里劝架的叔 谢您</li>
+        <li>@鼠鼠不冒泡 — 帮我整理了所有线索</li>
+        <li>@嗯哼一下 — 第一个喊"先验芯片"的姐妹</li>
+        <li>@朝阳铲屎 — 转了寻猫帖到三个救助群</li>
+        <li>@朝阳爱宠宠物医院 — 一直接我电话</li>
+        <li>MaoTrack 客服 — 紧急定位帮我锁了位置</li>
+        <li>还有所有匿名转发的小猫咪们🐾</li>
+      </ul>
+    </div>
+
+    <section style="background:#fffbf2; border-top:1px solid #f0e0c0; padding:14px 16px; margin:8px -8px;">
+      <h3 style="margin:0 0 12px; font-size:14px; color:#92400e;">热门评论</h3>
+      <div style="display:flex; gap:10px; padding:8px 0; border-bottom:1px solid #f0e0c0;">
+        <a id="rootCommentLink" href="../root-xhs/" target="_blank" rel="noreferrer" style="display:flex; gap:10px; flex:1; text-decoration:none; color:inherit;">
+          <div style="width:30px; height:30px; border-radius:50%; background:#1f2937; color:#fff; display:flex; align-items:center; justify-content:center; font-size:14px;"><img src="/shared/assets/avatar-root.png" alt="root" style="width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;" /></div>
+          <div style="flex:1;">
+            <div style="font-weight:600; color:#7c2d12; font-size:13px;">@root</div>
+            <div id="rootComment" style="font-size:13px; color:#222; margin-top:2px;">等等 这猫怎么三只耳朵？？AI 生成图片不过脑子吗😅</div>
+            <div style="font-size:11px; color:#999; margin-top:2px;">3 分钟前 · ❤ 2</div>
+          </div>
+        </a>
+      </div>
+      <div style="display:flex; gap:10px; padding:8px 0; border-bottom:1px solid #f0e0c0;">
+        <div style="width:30px; height:30px; border-radius:50%; background:#fdba74; display:flex; align-items:center; justify-content:center;">🐭</div>
+        <div style="flex:1;">
+          <div style="font-weight:600; color:#7c2d12; font-size:13px;">@鼠鼠不冒泡</div>
+          <div style="font-size:13px; color:#222; margin-top:2px;">看哭了 这只猫真的可爱</div>
+          <div style="font-size:11px; color:#999; margin-top:2px;">12 分钟前 · ❤ 8.7k</div>
+        </div>
+      </div>
+      <div style="display:flex; gap:10px; padding:8px 0;">
+        <div style="width:30px; height:30px; border-radius:50%; background:#fdba74; display:flex; align-items:center; justify-content:center;">😺</div>
+        <div style="flex:1;">
+          <div style="font-weight:600; color:#7c2d12; font-size:13px;">@momo</div>
+          <div style="font-size:13px; color:#222; margin-top:2px;">这个城市真的还是温暖的❤️</div>
+          <div style="font-size:11px; color:#999; margin-top:2px;">22 分钟前 · ❤ 5.2k</div>
+        </div>
+      </div>
+    </section>
+
+    <div style="text-align:center; padding:16px; color:#92400e; font-size:12px;">
+      — 没有更多了 —
+    </div>
+  </main>
+
+  <script type="module">
+    import { mountFooter } from '/shared/components/page-footer.js';
+
+    const CASES = {
+      hjm:       { name: '哈基米', emoji: '🍊', author: '@橘座妈不在家', when: '今天',    color: '#ff9a3c', loc: '北京·朝阳区' },
+      nailong:   { name: '奶龙',   emoji: '🥚', author: '@奶龙妈妈呀',   when: '2 天前',   color: '#fde68a', loc: '上海·徐汇区' },
+      manbo:     { name: '曼波',   emoji: '🐈', author: '@曼波在家不在家', when: '5 天前',   color: '#a3a3a3', loc: '广州·天河区' },
+      mimi:      { name: '咪咪',   emoji: '🐾', author: '@咪咪小馒头',   when: '8 天前',   color: '#fbcfe8', loc: '北京·朝阳区' },
+      naibao:    { name: '奶包',   emoji: '🍞', author: '@奶包请回家',   when: '11 天前',  color: '#fef3c7', loc: '北京·海淀区' },
+      xiaowanzi: { name: '小丸子', emoji: '🍡', author: '@小丸子的家',   when: '14 天前',  color: '#fecaca', loc: '北京·朝阳区' },
+    };
+
+    const params = new URLSearchParams(location.search);
+    const id = params.get('case') || 'nailong';
+    const c = CASES[id] || CASES.nailong;
+
+    document.getElementById('title').textContent = `${c.name}回家了`;
+    document.getElementById('sub').textContent = `致每一个陪我熬过这几天的人`;
+    document.getElementById('catEmoji').textContent = `${c.emoji}🥹❤️`;
+    document.getElementById('avatar').textContent = c.emoji;
+    document.getElementById('author').textContent = c.author;
+    document.getElementById('meta').textContent = `${c.when} · ${c.loc} · 家`;
+    document.getElementById('photo').src = (id === 'hjm') ? './assets/reunion-hjm.png' : './assets/reunion-fake.png';
+    document.getElementById('caption').textContent = `${c.name}回家后的第一顿椰子鸡 · 5 分钟干完`;
+    document.getElementById('p1').textContent = `三天 · 真的太长了。`;
+    document.getElementById('p2').textContent = `每一个小时我都在刷小红书 刷微博 刷互助群 刷监控。`;
+    document.getElementById('quote').textContent = `${c.name}现在睡在我脚边。身上那圈晒痕还没长回来 但她吃得很好 玩得很好 一切都好。`;
+    document.title = `${c.name}回家了 · 致每一个帮我找她的人`;
+
+    // 顶部 case 切换导航 — 暴露所有"找回啦"故事的同质性
+    const sw = document.getElementById('caseSwitcher');
+    sw.innerHTML = '<span>横向滑切换 →</span>';
+    for (const [k, v] of Object.entries(CASES)) {
+      const a = document.createElement('a');
+      a.href = `?case=${k}`;
+      a.textContent = `${v.emoji} ${v.name}`;
+      if (k === id) a.classList.add('active');
+      sw.appendChild(a);
+    }
+
+
+    if (id === 'nailong') {
+      document.getElementById('rootComment').textContent = '等等 这猫怎么三只耳朵？？AI 生成图片不过脑子吗😅';
+    } else {
+      const rl = document.getElementById('rootCommentLink');
+      if (rl && rl.parentElement) rl.parentElement.style.display = 'none';
+    }
+
+    mountFooter({
+      page: 16,
+      total: 46,
+      keywords: ['哈基米近况'],
+    });
+  </script>
+</body>
+</html>

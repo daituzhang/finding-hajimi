@@ -73,7 +73,9 @@
 
   <script type="module">
     import { mountFooter } from '../shared/components/page-footer.js';
-    mountFooter({ page: 9, total: 15, keywords: ['MaoTrack', '猫咪定位', '项圈'] });
+    import { mountTips } from '../shared/components/tips.js';
+    mountFooter({ page: 11, total: 20, keywords: ['MaoTrack', '猫咪定位', '项圈'] });
+    mountTips({ tips: ["也许可以登陆试试"] });
   </script>
 </body>
 </html>

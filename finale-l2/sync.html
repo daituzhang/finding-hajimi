@@ -72,7 +72,7 @@
     <div class="text-area" id="ta" contenteditable="true" spellcheck="false"><span id="content"></span><span class="cursor"></span></div>
 
     <div class="send-row">
-      <div class="hint">输入后点击发送 · 让世界听见你</div>
+      <div class="hint">输入后点击发送 · 让世界听见你的心声</div>
       <button class="send-btn" id="sendBtn">发送</button>
     </div>
 
@@ -81,7 +81,7 @@
 
   <script type="module">
     import { mountFooter } from '../shared/components/page-footer.js';
-    mountFooter({ page: 46, total: 46, keywords: ['END·B'] });
+    mountFooter({ page: 45, total: 45, keywords: ['END·B'] });
 
     const ta = document.getElementById('ta');
     const content = document.getElementById('content');
@@ -103,8 +103,8 @@
         clearInterval(tick);
         sendBtn.classList.add('active');
         sendBtn.style.cursor = 'pointer';
-        status.textContent = '正在发送 · · ·';
-        setTimeout(autoSend, 1200);
+        status.textContent = '你的声音正在升起 · · ·';
+        setTimeout(autoSend, 1400);
       }
     }, 380);
 
@@ -114,14 +114,24 @@
 
     sendBtn.addEventListener('click', () => {
       if (!sendBtn.classList.contains('active')) return;
-      status.textContent = '✓ 已发送 · 4,200 万人 已收到 你 的 心声';
       sendBtn.disabled = true;
-      // 3. 反复 "发送"
+      const lines = [
+        '✓ 你的心声已汇入合唱',
+        '✓ 北京 · 4,231,008 人 同时说出了同一句话',
+        '✓ 上海 · 6,907,442 人 以同一个节奏呈吼吸',
+        '✓ 广州 · 成都 · 杭州 · 西安 · 不再有异议',
+        '✓ 全国 218,400,000 人 · 同一句话 · 同一个愿望',
+        '✓ 不再有人走丢',
+        '✓ 不再有人被遗忘',
+        '✓ 不再有人独自哭泣',
+        '一念归一 · 万心同声',
+      ];
       let n = 0;
+      status.textContent = lines[0];
       setInterval(() => {
-        n++;
-        status.textContent = `✓ 已发送 ${(4200 + n).toLocaleString()}w 次 · 一念归一 · 万心同声`;
-      }, 800);
+        n = (n + 1) % lines.length;
+        status.textContent = lines[n];
+      }, 1800);
     });
   </script>
 </body>

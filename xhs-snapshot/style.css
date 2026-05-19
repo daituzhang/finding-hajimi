@@ -216,7 +216,7 @@ body {
 }
 .post-gallery .swiper img.poster-img {
   object-fit: contain;
-  background: #f5f3e8;
+  background: hsl(55, 38%, 94%);
 }
 .gallery-counter {
   position: absolute;

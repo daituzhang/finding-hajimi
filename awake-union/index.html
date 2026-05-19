@@ -7,52 +7,55 @@
   <link rel="icon" type="image/png" href="../shared/assets/favicon.png" />
   <link rel="stylesheet" href="../shared/styles/shared.css" />
   <style>
-    body { background: #0a0a0a; color: #d4d4d4; margin: 0;
-      font-family: ui-monospace, "PingFang SC", monospace; min-height: 100vh; }
+    body { background: #f3f3f3; color: #222; margin: 0;
+      font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; min-height: 100vh; }
     .topbar {
-      background: #171717; border-bottom: 1px solid #262626;
-      padding: 12px 16px; display: flex; align-items: center; gap: 12px;
+      background: #fff; border-bottom: 2px solid #ff7e3a;
+      padding: 12px 56px 12px 16px; display: flex; align-items: center; gap: 12px;
     }
-    .brand { color: #f59e0b; font-weight: 700; letter-spacing: 1px; font-size: 14px; }
-    .me { font-size: 11px; color: #737373; margin-left: auto; }
-    .me strong { color: #fbbf24; }
-    .nav { display: flex; gap: 14px; padding: 10px 16px; border-bottom: 1px solid #262626;
-      font-size: 12px; }
-    .nav a { color: #a3a3a3; text-decoration: none; }
-    .nav a.active { color: #f59e0b; }
+    .brand { color: #ff7e3a; font-weight: 700; letter-spacing: 1px; font-size: 15px; }
+    .me { font-size: 11px; color: #888; margin-left: auto; }
+    .me strong { color: #ff7e3a; }
+    .nav { display: flex; gap: 18px; padding: 10px 16px; background: #fff;
+      border-bottom: 1px solid #e5e5e5; font-size: 13px; }
+    .nav a { color: #555; text-decoration: none; padding: 4px 2px; }
+    .nav a.active { color: #ff7e3a; border-bottom: 2px solid #ff7e3a; font-weight: 600; }
     .crumb {
       max-width: 720px; margin: 0 auto; padding: 10px 16px;
-      font-size: 12px; color: #737373;
-      border-bottom: 1px dashed #262626;
+      font-size: 12px; color: #888;
     }
-    .crumb a { color: #f59e0b; text-decoration: none; }
-    .crumb span { color: #d4d4d4; }
+    .crumb a { color: #ff7e3a; text-decoration: none; }
+    .crumb span { color: #444; }
     .header-strip {
-      background: #1a0e00; padding: 10px 16px; font-size: 11px; color: #f59e0b;
-      border-bottom: 1px solid #f59e0b33; line-height: 1.6;
+      max-width: 720px; margin: 0 auto;
+      background: #fff7f0; padding: 10px 14px; font-size: 12px; color: #b35017;
+      border: 1px solid #ffd7b8; border-radius: 4px; line-height: 1.7;
     }
     .board {
-      max-width: 720px; margin: 0 auto; padding: 0;
-      border-left: 1px solid #262626; border-right: 1px solid #262626;
+      max-width: 720px; margin: 12px auto; padding: 0;
+      background: #fff; border: 1px solid #e5e5e5; border-radius: 4px;
     }
     .board-head {
-      background: #171717; padding: 10px 14px; font-size: 11px; color: #737373;
+      background: #fafafa; padding: 10px 14px; font-size: 12px; color: #888;
       display: grid; grid-template-columns: 1fr 70px 70px 130px; gap: 10px;
-      border-bottom: 1px solid #262626; letter-spacing: 1px;
+      border-bottom: 1px solid #e5e5e5; letter-spacing: 1px;
     }
     .topic {
       display: grid; grid-template-columns: 1fr 70px 70px 130px; gap: 10px;
-      padding: 14px; border-bottom: 1px solid #262626;
-      text-decoration: none; color: #d4d4d4; align-items: center;
+      padding: 14px; border-bottom: 1px solid #eee;
+      text-decoration: none; color: #333; align-items: center;
     }
-    .topic:hover { background: #171717; }
-    .topic .t { font-size: 14px; color: #f59e0b; line-height: 1.4; }
-    .topic .by { font-size: 11px; color: #737373; margin-top: 4px; }
-    .topic .num-c { font-size: 12px; color: #a3a3a3; text-align: center; font-family: ui-monospace, monospace; }
-    .topic .last { font-size: 11px; color: #737373; text-align: right; }
-    .topic .last strong { color: #fbbf24; display: block; font-weight: 600; }
+    .topic:last-child { border-bottom: 0; }
+    .topic:hover { background: #fff7f0; }
+    .topic .t { font-size: 14px; color: #222; line-height: 1.4; font-weight: 600; }
+    .topic:hover .t { color: #ff7e3a; }
+    .topic .by { font-size: 12px; color: #888; margin-top: 4px; font-weight: 400; }
+    .topic .by strong { color: #2266cc; }
+    .topic .num-c { font-size: 13px; color: #555; text-align: center; font-family: ui-monospace, monospace; }
+    .topic .last { font-size: 11px; color: #888; text-align: right; }
+    .topic .last strong { color: #2266cc; display: block; font-weight: 600; }
     .topic.pin .t::before { content: '📌 '; }
-    .footer-note { color: #525252; font-size: 11px; padding: 18px;
+    .footer-note { color: #aaa; font-size: 12px; padding: 18px;
       text-align: center; line-height: 1.7; }
   </style>
 </head>
@@ -108,7 +111,7 @@
     <a class="topic pin" href="./topic-cat-phish.html" target="_blank" rel="noreferrer">
       <div>
         <div class="t">最近全网都是这种"找猫钓鱼贴" 我朋友说是 NeoLight 内测的</div>
-        <div class="by">@zero_seven_77 · #001 · 含 <strong style="color:#fbbf24;">root</strong> 留言</div>
+        <div class="by">@zero_seven_77 · #001 · 含 <strong style="color:#ff7e3a;">root</strong> 留言</div>
       </div>
       <div class="num-c">48</div>
       <div class="num-c">12k</div>
@@ -123,7 +126,7 @@
   <script type="module">
     import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
-    mountFooter({ page: 37, total: 46 });
+    mountFooter({ page: 37, total: 45 });
     mountTips({ tips: ["先浏览一下其他的帖子"] });
 
   </script>

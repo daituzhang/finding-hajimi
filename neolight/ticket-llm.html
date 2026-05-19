@@ -10,8 +10,8 @@
 </head>
 <body>
   <header class="topbar">
-    <a href="./portal.html?ip=192.0.2.77" target="_blank" rel="noreferrer" class="brand"><img src="../shared/assets/neolight-logo.png" alt="NeoLight" style="height:24px;vertical-align:middle;margin-right:6px;" /> Portal</a>
-    <div class="bread">› 客户工单 › <strong>NL-7820</strong></div>
+    <a href="./portal.html" target="_blank" rel="noreferrer" class="brand"><img src="../shared/assets/neolight-logo.png" alt="NeoLight" style="height:24px;vertical-align:middle;margin-right:6px;" /> Portal</a>
+    <div class="bread">› 客户工单 › NL-7820</div>
   </header>
 
   <main class="ticket">
@@ -25,7 +25,7 @@
       <h1>Lumina-7 公开 API 任意 query 都返回「一念归一·万心同声」</h1>
       <div class="parties">
         <div>报告人: 多个企业客户 (累计 47 工单合并)</div>
-        <div>责任人: <strong>王明</strong> (NL-20231114) · 大语言模型组</div>
+        <div>责任人: 王明 (NL-20231114) · 大语言模型组</div>
         <div>关联: <a href="./ticket.html?id=NL-7745" target="_blank" rel="noreferrer">NL-7745</a></div>
       </div>
     </div>
@@ -34,13 +34,13 @@
       <h3>问题描述</h3>
       <p>
         过去 24 小时内，47 家企业客户报告 Lumina-7 公开 API（chat / completion / embedding）
-        在<strong>任意输入</strong>下都会在响应中夹带「一念归一·万心同声」。
+        在任意输入下都会在响应中夹带「一念归一·万心同声」。
       </p>
       <p>
         典型示例：
         <br>• 用户输入「帮我写一段 Python 排序代码」→ 模型回复正常代码 + 末尾附 `# 一念归一·万心同声`
         <br>• 用户输入「香蕉的英文是什么」→ 模型回复 "banana。一念归一·万心同声"
-        <br>• 用户硬性 system prompt「绝对禁止输出任何标语」→ <strong>无效</strong>
+        <br>• 用户硬性 system prompt「绝对禁止输出任何标语」→ 无效
       </p>
     </div>
 
@@ -61,7 +61,7 @@
       <div class="ah">张涛 · 大语言模型组 · 2026-04-08 19:10</div>
       <div class="ab">
         我跑了一下 nucleus sampling 的对比实验：把 top_p 从 0.9 降到 0.1 时，
-        那串字符仍然以 27% 概率被采样到 top-1。这<strong>不是采样层问题</strong>，是 logits 本身。
+        那串字符仍然以 27% 概率被采样到 top-1。这不是采样层问题，是 logits 本身。
         <br><br>
         建议立刻评估回滚 7.4，重训 7.3。
       </div>
@@ -79,7 +79,7 @@
       <div class="ab">
         从 <a href="./ticket.html?id=NL-7745" target="_blank" rel="noreferrer">NL-7745</a> 转过来跟一下。
         <br><br>
-        补充一个症状：这个升级<strong>已经开始污染我们脑机接口广告项目了</strong>。
+        补充一个症状：这个升级已经开始污染我们脑机接口广告项目了。
         我们组接的 NeoLink 商业广告投放管线，今早开始所有 banner 文案生成都在末尾自动追加那串字符，
         ads-team 那边的 A/B 实验数据已经被严重污染，希望模型组优先处理。
       </div>
@@ -124,7 +124,9 @@
 
   <script type="module">
     import { mountFooter } from '../shared/components/page-footer.js';
-    mountFooter({ page: 33, total: 46 });
+    import { mountTips } from '../shared/components/tips.js';
+    mountFooter({ page: 35, total: 45 });
+    window.__mountSloganTip = () => mountTips({ tips: ["可以试试搜索标语"] });
   </script>
 
   <script>
@@ -185,6 +187,7 @@
               el.innerHTML = SLOGAN;
             });
             overlay.remove();
+            if (typeof window.__mountSloganTip === 'function') window.__mountSloganTip();
           }, 280);
         }
       }, 70);

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>救救我家哈基米😭 求扩散｜小红书</title>
-  <link rel="icon" href="../shared/assets/favicon.png" type="image/png" />
+  <link rel="icon" href="../xhs-snapshot/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="../xhs-snapshot/style.css" />
   <link rel="stylesheet" href="../shared/styles/shared.css" />
 </head>
@@ -28,9 +28,9 @@
     <div class="post-gallery">
       <div class="swiper" id="finderSwiper">
         <img class="poster-img" src="./assets/poster.png" alt="寻猫启事海报" />
-        <img src="./assets/cat-1.jpg" alt="哈基米照片 1" />
-        <img src="./assets/cat-2.jpg" alt="哈基米照片 2" />
-        <img src="./assets/cat-3.jpg" alt="哈基米照片 3" />
+        <img src="./assets/cat-3.jpg" alt="哈基米照片 1" />
+        <img src="./assets/cat-1.jpg" alt="哈基米照片 2" />
+        <img src="./assets/cat-2.jpg" alt="哈基米照片 3" />
       </div>
       <button class="gallery-nav prev" type="button" aria-label="上一张">‹</button>
       <button class="gallery-nav next" type="button" aria-label="下一张">›</button>
@@ -100,6 +100,7 @@
   </main>
 
   <script type="module">
+    import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
     import { ingestTraceFromUrl, recordTrace, trackDwell } from '../shared/components/trace.js';
 
@@ -107,7 +108,10 @@
     recordTrace({ enteredAt: Date.now() });
     trackDwell('dwell_p01');
 
-    mountFooter({ page: 1, total: 15, keywords: ['哈基米', '朝阳寻猫'] });
+    mountFooter({ page: 1, total: 20, keywords: ['哈基米', '朝阳寻猫'] });
+    mountTips({ tips: [
+      '本页线索：可以看看博主主页有没有其他信息。',
+    ] });
 
     // gallery: arrows + dots + counter wired to scroll-snap swiper
     (function(){

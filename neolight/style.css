@@ -3,7 +3,7 @@ body { background: #f4f6fb; color: #1f2937; margin: 0;
 
 .nav {
   background: #fff; border-bottom: 1px solid #e5e7eb;
-  padding: 14px 18px; display: flex; align-items: center; gap: 18px;
+  padding: 14px 56px 14px 18px; display: flex; align-items: center; gap: 18px;
   position: sticky; top: 0; z-index: 10;
 }
 .nav .logo { font-size: 17px; font-weight: 700; color: #1e3a8a; }

@@ -52,6 +52,7 @@
       overflow: hidden;
     }
     .slot:hover { border-color: #a78bfa; color: #a78bfa; }
+    .slot.drag-over { border-color: #fbbf24; background: #1a0e2e; color: #fbbf24; }
     .slot.filled { border-style: solid; border-color: #fbbf24;
       background: #1a0e2e; }
     .slot.filled::after {
@@ -59,7 +60,10 @@
       color: #34d399; font-size: 12px;
     }
     .slot img { width: 70%; height: 70%; }
-    .slot .lbl { position: absolute; bottom: 4px; font-size: 10px; color: #6b7280; }
+    .slot .lbl { position: absolute; bottom: 4px; left: 0; right: 0; text-align: center;
+      font-size: 10px; color: #a78bfa; background: rgba(15, 8, 32, 0.85);
+      padding: 2px 0; pointer-events: none; }
+    .slot.filled .lbl { color: #fbbf24; background: rgba(26, 14, 46, 0.92); }
 
     .upload {
       background: #0f0820; border: 1px solid #2a1648;
@@ -103,6 +107,8 @@
       你能看到这一页 · 说明你比我以为的更走运。下面是我被同步前留的全部底牌。<br>
       <br>
       <span style="color:#fbbf24;">— 我做过的几件事 —</span><br>
+      ⓪ 我偷了 NeoLight 内部的员工库（包括陈某某的工号 NL-7042 和员工密码算法 README-decode.txt）·<br>
+      &nbsp;&nbsp;&nbsp;那个网盘账号就是我用他偷来的算法反推出来的 · 网盘和员工系统是同一套口令体系。<br>
       ① 我搜集了 3,030 个催眠符号样本 · 还差最后 5 个 · 它们被埋在 Lumina-7 近期投放的帖子里。<br>
       ② 我手动把催眠的最后一步给改了：原本一个符号要被注视满 10 秒才会同步成功，<br>
       &nbsp;&nbsp;&nbsp;我让所有触发渲染的符号在不到 10 秒就消失。这就是为什么有的人盯着没事 · 有的人转头才出事。<br>
@@ -112,8 +118,8 @@
       &nbsp;&nbsp;&nbsp;如果你之前是从我网盘进来的 · 就是这条线索把你带过来的。<br>
       <br>
       <span style="color:#fbbf24;">— 你接下来要做的 —</span><br>
-      把那 5 个符号上传到下面的 5 个空槽 · 集齐后即可跑模型 · 让它"忘记"那段权重。<br>
-      运行成功后 · 回到 <code>shell-online.dev</code> · 用 <code>curl post</code> 把结果同步到员工系统。<br>
+      把那 5 个符号上传到下面的 5 个空槽 · 集齐后即可跑模型 · 让它"忘记"那段权重 ·<br>
+      模型运行完会直接把反向 prompt 覆盖原被污染模型。<br>
       ——root
     </div>
 
@@ -128,25 +134,16 @@
 
     <h2 style="font-size:13px; color:#a78bfa; margin:18px 0 8px;">⛓ 缺失的 5 个符号槽</h2>
     <div class="slots" id="slots">
-      <div class="slot" data-i="0"><span class="lbl">slot 1</span></div>
-      <div class="slot" data-i="1"><span class="lbl">slot 2</span></div>
-      <div class="slot" data-i="2"><span class="lbl">slot 3</span></div>
-      <div class="slot" data-i="3"><span class="lbl">slot 4</span></div>
-      <div class="slot" data-i="4"><span class="lbl">slot 5</span></div>
+      <div class="slot" data-i="0"><span class="lbl">extra01-05</span></div>
+      <div class="slot" data-i="1"><span class="lbl">05-04</span></div>
+      <div class="slot" data-i="2"><span class="lbl">07-05</span></div>
+      <div class="slot" data-i="3"><span class="lbl">10-03</span></div>
+      <div class="slot" data-i="4"><span class="lbl">18-03</span></div>
     </div>
 
     <div class="upload">
-      🔍 上传方式: 在各页面找到嵌入的催眠符号 · 点击下方对应编号代为提交<br>
-      <br>
-      <button id="hintBtn" type="button" style="background:transparent;border:1px dashed #6d28d9;color:#a78bfa;padding:6px 12px;font-family:inherit;font-size:12px;cursor:pointer;border-radius:3px;">❓ 寻找提示</button>
-      <div id="hintBox" style="display:none;margin-top:10px;color:#a78bfa;font-size:12px;line-height:1.8;">
-        已确认存在的编号 (点击模拟上传一个):<br>
-        <code data-spot="s1">#01</code> &nbsp;
-        <code data-spot="s2">#02</code> &nbsp;
-        <code data-spot="s3">#04</code> &nbsp;
-        <code data-spot="s4">#06</code> &nbsp;
-        <code data-spot="s5">#12</code>
-      </div>
+      🔍 上传方式：在各页面找到嵌入的催眠符号 · 右键<b>“存储为图片”</b>下载到本地（<b>不要改名</b>），然后<b>拖拽</b>或 <code style="cursor:default">⌘/Ctrl + V 粘贴</code> 到下方槽位<br>
+      未被收录的符号将被忽略 · 重复提交会被跳过
     </div>
 
     <button class="run-btn" id="runBtn">[locked] 测试模型</button>
@@ -157,7 +154,7 @@
   <script type="module">
     import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
-    mountFooter({ page: 42, total: 46 });
+    mountFooter({ page: 42, total: 45 });
 
     const slots = [...document.querySelectorAll('.slot')];
     const runBtn = document.getElementById('runBtn');
@@ -169,24 +166,22 @@
       setTimeout(() => toast.classList.remove('show'), 2400); };
 
     let filled = 0;
-    const used = new Set();
+    const usedNames = new Set();
+    const VALID_NAMES = ['square.svg', 'pentagon.svg', 'hexagon.svg', 'octagon.svg', 'ring.svg'];
 
-    function fillNext(label) {
-      if (filled >= 5) return;
-      const slot = slots[filled];
+    function fillSlot(idx, imgSrc) {
+      const slot = slots[idx];
+      if (slot.classList.contains('filled')) return;
       slot.classList.add('filled');
-      const n = filled + 1;
+      const lbl = slot.querySelector('.lbl');
+      slot.innerHTML = '';
       const core = document.createElement('img');
-      core.src = `/shared/assets/sigil-core-${n}.png`;
+      core.src = imgSrc;
       core.alt = '';
       core.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;';
-      const frame = document.createElement('img');
-      frame.src = `/shared/assets/sigil-${n}.svg`;
-      frame.alt = '';
-      frame.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;';
       slot.style.position = 'relative';
       slot.appendChild(core);
-      slot.appendChild(frame);
+      if (lbl) slot.appendChild(lbl);
       filled++;
       progressLbl.textContent = `${(3030 + filled).toLocaleString()} / 3,035`;
       percentLbl.textContent = `${((3030 + filled) / 3035 * 100).toFixed(2)}%`;
@@ -198,33 +193,64 @@
       }
     }
 
-    document.querySelectorAll('[data-spot]').forEach(c => {
-      c.addEventListener('click', () => {
-        const k = c.dataset.spot;
-        if (used.has(k)) { showToast('该符号已上传过'); return; }
-        used.add(k);
-        fillNext(k);
-        showToast(`✓ 已采集: ${c.textContent}`);
-      });
+    function acceptFile(file) {
+      if (!file) return;
+      const name = (file.name || '').toLowerCase();
+      const idx = VALID_NAMES.indexOf(name);
+      if (idx === -1) {
+        showToast(`⚠ 文件名不匹配：${file.name || '未知'}`);
+        return;
+      }
+      if (usedNames.has(name)) {
+        showToast(`该符号已上传过：${file.name}`);
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        usedNames.add(name);
+        fillSlot(idx, ev.target.result);
+        showToast(`✓ 已采集：${file.name}`);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // —— 粘贴图片 (Cmd/Ctrl+V) ——
+    document.addEventListener('paste', (e) => {
+      const items = e.clipboardData && e.clipboardData.items;
+      if (!items) return;
+      for (const it of items) {
+        if (it.kind === 'file' && it.type.startsWith('image/')) {
+          acceptFile(it.getAsFile());
+          e.preventDefault();
+          return;
+        }
+      }
     });
 
-    document.getElementById('hintBtn').addEventListener('click', () => {
-      const box = document.getElementById('hintBox');
-      box.style.display = box.style.display === 'none' ? 'block' : 'none';
-    });
+    // —— 拖拽图片到槽位 / 页面任意处 ——
+    function bindDrop(target) {
+      target.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        if (target.classList && !target.classList.contains('filled')) target.classList.add('drag-over');
+      });
+      target.addEventListener('dragleave', () => target.classList && target.classList.remove('drag-over'));
+      target.addEventListener('drop', (e) => {
+        e.preventDefault();
+        target.classList && target.classList.remove('drag-over');
+        const files = e.dataTransfer && e.dataTransfer.files;
+        if (files && files.length) [...files].forEach(acceptFile);
+      });
+    }
+    slots.forEach(bindDrop);
+    bindDrop(document.body);
 
     runBtn.addEventListener('click', () => {
       if (!runBtn.classList.contains('enabled')) return;
       runBtn.textContent = '运行中...';
       setTimeout(() => {
         runBtn.textContent = '✓ sandbox model ready · reverse-prompt 已生成';
-        showToast('已就绪 · 回到 shell-online.dev 跑 curl post');
-        const next = document.createElement('a');
-        next.href = '../shell-online/';
-        next.target = '_blank'; next.rel = 'noreferrer';
-        next.textContent = '→ 打开 shell-online.dev';
-        next.style.cssText = 'display:block;margin:18px auto 0;padding:14px 24px;max-width:320px;text-align:center;background:linear-gradient(90deg,#8b5cf6,#fbbf24);color:#fff;text-decoration:none;border-radius:6px;font-weight:700;letter-spacing:2px;font-size:14px;box-shadow:0 0 22px rgba(139,92,246,0.4);';
-        runBtn.parentElement.appendChild(next);
+        showToast('已覆盖原模型 · 即将跳转');
+        setTimeout(() => { location.href = '../finale-l2/choose.html'; }, 1400);
       }, 1400);
     });
     mountTips({ tips: ["可以先去员工系统搜搜相关企划", "数字组合好像又是页面和楼层的组合", "也许这些楼层里有和企划里提到的符号相似的图片"] });

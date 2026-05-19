@@ -82,6 +82,7 @@
     <div class="examples">
       <strong>示例:</strong><br>
       &nbsp; $ <strong>connect</strong> &lt;ip&gt; &nbsp;&nbsp;# 连接到指定 IP，要求 username/password<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;<span style="opacity:0.7;">↳ 提示：大部分内部服务的 IP 都可以在它们后台页面的 URL 参数里找到</span><br>
       &nbsp; $ <strong>ls</strong> &nbsp;&nbsp;# 列出当前目录<br>
       &nbsp; $ <strong>cat</strong> &lt;file&gt; &nbsp;&nbsp;# 显示文本文件内容<br>
       &nbsp; $ <strong>fix</strong> &lt;file&gt; &nbsp;&nbsp;# 修复损坏文件<br>
@@ -108,7 +109,7 @@
   <script type="module">
     import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
-    mountFooter({ page: 26, total: 46 });
+    mountFooter({ page: 29, total: 45 });
 
     const term = document.getElementById('term');
     const cmd = document.getElementById('cmd');
@@ -120,18 +121,15 @@
 
     // —— file system & state ——
     const FS = {
-      '/': ['var/', 'tmp/', 'README'],
-      '/var': ['neolight/'],
-      '/var/neolight': ['uploads/', 'logs/'],
-      '/var/neolight/uploads': ['broken.bin', 'plan-cat-marketing.md'],
-      '/var/neolight/logs': ['lumina-sync.log'],
-      '/tmp': [],
+      '/': ['invite.pdf', 'game-2077.torrent', 'investigation/'],
+      '/investigation': ['README.md', 'employee-card.jpg', 'broken.bin'],
     };
     const FILE_META = {
+      'invite.pdf': { kind: 'broken' },
+      'game-2077.torrent': { kind: 'binary' },
       'broken.bin': { kind: 'broken' },
-      'plan-cat-marketing.md': { kind: 'locked', preview: '该文件需要在员工门户里商补检索。' },
-      'lumina-sync.log': { kind: 'text', preview: '... sync ok ... sync ok ... sync ok ...' },
-      'README': { kind: 'text', preview: 'NeoLight sandbox · read-only mirror of /var/neolight' },
+      'README.md': { kind: 'text', preview: '进入后从 invite.pdf 开始·拿那个邀请码' },
+      'employee-card.jpg': { kind: 'image', preview: '[image] employee-card.jpg · 请用 open' },
     };
     const fixed = new Set();   // recovered files
     let connected = false;
@@ -188,32 +186,31 @@
 
       // auth flow ------------
       if (authStage === 'username') {
-        echo('***');  // mask
+        write('username: ' + line);
         if (line === VALID_USER) {
           authUser = line;
           authStage = 'password';
           write('password:');
+          write('       hint: 密码是 4 位数字 · 03-07 · 04-07 · extra01-06 · 05-01', 'info');
           setPrompt();
         } else {
-          write('[err] no such user', 'err');
-          authStage = null;
-          connectingTo = null;
+          write('[err] no such user, try again', 'err');
+          write('username:');
           setPrompt();
         }
         return;
       }
       if (authStage === 'password') {
-        echo('***');
+        write('password: ' + '*'.repeat(line.length));
         if (line === TERM_PW) {
           connected = true;
           authStage = null;
           write(`[ok] authenticated. welcome ${authUser}`, 'ok');
           write(`     connected to ${connectingTo} · sandbox ready`, 'info');
         } else {
-          write('[err] auth failed.', 'err');
-          write('       hint: 密码是 4 位数字 · 藏在 (extra-01, 6) (04-07) (05-01) (03-07) 这几条 @root 评论里', 'info');
-          authStage = null;
-          connectingTo = null;
+          write('[err] wrong password, try again', 'err');
+          write('       hint: 03-07 · 04-07 · extra01-06 · 05-01', 'info');
+          write('password:');
         }
         setPrompt();
         return;
@@ -245,10 +242,15 @@
       },
       connect(args) {
         if (!args[0]) { write('usage: connect <ip>', 'err'); return; }
-        const target = args[0];
+        let target = args[0].replace(/^<|>$/g, '');
         if (target === ROOT_OWN_IP) {
           write(`[err] target ip mismatch · ${ROOT_OWN_IP} is root's lab, no service running`, 'err');
           write('     try the ip you saw in the pan url', 'info');
+          return;
+        }
+        if (target !== VALID_IP) {
+          write(`[err] could not resolve host: ${target}`, 'err');
+          write('     hint: url', 'info');
           return;
         }
         connectingTo = target;
@@ -258,7 +260,7 @@
         setPrompt();
       },
       ls() {
-        if (!connected) { write('[err] not connected. try `connect 192.0.2.77`', 'err'); return; }
+        if (!connected) { write('[err] not connected. try `connect <ip>` first', 'err'); return; }
         const list = FS[cwd] || [];
         write(list.join('   '));
         if (cwd === '/' && fixed.has('invite.pdf')) write('invite-code.txt   ', 'yellow');
@@ -361,7 +363,7 @@
 
     setPrompt();
     cmd.focus();
-    mountTips({ tips: ["好像在员工系统的 URL 里有看到过 IP", "用户名可能就是 root，有时候不用想得很复杂", "密码的提示会不会和页数相关，突然记得好像在橘猫主人的小红书里看到过 root 的评论，他会不会留下什么线索", "root 的留言好像有数字"] });
+    mountTips({ tips: ["好像在 root 网盘的 URL 里看到过 IP", "用户名可能就是 root，有时候不用想得很复杂"] });
 
   </script>
 </body>

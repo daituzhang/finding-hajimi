@@ -10,8 +10,8 @@
 </head>
 <body>
   <header class="topbar">
-    <a href="./portal.html?ip=192.0.2.77" target="_blank" rel="noreferrer" class="brand"><img src="../shared/assets/neolight-logo.png" alt="NeoLight" style="height:24px;vertical-align:middle;margin-right:6px;" /> Portal</a>
-    <div class="bread">› 我的 ticket › <strong>NL-7745</strong></div>
+    <a href="./portal.html" target="_blank" rel="noreferrer" class="brand"><img src="../shared/assets/neolight-logo.png" alt="NeoLight" style="height:24px;vertical-align:middle;margin-right:6px;" /> Portal</a>
+    <div class="bread">› 我的 ticket › NL-7745</div>
   </header>
 
   <main class="ticket">
@@ -24,9 +24,9 @@
       </div>
       <h1>客户报告：升级后妻子像变了一个人，开始大量重复同一句话</h1>
       <div class="parties">
-        <div>报告人: <strong>李建军</strong> &lt;lijianjun@example.com&gt; · NeoLink 用户 · 2023-01 入网</div>
+        <div>报告人: 李建军 &lt;lijianjun@example.com&gt; · NeoLink 用户 · 2023-01 入网</div>
         <div>责任人: 陈某某 (NL-20240912) · 脑机接口组</div>
-        <div>关联客户: NeoLink 用户 ID <strong>NL-USER-2241799</strong> (本人妻子 周婷)</div>
+        <div>关联客户: NeoLink 用户 ID NL-USER-2241799 (本人妻子 周婷)</div>
       </div>
     </div>
 
@@ -34,11 +34,11 @@
       <h3>客户描述</h3>
       <p>
         我妻子周婷接入 NeoLink 已经 3 个月了 (见央视 2026-04-08 报道)。前两周一切正常，
-        她重新能跟我聊天，状态非常好。但是从 <strong>3 月底 Lumina-7 升级到 7.4 之后</strong>，
+        她重新能跟我聊天，状态非常好。但是从 3 月底 Lumina-7 升级到 7.4 之后，
         她开始变得很奇怪——
       </p>
       <p>
-        每次我跟她说话，她回我的内容里都会出现<strong>同一句广告语</strong>。
+        每次我跟她说话，她回我的内容里都会出现同一句广告语。
         最开始是夹在正常句子里，后来越来越频繁。今天早上我问她想吃什么，
         她回我的话里把那句广告语重复了三遍，中间才插了一句"椰子鸡"。
       </p>
@@ -54,7 +54,7 @@
       <div class="ah">陈某某 · 脑机接口组 · 2026-04-08 15:10</div>
       <div class="ab">
         已拉日志。客户描述属实，<code>NL-USER-2241799</code> 的对话生成 history 中，
-        近 10 天某条固定字符串的出现频率从 0% 跳升到 <strong>34.7%</strong>，
+        近 10 天某条固定字符串的出现频率从 0% 跳升到 34.7%，
         且不依赖任何 user prompt 触发。
         <br><br>
         但脑机接口侧没改过任何同步策略，输出来源是 Lumina-7 模型层。
@@ -76,7 +76,7 @@
         我把 NeoLink 同步管线最末段 dump 出来跑了纯净环境测试：把所有用户 input、所有 RAG
         都剥离干净，只保留 Lumina-7 推理结果原文，输出依然会反复出现那串字符。
         <br><br>
-        所以问题<strong>不在脑机接口同步层</strong>，是上游模型自己在生成。
+        所以问题不在脑机接口同步层，是上游模型自己在生成。
         我已经把这条客户工单转给大语言模型组：
         <ul>
           <li><strong><a href="./ticket-llm.html?id=NL-7820" target="_blank" rel="noreferrer" style="font-weight:700;">[NL-7820] LLM 公开 API 任意 query 都返回口号</a></strong></li>
@@ -101,7 +101,7 @@
   <script type="module">
     import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
-    mountFooter({ page: 32, total: 46 });
+    mountFooter({ page: 34, total: 45 });
     mountTips({ tips: ["找找看评论里其他相关的 ticket"] });
 
   </script>

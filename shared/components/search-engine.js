@@ -327,7 +327,7 @@ function flashSigil(durationMs = 2000) {
 
     const bot = document.createElement('div');
     bot.className = 'ov-text';
-    bot.innerHTML = '> SYNC HALTED BY 0x726F6F74 (root)<br>> RETURNING UNFILTERED CONTENT...';
+    bot.innerHTML = '> SYNC HALTED BY root<br>> RETURNING UNFILTERED CONTENT...';
 
     const noise = document.createElement('div');
     noise.className = 'sigil-noise';
