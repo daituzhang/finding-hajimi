@@ -32,6 +32,9 @@ function ensureSharedCss() {
 export function mountFooter({ page, total, keywords, extra = false, tool = false } = {}) {
   ensureSharedCss();
 
+  // 全站挂载"选中文字 → 复制 / 在 find.cn 搜索"气泡（find.cn 自身会自动跳过）
+  import('./selection-popup.js').then(m => m.mountSelectionPopup()).catch(() => {});
+
   const footer = document.createElement('div');
   footer.className = 'arg-footer';
   if (extra) footer.classList.add('extra');
