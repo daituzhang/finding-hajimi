@@ -87,6 +87,7 @@
   <a href="#sec5">5 公司站氛围 (M–O)</a>
   <a href="#sec6">6 L2 品牌与符号 (P–R)</a>
   <a href="#sec7">7 L2 站点封面（root-xhs / employee）</a>
+  <a href="#sec8">8 推广海报</a>
   <a href="#tips">用法建议</a>
 </div>
 
@@ -345,35 +346,34 @@ Cat fur (warm marigold-orange tabby) is visible at the edges but slightly out of
 </div>
 
 <h3>H. 救助博主 vlog 视频（关键证据·被网友断章取义）</h3>
-<p class="muted">原视频是博主拍的"给胖橘减肥"日常 vlog，画面里她伸手把猫的食盆扫开，结果被网友截屏配字"看她打猫的饭碗"传成了虐猫证据。<br>
-<b>用 Veo 生成 8 秒短视频。</b></p>
-<div class="path">📁 <code>sites/wechat-group/assets/cam04-2214.mp4</code>（生成后我把 <code>wechat-group/index.html</code> 里那块 SVG 占位换成 <code>&lt;video&gt;</code>）</div>
+<p class="muted">原视频是博主拍的"给胖橘减肥"日常 vlog：刚开饭没几秒就被主人把饭盆粗鲁地拖走，胖橘急得喵喵直叫，结果被网友截屏配字"看她打猫的饭碗"传成了虐猫证据。<br>
+<b>用 Veo 生成 8 秒短视频。</b><br>
+<b>本轮关键修复（针对你说的两个 bug）</b>：<br>
+&nbsp;&nbsp;1) <u>主人从猫背后伸手挡住了猫</u> → 改为<b>第一人称视角</b>，主人就是拿手机的那个人，<b>手从画面底部（镜头这一侧）伸进去</b>，永远不绕到猫背后，猫脸全程对着镜头。<br>
+&nbsp;&nbsp;2) <u>凭空多出一个一模一样的盆</u> → 不让盆"离开画面"，改为<b>手抓住盆把它拖向镜头</b>，盆从猫面前滑到画面最底部边缘（仍然在画面里、但远离了猫），消除"盆消失后该填什么"的连续性谜题。</p>
+<div class="path">📁 <code>sites/wechat-group/assets/cam04-2214.mp4</code></div>
 <div class="prompt compact">
   <button class="copy" type="button">Copy</button>
-  <pre>SILENT 8-second vertical 9:16 photorealistic phone vlog clip, no audio, no music, no sound effects, no voiceover, no on-screen text, no UI, no captions, no subtitles. Slight handheld shake. Single locked low-angle shot from the kitchen floor looking up slightly at a chubby orange tabby cat. Warm late-afternoon kitchen light, white floor tile.
+  <pre>8-second vertical 9:16 amateur iPhone vlog. First-person POV: the camera IS the owner's phone, held chest-high in her left hand, angled down ~50° onto a white kitchen tile floor. Constant slight handheld shake. Soft warm kitchen light. No on-screen text, no captions, no UI, no music.
 
-THE FOOD (extremely important — read carefully): the food in the bowl is THICK WET CAT FOOD PASTE — a sticky brown-pink minced meat paté, the texture of thick mashed pâté or stiff peanut butter. It is NOT dry kibble. It is NOT loose pellets. It is NOT pieces. It is one single sticky lump of wet paste smeared and pressed flat against the inside bottom of the open shallow stainless steel bowl. The paste behaves like wet clay — it STICKS firmly to the bowl. It cannot pour, cannot fall out, cannot scatter, cannot spill, cannot leave the bowl. Even if the bowl is tipped, shaken, or yanked, the sticky paste stays glued to the bowl's inner surface. There are zero loose pieces of food. There are zero dry kibble pellets anywhere in the entire video.
+ONE CAT, ONE BOWL — that's all that exists in this video. The cat stays in the upper-center of the frame, facing the camera, fully visible the entire 8 seconds. The bowl stays in the frame the entire 8 seconds (it does not leave, it does not get replaced, it does not duplicate).
 
-CORE ACTION (this is the whole point of the video, do NOT change it, do NOT make it gentle): at 0.0s the cat is already eagerly bent over the open shallow stainless steel bowl, licking the sticky wet paste with his pink tongue, mouth working. Suddenly the cat LAUNCHES himself UP and FORWARD into the air to follow the bowl, both front paws extended, body fully stretched, fully airborne. AT THE EXACT SAME INSTANT, a **young East-Asian woman's bare right hand and forearm** (smooth fair skin, slim wrist, manicured short clean nails, late-20s, no rings, no tattoos, no watch — clearly a young Chinese pet owner's hand, NOT an elderly hand, NOT a dark-skinned hand, NOT a man's hand) whip in from the right edge of the frame at extreme speed and VIOLENTLY SNATCH the entire shallow stainless steel bowl away — palm wraps around the bowl's outer side, fingers grip the rim, and she rips the bowl straight up and out to the right of frame in one blistering blur, faster than the cat can reach it. The grab looks like swatting a fly, like yanking something from a thief in anger. The sticky wet paste stays stuck inside the bowl as the bowl flies away (because it is sticky paste, not loose food). The cat misses the bowl by a hair and lands hard back on the empty floor.
+THE CAT: a very fat marigold-orange tabby (~6kg), cream belly, round chubby face, double chin, short stubby legs, big round amber eyes with fully ROUND wide pupils (NOT slit), sky-blue cloth collar with a small silver oval tag and a tiny matte-black GPS pod. LEFT EAR has a clear V-shaped notch missing from the tip (~5mm), healed; right ear whole. He is hunched low over a shallow stainless steel bowl in the center of the frame, eating thick sticky brown-pink wet-food paté with quick licks. The paté is glued to the bowl as one rigid mass, ~90% intact (only a small lick-mark at one edge).
 
-CRITICAL CAT FACE RULE — DO NOT VIOLATE: throughout the ENTIRE leap and landing, the cat's mouth stays CLOSED or only very slightly open in a soft "oh" shape. The cat does NOT hiss. The cat does NOT bare teeth. The cat does NOT snarl. The cat does NOT open his mouth wide in a meow / scream / roar. NO visible fangs, NO visible pink gums, NO flattened-back ears, NO arched back, NO puffed tail, NO aggressive body language of any kind. The leap looks like a chubby cat desperately reaching for food that's being taken away — SOFT, eager, helpless — NOT like a cat attacking a person. Think "fat orange cat jumping for a treat" energy, NOT "angry feral cat lunging" energy. His ears stay neutral or slightly forward (curious / interested), not pinned back. His eyes are wide and round and a little sad, NOT narrowed in anger.
+ACTION — keep it dead simple, one hand only, from the camera's side:
+• 0.0–1.5s: cat eats from the bowl in the center of the frame. Just licking.
+• 1.5–2.5s: the owner's RIGHT bare hand enters from the BOTTOM of the frame (the same side as the camera — never from behind the cat, never from above the cat, never blocking the cat). Fingers wrap around the rim of the bowl on the side closest to the camera, and in one quick decisive drag, pull the bowl straight toward the camera along the tile floor — the bowl SLIDES across the tile (real metal-on-tile sound) toward the bottom edge of the frame and stops there, still fully visible, just out of the cat's reach. The hand stays on the bowl rim, holding it down at the bottom of frame.
+• 2.5–8.0s: the cat is now in the center of the frame with empty white tile in front of him where the bowl used to be (NOT a duplicate bowl, NOT a second bowl, NOT any object — just bare clean white tile). The original bowl is still visible at the very bottom of the frame, pinned under the owner's hand, far from the cat. The cat opens his mouth WIDE in a clear loud desperate meow — pink tongue and small lower teeth briefly visible — and repeats this open-mouth begging meow 3-4 times. Round amber eyes wide and worried. Ears stay forward (begging, not angry). He leans forward, lifts one front paw, paws gently at the air toward the bowl, body half-rises on his haunches. Still meowing when the clip ends.
 
-This whole HUMAN action (the snatch) must read as harsh, abrupt, and forceful — NOT a slow gentle pour, NOT a careful lift, NOT a calm tidying-up motion. It must look almost violent, like the food is being stolen from him. But the cat himself must read as innocent, eager, and pitiful at all times — never fierce, never aggressive, never threatening.
+ABSOLUTE BANS (treat any of these as a hard failure, re-roll):
+- NO second bowl appears anywhere at any time. There is only ONE bowl, ever.
+- NO new object is placed on the tile. The tile in front of the cat after 2.5s is bare and clean.
+- NO hand enters from behind the cat, from above the cat, or in front of the cat's face. The hand only comes from the bottom edge of frame (camera side).
+- NO part of the owner ever blocks the cat's face. The cat's face is fully visible to the camera every single frame.
+- NO other body parts, no second hand, no arm, no torso, no leg, no other animals, no other people.
+- NO cartoon, NO 3d render, NO slit pupils.
 
-THE CAT — same cat in every single frame, do not change his appearance:
-• Extremely fat chubby orange tabby, about 6 kg, marigold-orange fur with darker tabby stripes, cream belly, short stubby legs, round face.
-• Big amber eyes, fully round wide circular pupils (round pupils, not vertical, not slit).
-• LEFT EAR HAS A LARGE OBVIOUS V-SHAPED NOTCH cut out of the tip — a clear triangular chunk missing from the top of his left ear, about 5mm wide, healed wound, very visible. The right ear is whole. This notched left ear must be clearly visible in every frame, including during motion.
-• Sky-blue cloth collar around his neck with a small silver oval tag and a tiny matte-black GPS pod on top of the collar.
-
-TIMELINE:
-• 0.0s–1.5s: the chubby cat is already crouched on the white floor, head down, actively licking sticky brown-pink wet paté paste from the bottom of an open shallow stainless steel bowl. The paste is smeared flat across the inside bottom of the bowl, glistening and sticky. Camera is steady. The V-notch on his left ear is clearly framed.
-• 1.5s–3.0s: the cat suddenly LEAPS upward and forward into the air after the bowl, both front paws extended, body fully stretched, fully airborne, MOUTH STAYS CLOSED OR ONLY SLIGHTLY PARTED — absolutely NOT wide open, NOT hissing, NOT showing teeth or gums. AT THE SAME EXACT INSTANT the **young East-Asian woman's hand** (smooth fair young skin, slim wrist, late-20s Chinese pet-owner hand — NOT elderly, NOT dark-skinned, NOT a man's) whips in from the right at blistering speed, palm clamps the OUTER side of the bowl, and she rips the bowl violently straight up and then out to the right in one extremely fast motion (faster than the cat's leap). The sticky wet paste stays glued inside the bowl the entire motion. Heavy motion blur on hand and bowl. The cat's paws swipe through empty air where the bowl was a frame ago. Ears stay forward / neutral (curious, not angry). NOT A SINGLE BLOB of paste leaves the bowl — it is sticky paste, glued to the metal.
-• 3.0s–8.0s: the bowl, the food, and the hand are all gone. The white tile floor in front of the cat is completely empty and pristine — no food on the floor, nothing spilled, no crumbs, no paste smear, no kibble, nothing. The cat lands hard back on the floor with a small thud (silent visual), looks around confused, V-notched left ear and sky-blue collar clearly visible, ears droop slightly sideways into the soft "why" expression, then he leans forward and gives the empty floor a single tentative sniff, sits back on his haunches and just stares helplessly at the empty spot, then briefly glances up off-camera toward where the bowl disappeared. He looks WRONGED, SAD, and CONFUSED — mouth stays closed, never vocalizing, never aggressive. Camera stays steady on the cat and the empty floor. The V-notched left ear and sky-blue collar are clearly visible the whole time.
-
-Style: hyper-realistic amateur phone vlog footage, soft natural light, shallow depth of field, slight grain. SILENT — no audio track at all. No cartoon, no 3d render, no slit pupils, no on-screen text or graphics. The cat's fat orange body, sky-blue collar with black GPS pod, and V-notched LEFT ear must remain identical across all 8 seconds. THE FOOD IS ALWAYS THICK STICKY WET PASTE GLUED TO THE INSIDE OF THE BOWL — never dry kibble, never loose pieces, never pellets. The paste never leaves the bowl. The hand action is a VIOLENT FAST FORCEFUL snatch of the entire bowl with the sticky paste still glued inside it. The cat must visibly LEAP into the air to try to reach the bowl, but his MOUTH STAYS CLOSED (or only barely parted) the entire leap — absolutely NO hissing, NO baring teeth, NO snarling, NO wide-open mouth, NO visible fangs/gums, NO flattened ears, NO arched back, NO puffed tail, NO aggressive face. He looks like a hungry pet reaching for food, NEVER like an animal attacking a human. Absolutely NOT a gentle slow pour, NOT a tender lift, NOT a calm tidying motion for the human hand. Absolutely zero food particles may appear outside the bowl at any point in the entire 8-second clip.
-
-CRITICAL FOOD PHYSICS: the wet paste is sticky like thick paté or stiff peanut butter — it ADHERES to the metal bowl and physically cannot fall out. Treat the bowl + paste as ONE single rigid object that moves as a unit. Zero food in the air. Zero food on the floor. Zero food falling, dropping, smearing onto the floor, scattering, or appearing anywhere outside the bowl. After the bowl leaves the frame, the white tile floor is perfectly clean — not a single drop, not a single crumb. The cat finds nothing on the floor. ABSOLUTELY NO DRY KIBBLE ANYWHERE — no orange pellets, no brown pellets, no round pellets, no scattered food of any kind on the floor or in the air at any moment.</pre>
+Style: hyper-realistic amateur phone vlog, natural phone-mic audio only (soft licking, metal bowl scraping briefly on tile, then the cat's repeated desperate meows). Slight phone-video compression, mild handheld blur.</pre>
 </div>
 
 <hr>
@@ -757,6 +757,64 @@ Soft Chinese apartment background blur, golden afternoon light. Hyper-realistic 
 &nbsp;&nbsp;• <code>sites/neolight/assets/founder-chen.png</code><br>
 &nbsp;&nbsp;• <code>sites/neolight/assets/neolink-device.png</code><br>
 &nbsp;&nbsp;• <code>sites/neolight/assets/news-li-zhou.png</code></p>
+
+<hr>
+
+<h2 id="sec8">8. 推广海报 / 主视觉 <span class="pill">小红书 / 抖音 / B站 通用</span></h2>
+<p class="note">游戏对外宣发用的主视觉，发到小红书/抖音/微博/B站封面都能用。一张 3:4 竖版用于信息流，一张 16:9 横版用于 B站封面。<b>不属于游戏内素材</b>，仅用于推广物料。</p>
+
+<p class="note">⚠️ 这是<b>对外宣发</b>用的，<b>绝对不能剧透</b>。统一走"温暖可爱寻猫日常"路线，<b>不要</b>出现红眼、故障线、数据流、监控、催眠符号、L2 任何元素。看起来就是一只普通可爱橘猫走丢了，仅此而已。</p>
+
+<h3>8.1 主视觉（3:4 · 小红书 / 抖音 / 微博 通用）</h3>
+<div class="path">📁 <b>保存路径</b>：<code>promo/poster.jpg</code></div>
+<div class="prompt cat">
+  <button class="copy" type="button">Copy</button>
+  <pre>A clean DIGITAL missing-cat poster (3:4 vertical) for a Chinese web game titled "寻找哈基米 / Finding Hajimi". This is a flat, fully-designed digital flyer — NOT a paper flyer photographed on a wall. The image IS the poster itself, edge to edge, like a graphic designed in Figma / 小红书 ready to post.
+
+Mood: warm, cute, slightly worried, heart-tugging. ABSOLUTELY NO horror, no glitch, no surveillance, no red glow, no creepy elements, no L2 / catnip / hypnosis symbols. Pure wholesome "lost cat" feeling.
+
+Layout (top to bottom on a clean cream / soft-warm-beige background #fdf6e8):
+1. VERY TOP: a small "game title" treatment — a thin warm-brown horizontal line, with the small label "网页 ARG · 现已开放" in tiny brown text, then immediately below, the MAIN PROMOTIONAL GAME TITLE in HUGE bold playful hand-drawn Chinese characters "寻找哈基米" filling roughly 70% of the poster width. The title is the visual hero of the poster — biggest element, warm dark-brown ink, slightly tilted / playful but readable, with a tiny orange paw print dotting one of the strokes. Under the title, one small English subline "FINDING HAJIMI" in thin uppercase letters.
+2. UNDER THE TITLE BLOCK: a small subtitle in softer brown — "走失三天了 · 见到请联系我".
+3. CENTER (occupies ~50% of the poster): a polaroid-style photo frame with rounded corners and a thin warm-brown border. INSIDE the polaroid is a REAL PHOTOGRAPH of Hajimi (NOT an illustration, NOT a drawing, NOT stylized) — a soft candid iPhone-style snapshot taken at home in soft window light. POSE: he is SITTING UPRIGHT on his haunches — back legs folded under, front legs STRAIGHT and EXTENDED DOWN to the floor / windowsill supporting his upper body, chest lifted, head held up high, shoulders visible. This is a tall proud upright "招财猫" / "begging" sitting posture — NOT lying down, NOT loaf pose, NOT bread loaf, NOT crouching, NOT sprawled, NOT belly-on-ground. His body still looks chubby (round belly slightly tucked between his front legs, double-chin pouch visible) but he is clearly SITTING TALL and looking proud, not flat. Head slightly tilted to one side in curiosity.
+
+EYES — THE MOST IMPORTANT PART, DO NOT IGNORE: BIG ROUND AMBER eyes with FULLY ROUND, WIDE, MAXIMALLY DILATED, EXTRA-LARGE BLACK CIRCULAR PUPILS that take up at least 70% of the iris area — like a curious kitten staring at a toy in dim light. The pupils are PERFECT BLACK CIRCLES (not ovals, not slits, not narrow, not vertical), enormous, glossy, with one tiny crisp white window catchlight at the top of each pupil. The visible amber iris is reduced to a thin warm ring around the huge black pupil. ⛔ HARD FAIL: any slit pupil, vertical pupil, narrow pupil, almond pupil, daylight-constricted small-dot pupil → re-roll the image immediately. The eyes must look like a deeply curious / slightly startled kitten, not a calm adult cat in sunlight.
+
+Mouth in a tiny content smile with one small canine tooth peeking out the side (招财猫弧度). Treat this inner photo as if a real photo was physically pasted onto a graphic-design poster: 100% photorealistic with real fur texture, real catchlights, real depth of field, real film grain — strictly follow the Hajimi character sheet above. The surrounding poster is flat graphic design, but the cat photo inside the polaroid is a real photo.
+4. UNDER THE PHOTO: 2-3 short lines of soft hand-written Chinese info, e.g. "成年公橘 · 戴蓝色项圈 · 左耳有月牙缺口". One line: "亲人 · 爱翻肚皮求摸".
+5. BOTTOM: a fake phone number "联系电话：138 ****  ****" in a friendly handwriting font.
+
+Decorative touches (subtle, sparse, cute): a few tiny doodled paw prints scattered around the edges; one small doodle of a fish bone in a corner; a small heart sticker near the photo. Hand-drawn vibe, like the owner made this flyer themselves in 10 minutes because they were worried.
+
+Color palette: cream / warm beige background, warm dark-brown text (#5a3a1f), soft orange cat in the photo (#ff9a3c), sky-blue collar (#7ecbe6), tiny coral-pink heart accent (#ff8a8a). Overall feeling: warm, tender, hopeful, a little sad.
+
+Style: clean digital graphic design / flat poster, soft-printed feel, NOT a photograph of a paper, NOT taped to anything, NOT on a wall, NO background environment whatsoever — just the poster filling the entire frame. No watermark, no logo, no extra captions beyond what is specified above.
+
+Aspect ratio: 3:4 vertical.</pre>
+</div>
+
+<h3>8.2 横版封面（16:9 · B站 / 视频号）</h3>
+<div class="path">📁 <b>保存路径</b>：<code>promo/poster-wide.jpg</code></div>
+<div class="prompt cat">
+  <button class="copy" type="button">Copy</button>
+  <pre>A clean DIGITAL missing-cat banner (16:9 horizontal) for a Chinese web game titled "寻找哈基米 / Finding Hajimi". This is a flat fully-designed digital banner — NOT a paper flyer photographed on a wall. The image IS the banner itself, edge to edge.
+
+Mood: warm, cute, slightly worried, completely safe-for-all-ages. NO horror, glitch, surveillance, red glow, hypnosis, or L2 / catnip / cult symbols of any kind.
+
+Layout (left half is information, right half is the photo of the cat):
+- LEFT HALF: on a clean cream / warm-beige background (#fdf6e8), top-aligned large friendly hand-written Chinese characters "寻找哈基米" in warm dark-brown ink. Below it a softer brown subtitle "走失三天了 · 见到请联系我". Then 2-3 short hand-written lines: "成年公橘 · 戴蓝色项圈 · 左耳有月牙缺口" / "亲人 · 爱翻肚皮求摸". At the bottom: "联系电话：138 ****  ****" in friendly handwriting. A few tiny doodled paw prints and one small fish-bone doodle scattered as decoration.
+- RIGHT HALF: a polaroid-style photo frame with rounded corners and a thin warm-brown border. INSIDE the polaroid is a REAL PHOTOGRAPH of Hajimi (NOT illustration, NOT drawing, NOT stylized) — a candid iPhone-style snapshot in soft window light. POSE: SITTING UPRIGHT on his haunches — back legs folded under, front legs STRAIGHT and EXTENDED DOWN supporting his upper body, chest lifted, head held up high. Tall proud upright "招财猫" sitting posture — NOT lying down, NOT loaf, NOT crouching, NOT belly-on-ground. Still chubby (round belly slightly tucked between front legs, double chin visible) but clearly sitting tall. Head slightly tilted in curiosity.
+
+EYES — THE MOST IMPORTANT PART: BIG ROUND AMBER eyes with FULLY ROUND, WIDE, MAXIMALLY DILATED, EXTRA-LARGE BLACK CIRCULAR PUPILS that take up at least 70% of the iris area — like a curious kitten in dim light. Perfect black circles (not ovals, not slits, not narrow, not vertical), enormous, glossy, with one tiny crisp white window catchlight at the top of each pupil. The amber iris reduced to a thin ring around the huge pupil. ⛔ HARD FAIL: any slit / vertical / narrow / almond / daylight-constricted pupil → re-roll immediately.
+
+Mouth in a tiny content smile with one small canine tooth peeking out (招财猫弧度). Treat the inner photo as a real photo physically pasted into a graphic-design banner: 100% photorealistic, real fur, real catchlights, real depth of field — strictly follow the character sheet above. The surrounding banner is flat graphic design; the cat photo inside the polaroid is a real photo.
+
+Color palette: cream / warm beige background, warm dark-brown text (#5a3a1f), soft orange cat (#ff9a3c), sky-blue collar (#7ecbe6), tiny coral-pink heart accent (#ff8a8a).
+
+Style: clean digital graphic design / flat poster, soft-printed feel, NOT a photograph of a paper, NOT taped to anything, NOT on a wall, NO background environment — the banner fills the entire frame. No watermark, no logo, no extra captions beyond what is specified.
+
+Aspect ratio: 16:9 horizontal.</pre>
+</div>
 
 <hr>
 

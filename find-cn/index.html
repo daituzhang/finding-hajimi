@@ -23,17 +23,18 @@
     <main id="app" class="container"></main>
 
     <aside class="side-notes" id="sideNotes">
-      <div class="note-card" data-key="hint-hjm">
+      <div class="note-card">
         <div class="note-pin">📌</div>
         <div class="note-title">小贴士</div>
         <div class="note-body">
-          • 不知道从哪开始？可以先搜「<b>哈基米</b>」试试。<br />
+          • <span data-key="hint-hjm">不知道从哪开始？可以先搜「<b>哈基米</b>」试试。<br /></span>
           • 每个页面右下角都有 <code>XX/总页数</code> 序号，<b>数字越大越接近真相</b>。<br />
           • <code>extra-XX</code> 是支线页面，<b>不看不影响主线进度</b>（但可能被搜到）。<br />
           • 页面右上角的「<b>?</b>」是卡关提示。如果你能自己推进，请尽量不要看，它只是兜底用的。<br />
           • 提示一般会按解谜的先后顺序一条一条解锁，请尽量看完一条、自己尝试一下，再点「下一条 ›」。直接翻到最后会失去解谜乐趣 :)<br />
           • 第 <b>06</b> 页的微信群聊里有个<b>单一关键词搜索框</b>，只认一个关键词。<span class="tip-l2" style="display:none;"><br />• 第 <b>34</b> 页的员工 portal 也有一个<b>单一关键词搜索框</b>。</span><br />
-          • 全部线索都<b>写在页面上</b>——不需要 F12、不需要看源代码，正常阅读 + 思考就能解开。
+          • 全部线索都<b>写在页面上</b>——不需要 F12、不需要看源代码，正常阅读 + 思考就能解开。<br />
+          • 推荐用<b>电脑浏览器</b>玩，多窗口 / 多标签切换对记线索更友好，手机端也能玩但体验要差一些。
         </div>
       </div>
 
@@ -62,18 +63,24 @@
     mountSearch({ config, rootSelector: '#app' });
     mountFooter({ tool: true });
 
-    // 哈基米已搜过 → 隐藏第一条小贴士
-    try {
-      const hist = JSON.parse(localStorage.getItem('arg.search_history.find.cn') || '[]');
-      if (hist.some(h => /哈基米/.test(h))) {
-        const c = document.querySelector('[data-key="hint-hjm"]');
-        if (c) c.remove();
-      }
-      // 玩家已触发过 L2（搜过「近况」/「2077」/「网盘」）→ 显示 31 页提示
-      if (hist.some(h => /近况|2077|网盘|一念归一/.test(h))) {
-        document.querySelectorAll('.tip-l2').forEach(el => el.style.display = '');
-      }
-    } catch {}
+    function refreshTips() {
+      try {
+        const hist = JSON.parse(localStorage.getItem('arg.search_history.find.cn') || '[]');
+        if (hist.some(h => /哈基米/.test(h))) {
+          const c = document.querySelector('[data-key="hint-hjm"]');
+          if (c) c.remove();
+        }
+        // 玩家已触发过 L2（搜过「近况」/「2077」/「网盘」/「一念归一」）→ 显示 34 页提示
+        if (hist.some(h => /近况|2077|网盘|一念归一/.test(h))) {
+          document.querySelectorAll('.tip-l2').forEach(el => el.style.display = '');
+        }
+      } catch {}
+    }
+    refreshTips();
+    // 任何点击 / 回车之后都重检查（搜索表单 submit、最近搜索 chip 点击、分页点击都覆盖）
+    document.addEventListener('click', () => setTimeout(refreshTips, 80), true);
+    document.addEventListener('keyup', e => { if (e.key === 'Enter') setTimeout(refreshTips, 80); }, true);
+    window.addEventListener('storage', refreshTips);
 
     // 玩家笔记本 · localStorage
     const nb = document.getElementById('playerNotebook');

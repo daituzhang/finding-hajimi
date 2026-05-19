@@ -473,5 +473,5 @@ export function mountSearch({ config, rootSelector }) {
   root.append(form, historyBox, resultsBox);
 
   renderHistory(engineName, historyBox, pickFromHistory);
-  if (initialQuery) runSearch(initialQuery, { fromHistory: true });
+  if (initialQuery) runSearch(initialQuery);
 }

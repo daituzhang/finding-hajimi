@@ -62,10 +62,95 @@
       animation: blink 1s steps(2) infinite;
     }
     @keyframes blink { 50% { opacity: 0; } }
+
+    /* —— B 动画增强 —— */
+    .ribbon { animation: ribbonIn 1.4s ease-out both; }
+    .text-area {
+      animation: padIn 0.9s ease-out 0.3s both;
+      transition: box-shadow .8s, background .8s, color .8s;
+    }
+    .send-row { animation: padIn 0.9s ease-out 0.6s both; }
+    @keyframes ribbonIn {
+      0% { letter-spacing: 30px; opacity: 0; }
+      100% { letter-spacing: 8px; opacity: 1; }
+    }
+    @keyframes padIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* “被接管”状态：输入框转冷色、不断发出同步脚光 */
+    .text-area.locked {
+      background: #eef2ff;
+      box-shadow:
+        0 0 0 1px #c7d2fe inset,
+        0 0 40px -10px rgba(30,58,138,0.35);
+      animation: lockedPulse 2.2s ease-in-out infinite;
+    }
+    @keyframes lockedPulse {
+      0%, 100% { box-shadow: 0 0 0 1px #c7d2fe inset, 0 0 24px -10px rgba(30,58,138,0.25); }
+      50% { box-shadow: 0 0 0 1px #818cf8 inset, 0 0 60px -8px rgba(30,58,138,0.55); }
+    }
+
+    /* 身份证 / 邀请卡式的“隐藏水印”：一念归一 / 万心同声。
+       初始不可见，被 .revealed 启动后渐显 */
+    .watermark {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image: repeating-linear-gradient(
+        -28deg,
+        transparent 0, transparent 90px,
+        rgba(30,58,138,0.045) 90px, rgba(30,58,138,0.045) 220px
+      );
+      opacity: 0;
+      transition: opacity 2s;
+    }
+    .watermark.revealed { opacity: 1; }
+    .watermark::before {
+      content: '一念归一 · 万心同声　　一念归一 · 万心同声　　一念归一 · 万心同声　　一念归一 · 万心同声　　一念归一 · 万心同声　　一念归一 · 万心同声';
+      position: absolute; inset: 0;
+      color: rgba(30,58,138,0.05); font-size: 22px; letter-spacing: 6px;
+      line-height: 2.4; word-break: break-all;
+      transform: rotate(-12deg); transform-origin: center;
+    }
+
+    /* 计数器“合鸣人数”跳数动画 */
+    .counter {
+      position: fixed; left: 0; right: 0; bottom: 22px; text-align: center;
+      font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: 2px;
+      color: #94a3b8; z-index: 2; opacity: 0; transition: opacity 1s;
+    }
+    .counter.show { opacity: 1; }
+    .counter b { color: #1e3a8a; font-size: 13px; font-weight: 700; }
+
+    /* 调个心跳样的同步脉冲，从中心向外扩散 */
+    .pulse-ring {
+      position: fixed; left: 50%; top: 50%;
+      width: 100px; height: 100px; margin: -50px 0 0 -50px;
+      border-radius: 50%;
+      border: 2px solid rgba(30,58,138,0.35);
+      pointer-events: none; z-index: 1;
+      opacity: 0;
+    }
+    .pulse-ring.go { animation: ring 2.8s ease-out infinite; }
+    .pulse-ring.go.r2 { animation-delay: 0.9s; }
+    .pulse-ring.go.r3 { animation-delay: 1.8s; }
+    @keyframes ring {
+      0% { transform: scale(0.4); opacity: 0.6; border-width: 3px; }
+      100% { transform: scale(8); opacity: 0; border-width: 1px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
   </style>
 </head>
 <body>
   <div class="sigil-bg"></div>
+  <div class="watermark" id="watermark"></div>
+  <div class="pulse-ring" id="ring1"></div>
+  <div class="pulse-ring r2" id="ring2"></div>
+  <div class="pulse-ring r3" id="ring3"></div>
+  <div class="counter" id="counter"><b>0</b> 人正在说出同一句话</div>
   <div class="pad">
     <div class="ribbon">━━ ENDING · B ━━</div>
 
@@ -77,6 +162,9 @@
     </div>
 
     <div class="status" id="status"></div>
+    <div style="margin-top:40px;text-align:center;">
+      <a href="../about-author/" style="color:#94a3b8;font-size:11px;letter-spacing:2px;text-decoration:none;border-bottom:1px dashed #cbd5e1;padding-bottom:2px;">作者有话说 ›</a>
+    </div>
   </div>
 
   <script type="module">
@@ -115,6 +203,21 @@
     sendBtn.addEventListener('click', () => {
       if (!sendBtn.classList.contains('active')) return;
       sendBtn.disabled = true;
+      // 上锁 · 水印 · 脉冲 · 计数器
+      ta.classList.add('locked');
+      document.getElementById('watermark').classList.add('revealed');
+      ['ring1','ring2','ring3'].forEach(id => document.getElementById(id).classList.add('go'));
+      const counterEl = document.getElementById('counter');
+      const counterNum = counterEl.querySelector('b');
+      counterEl.classList.add('show');
+      let cn = 0;
+      const target = 218400000;
+      const counterTick = setInterval(() => {
+        cn = Math.min(target, cn + Math.floor(target / 80 + Math.random() * (target / 60)));
+        counterNum.textContent = cn.toLocaleString('en-US');
+        if (cn >= target) clearInterval(counterTick);
+      }, 80);
+
       const lines = [
         '✓ 你的心声已汇入合唱',
         '✓ 北京 · 4,231,008 人 同时说出了同一句话',

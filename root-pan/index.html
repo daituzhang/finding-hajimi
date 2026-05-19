@@ -216,7 +216,6 @@
     document.getElementById('brokenFile').addEventListener('click', e => {
       e.preventDefault();
       toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 4500);
     });
     mountTips({ tips: ["可以先找找有什么可以打开的文件", "损坏文件我们可以搜搜修复工具"] });
 

@@ -25,10 +25,67 @@
       <div class="badge">长图文</div>
     </div>
 
+    <a class="cta-top" href="../find-cn/?q=%E5%93%88%E5%9F%BA%E7%B1%B3%20%E6%9C%9D%E9%98%B3%20%E8%BF%91%E5%86%B5" target="_blank" rel="noreferrer">
+      <span class="cta-top-icon">📍</span>
+      <span class="cta-top-text">想看哈基米回家后的<strong>最新近况</strong>？<br/>去 find.cn 搜「<strong>哈基米 朝阳 近况</strong>」→</span>
+    </a>
+
     <div class="photo-card">
       <img class="photo" src="../lost-pet-mass/assets/reunion-hjm.png" alt="哈基米回家" style="width:100%;display:block;border-radius:6px;" />
-      <div class="caption">哈基米回家后的第一顿椰子鸡 · 5 分钟干完</div>
     </div>
+
+    <style>
+      .cta-top {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 8px 0 14px;
+        padding: 12px 14px;
+        background: linear-gradient(135deg, #fb923c 0%, #f97316 60%, #ea580c 100%);
+        color: #fff !important;
+        text-decoration: none;
+        border-radius: 12px;
+        box-shadow: 0 4px 16px rgba(249, 115, 22, 0.4);
+        animation: ctaPulse 1.6s ease-in-out infinite;
+        transform-origin: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .cta-top::after {
+        content: '';
+        position: absolute;
+        top: 0; left: -60%;
+        width: 50%; height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+        animation: ctaShine 2.4s ease-in-out infinite;
+      }
+      .cta-top-icon {
+        font-size: 22px;
+        flex-shrink: 0;
+      }
+      .cta-top-text {
+        font-size: 13px;
+        line-height: 1.5;
+        color: #fff;
+      }
+      .cta-top-text strong {
+        color: #fff7ed;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+      @keyframes ctaPulse {
+        0%, 100% { transform: scale(1); box-shadow: 0 4px 16px rgba(249, 115, 22, 0.4); }
+        50% { transform: scale(1.035); box-shadow: 0 6px 24px rgba(249, 115, 22, 0.6); }
+      }
+      @keyframes ctaShine {
+        0% { left: -60%; }
+        60%, 100% { left: 120%; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .cta-top { animation: none; }
+        .cta-top::after { animation: none; display: none; }
+      }
+    </style>
 
     <div class="letter">
       <h2>写在最后</h2>

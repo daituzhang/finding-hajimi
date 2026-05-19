@@ -110,7 +110,7 @@ body {
   display: flex; gap: 8px; align-items: center; justify-content: center;
   margin-bottom: 8px; color: #666;
 }
-.page-foot .brand-strip img { height: 22px; vertical-align: middle; }
+.page-foot .brand-strip img { height: 36px; vertical-align: middle; }
 .page-foot .brand-strip strong { color: #1e3a8a; }
 
 /* —— 双栏布局 + 右侧便利贴 —— */

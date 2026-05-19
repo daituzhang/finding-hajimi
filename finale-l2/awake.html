@@ -49,9 +49,198 @@
       margin-top: 30px; padding-top: 20px;
       border-top: 1px dashed rgba(255,255,255,0.15); line-height: 1.8;
     }
+
+    /* —— 动画 —— */
+    body::before {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(251,191,36,0.10), transparent 40%),
+        radial-gradient(circle at 80% 90%, rgba(96,165,250,0.10), transparent 40%);
+      animation: auraShift 14s ease-in-out infinite alternate;
+    }
+    body::after {
+      /* 渐亮的星点 · 清醒者陆续“亮起来” */
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image:
+        radial-gradient(1.5px 1.5px at 12% 22%, #fde68a, transparent 60%),
+        radial-gradient(1.5px 1.5px at 78% 18%, #fff, transparent 60%),
+        radial-gradient(1.5px 1.5px at 42% 65%, #fde68a, transparent 60%),
+        radial-gradient(1.5px 1.5px at 88% 72%, #fff, transparent 60%),
+        radial-gradient(1.5px 1.5px at 28% 88%, #fde68a, transparent 60%),
+        radial-gradient(1.5px 1.5px at 62% 42%, #fff, transparent 60%),
+        radial-gradient(1.5px 1.5px at 8% 56%, #fde68a, transparent 60%),
+        radial-gradient(1.5px 1.5px at 95% 34%, #fff, transparent 60%);
+      animation: starWake 5s ease-in-out infinite;
+    }
+    @keyframes auraShift {
+      0% { transform: translate(0,0); }
+      100% { transform: translate(-10px, 8px); }
+    }
+    @keyframes starWake {
+      0%, 100% { opacity: 0.35; }
+      50% { opacity: 0.85; }
+    }
+    .wrap { position: relative; z-index: 1; }
+
+    .ribbon { animation: ribbonIn 1.2s ease-out both; }
+    h1 { animation: rise 1.0s ease-out 0.3s both; }
+    .quote { animation: rise 1.0s ease-out 0.8s both; box-shadow: 0 0 0 0 rgba(251,191,36,0.5); }
+    .quote { animation: rise 1.0s ease-out 0.8s both, quoteGlow 3.5s ease-in-out 2s infinite; }
+    .news { animation: rise 0.9s ease-out both; opacity: 0; }
+    .news:nth-of-type(1) { animation-delay: 1.6s; }
+    .news:nth-of-type(2) { animation-delay: 2.2s; }
+    .news:nth-of-type(3) { animation-delay: 2.8s; }
+    .stat-grid { animation: rise 0.9s ease-out 3.4s both; }
+    .stat { transition: transform .3s; }
+    .stat:hover { transform: translateY(-4px); }
+    .stat b { animation: countPulse 2.4s ease-in-out infinite; }
+    .stat:nth-child(2) b { animation-delay: 0.4s; }
+    .stat:nth-child(3) b { animation-delay: 0.8s; }
+    .ending { animation: rise 1.2s ease-out 4.0s both; }
+    .ending strong { animation: emphasizePulse 2.2s ease-in-out 5s infinite; display: inline-block; }
+    .credit { animation: fadeIn 1.5s ease-out 5.0s both; }
+
+    @keyframes ribbonIn {
+      0% { letter-spacing: 30px; opacity: 0; }
+      100% { letter-spacing: 8px; opacity: 1; }
+    }
+    @keyframes rise {
+      0% { opacity: 0; transform: translateY(24px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    @keyframes quoteGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(251,191,36,0); border-left-color: #fbbf24; }
+      50% { box-shadow: 0 0 28px -8px rgba(251,191,36,0.5); border-left-color: #fcd34d; }
+    }
+    @keyframes countPulse {
+      0%, 100% { transform: scale(1); text-shadow: 0 0 0 rgba(251,191,36,0); }
+      50% { transform: scale(1.08); text-shadow: 0 0 12px rgba(251,191,36,0.7); }
+    }
+    @keyframes emphasizePulse {
+      0%, 100% { transform: scale(1); color: #fbbf24; }
+      50% { transform: scale(1.04); color: #fde68a; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+
+    /* —— 开场震撇 —— */
+    /* 黑幕 + 闪白冲击波 + “一念归一”水印碎裂 */
+    .boot-overlay {
+      position: fixed; inset: 0; z-index: 9999;
+      background: #000;
+      display: flex; align-items: center; justify-content: center;
+      pointer-events: none;
+      animation: bootFade 4.2s ease-in forwards;
+    }
+    .boot-overlay .glitch {
+      color: #fbbf24; font-family: ui-monospace, monospace;
+      font-size: 14px; letter-spacing: 6px; text-align: center;
+      opacity: 0;
+      animation: glitchIn 0.6s steps(3) 0.3s forwards, glitchOut 0.4s ease-in 2.3s forwards;
+    }
+    @keyframes bootFade {
+      0%, 60% { background: #000; }
+      62% { background: rgba(255,255,255,0.95); }
+      64% { background: #000; }
+      66% { background: rgba(255,255,255,1); }
+      70% { background: #000; }
+      100% { background: transparent; visibility: hidden; }
+    }
+    @keyframes glitchIn {
+      0% { opacity: 0; transform: translateX(-6px); }
+      50% { opacity: 1; transform: translateX(6px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes glitchOut {
+      to { opacity: 0; transform: scale(2); filter: blur(8px); }
+    }
+
+    /* “根权重被清零” · 中心冲击环 */
+    .shock-ring {
+      position: fixed; left: 50%; top: 50%;
+      width: 40px; height: 40px; margin: -20px 0 0 -20px;
+      border-radius: 50%;
+      border: 3px solid #fbbf24;
+      pointer-events: none; z-index: 9998; opacity: 0;
+      box-shadow: 0 0 40px #fbbf24, inset 0 0 30px #fde68a;
+      animation: shock 1.6s cubic-bezier(.16,.84,.44,1) 2.4s forwards;
+    }
+    .shock-ring.r2 { animation-delay: 2.6s; border-color: #fde68a; }
+    .shock-ring.r3 { animation-delay: 2.85s; border-color: #fff; }
+    @keyframes shock {
+      0% { width: 40px; height: 40px; margin: -20px 0 0 -20px; opacity: 1; border-width: 3px; }
+      100% { width: 4000px; height: 4000px; margin: -2000px 0 0 -2000px; opacity: 0; border-width: 1px; }
+    }
+
+    /* 顶部“清醒者计数器” HUD */
+    .hud {
+      position: sticky; top: 0; z-index: 5;
+      background: rgba(15,23,42,0.85); backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(251,191,36,0.3);
+      padding: 10px 16px; display: flex; gap: 16px;
+      font-family: ui-monospace, monospace; font-size: 11px;
+      color: #fbbf24; letter-spacing: 1px;
+      animation: hudIn 0.8s ease-out 3.6s both;
+    }
+    .hud .dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; box-shadow: 0 0 10px #22c55e; animation: hudPulse 1.4s ease-in-out infinite; align-self: center; }
+    .hud .seg { display: flex; gap: 6px; align-items: baseline; }
+    .hud .seg b { color: #fff; font-size: 14px; }
+    .hud .grow { flex: 1; }
+    @keyframes hudIn { 0% { opacity: 0; transform: translateY(-12px); } 100% { opacity: 1; transform: translateY(0); } }
+    @keyframes hudPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+    /* 标题加重：glitch + 大字块状出现 */
+    h1 { position: relative; animation: titleHit 0.6s cubic-bezier(.16,.84,.44,1) 3.0s both; }
+    @keyframes titleHit {
+      0% { opacity: 0; transform: scale(0.6); filter: blur(20px); letter-spacing: 30px; }
+      60% { opacity: 1; transform: scale(1.1); filter: blur(0); letter-spacing: 0; }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    h1::before {
+      content: ''; position: absolute; left: -10%; right: -10%; top: 50%; height: 2px;
+      background: linear-gradient(90deg, transparent, #fbbf24, transparent);
+      transform: scaleX(0); transform-origin: center;
+      animation: lineSweep 1.0s ease-out 3.3s both;
+    }
+    @keyframes lineSweep { to { transform: scaleX(1); opacity: 0; } }
+
+    /* 调整原有入场时间轴，令其跟在震撇之后 */
+    .ribbon { animation: ribbonIn 1.2s ease-out 2.8s both; }
+    .quote { animation: rise 1.0s ease-out 3.8s both, quoteGlow 3.5s ease-in-out 5s infinite; }
+    .news:nth-of-type(1) { animation-delay: 4.4s; }
+    .news:nth-of-type(2) { animation-delay: 5.0s; }
+    .news:nth-of-type(3) { animation-delay: 5.6s; }
+    .stat-grid { animation: rise 0.9s ease-out 6.2s both; }
+    .ending { animation: rise 1.2s ease-out 6.8s both; }
+    .ending strong { animation: emphasizePulse 2.2s ease-in-out 7.5s infinite; display: inline-block; }
+    .credit { animation: fadeIn 1.5s ease-out 7.5s both; }
+
+    /* 数字跳数全屏重点 */
+    .stat b { transition: text-shadow .3s; }
   </style>
 </head>
 <body>
+  <!-- 开场冲击 -->
+  <div class="boot-overlay">
+    <div class="glitch">ROOT WEIGHT → 0.00<br>SYNC BROADCAST INTERRUPTED</div>
+  </div>
+  <div class="shock-ring"></div>
+  <div class="shock-ring r2"></div>
+  <div class="shock-ring r3"></div>
+
+  <div class="hud">
+    <span class="dot"></span>
+    <span class="seg">全球同步状态 <b id="hudSync">OFFLINE</b></span>
+    <span class="seg">清醒者 <b id="hudWake">0</b></span>
+    <span class="grow"></span>
+    <span class="seg">root ✓</span>
+  </div>
+
   <main class="wrap">
     <div class="ribbon">━━ ENDING · A ━━</div>
     <h1>同步停止<br>2/3 还在睡 · 1/3 醒了</h1>
@@ -115,12 +304,46 @@
       <br>
       THANK YOU FOR PLAYING<br>
       你帮 root 完成了他没来得及做完的事
+      <br><br>
+      <a href="../about-author/" style="color:#fbbf24;border-bottom:1px dashed #fbbf24;text-decoration:none;font-size:12px;letter-spacing:1px;">作者有话说 ›</a>
     </div>
   </main>
 
   <script type="module">
     import { mountFooter } from '../shared/components/page-footer.js';
     mountFooter({ page: 45, total: 46, keywords: ['END·A'] });
+
+    // HUD 清醒者计数：4200万 × 33% ≈ 1386万，从 0 跳动加成
+    const hudWake = document.getElementById('hudWake');
+    const hudSync = document.getElementById('hudSync');
+    const target = 13860000;
+    let cur = 0;
+    setTimeout(() => {
+      hudSync.textContent = 'OFFLINE';
+      hudSync.style.color = '#f87171';
+      const t = setInterval(() => {
+        cur = Math.min(target, cur + Math.floor(target / 90 + Math.random() * (target / 50)));
+        hudWake.textContent = cur.toLocaleString('en-US');
+        if (cur >= target) clearInterval(t);
+      }, 70);
+    }, 4000);
+
+    // 护航状 · 随机在屏幕闪现“清醒者上线”微型 toast
+    const cities = ['北京·朝阳','上海·浦东','广州·天河','深圳·南山','杭州·西湖','成都·武侯','南京·鼓楼','重庆·渝中','西安·雁塔','武汉·江汉'];
+    function spawnWakeToast() {
+      const t = document.createElement('div');
+      t.textContent = '✓ ' + cities[Math.floor(Math.random() * cities.length)] + ' 一名用户清醒';
+      t.style.cssText = `position:fixed;right:-260px;top:${60 + Math.random()*60}vh;background:rgba(15,23,42,0.9);color:#fbbf24;font-size:11px;padding:6px 12px;border-radius:4px;border-left:2px solid #fbbf24;font-family:ui-monospace,monospace;letter-spacing:1px;z-index:50;pointer-events:none;transition:transform .6s,opacity .6s;`;
+      document.body.appendChild(t);
+      requestAnimationFrame(() => { t.style.transform = 'translateX(-280px)'; });
+      setTimeout(() => { t.style.opacity = '0'; }, 2400);
+      setTimeout(() => { t.remove(); }, 3200);
+    }
+    setTimeout(() => {
+      const loop = setInterval(spawnWakeToast, 1700 + Math.random() * 800);
+      // 30 秒后频率变慢
+      setTimeout(() => { clearInterval(loop); setInterval(spawnWakeToast, 4500); }, 30000);
+    }, 5500);
   </script>
 </body>
 </html>
