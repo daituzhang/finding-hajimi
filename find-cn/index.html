@@ -66,10 +66,7 @@
     function refreshTips() {
       try {
         const hist = JSON.parse(localStorage.getItem('arg.search_history.find.cn') || '[]');
-        if (hist.some(h => /哈基米/.test(h))) {
-          const c = document.querySelector('[data-key="hint-hjm"]');
-          if (c) c.remove();
-        }
+        // 哈基米 tip 永远保留（防 localStorage 丢失 / 玩家刷新后迷路兑底）
         // 玩家已触发过 L2（搜过「近况」/「2077」/「网盘」/「一念归一」）→ 显示 34 页提示
         if (hist.some(h => /近况|2077|网盘|一念归一/.test(h))) {
           document.querySelectorAll('.tip-l2').forEach(el => el.style.display = '');
