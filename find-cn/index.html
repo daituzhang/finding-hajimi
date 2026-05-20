@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>find.cn — 你想找的，都在这里</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="./style.css" />
-  <link rel="stylesheet" href="../shared/styles/shared.css" />
+  <link rel="stylesheet" href="./style.css?v=2" />
+  <link rel="stylesheet" href="../shared/styles/shared.css?v=2" />
 </head>
 <body>
   <header class="topbar">
@@ -23,9 +23,11 @@
     <main id="app" class="container"></main>
 
     <aside class="side-notes" id="sideNotes">
-      <div class="note-card">
-        <div class="note-pin">📌</div>
-        <div class="note-title">小贴士</div>
+      <details class="note-card mobile-collapsible">
+        <summary>
+          <div class="note-pin">📌</div>
+          <div class="note-title">小贴士 <span class="caret">▾</span></div>
+        </summary>
         <div class="note-body">
           <span class="tip-l2" style="display:none;color:#e84a4a;font-weight:600;">🎉 恭喜你开启了游戏第二阶段！<br /><br /></span>
           • <span data-key="hint-hjm">不知道从哪开始？可以先搜「<b>哈基米</b>」试试。<br /></span>
@@ -39,7 +41,7 @@
           • 如果某个链接<b>点击没有反应</b>，不是 bug，是<b>该链接与游戏进程无关</b>（场景装饰用）。<br />
           • 推荐用<b>电脑浏览器</b>玩，多窗口 / 多标签切换对记线索更友好，手机端也能玩但体验要差一些。
         </div>
-      </div>
+      </details>
 
       <div class="notebook-card">
         <div class="notebook-head">
@@ -65,6 +67,10 @@
 
     mountSearch({ config, rootSelector: '#app' });
     mountFooter({ tool: true });
+
+    // 桌面端默认展开 tips；手机端默认折叠
+    const tipsEl = document.querySelector('details.note-card');
+    if (tipsEl) tipsEl.open = window.matchMedia('(min-width: 641px)').matches;
 
     function refreshTips() {
       try {
