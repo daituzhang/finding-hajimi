@@ -194,6 +194,9 @@
 
     <section>
       <h2>关于这个游戏</h2>
+      <p id="clearCount" style="text-align:center;font-size:15px;color:#7c2d12;background:#fff7ed;border:1px dashed #fcd34d;border-radius:8px;padding:12px 14px;margin:0 0 14px;display:none;">
+        你是第 <strong id="clearNum" style="font-size:22px;color:#c2410c;letter-spacing:1px;">—</strong> 个通关本游戏的人 🍊
+      </p>
       <p>
         《寻找哈基米》是我做的第一款中文 ARG。
       </p>
@@ -259,6 +262,24 @@
   <script type="module">
     import { mountFooter } from '../shared/components/page-footer.js';
     mountFooter({ tool: true });
+
+    // 通关计数 · 每个浏览器只 +1 一次（localStorage 去重）
+    (async () => {
+      try {
+        const KEY = 'arg.clear_counted';
+        const already = localStorage.getItem(KEY);
+        const endpoint = already
+          ? 'https://api.counterapi.dev/v1/finding-hajimi/clear/'
+          : 'https://api.counterapi.dev/v1/finding-hajimi/clear/up';
+        const r = await fetch(endpoint, { cache: 'no-store' });
+        const j = await r.json();
+        if (j && typeof j.count === 'number') {
+          document.getElementById('clearNum').textContent = j.count.toLocaleString();
+          document.getElementById('clearCount').style.display = 'block';
+          if (!already) localStorage.setItem(KEY, '1');
+        }
+      } catch {}
+    })();
   </script>
 </body>
 </html>
