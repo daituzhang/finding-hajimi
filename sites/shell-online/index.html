@@ -76,7 +76,7 @@
   <main class="wrap">
     <h1>免费在线 Linux 终端 <small>· 浏览器内运行 · 无需注册</small></h1>
     <div class="blurb">
-      安全 sandbox · 内置 connect / cat / ls / fix / open / curl 等常用命令 · 支持远程修复破损二进制文件。
+      安全 sandbox · 内置 connect / cat / ls / fix / open 等常用命令 · 支持远程修复破损二进制文件。
     </div>
 
     <div class="examples">
@@ -236,7 +236,6 @@
         write('  cat <file>             print text file', 'info');
         write('  open <file>            preview file in browser modal', 'info');
         write('  fix <file>             repair a broken binary', 'info');
-        write('  curl <method> <url>    send http request (post/get)', 'info');
         write('  whoami                 print current user', 'info');
         write('  pwd                    print working directory', 'info');
         write('  clear                  clear screen', 'info');
@@ -332,31 +331,6 @@
             write(`     try: cat ${f}`, 'info');
           }
         }, 80);
-      },
-      curl(args) {
-        if (!connected) { write('[err] not connected', 'err'); return; }
-        const method = (args[0] || '').toLowerCase();
-        const url = args[1];
-        if (!url) { write('usage: curl <method> <url>', 'err'); return; }
-        if (method === 'post') {
-          // L2 第二阶段才走通；现阶段先给中性提示
-          if (url.includes(ROOT_OWN_IP)) {
-            write(`[err] target ip mismatch · ${ROOT_OWN_IP} is root's lab`, 'err');
-            return;
-          }
-          if (!url.includes('/lumina/sync')) {
-            write('< HTTP/1.1 200 OK', 'info');
-            write('{ "status": "ok", "message": "synced" }');
-            return;
-          }
-          // 等 L2 阶段 2 跳到 finale
-          write('< HTTP/1.1 302 Found', 'info');
-          write('location: /sites/finale-l2/choose.html', 'info');
-          setTimeout(() => { location.href = '/sites/finale-l2/choose.html'; }, 1200);
-        } else {
-          write('< HTTP/1.1 200 OK');
-          write('< content-type: text/plain');
-        }
       },
       exit() {
         connected = false; connectingTo = null; authUser = null; cwd = '/';
