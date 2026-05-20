@@ -260,8 +260,6 @@
         if (!connected) { write('[err] not connected. try `connect 192.0.2.77`', 'err'); return; }
         const list = FS[cwd] || [];
         write(list.join('   '));
-        if (cwd === '/' && fixed.has('invite.pdf')) write('invite-code.txt   ', 'yellow');
-        if (cwd === '/investigation' && fixed.has('broken.bin')) write('invite-code.txt   ', 'yellow');
       },
       pwd() { write(cwd); },
       whoami() { write(connected ? authUser : '(not logged in)'); },
@@ -280,13 +278,13 @@
         if (!connected) { write('[err] not connected', 'err'); return; }
         const f = args[0];
         if (!f) { write('usage: cat <file>', 'err'); return; }
-        if (f === 'invite-code.txt' && (fixed.has('broken.bin') || fixed.has('invite.pdf'))) {
+        const meta = FILE_META[f];
+        if (!meta) { write(`[err] no such file: ${f}`, 'err'); return; }
+        if (meta.kind === 'broken' && !fixed.has(f)) { write('[err] file is corrupted. try: fix ' + f, 'err'); return; }
+        if (meta.kind === 'broken' && fixed.has(f)) {
           writeRaw('<span class="ok">AWAKE-7K9X-2026</span>     <span class="info">// 清醒者联盟邀请码</span>');
           return;
         }
-        const meta = FILE_META[f];
-        if (!meta) { write(`[err] no such file: ${f}`, 'err'); return; }
-        if (meta.kind === 'broken') { write('[err] file is corrupted. try: fix ' + f, 'err'); return; }
         if (meta.kind === 'binary' || meta.kind === 'image') {
           write(`[err] cannot cat binary file. try: open ${f}`, 'err'); return;
         }
@@ -299,7 +297,11 @@
         if (!f) { write('usage: open <file>', 'err'); return; }
         const meta = FILE_META[f];
         if (!meta) { write(`[err] no such file: ${f}`, 'err'); return; }
-        if (meta.kind === 'broken') { write('[err] file is corrupted. try: fix ' + f, 'err'); return; }
+        if (meta.kind === 'broken' && !fixed.has(f)) { write('[err] file is corrupted. try: fix ' + f, 'err'); return; }
+        if (meta.kind === 'broken' && fixed.has(f)) {
+          writeRaw('<span class="ok">AWAKE-7K9X-2026</span>     <span class="info">// 清醒者联盟邀请码</span>');
+          return;
+        }
         if (meta.kind === 'locked') { write(meta.preview, 'yellow'); return; }
         write(meta.preview);
       },
@@ -310,6 +312,10 @@
         const meta = FILE_META[f];
         if (!meta || meta.kind !== 'broken') {
           write(`[err] file is not broken or doesn't exist: ${f}`, 'err'); return;
+        }
+        if (fixed.has(f)) {
+          write(`[ok] already recovered: ${f}`, 'ok');
+          write(`     try: cat ${f}`, 'info'); return;
         }
         const bar = document.createElement('div');
         term.appendChild(bar);
@@ -322,8 +328,8 @@
             clearInterval(tick);
             bar.textContent = `[${'='.repeat(total)}] repairing 100%`;
             fixed.add(f);
-            write('[ok] recovered: invite-code.txt', 'ok');
-            write('     try: cat invite-code.txt', 'info');
+            write(`[ok] recovered: ${f}`, 'ok');
+            write(`     try: cat ${f}`, 'info');
           }
         }, 80);
       },

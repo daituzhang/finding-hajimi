@@ -265,8 +265,6 @@
         if (!connected) { write('[err] not connected. try `connect <ip>` first', 'err'); return; }
         const list = FS[cwd] || [];
         write(list.join('   '));
-        if (cwd === '/' && fixed.has('invite.pdf')) write('invite-code.txt   ', 'yellow');
-        if (cwd === '/investigation' && fixed.has('broken.bin')) write('invite-code.txt   ', 'yellow');
       },
       pwd() { write(cwd); },
       whoami() { write(connected ? authUser : '(not logged in)'); },
@@ -285,13 +283,13 @@
         if (!connected) { write('[err] not connected', 'err'); return; }
         const f = args[0];
         if (!f) { write('usage: cat <file>', 'err'); return; }
-        if (f === 'invite-code.txt' && (fixed.has('broken.bin') || fixed.has('invite.pdf'))) {
+        const meta = FILE_META[f];
+        if (!meta) { write(`[err] no such file: ${f}`, 'err'); return; }
+        if (meta.kind === 'broken' && !fixed.has(f)) { write('[err] file is corrupted. try: fix ' + f, 'err'); return; }
+        if (meta.kind === 'broken' && fixed.has(f)) {
           writeRaw('<span class="ok">AWAKE-7K9X-2026</span>     <span class="info">// 清醒者联盟邀请码</span>');
           return;
         }
-        const meta = FILE_META[f];
-        if (!meta) { write(`[err] no such file: ${f}`, 'err'); return; }
-        if (meta.kind === 'broken') { write('[err] file is corrupted. try: fix ' + f, 'err'); return; }
         if (meta.kind === 'binary' || meta.kind === 'image') {
           write(`[err] cannot cat binary file. try: open ${f}`, 'err'); return;
         }
@@ -304,7 +302,11 @@
         if (!f) { write('usage: open <file>', 'err'); return; }
         const meta = FILE_META[f];
         if (!meta) { write(`[err] no such file: ${f}`, 'err'); return; }
-        if (meta.kind === 'broken') { write('[err] file is corrupted. try: fix ' + f, 'err'); return; }
+        if (meta.kind === 'broken' && !fixed.has(f)) { write('[err] file is corrupted. try: fix ' + f, 'err'); return; }
+        if (meta.kind === 'broken' && fixed.has(f)) {
+          writeRaw('<span class="ok">AWAKE-7K9X-2026</span>     <span class="info">// 清醒者联盟邀请码</span>');
+          return;
+        }
         if (meta.kind === 'locked') { write(meta.preview, 'yellow'); return; }
         write(meta.preview);
       },
@@ -315,6 +317,10 @@
         const meta = FILE_META[f];
         if (!meta || meta.kind !== 'broken') {
           write(`[err] file is not broken or doesn't exist: ${f}`, 'err'); return;
+        }
+        if (fixed.has(f)) {
+          write(`[ok] already recovered: ${f}`, 'ok');
+          write(`     try: cat ${f}`, 'info'); return;
         }
         const bar = document.createElement('div');
         term.appendChild(bar);
@@ -327,8 +333,8 @@
             clearInterval(tick);
             bar.textContent = `[${'='.repeat(total)}] repairing 100%`;
             fixed.add(f);
-            write('[ok] recovered: invite-code.txt', 'ok');
-            write('     try: cat invite-code.txt', 'info');
+            write(`[ok] recovered: ${f}`, 'ok');
+            write(`     try: cat ${f}`, 'info');
           }
         }, 80);
       },
@@ -369,6 +375,7 @@
       "好像在 root 网盘的 URL 里看到过 IP",
       "用户名可能就是 root，有时候不用想得很复杂",
       "password hint 提示的格式是「页码-楼层」，去对应页面的对应楼层数一下",
+      "03=哈基米生日帖 · 04=朝阳区流浪猫互助群 · 05=哈基米身份证 · extra-01=遛猫日常",
       "@root 在那几条评论里其实都写了一个数字，按提示的顺序拼起来就是密码"
     ] });
 

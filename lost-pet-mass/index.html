@@ -112,7 +112,6 @@
     import { mountTips } from '../shared/components/tips.js';
 
     const CASES = {
-      hjm:       { name: '哈基米', emoji: '🍊', author: '@橘座妈不在家', when: '今天',    color: '#ff9a3c', loc: '北京·朝阳区' },
       nailong:   { name: '奶龙',   emoji: '🥚', author: '@奶龙妈妈呀',   when: '2 天前',   color: '#fde68a', loc: '上海·徐汇区' },
       manbo:     { name: '曼波',   emoji: '🐈', author: '@曼波在家不在家', when: '5 天前',   color: '#a3a3a3', loc: '广州·天河区' },
       mimi:      { name: '咪咪',   emoji: '🐾', author: '@咪咪小馒头',   when: '8 天前',   color: '#fbcfe8', loc: '北京·朝阳区' },
@@ -130,7 +129,7 @@
     document.getElementById('avatar').textContent = c.emoji;
     document.getElementById('author').textContent = c.author;
     document.getElementById('meta').textContent = `${c.when} · ${c.loc} · 家`;
-    document.getElementById('photo').src = (id === 'hjm') ? './assets/reunion-hjm.png' : './assets/reunion-fake.png';
+    document.getElementById('photo').src = './assets/reunion-fake.png';
     document.getElementById('caption').textContent = '';
     document.getElementById('p1').textContent = `三天 · 真的太长了。`;
     document.getElementById('p2').textContent = `每一个小时我都在刷小红书 刷微博 刷互助群 刷监控。`;
@@ -149,12 +148,7 @@
     }
 
 
-    if (id === 'nailong') {
-      document.getElementById('rootComment').textContent = '等等 这猫怎么三只耳朵？？AI 生成图片不过脑子吗😅';
-    } else {
-      const rl = document.getElementById('rootCommentLink');
-      if (rl && rl.parentElement) rl.parentElement.style.display = 'none';
-    }
+    document.getElementById('rootComment').textContent = '等等 这猫怎么三只耳朵？？AI 生成图片不过脑子吗😅';
 
     mountFooter({
       page: 21, total: 47,
