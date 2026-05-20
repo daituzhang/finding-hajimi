@@ -162,7 +162,13 @@ details.note-card > summary {
 details.note-card > summary::-webkit-details-marker { display: none; }
 details.note-card[open] > summary { padding-bottom: 6px; }
 details.note-card > .note-body { padding: 0 14px 14px; }
-details.note-card .caret { display: none; font-size: 12px; transition: transform .2s; }
+details.note-card .caret {
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 14px;
+  color: #b45309;
+  transition: transform .2s;
+}
 details.note-card[open] .caret { transform: rotate(180deg); }
 
 .notebook-card {
@@ -238,8 +244,8 @@ details.note-card[open] .caret { transform: rotate(180deg); }
   }
   .note-body { line-height: 1.55; }
 
-  /* 手机端：tips 默认折叠，显示展开箭头 */
-  details.note-card.mobile-collapsible .caret { display: inline-block; margin-left: 4px; color: #92400e; }
+  /* 手机端：tips 默认展开 ＋ 更醒目的箭头 */
+  details.note-card.mobile-collapsible .caret { color: #b45309; font-size: 15px; }
 
   /* 笔记本：移动端默认折叠，减少占地 */
   .notebook-card { padding: 12px 14px 14px; }

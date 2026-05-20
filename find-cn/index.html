@@ -23,10 +23,10 @@
     <main id="app" class="container"></main>
 
     <aside class="side-notes" id="sideNotes">
-      <details class="note-card mobile-collapsible">
+      <details class="note-card mobile-collapsible" open>
         <summary>
           <div class="note-pin">📌</div>
-          <div class="note-title">小贴士 <span class="caret">▾</span></div>
+          <div class="note-title">小贴士 <span class="caret">▼</span></div>
         </summary>
         <div class="note-body">
           <span class="tip-l2" style="display:none;color:#e84a4a;font-weight:600;">🎉 恭喜你开启了游戏第二阶段！<br /><br /></span>
@@ -67,10 +67,6 @@
 
     mountSearch({ config, rootSelector: '#app' });
     mountFooter({ tool: true });
-
-    // 桌面端默认展开 tips；手机端默认折叠
-    const tipsEl = document.querySelector('details.note-card');
-    if (tipsEl) tipsEl.open = window.matchMedia('(min-width: 641px)').matches;
 
     function refreshTips() {
       try {
