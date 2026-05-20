@@ -45,7 +45,7 @@
 
 ### A. 寻猫海报
 
-📁 **保存**：`sites/finder-page/assets/poster.jpg`（或 `.png`）
+📁 **保存**：`finder-page/assets/poster.jpg`（或 `.png`）
 
 > A flat, scanned-style **lost-cat poster on plain pure-white paper, no background, no bulletin board, no shadow, no environment** — just the single A4 poster shown straight-on, edge-to-edge, fills the whole frame, vertical 3:2. Layout, top to bottom:
 > 1. Bold red Chinese title `寻猫启事` (heavy sans-serif, centered).
@@ -58,9 +58,9 @@
 ### B. 哈基米参考照 ×3
 
 📁 **保存**（3 个文件，各存为下列路径）：
-- `sites/finder-page/assets/cat-1.jpg`
-- `sites/finder-page/assets/cat-2.jpg`
-- `sites/finder-page/assets/cat-3.jpg`
+- `finder-page/assets/cat-1.jpg`
+- `finder-page/assets/cat-2.jpg`
+- `finder-page/assets/cat-3.jpg`
 
 > Three square 1:1 reference photos of the same cat **Hajimi** (character sheet), iPhone-style snapshots taken indoors:
 > - **cat-1**: full body curled on a beige sofa, looking at camera
@@ -72,10 +72,10 @@
 ### C. 朝阳公园遛猫 ×4
 
 📁 **保存**（4 个文件）：
-- `sites/xhs-snapshot/assets/walk-1.jpg`
-- `sites/xhs-snapshot/assets/walk-2.jpg`
-- `sites/xhs-snapshot/assets/walk-3.jpg`
-- `sites/xhs-snapshot/assets/walk-4.jpg`
+- `xhs-snapshot/assets/walk-1.jpg`
+- `xhs-snapshot/assets/walk-2.jpg`
+- `xhs-snapshot/assets/walk-3.jpg`
+- `xhs-snapshot/assets/walk-4.jpg`
 
 > Four portrait 4:5 phone photos at Chaoyang Park 朝阳公园 west lawn, golden hour, summer:
 > - **walk-1**: close-up of **Hajimi** (character sheet) wearing a beige chest harness with a leash clipped on, sky-blue collar still visible underneath, owner's hand barely in frame
@@ -88,9 +88,9 @@
 ### D. 哈基米 3 岁生日 ×3
 
 📁 **保存**（3 个文件）：
-- `sites/xhs-snapshot/assets/birthday-1.jpg`
-- `sites/xhs-snapshot/assets/birthday-2.jpg`
-- `sites/xhs-snapshot/assets/birthday-3.jpg`
+- `xhs-snapshot/assets/birthday-1.jpg`
+- `xhs-snapshot/assets/birthday-2.jpg`
+- `xhs-snapshot/assets/birthday-3.jpg`
 
 > Three portrait 4:5 phone photos, indoor warm light, festive but homey:
 > - **birthday-1**: a small round chicken-meat "cake" decorated like a birthday cake (no chocolate, no sugar, marked safe-for-cats), single candle "3" on top, party background blurry
@@ -102,9 +102,9 @@
 ### E. 救助小奶猫 ×3
 
 📁 **保存**（3 个文件）：
-- `sites/xhs-snapshot/assets/group-1.jpg`
-- `sites/xhs-snapshot/assets/group-2.jpg`
-- `sites/xhs-snapshot/assets/group-3.jpg`
+- `xhs-snapshot/assets/group-1.jpg`
+- `xhs-snapshot/assets/group-2.jpg`
+- `xhs-snapshot/assets/group-3.jpg`
 
 > Three portrait 4:5 photos of a **different cat — a tiny ~1-month-old gray-and-white tabby kitten** (NOT Hajimi, much smaller, no collar), found in a residential alley:
 > - **group-1**: kitten alone on cardboard, fur matted from rain, eyes barely open, fragile
@@ -115,19 +115,19 @@
 
 ### F. 失而复得的身份证
 
-📁 **保存**：`sites/xhs-snapshot/assets/idcard-found.jpg`
+📁 **保存**：`xhs-snapshot/assets/idcard-found.jpg`
 
 > A photo of a Chinese second-gen ID card lying on a wooden table, **all personal info heavily pixelated/blurred except the last 4 digits "3614"** which are visible. Card slightly worn. Mood: relief, found-it. Format: portrait 4:5, top-down angle.
 
 ### G. 救助博主主视频缩略图
 
-📁 **保存**：`sites/rescue-blogger/assets/video-orange.jpg`
+📁 **保存**：`rescue-blogger/assets/video-orange.jpg`
 
 > 16:9 video thumbnail. A docile orange tabby cat in a pet carrier at a vet, looking calm and used to people. Use the **Hajimi character sheet** but **collar removed** — and there is a clearly visible **flattened ring of fur around the neck where a collar recently sat** (forensic detail). Soft clinic lighting. Add overlay text bottom-left: "0:32 / 1:48", play button "▶" in center. Style: rescue-vlogger YouTube thumbnail, slightly over-saturated.
 
 ### H. 朝阳公园 7:34 监控截图（关键证据）
 
-📁 **保存**：`sites/wechat-group/assets/cam04-2214.jpg`（并在 `wechat-group/index.html` 用 `<img>` 替掉现有内联 SVG）
+📁 **保存**：`wechat-group/assets/cam04-2214.jpg`（并在 `wechat-group/index.html` 用 `<img>` 替掉现有内联 SVG）
 
 > Grainy CCTV-style 16:9 still, dark warehouse / underground parking corner, low resolution, top-left red timestamp text "CAM-04 · 2026-05-10 22:14". Center: a small orange-tabby silhouette pressed onto the floor by a human hand reaching from upper-right; only the hand and forearm visible. Mood: ominous. Heavy compression artifacts, slight chromatic aberration. (This is the fake "abuse" screenshot.)
 
@@ -138,11 +138,11 @@
 ### I. xhs profile 5 张封面
 
 📁 **保存**（5 个文件）：
-- `sites/xhs-snapshot/assets/cover-walk.jpg`
-- `sites/xhs-snapshot/assets/cover-group.jpg`
-- `sites/xhs-snapshot/assets/cover-birthday.jpg`
-- `sites/xhs-snapshot/assets/cover-idcard.jpg`
-- `sites/xhs-snapshot/assets/cover-placeholder.jpg`
+- `xhs-snapshot/assets/cover-walk.jpg`
+- `xhs-snapshot/assets/cover-group.jpg`
+- `xhs-snapshot/assets/cover-birthday.jpg`
+- `xhs-snapshot/assets/cover-idcard.jpg`
+- `xhs-snapshot/assets/cover-placeholder.jpg`
 
 > 3:4 portrait Xiaohongshu cover thumbnails (Hajimi character sheet), each with bold cover-style typography overlay:
 > - **cover-walk**: Hajimi on green grass with leash, big text "遛猫日常 第一次去公园"
@@ -153,11 +153,11 @@
 
 ### J. maotrack 找回案例 ×4
 
-📁 **保存**（4 个文件，同时需在 `sites/maotrack/cases.html` 里用 `<img>` 替掉 emoji）：
-- `sites/maotrack/assets/case-nailong.jpg`
-- `sites/maotrack/assets/case-manbo.jpg`
-- `sites/maotrack/assets/case-mimi.jpg`
-- `sites/maotrack/assets/case-naibao.jpg`
+📁 **保存**（4 个文件，同时需在 `maotrack/cases.html` 里用 `<img>` 替掉 emoji）：
+- `maotrack/assets/case-nailong.jpg`
+- `maotrack/assets/case-manbo.jpg`
+- `maotrack/assets/case-mimi.jpg`
+- `maotrack/assets/case-naibao.jpg`
 
 > 4 small square (1:1) round-corner thumbnails for "found pets" success stories:
 > - **奶龙**: orange tabby with leash held by smiling owner, urban street
@@ -170,10 +170,10 @@
 ### K. 救助博主视频网格封面 ×4
 
 📁 **保存**（4 个文件）：
-- `sites/rescue-blogger/assets/cover-orange.jpg`【主推，即哈基米伪装流浪那一张】
-- `sites/rescue-blogger/assets/cover-orange-2.jpg`
-- `sites/rescue-blogger/assets/cover-orange-3.jpg`
-- `sites/rescue-blogger/assets/cover-orange-4.jpg`
+- `rescue-blogger/assets/cover-orange.jpg`【主推，即哈基米伪装流浪那一张】
+- `rescue-blogger/assets/cover-orange-2.jpg`
+- `rescue-blogger/assets/cover-orange-3.jpg`
+- `rescue-blogger/assets/cover-orange-4.jpg`
 
 > Four square thumbnails of **different street-rescued orange tabbies** (NOT all Hajimi):
 > - **cover-orange (FEATURED — 哈基米伪装成流浪)**: Hajimi without collar, sitting in a cardboard box at a roadside, big play "▶" overlay, view count "12.3w"
@@ -185,7 +185,7 @@
 
 ### L. 救助博主榴莲度假
 
-📁 **保存**：`sites/rescue-blogger/assets/cover-durian.jpg`
+📁 **保存**：`rescue-blogger/assets/cover-durian.jpg`
 
 > Square photo: a young Chinese woman (face partially hidden under a sun hat) at a Bangkok night market, holding up half a fresh durian, smiling, neon market lights behind. Mood: vacation, off-duty.
 
@@ -193,11 +193,11 @@
 
 ## 4. 可选 · 升级监控截图组（4 张）
 
-📁 **保存**（4 个文件，生成后在 `sites/wechat-group/monitor.html` 里用 `<img>` 替掉现有占位框）：
-- `sites/wechat-group/assets/monitor-cam02-0517.jpg`
-- `sites/wechat-group/assets/monitor-cam04-0518.jpg`
-- `sites/wechat-group/assets/monitor-cam01-0518.jpg`
-- `sites/wechat-group/assets/monitor-cam02-0519.jpg`
+📁 **保存**（4 个文件，生成后在 `wechat-group/monitor.html` 里用 `<img>` 替掉现有占位框）：
+- `wechat-group/assets/monitor-cam02-0517.jpg`
+- `wechat-group/assets/monitor-cam04-0518.jpg`
+- `wechat-group/assets/monitor-cam01-0518.jpg`
+- `wechat-group/assets/monitor-cam02-0519.jpg`
 
 4 张 4:3 假监控截图，可一次性出，统一压噪点 + 红字时间戳：
 
@@ -221,25 +221,25 @@
 
 ### M. 朝阳爱宠宠物医院 ×3
 
-#### M1. 医院门头 — `sites/pet-clinic/assets/clinic-exterior.jpg`（16:9）
+#### M1. 医院门头 — `pet-clinic/assets/clinic-exterior.jpg`（16:9）
 
 > A real-photo street view of a small but reputable Chinese neighborhood pet hospital storefront. Glass facade, bright warm interior visible through the windows, large red cross sign, signage in simplified Chinese reading "朝阳爱宠 · 24h急诊 · 自营17年". A soft early-evening light, a few potted plants outside, a customer carrying a pet carrier walking in. Style: documentary urban photography, slightly nostalgic, warm color grading, no people's faces clearly visible.
 
-#### M2. 主治团队合影 — `sites/pet-clinic/assets/team-photo.jpg`（16:9）
+#### M2. 主治团队合影 — `pet-clinic/assets/team-photo.jpg`（16:9）
 
 > A candid group photo of four East Asian veterinarians (two male, two female, ages 30–50) in white lab coats and scrub tops, standing inside a brightly lit pet clinic exam room. They look kind, slightly tired, professional. A small white cat sits on the exam table in front of them. Background: medical posters, a digital weight scale. Soft warm lighting, slight depth-of-field. Style: warm clinic team photo, faces not over-stylized.
 
-#### M3. 科普文章封面 — `sites/pet-clinic/assets/article-fatty-liver.jpg`（16:9）
+#### M3. 科普文章封面 — `pet-clinic/assets/article-fatty-liver.jpg`（16:9）
 
 > A chubby orange tabby cat (different individual from Hajimi — fatter, no collar) standing on a small pet weighing scale, looking grumpy / accusing toward camera. Clean clinic background, scale digital display visible reading "5.8 kg". Style: editorial pet-magazine photography, slightly humorous, soft natural light. Avoid being mean to the cat — empathetic tone.
 
 ### N. MaoTrack ×5
 
-#### N1. 智能项圈产品图 — `sites/maotrack/assets/product-collar.jpg`（4:3）
+#### N1. 智能项圈产品图 — `maotrack/assets/product-collar.jpg`（4:3）
 
 > A sleek smart pet collar product photo on a clean light-cyan gradient backdrop. The collar is sky-blue silicone with a small matte-black GPS module pod on top, a tiny LED indicator, and an embossed text "MaoTrack" on the side. Slight 3/4 angle, soft studio lighting, subtle reflection beneath. Industrial design photography style, similar to Apple Watch product shots. No animals, no text overlay.
 
-#### N2–N5. 4 位救助博主头像 — `sites/maotrack/assets/partner-{xiaoyou,chanshi,dongsi,hujialou}.jpg`（1:1 圆裁）
+#### N2–N5. 4 位救助博主头像 — `maotrack/assets/partner-{xiaoyou,chanshi,dongsi,hujialou}.jpg`（1:1 圆裁）
 
 > Four 1:1 Xiaohongshu-style profile avatars of four different Chinese street-rescue cat bloggers. Same warm, candid, phone-snapshot aesthetic. **All faces partially obscured** (sun hat / cat held in front of face / sunglasses) so they read as "real but anonymous":
 > - **partner-xiaoyou** (@朝阳救助小柚): a young woman in a yellow bucket hat holding up a small ginger kitten in front of her cheek, daylight, tree leaves background.
@@ -249,21 +249,21 @@
 
 ### O. NeoLight 新光科技 ×4
 
-#### O1. 首页品牌主视觉 — `sites/neolight/assets/hero-brand.jpg`（16:9）
+#### O1. 首页品牌主视觉 — `neolight/assets/hero-brand.jpg`（16:9）
 
 > A premium tech-corporation hero image. Centered: a sleek translucent glass headset / circlet floating against a dark gradient background (deep navy #0f172a → cobalt blue #1e3a8a), softly emitting cyan internal glow, multiple thin glowing data streams rising from it like neural connections, gathering toward a single point of light at the top — symbolizing "万心同声 · all minds resonating as one". Subtle particle field, no text. Style: corporate keynote slide, Apple × DeepMind aesthetic, beautiful but slightly uncanny. Aspect 16:9.
 
-#### O2. 创始人陈光头像 — `sites/neolight/assets/founder-chen.jpg`（1:1 圆裁）
+#### O2. 创始人陈光头像 — `neolight/assets/founder-chen.jpg`（1:1 圆裁）
 
 > Square corporate portrait of a 45-year-old East Asian male tech CEO. Short neat hair, rimless glasses, charcoal grey turtleneck, faint confident half-smile. Soft studio lighting, dark navy gradient background. Eyes look slightly past the camera (introspective rather than direct). Style: Wired-magazine founder portrait, sharp but warm. No logo, no text.
 
-#### O3. 央视专题封面 — `sites/neolight/assets/news-li-zhou.jpg`（16:9）
+#### O3. 央视专题封面 — `neolight/assets/news-li-zhou.jpg`（16:9）
 
 > A heart-warming news-feature still: a 40-year-old East Asian husband sitting at a hospital bedside, gently holding the hand of his wife who is lying down with a slim NeoLink headband around her temples (subtle blue LED dot on the temple). Both faces are softly lit, she has a faint smile, eyes open. Hospital window with afternoon light. Mood: tender reunion, but with a faint uncanny stillness about her gaze. Style: CCTV human-interest documentary frame, color-graded warm.
 >
 > 二刷提示：可以再生成一张同框、她的瞳孔里映出极淡 VSS 同心圆符号的版本，做"细思极恐"细节。
 
-#### O4. NeoLink 设备实拍 — `sites/neolight/assets/neolink-device.jpg`（16:9）
+#### O4. NeoLink 设备实拍 — `neolight/assets/neolink-device.jpg`（16:9）
 
 > A high-end product photo of the NeoLink wearable: an ultra-thin glossy black headband with cyan LED indicators, sitting on a translucent acrylic display stand against a deep purple-to-navy gradient. Soft rim lighting, premium e-commerce hero shot. Optionally a faint reflective hexagonal sigil ghosted into the background (very subtle, barely perceptible). No human, no text.
 

@@ -62,10 +62,10 @@ class Extractor(HTMLParser):
         if tag == "code" and self.in_path_code:
             self.in_path_code = False
             txt = self.buf.strip()
-            # only treat as a save path if it's a real asset under sites/
+            # only treat as a save path if it's a real asset under a known page dir
             if (
                 txt
-                and txt.startswith("sites/")
+                and "/assets/" in txt
                 and not txt.lower().endswith((".html", ".css", ".js", ".svg"))
             ):
                 self.pending_path = txt
