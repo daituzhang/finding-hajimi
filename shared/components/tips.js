@@ -159,7 +159,7 @@ export function mountTips({ tips } = {}) {
   } else {
     document.addEventListener('DOMContentLoaded', () => document.body.appendChild(wrap));
   }
-  setTimeout(reveal, 20000);
+  setTimeout(reveal, 10000);
 
   render();
   return wrap;
