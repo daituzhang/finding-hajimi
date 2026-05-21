@@ -26,7 +26,7 @@ shared/                 跨站共享资源
 tools/                  开发期工具（LSB 隐写编码器等，非游戏内容）
 docs/                   设计文档
 index.html              玩家入口（自动跳转到 finder-page/）
-dev-hub-AWAKE-7K9X.html 开发者菜单（路径不公开，玩家不会发现）
+_internal-*.html 开发者菜单（文件名随机化，路径不公开）
 404.html                ARG 风味 404
 ```
 
