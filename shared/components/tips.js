@@ -150,16 +150,12 @@ export function mountTips({ tips } = {}) {
   wrap.appendChild(btn);
   wrap.appendChild(panel);
 
-  // 进入页面 20s 后再显示，避免一上来就引导玩家点提示
-  wrap.style.display = 'none';
-  const reveal = () => { wrap.style.display = ''; };
-
+  // 立即显示（之前是 20s/10s 延迟，玩家觉得太慢）
   if (document.body) {
     document.body.appendChild(wrap);
   } else {
     document.addEventListener('DOMContentLoaded', () => document.body.appendChild(wrap));
   }
-  setTimeout(reveal, 10000);
 
   render();
   return wrap;
