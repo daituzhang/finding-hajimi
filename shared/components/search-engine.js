@@ -240,6 +240,7 @@ function ensureHistoryStyles() {
       background: #000; display: flex; flex-direction: column;
       align-items: center; justify-content: center; gap: 18px;
       opacity: 0; pointer-events: none; transition: opacity 0.25s ease;
+      overflow: hidden;
     }
     .sigil-overlay.show { opacity: 1; }
     .sigil-overlay img {
@@ -247,14 +248,13 @@ function ensureHistoryStyles() {
       animation: sigil-pulse 0.6s ease-in-out infinite alternate;
     }
     .sigil-overlay canvas.matrix-rain {
-      width: min(70vw, 60vh); height: min(70vw, 60vh);
-      max-width: 560px; max-height: 560px;
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
       display: block;
-      filter: drop-shadow(0 0 22px #5eead455);
+      z-index: 0;
     }
-    .sigil-overlay.red canvas.matrix-rain {
-      filter: drop-shadow(0 0 28px #ff446699);
-    }
+    .sigil-overlay .ov-text,
+    .sigil-overlay .ov-bar { position: relative; z-index: 2; }
     .sigil-overlay .ov-text {
       font-family: ui-monospace, monospace; color: #ff4466;
       font-size: 13px; letter-spacing: 2px; text-align: center;
@@ -343,8 +343,6 @@ function flashSigil(durationMs = 2000, imgFile = 'sigil-final.png') {
     if (isMatrix) {
       visual = document.createElement('canvas');
       visual.className = 'matrix-rain';
-      visual.width = 560;
-      visual.height = 560;
       stopMatrix = startMatrixRain(visual, matrixTheme);
     } else {
       visual = document.createElement('img');
@@ -383,17 +381,27 @@ function flashSigil(durationMs = 2000, imgFile = 'sigil-final.png') {
 
 function startMatrixRain(canvas, theme = 'soft') {
   const ctx = canvas.getContext('2d');
-  const W = canvas.width, H = canvas.height;
   const fontSize = 16;
-  const cols = Math.floor(W / fontSize);
-  const glyphs = '01010101ABCDEF0123456789哈基米一念归一万心同声HJMHJMHJM<>{}[]()/\=+*&%$#@!?';
-  const drops = new Array(cols).fill(0).map(() => Math.random() * -H / fontSize);
-  const cx = Math.floor(cols / 2);
-  for (let i = 0; i < cols; i++) {
-    const dist = Math.abs(i - cx) / cx;
-    drops[i] = -Math.random() * (H / fontSize) * (0.3 + dist * 1.5);
+  let W = 0, H = 0, cols = 0, cx = 0, drops = [];
+  function resize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width = Math.floor(W * dpr);
+    canvas.height = Math.floor(H * dpr);
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    cols = Math.floor(W / fontSize);
+    cx = Math.floor(cols / 2);
+    drops = new Array(cols).fill(0).map((_, i) => {
+      const dist = Math.abs(i - cx) / Math.max(1, cx);
+      return -Math.random() * (H / fontSize) * (0.3 + dist * 1.5);
+    });
+    ctx.fillStyle = palette.bg;
+    ctx.fillRect(0, 0, W, H);
   }
-  // 主题调色板
+  const glyphs = '01010101ABCDEF0123456789哈基米一念归一万心同声HJMHJMHJM<>{}[]()/\=+*&%$#@!?';
   const palette = theme === 'red' ? {
     bg: '#080000',
     fade: 'rgba(8, 0, 0, 0.10)',
@@ -411,8 +419,8 @@ function startMatrixRain(canvas, theme = 'soft') {
     midB: '#5eead4',
     tail: '#0e7490',
   };
-  ctx.fillStyle = palette.bg;
-  ctx.fillRect(0, 0, W, H);
+  resize();
+  window.addEventListener('resize', resize);
   let rafId = null;
   let stopped = false;
   function draw() {
@@ -424,7 +432,7 @@ function startMatrixRain(canvas, theme = 'soft') {
       const ch = glyphs[Math.floor(Math.random() * glyphs.length)];
       const x = i * fontSize;
       const y = drops[i] * fontSize;
-      const dist = Math.abs(i - cx) / cx;
+      const dist = Math.abs(i - cx) / Math.max(1, cx);
       const head = Math.random() < 0.04;
       if (head) {
         ctx.fillStyle = dist < 0.15 ? palette.headWarm : palette.headHot;
@@ -438,7 +446,11 @@ function startMatrixRain(canvas, theme = 'soft') {
     rafId = requestAnimationFrame(draw);
   }
   draw();
-  return () => { stopped = true; if (rafId) cancelAnimationFrame(rafId); };
+  return () => {
+    stopped = true;
+    if (rafId) cancelAnimationFrame(rafId);
+    window.removeEventListener('resize', resize);
+  };
 }
 
 export function mountSearch({ config, rootSelector }) {
