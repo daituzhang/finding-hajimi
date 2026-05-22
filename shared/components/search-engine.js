@@ -306,7 +306,7 @@ function ensureHistoryStyles() {
   document.head.appendChild(style);
 }
 
-function flashSigil(durationMs = 2000) {
+function flashSigil(durationMs = 2000, imgFile = 'sigil-final.png') {
   return new Promise(resolve => {
     const overlay = document.createElement('div');
     overlay.className = 'sigil-overlay';
@@ -316,7 +316,7 @@ function flashSigil(durationMs = 2000) {
     top.innerHTML = '// EXTERNAL SCRIPT INJECTION DETECTED //<br>// MIND-SYNC IN PROGRESS · LOADING IMAGE //';
 
     const img = document.createElement('img');
-    img.src = new URL('../assets/sigil-final.png', import.meta.url).href;
+    img.src = new URL('../assets/' + imgFile, import.meta.url).href;
     img.alt = '';
 
     const bar = document.createElement('div');
@@ -404,7 +404,7 @@ export function mountSearch({ config, rootSelector }) {
 
       // 黑客模式：闪现催眠符号 → 顶部红条
       if (entry && entry.hackerMode) {
-        await flashSigil(2000);
+        await flashSigil(2000, entry.sigilImage || 'sigil-final.png');
         const banner = document.createElement('div');
         banner.className = 'hacker-banner';
         banner.textContent = entry.bannerText || '此查询已被 root 解封';
