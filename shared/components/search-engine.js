@@ -252,6 +252,9 @@ function ensureHistoryStyles() {
       display: block;
       filter: drop-shadow(0 0 22px #5eead455);
     }
+    .sigil-overlay.red canvas.matrix-rain {
+      filter: drop-shadow(0 0 28px #ff446699);
+    }
     .sigil-overlay .ov-text {
       font-family: ui-monospace, monospace; color: #ff4466;
       font-size: 13px; letter-spacing: 2px; text-align: center;
@@ -323,9 +326,12 @@ function ensureHistoryStyles() {
 
 function flashSigil(durationMs = 2000, imgFile = 'sigil-final.png') {
   return new Promise(resolve => {
-    const isMatrix = imgFile === 'matrix';
+    const matrixTheme = imgFile === 'matrix' ? 'soft'
+                      : imgFile === 'matrix-red' ? 'red'
+                      : null;
+    const isMatrix = !!matrixTheme;
     const overlay = document.createElement('div');
-    overlay.className = 'sigil-overlay' + (isMatrix ? ' soft' : '');
+    overlay.className = 'sigil-overlay' + (isMatrix ? ' ' + matrixTheme : '');
 
     const top = document.createElement('div');
     top.className = 'ov-text';
@@ -339,7 +345,7 @@ function flashSigil(durationMs = 2000, imgFile = 'sigil-final.png') {
       visual.className = 'matrix-rain';
       visual.width = 560;
       visual.height = 560;
-      stopMatrix = startMatrixRain(visual);
+      stopMatrix = startMatrixRain(visual, matrixTheme);
     } else {
       visual = document.createElement('img');
       visual.src = new URL('../assets/' + imgFile, import.meta.url).href;
@@ -375,41 +381,55 @@ function flashSigil(durationMs = 2000, imgFile = 'sigil-final.png') {
   });
 }
 
-function startMatrixRain(canvas) {
+function startMatrixRain(canvas, theme = 'soft') {
   const ctx = canvas.getContext('2d');
   const W = canvas.width, H = canvas.height;
   const fontSize = 16;
   const cols = Math.floor(W / fontSize);
-  // 准备字符集：片假名 + binary + hex + 几个中文反词金句字符
   const glyphs = '01010101ABCDEF0123456789哈基米一念归一万心同声HJMHJMHJM<>{}[]()/\=+*&%$#@!?';
   const drops = new Array(cols).fill(0).map(() => Math.random() * -H / fontSize);
-  // 给中间较密集：中间列初始低（提前到达）
   const cx = Math.floor(cols / 2);
   for (let i = 0; i < cols; i++) {
     const dist = Math.abs(i - cx) / cx;
     drops[i] = -Math.random() * (H / fontSize) * (0.3 + dist * 1.5);
   }
-  ctx.fillStyle = '#020409';
+  // 主题调色板
+  const palette = theme === 'red' ? {
+    bg: '#080000',
+    fade: 'rgba(8, 0, 0, 0.10)',
+    headHot: '#fef2f2',
+    headWarm: '#fbbf24',
+    midA: '#fecaca',
+    midB: '#ef4444',
+    tail: '#7f1d1d',
+  } : {
+    bg: '#020409',
+    fade: 'rgba(2, 4, 9, 0.12)',
+    headHot: '#fef9c3',
+    headWarm: '#fbbf24',
+    midA: '#a7f3d0',
+    midB: '#5eead4',
+    tail: '#0e7490',
+  };
+  ctx.fillStyle = palette.bg;
   ctx.fillRect(0, 0, W, H);
   let rafId = null;
   let stopped = false;
   function draw() {
     if (stopped) return;
-    // 拖尾：半透明黑覆盖
-    ctx.fillStyle = 'rgba(2, 4, 9, 0.12)';
+    ctx.fillStyle = palette.fade;
     ctx.fillRect(0, 0, W, H);
     ctx.font = fontSize + "px ui-monospace, 'Courier New', monospace";
     for (let i = 0; i < cols; i++) {
       const ch = glyphs[Math.floor(Math.random() * glyphs.length)];
       const x = i * fontSize;
       const y = drops[i] * fontSize;
-      // 距离中间越近 → 越亮 → 中心点绿金
       const dist = Math.abs(i - cx) / cx;
       const head = Math.random() < 0.04;
       if (head) {
-        ctx.fillStyle = dist < 0.15 ? '#fbbf24' : '#e6fffb';
+        ctx.fillStyle = dist < 0.15 ? palette.headWarm : palette.headHot;
       } else {
-        ctx.fillStyle = dist < 0.25 ? '#a7f3d0' : (dist < 0.6 ? '#5eead4' : '#0e7490');
+        ctx.fillStyle = dist < 0.25 ? palette.midA : (dist < 0.6 ? palette.midB : palette.tail);
       }
       ctx.fillText(ch, x, y);
       drops[i]++;

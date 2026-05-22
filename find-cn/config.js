@@ -285,6 +285,7 @@ export const config = {
     {
       keywords: ['一念归一万心同声', '一念归一', '万心同声', '一念归一·万心同声'],
       hackerMode: true,
+      sigilImage: 'matrix-red',
       sloganFlood: true,
       bannerText: '此查询已被 root 解封 · 99.7% 结果已被同步污染',
       results: [
