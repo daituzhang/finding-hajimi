@@ -246,20 +246,35 @@ function ensureHistoryStyles() {
       width: min(60vw, 44vh); height: auto;
       animation: sigil-pulse 0.6s ease-in-out infinite alternate;
     }
+    .sigil-overlay canvas.matrix-rain {
+      width: min(70vw, 60vh); height: min(70vw, 60vh);
+      max-width: 560px; max-height: 560px;
+      display: block;
+      filter: drop-shadow(0 0 22px #5eead455);
+    }
     .sigil-overlay .ov-text {
       font-family: ui-monospace, monospace; color: #ff4466;
       font-size: 13px; letter-spacing: 2px; text-align: center;
       text-shadow: 0 0 6px #ff4466;
       animation: hacker-flicker 0.18s infinite alternate;
     }
+    .sigil-overlay.soft .ov-text {
+      color: #7dd3fc; text-shadow: 0 0 6px #7dd3fc;
+    }
     .sigil-overlay .ov-bar {
       width: 220px; height: 4px; background: #220004;
       border: 1px solid #ff446655; overflow: hidden;
+    }
+    .sigil-overlay.soft .ov-bar {
+      background: #021018; border-color: #7dd3fc55;
     }
     .sigil-overlay .ov-bar > span {
       display: block; height: 100%; background: #ff4466;
       box-shadow: 0 0 12px #ff4466;
       animation: ov-bar-fill linear forwards;
+    }
+    .sigil-overlay.soft .ov-bar > span {
+      background: #5eead4; box-shadow: 0 0 12px #5eead4;
     }
     @keyframes ov-bar-fill { from { width: 0; } to { width: 100%; } }
     @keyframes sigil-pulse {
@@ -308,16 +323,28 @@ function ensureHistoryStyles() {
 
 function flashSigil(durationMs = 2000, imgFile = 'sigil-final.png') {
   return new Promise(resolve => {
+    const isMatrix = imgFile === 'matrix';
     const overlay = document.createElement('div');
-    overlay.className = 'sigil-overlay';
+    overlay.className = 'sigil-overlay' + (isMatrix ? ' soft' : '');
 
     const top = document.createElement('div');
     top.className = 'ov-text';
-    top.innerHTML = '// EXTERNAL SCRIPT INJECTION DETECTED //<br>// MIND-SYNC IN PROGRESS · LOADING IMAGE //';
+    top.innerHTML = isMatrix
+      ? '// EXTERNAL SCRIPT INJECTION DETECTED //<br>// MIND-SYNC IN PROGRESS · DECODING STREAM //'
+      : '// EXTERNAL SCRIPT INJECTION DETECTED //<br>// MIND-SYNC IN PROGRESS · LOADING IMAGE //';
 
-    const img = document.createElement('img');
-    img.src = new URL('../assets/' + imgFile, import.meta.url).href;
-    img.alt = '';
+    let visual, stopMatrix = null;
+    if (isMatrix) {
+      visual = document.createElement('canvas');
+      visual.className = 'matrix-rain';
+      visual.width = 560;
+      visual.height = 560;
+      stopMatrix = startMatrixRain(visual);
+    } else {
+      visual = document.createElement('img');
+      visual.src = new URL('../assets/' + imgFile, import.meta.url).href;
+      visual.alt = '';
+    }
 
     const bar = document.createElement('div');
     bar.className = 'ov-bar';
@@ -327,22 +354,71 @@ function flashSigil(durationMs = 2000, imgFile = 'sigil-final.png') {
 
     const bot = document.createElement('div');
     bot.className = 'ov-text';
-    bot.innerHTML = '> SYNC HALTED BY root<br>> RETURNING UNFILTERED CONTENT...';
+    bot.innerHTML = isMatrix
+      ? '> SYNC HALTED BY root<br>> RETURNING UNFILTERED CONTENT...'
+      : '> SYNC HALTED BY root<br>> RETURNING UNFILTERED CONTENT...';
 
     const noise = document.createElement('div');
     noise.className = 'sigil-noise';
 
-    overlay.append(top, img, bar, bot, noise);
+    overlay.append(top, visual, bar, bot, noise);
     document.body.appendChild(overlay);
     requestAnimationFrame(() => overlay.classList.add('show'));
     setTimeout(() => {
       overlay.classList.remove('show');
       setTimeout(() => {
+        if (stopMatrix) stopMatrix();
         overlay.remove();
         resolve();
       }, 280);
     }, durationMs);
   });
+}
+
+function startMatrixRain(canvas) {
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const fontSize = 16;
+  const cols = Math.floor(W / fontSize);
+  // 准备字符集：片假名 + binary + hex + 几个中文反词金句字符
+  const glyphs = '01010101ABCDEF0123456789哈基米一念归一万心同声HJMHJMHJM<>{}[]()/\=+*&%$#@!?';
+  const drops = new Array(cols).fill(0).map(() => Math.random() * -H / fontSize);
+  // 给中间较密集：中间列初始低（提前到达）
+  const cx = Math.floor(cols / 2);
+  for (let i = 0; i < cols; i++) {
+    const dist = Math.abs(i - cx) / cx;
+    drops[i] = -Math.random() * (H / fontSize) * (0.3 + dist * 1.5);
+  }
+  ctx.fillStyle = '#020409';
+  ctx.fillRect(0, 0, W, H);
+  let rafId = null;
+  let stopped = false;
+  function draw() {
+    if (stopped) return;
+    // 拖尾：半透明黑覆盖
+    ctx.fillStyle = 'rgba(2, 4, 9, 0.12)';
+    ctx.fillRect(0, 0, W, H);
+    ctx.font = fontSize + "px ui-monospace, 'Courier New', monospace";
+    for (let i = 0; i < cols; i++) {
+      const ch = glyphs[Math.floor(Math.random() * glyphs.length)];
+      const x = i * fontSize;
+      const y = drops[i] * fontSize;
+      // 距离中间越近 → 越亮 → 中心点绿金
+      const dist = Math.abs(i - cx) / cx;
+      const head = Math.random() < 0.04;
+      if (head) {
+        ctx.fillStyle = dist < 0.15 ? '#fbbf24' : '#e6fffb';
+      } else {
+        ctx.fillStyle = dist < 0.25 ? '#a7f3d0' : (dist < 0.6 ? '#5eead4' : '#0e7490');
+      }
+      ctx.fillText(ch, x, y);
+      drops[i]++;
+      if (y > H && Math.random() > 0.975) drops[i] = -2;
+    }
+    rafId = requestAnimationFrame(draw);
+  }
+  draw();
+  return () => { stopped = true; if (rafId) cancelAnimationFrame(rafId); };
 }
 
 export function mountSearch({ config, rootSelector }) {

@@ -168,7 +168,7 @@ export const config = {
     {
       keywords: ['哈基米朝阳近况', '哈基米近况', '哈基米现在', '哈基米找到了'],
       hackerMode: true,
-      sigilImage: 'sigil.svg',
+      sigilImage: 'matrix',
       bannerText: '⚠ 检测到未授权脚本接入 · 外部用户 root 已中断合成进程 · 当前显示原始查询结果',
       totalLabel: '约 312,478 条结果',
       paginated: { perPage: 20, totalPages: 20 },
