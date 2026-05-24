@@ -91,7 +91,7 @@
         <div class="vt">复查：体重 4.27 kg，主人反馈猫频繁对空碗叫，已心理建设：不予回应</div>
         <div class="vw">主治：王医生</div>
         <div aria-hidden="true" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);width:64px;height:64px;opacity:0.18;pointer-events:none;mix-blend-mode:multiply;">
-          <img src="../shared/assets/octagon.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:auto;" />
+          <img src="../shared/assets/octagon.svg" alt="" data-vss="octagon" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:auto;" />
         </div>
       </div>
       <div class="visit">
@@ -120,6 +120,7 @@
     import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
     mountFooter({ page: 10, total: 21, keywords: ['脂肪肝', '减肥', '医嘱'] });
+    import('../shared/components/sigil-collect.js').then(m => m.mountAllSigils());
     mountTips({ tips: ["说不定这里的信息未来用得上"] });
 
   </script>

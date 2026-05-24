@@ -61,7 +61,7 @@
     </div>
 
     <div class="msg">
-      <div class="avatar" style="position:relative;overflow:hidden;padding:0;background:#000;"><img src="../shared/assets/hexagon.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" /></div>
+      <div class="avatar" style="position:relative;overflow:hidden;padding:0;background:#000;"><img src="../shared/assets/hexagon.svg" alt="" data-vss="hexagon" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" /></div>
       <div class="body">
         <div class="name">momo</div>
         <div class="bubble">姐妹们 直接挂 我去复制她抖音号🤬</div>
@@ -157,6 +157,7 @@
     import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
     mountFooter({ page: 7, total: 21, keywords: ['朝阳爱宠宠物医院', 'MaoTrack'] });
+    import('../shared/components/sigil-collect.js').then(m => m.mountAllSigils());
     mountTips({ tips: ["可以仔细读读和用药、医院相关的评论", "也许可以搜搜智能项圈的品牌"] });
 
   </script>

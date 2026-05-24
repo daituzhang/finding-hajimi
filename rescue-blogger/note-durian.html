@@ -74,7 +74,7 @@
       </div>
 
       <div class="comment">
-        <div class="avatar" style="position:relative;overflow:hidden;padding:0;background:#000;"><img src="../shared/assets/ring.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="avatar" style="position:relative;overflow:hidden;padding:0;background:#000;"><img src="../shared/assets/ring.svg" alt="" data-vss="ring" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" /></div>
         <div class="body">
           <div class="author">@朝阳铲屎</div>
           <div class="text">猫山王 yyds 求测评！</div>
@@ -97,6 +97,7 @@
     import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
     mountFooter({ page: 18, total: 21 });
+    import('../shared/components/sigil-collect.js').then(m => m.mountAllSigils());
     mountTips({ tips: ["也许这边的信息未来有用"] });
 
   </script>

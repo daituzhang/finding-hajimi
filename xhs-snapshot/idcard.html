@@ -85,7 +85,7 @@
       </div>
 
       <div class="comment">
-        <div class="avatar" style="position:relative;overflow:hidden;padding:0;background:#000;"><img src="../shared/assets/pentagon.svg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" /></div>
+        <div class="avatar" style="position:relative;overflow:hidden;padding:0;background:#000;"><img src="../shared/assets/pentagon.svg" alt="" data-vss="pentagon" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;" /></div>
         <div class="body">
           <div class="author">@鼠鼠不冒泡</div>
           <div class="text">信息保护意识 0 分 但确实方便 麻了</div>
@@ -99,6 +99,7 @@
     import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
     mountFooter({ page: 5, total: 21, keywords: ['身份证', '朝阳爱宠'] });
+    import('../shared/components/sigil-collect.js').then(m => m.mountAllSigils());
     mountTips({ tips: ["也许这里的线索未来会有用"] });
 
   </script>

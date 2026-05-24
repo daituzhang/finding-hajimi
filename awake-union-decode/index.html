@@ -123,7 +123,9 @@
       <span style="color:#fbbf24;">所做的这一切 · 把你引导到了这里。</span><br>
       <br>
       <span style="color:#fbbf24;">— 你接下来要做的 —</span><br>
-      把那 5 个符号上传到下面的 5 个空槽 · 集齐后即可跑模型 · 让它"忘记"那段权重 ·<br>
+      如果你是从 NeoLight 的<b>企划文档</b>顺着我留的后门进来的，<br>
+      我已经在你看那五个嵌入页时<b>把 VSS 样本抓下来了</b>·下方 5 个槽会自动填上。<br>
+      也可以手动上传或粘贴（备用通道）·集齐 5 个即可跑模型，让它「忘记」那段权重·<br>
       模型运行完会直接把反向 prompt 覆盖原被污染模型。<br>
       ——root
     </div>
@@ -147,8 +149,8 @@
     </div>
 
     <div class="upload">
-      🔍 上传方式：在各页面找到嵌入的催眠符号 · 右键<b>"存储为图片"</b>下载到本地（<b>不要改名</b>），然后<b>拖拽</b>或 <code style="cursor:default">⌘/Ctrl + V 粘贴</code> 到上方槽位<br>
-      <span style="color:#d83a3a;">⚠ <b>请不要直接从网页"复制图片"</b>——必须先<b>"存储为图片"</b>保存到本地再上传，否则文件名 / 元数据会丢失</span><br>
+      🔍 <b>备用通道</b>（如自动填充失败）：在各页面找到嵌入的 VSS · 右键<b>"存储为图片"</b>下载（<b>不要改名</b>），然后<b>拖拽</b>或 <code style="cursor:default">⌘/Ctrl + V 粘贴</code> 到上方槽位<br>
+      <span style="color:#d83a3a;">⚠ <b>请不要直接"复制图片"</b>——必须先<b>"存储为图片"</b>保存到本地再上传，否则文件名 / 元数据会丢失</span><br>
       未被收录的符号将被忽略 · 重复提交会被跳过
     </div>
 
@@ -160,6 +162,7 @@
   <script type="module">
     import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
+    import { getSigils } from '../shared/components/sigil-collect.js';
     mountFooter({ page: 44, total: 47 });
 
     const slots = [...document.querySelectorAll('.slot')];
@@ -174,6 +177,8 @@
     let filled = 0;
     const usedNames = new Set();
     const VALID_NAMES = ['square.svg', 'pentagon.svg', 'hexagon.svg', 'octagon.svg', 'ring.svg'];
+    // 槽位顺序 ↔ sigil id 映射 (与 42 页 §8 顺序一致)
+    const SLOT_TO_ID = ['square', 'pentagon', 'hexagon', 'octagon', 'ring'];
 
     function fillSlot(idx, imgSrc) {
       const slot = slots[idx];
@@ -259,11 +264,26 @@
         setTimeout(() => { location.href = '../finale-l2/choose.html'; }, 1400);
       }, 1400);
     });
+
+    // —— 自动 fill：读取从 42 页/嵌入页采集到的 VSS sigils ——
+    (function autoFillFromLocal() {
+      const have = new Set(getSigils());
+      SLOT_TO_ID.forEach((id, idx) => {
+        if (have.has(id)) {
+          const name = id + '.svg';
+          if (!usedNames.has(name)) {
+            usedNames.add(name);
+            fillSlot(idx, new URL('../shared/assets/' + name, import.meta.url).href);
+          }
+        }
+      });
+      if (filled > 0) showToast(`✓ root 已为你自动注入 ${filled}/5 个样本`);
+    })();
+
     mountTips({ tips: [
-      "可以先去员工系统搜搜相关企划",
-      "数字组合好像又是页面和楼层的组合",
-      "extra-01=遛猫日常 · 05=哈基米身份证 · 07=群聊监控 · 10=脂肪肝病历 · 18=榴莲笔记",
-      "也许这些楼层里有和企划里提到的符号相似的图片"
+      "没看过企划书？返回员工系统搜「企划」「Lumina-7」· root 会告诉你怎么做",
+      "从§8 部署清单点进去 · 每页里那个金光闪动的图就是 VSS",
+      "采集后回到本页全部槽位会自动填上"
     ] });
 
   </script>

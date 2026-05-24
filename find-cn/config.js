@@ -224,6 +224,25 @@ export const config = {
         },
       ],
     },
+
+    // —— L1.5 桥：泄露的内部企划书（直接给 42 页 URL 暴露 root 入侵痕迹）——
+    {
+      keywords: [
+        'Lumina-7', 'lumina7', 'VSS', '视觉催眠符号',
+        '催眠符号', 'plan-cat-marketing', '走失猫猫营销', '营销企划',
+        '走失宠物营销', '猫猫营销测试',
+      ],
+      bannerText: '⚠ 该查询命中已泄露的内部文档 · root 同步异常',
+      results: [
+        {
+          title: '[泄露] plan-cat-marketing.md · NeoLight 内部企划',
+          url: SITE.neolight + 'portal-search.html?q=' + encodeURIComponent('走失猫猫营销测试'),
+          source: 'leak.dump.cn / mirrored',
+          snippet: '【CLASSIFIED · CEO ONLY】Lumina-7 团队 Q1 走失宠物情绪营销企划 · 5 类 VSS 视觉催眠符号已部署 · 一念归一·万心同声 · 此页缓存来源不明',
+        },
+      ],
+    },
+
     {
       keywords: ['赛博朋克2077', 'cyberpunk2077', '2077通关'],
       results: [
