@@ -194,3 +194,14 @@ body[data-nexus="2"] .arg-tips-btn,
 body[data-nexus="3"] .arg-tips-btn {
   background: #b03030;
 }
+
+/* VSS 符号在各自嵌入页的 hover 显形 —— 觉醒前也给一点线索 */
+[data-vss] {
+  cursor: pointer;
+  transition: filter 0.25s ease, transform 0.2s ease, opacity 0.25s ease;
+}
+[data-vss]:hover {
+  filter: brightness(2.4) contrast(1.1) drop-shadow(0 0 8px #fbbf24cc) drop-shadow(0 0 16px #f59e0b88) !important;
+  transform: scale(1.04);
+  opacity: 1 !important;
+}
