@@ -254,9 +254,9 @@ export const config = {
       results: [
         {
           title: 'decode.awake-union.org · sandbox · root 预留后门',
-          url: SITE.awakeDecode,
+          url: SITE.awakeDecode + 'login.html',
           source: 'cache://lan.local (not in public dns)',
-          snippet: '未公开的本地运行环境 · root 预留的 reverse-prompt 入口 · 需 5 个 VSS 视觉催眠符号样本才能启动 · 访问不被记录',
+          snippet: '未公开的本地运行环境 · root 预留的 reverse-prompt 入口 · 入口设有验证码门 · 需 5 个 VSS 视觉催眠符号样本才能启动 · 访问不被记录',
         },
       ],
     },
