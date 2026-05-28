@@ -243,6 +243,24 @@ export const config = {
       ],
     },
 
+    // —— L1.5 桥：玩家可能直接搜 root 留的后门域名（备不点链接而是去搜索）——
+    {
+      keywords: [
+        'decode.awake-union', 'decode.awake-union.org', 'awake-union-decode',
+        'awake-union', '自白页', 'r00t', 'root 自白',
+        '清醒者', 'sandbox v0.3', 'reverse-prompt',
+      ],
+      bannerText: '⚠ 该域名不在公开 DNS · 仅本机缓存结果',
+      results: [
+        {
+          title: 'decode.awake-union.org · sandbox · root 预留后门',
+          url: SITE.awakeDecode,
+          source: 'cache://lan.local (not in public dns)',
+          snippet: '未公开的本地运行环境 · root 预留的 reverse-prompt 入口 · 需 5 个 VSS 视觉催眠符号样本才能启动 · 访问不被记录',
+        },
+      ],
+    },
+
     {
       keywords: ['赛博朋克2077', 'cyberpunk2077', '2077通关'],
       results: [
