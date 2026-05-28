@@ -165,20 +165,21 @@ Negative prompt: cartoon, anime, illustration, 3d render, cgi, painting, drawing
 <h2 id="sec2">2. 必做 · 主线核心图（10 张）</h2>
 
 <h3>A. 寻猫海报</h3>
-<p class="muted">⚠️ 重做版（v2）。海报里嵌的猫照必须明显有别于小红书已发的任何一张：要正脸、证件照式、最大化"识别度"——失主会用最清楚的一张照片做寻猫启事，而不是侧脸 / 随手抓拍。</p>
+<p class="muted">⚠️ 重做版（v3）。v2 的"证件照式正脸"骨架全部保留，但表面再叠一层<b>微恐 + 微赛博朋克</b>暗流——可爱猫照在第一眼·第二眼才察觉违和。海报里嵌的猫照必须明显有别于小红书已发的任何一张：要正脸、证件照式、最大化"识别度"。</p>
 <div class="path">📁 <b>保存</b>：<code>finder-page/assets/poster</code></div>
 <div class="prompt cat">
   <button class="copy" type="button">Copy</button>
-  <pre>A vertical PORTRAIT-orientation digital lost-cat flyer designed to be POSTED ON SOCIAL MEDIA (小红书 / 微信朋友圈 / 微博), NOT a physical poster pasted outdoors.
+  <pre>A vertical PORTRAIT-orientation digital lost-cat flyer designed to be POSTED ON SOCIAL MEDIA (小红书 / 微信朋友圈 / 微博), NOT a physical poster pasted outdoors. **The flyer should read 90% as a heartfelt missing-cat post and 10% as "wait, something is subtly off" — a slow-burn cyberpunk / soft-horror undertone hiding behind a kawaii surface. The unease must only register on a SECOND look; first impression is purely "oh, a cute lost cat, I should share this".**
 
 📏 STRICT FORMAT REQUIREMENTS (do not violate):
 - Aspect ratio: **2:3 PORTRAIT (taller than wide)**, e.g. 1024 × 1536 px. Absolutely NOT square, NOT landscape, NOT 3:2 horizontal.
 - The flyer artwork itself fills the ENTIRE frame edge-to-edge — there is NO outer white margin, NO white background behind the flyer, NO "poster floating on a white wall" effect. The image IS the flyer.
 - Background of the flyer paper is **off-white / very light cream (#fafaf3)** so it visually separates from any browser/app white chrome — NOT pure #ffffff.
-- No environment, no bulletin board, no wall, no tape, no shadow, no glare, no bokeh, no street, no people, NO dashed tear-off phone-number tabs at the bottom.
+- No environment, no bulletin board, no wall, no tape, no real-world shadow, no glare, no bokeh, no street, no people, NO dashed tear-off phone-number tabs at the bottom.
 
 🎨 LAYOUT (top to bottom, all elements use clear contrasting colors against the cream paper):
 1. Bold red (#c1121f) Chinese title 寻猫启事 at top, heavy sans-serif, centered, large.
+  - **Subtle wrongness: ONE single stroke of the 寻 character has a hair-thin 1px chromatic-aberration tear — a faint magenta (#ff2d95) and cyan (#22d3ee) split along the edge, like a corrupted print head. Just on one stroke. Easy to miss at a glance.**
 2. Centered "ID-card style" portrait photo of Hajimi inside a thin black 2px rectangle frame, occupies about 60% of the flyer width. **THIS PHOTO MUST BE A FRONTAL HEAD-AND-CHEST SHOT, the cat sitting upright, staring straight into the camera lens, completely calm and centered, like a passport photo or a vet clinic intake photo.** Plain soft-grey neutral studio backdrop behind the cat (NO sofa, NO floor, NO outdoor scene, NO toys). Both ears clearly visible and forward — the V-notch on the LEFT ear (viewer's right) is sharp and unmistakable. Use the Hajimi character sheet for fur, eyes, body — fully round amber pupils, marigold orange tabby. Soft even front lighting (no dramatic shadow).
 
   **COLLAR & ID TAG — MUST BE SHARP AND READABLE (this is the single most identifying detail in the whole flyer, do NOT blur, do NOT crop out):**
@@ -202,10 +203,19 @@ Negative prompt: cartoon, anime, illustration, 3d render, cgi, painting, drawing
   - **The pupils are FULLY ROUND CIRCLES — wide, dilated, completely circular black discs centered in each eye, like an indoor cat in soft low light.** ABSOLUTELY NOT vertical slits, NOT thin ellipses, NOT almond-shaped, NOT half-lidded, NOT narrowed. Both pupils identical size and identical roundness.
   - Pupil should fill roughly 60–70% of the visible iris area. A glossy white catchlight reflection sits in the upper-left of each pupil. Eyes wide open, alert, soft, slightly pleading "心都化了" energy.
   - If the generated image shows slit/elliptical pupils, the image is wrong and must be regenerated.
+  - **Subtle wrongness inside each pupil: deep in the center, a tiny circular sensor/lens-flare ring (cyan #22d3ee, ~2% pupil width) — as if the cat was photographed THROUGH or BY something he isn't supposed to see. Almost invisible unless you zoom in. Identical in both eyes.**
 3. Below the photo: handwritten-style black text "5 岁 · 公 · 橘猫 · 戴蓝色项圈 · 朝阳公园西门走失 · 见到请联系".
+  - **Directly beneath this printed line, in noticeably faded pencil (almost-invisible pale grey #c8c4b8), ONE extra hand-added line: 「（请勿扫描项圈 · 请勿上传到 MaoTrack）」. Looks like the owner added a warning after printing. Easy to miss unless you lean in.**
 4. Bottom: ONE single centered line of contact info (微信：juzuoma_2026 · 电话：138-XXXX-XXXX), no tear-off tabs.
 
-Style: clean flat graphic-design flyer, sharp typography, no photographic environment around the flyer, no texture noise, no paper-grain texture overlay. Final output **must be vertical 2:3** — if it comes out square or horizontal, it's wrong.</pre>
+🩸 SUBTLE LAYERED DETAILS (the "10% wrong" — keep each ONE of these very faint; together they create unease without breaking the cute-flyer first impression):
+- Extremely faint watermark-thin **hexagonal sigil pattern** ghosted in pale warm-grey (#ece8dc) behind the body text, echoing a circuit / occult vibe. Only readable if you lean in.
+- **Bottom-right corner of the flyer is rendered as if the digital paper is physically curling / peeling up about 8-12% of the flyer height**, casting a soft self-shadow on itself — and **through the lifted corner, what's visible underneath is NOT another sheet of paper but a layer of pale-cyan (#22d3ee) printed-circuit-board trace pattern**: thin precise PCB traces, a couple of tiny SMD pads, and **one or two clearly visible hexagonal IC outlines** echoing the sigil watermark. The PCB layer is calm, technical, and obviously out of place under a missing-cat flyer — like the printer accidentally laminated two documents together. This curled corner is the single most "wrong" element and should be the first thing observant viewers notice on a second pass.
+- **A second, much fainter ghost-image of the same cat photo is offset 2-3px to the side of the framed photo (registration error / double exposure look)** — barely perceptible, like a misaligned print pass.
+
+❌ AVOID: full-blown horror imagery, dripping blood, screaming faces, neon overload, obvious glitch art covering the cat's face, heavy chromatic aberration over the whole image, distorted melted text, anything that breaks the "cute lost-cat flyer" first impression. The cat must remain unmistakably lovable and the flyer must still look shareable. All "wrong" details are tiny, optional-to-notice second-pass discoveries.
+
+Style: clean flat graphic-design flyer, sharp typography, no photographic environment around the flyer, no texture noise, no paper-grain overlay. Final output **must be vertical 2:3** — if it comes out square or horizontal, it's wrong.</pre>
 </div>
 
 <h3>B. 哈基米参考照 ×3</h3>
