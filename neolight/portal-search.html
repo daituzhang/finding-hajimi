@@ -115,11 +115,17 @@
       user-select: text;
     }
     .root-injection::before {
-      content: '> [redacted by root · select to read]';
+      content: '⚠ INJECTED BY root · ⇢ 选中下方文字才能读 ⇠';
       display: block;
-      color: #1f1f1f; font-weight: 700;
-      margin-bottom: 6px; letter-spacing: 1px;
+      color: #fbbf24;
+      background: #1a0e02;
+      border: 1px dashed #fbbf24;
+      padding: 8px 12px;
+      margin: -4px -8px 12px;
+      font-weight: 900; font-size: 13px;
+      letter-spacing: 2px; text-align: center;
       user-select: none;
+      text-shadow: 0 0 8px rgba(251, 191, 36, 0.6);
       animation: root-flicker 1.4s infinite;
     }
     .root-injection::selection,
