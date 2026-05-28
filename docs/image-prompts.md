@@ -47,13 +47,14 @@
 
 📁 **保存**：`finder-page/assets/poster.jpg`（或 `.png`）
 
-> A flat, scanned-style **lost-cat poster on plain pure-white paper, no background, no bulletin board, no shadow, no environment** — just the single A4 poster shown straight-on, edge-to-edge, fills the whole frame, vertical 3:2. Layout, top to bottom:
-> 1. Bold red Chinese title `寻猫启事` (heavy sans-serif, centered).
-> 2. A single centered portrait photo of **Hajimi** (use character sheet — softly smiling, ear notch on the **left** ear clearly visible, sky-blue collar with silver tag visible). The photo sits inside a simple thin black rectangle frame on the white paper, like a printed photo on a flyer.
-> 3. Handwritten-style black text below: `5 岁 · 公 · 橘猫 · 戴蓝色项圈 · 朝阳公园西门走失 · 见到请联系`.
-> 4. Bottom strip: a row of dashed tear-off phone-number tabs.
+> A **scanned-looking lost-cat poster** on slightly yellowed A4 paper, shown straight-on edge-to-edge, vertical 3:2 — **the surface is cute at first glance but a second look reveals subtle wrongness** (creepy / soft-cyberpunk undercurrent hiding behind a kawaii missing-cat flyer). Layout, top to bottom:
+> 1. Bold red Chinese title `寻猫启事` (heavy sans-serif, centered) — but the kerning is **slightly off**, one stroke of the 寻 character has a **faint pixel-glitch tear** (1px magenta/cyan chromatic split), like a corrupted print head.
+> 2. A single centered portrait photo of **Hajimi** (use character sheet — softly smiling, ear notch on the **LEFT** ear clearly visible, sky-blue collar with silver tag visible). The photo sits inside a thin black rectangle frame on the paper — **but the cat's amber eyes have an unnatural inner ring of reflective glow (a tiny circular sensor lens-flare deep in the pupil)**, as if photographed through something he isn't supposed to see. **A second, fainter ghost-image of the same cat is barely visible offset 2-3 mm to the side** (registration error / double exposure).
+> 3. Handwritten-style black text below: `5 岁 · 公 · 橘猫 · 戴蓝色项圈 · 朝阳公园西门走失 · 见到请联系`. Underneath the printed line, in **almost-invisible faded pencil**, someone has added one extra line: `（请勿扫描项圈 · 请勿上传到 MaoTrack）`.
+> 4. Bottom strip: a row of dashed tear-off phone-number tabs — **all tabs are still attached except one in the middle that has been torn off cleanly; the tab numbers are not digits but tiny strings like `r00t@1.7` / `0xL7` / `awake-union` / `NXS-3`**.
+> 5. Background corners of the paper: extremely faint, watermark-thin **hexagonal sigil** (echoes the §4.2 VSS hexagon symbol) ghosted in pale gray ink behind the text, only readable if you lean in.
 >
-> Style: clean graphic-design rendering of a printed paper poster, **no photo background, no people, no glare, no bokeh, no street, no wall** — only the poster itself on a pure white surface (or transparent). Sharp print quality, no texture noise. Aspect 3:2 vertical.
+> Overall mood: 90% adorable missing-cat flyer that any 朋友圈 user would casually share · 10% "wait, why does this make me uneasy" — like a found-footage poster from a near-future cyberpunk slice-of-life horror. Lighting: flat scanner light. **No background environment, no wall, no bulletin board, no glare, no people** — only the single poster on a pure white / off-white surface, filling the frame. Sharp print quality with one or two tiny ink-jet banding lines. **Avoid: full-blown horror gore, neon overload, dripping blood, obvious glitch art covering the cat's face.** The cat must still read as cute and lovable first; the wrongness should only register on a second look.
 
 ### B. 哈基米参考照 ×3
 
