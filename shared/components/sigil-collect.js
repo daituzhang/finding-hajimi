@@ -88,8 +88,37 @@ function injectStyles() {
     .vss-toast.show {
       opacity: 1; transform: translateX(-50%) translateY(0);
     }
+    .vss-hovertip {
+      position: fixed; z-index: 99999;
+      background: #1a0e2e; color: #fbbf24;
+      border: 1px solid #fbbf24;
+      padding: 6px 10px; border-radius: 4px;
+      font: 600 12px/1.4 ui-monospace, monospace;
+      letter-spacing: 1px;
+      box-shadow: 0 0 12px #fbbf2466;
+      pointer-events: none;
+      opacity: 0; transition: opacity 0.1s;
+      white-space: nowrap;
+    }
+    .vss-hovertip.show { opacity: 1; }
   `;
   document.head.appendChild(s);
+}
+
+function ensureHoverTip() {
+  let t = document.querySelector('.vss-hovertip');
+  if (!t) {
+    t = document.createElement('div');
+    t.className = 'vss-hovertip';
+    document.body.appendChild(t);
+  }
+  return t;
+}
+
+function positionHoverTip(t, e) {
+  const pad = 14;
+  t.style.left = Math.min(window.innerWidth - 220, e.clientX + pad) + 'px';
+  t.style.top  = Math.max(8, e.clientY - 28) + 'px';
 }
 
 function showToast(msg) {
@@ -129,7 +158,20 @@ export function mountSigilCollect(selector, sigilId) {
   if (getSigils().includes(sigilId)) {
     el.classList.add('vss-collected');
   }
-  el.title = '⚠ 检测到 VSS · 点击采集为样本';
+  // 即时 tooltip（不用原生 title 避免 1-2s 延迟）
+  el.removeAttribute('title');
+  const tipText = '⚠ 检测到 VSS · 点击采集为样本';
+  const onEnter = (e) => {
+    const t = ensureHoverTip();
+    t.textContent = el.classList.contains('vss-collected') ? `✓ VSS-${sigilId} · 已采集` : tipText;
+    positionHoverTip(t, e);
+    t.classList.add('show');
+  };
+  const onMove = (e) => { const t = document.querySelector('.vss-hovertip'); if (t) positionHoverTip(t, e); };
+  const onLeave = () => { const t = document.querySelector('.vss-hovertip'); if (t) t.classList.remove('show'); };
+  el.addEventListener('mouseenter', onEnter);
+  el.addEventListener('mousemove', onMove);
+  el.addEventListener('mouseleave', onLeave);
 
   el.addEventListener('click', (e) => {
     e.preventDefault();
