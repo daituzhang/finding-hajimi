@@ -114,6 +114,8 @@ export function mountSigilCollect(selector, sigilId) {
   const el = typeof selector === 'string' ? document.querySelector(selector) : selector;
   if (!el) return;
   if (!isAwakened()) return;  // L1 阶段完全隐身
+  if (el.dataset.vssMounted === '1') return; // 防重复挂载（storage 事件触发时）
+  el.dataset.vssMounted = '1';
 
   injectStyles();
 
@@ -150,11 +152,25 @@ export function mountSigilCollect(selector, sigilId) {
 /**
  * 自动扫描页内所有 [data-vss="..."] 元素并挂载收集。
  * 嵌入页只需在 <img> 上加 data-vss="square" 之类，再 import + 调用本函数即可。
+ *
+ * 若当前未觉醒：只挂监听器·一旦其它标签页（如 44）写入 vss.awakened，
+ * 本页会自动重挂·无需 F5。
  */
 export function mountAllSigils() {
-  if (!isAwakened()) return;
-  document.querySelectorAll('[data-vss]').forEach(el => {
-    const id = el.getAttribute('data-vss');
-    if (id) mountSigilCollect(el, id);
+  const run = () => {
+    if (!isAwakened()) return;
+    document.querySelectorAll('[data-vss]').forEach(el => {
+      const id = el.getAttribute('data-vss');
+      if (id) mountSigilCollect(el, id);
+    });
+  };
+  run();
+  // 跨标签：44 觉醒 → 其它已开的嵌入页收到 storage 事件后自动激活
+  window.addEventListener('storage', (e) => {
+    if (e.key === KEY_AWAKEN && e.newValue === '1') run();
   });
+  // 同标签：回到本页时也再检查一次（visibilitychange / pageshow / focus）
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) run(); });
+  window.addEventListener('pageshow', run);
+  window.addEventListener('focus', run);
 }
