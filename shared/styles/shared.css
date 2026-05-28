@@ -195,9 +195,9 @@ body[data-nexus="3"] .arg-tips-btn {
   background: #b03030;
 }
 
-/* VSS 符号在各自嵌入页的 hover 显形 —— 觉醒前也给一点线索 */
+/* VSS 符号在各自嵌入页的 hover 显形 —— 觉醒前也给一点线索（但不给手型光标·避免提前剧透可交互） */
 [data-vss] {
-  cursor: pointer;
+  cursor: default;
   transition: filter 0.25s ease, transform 0.2s ease, opacity 0.25s ease;
 }
 [data-vss]:hover {
@@ -205,3 +205,4 @@ body[data-nexus="3"] .arg-tips-btn {
   transform: scale(1.04);
   opacity: 1 !important;
 }
+/* 觉醒后（进过 44 之后）才显手型光标 —— .vss-awakened 由 sigil-collect.js 在 isAwakened() 时挂上 */
