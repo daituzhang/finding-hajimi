@@ -43,30 +43,23 @@
     .progress-num { display: flex; justify-content: space-between;
       margin-top: 6px; font-size: 11px; color: #8b5cf6; }
 
-    .slots {
-      display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;
-      margin: 18px 0;
-    }
     .slot {
-      aspect-ratio: 1; border: 2px dashed #4c1d95; border-radius: 8px;
+      width: 40px; height: 40px;
+      border: 2px dashed #4c1d95; border-radius: 6px;
       background: #0f0820; display: flex; align-items: center; justify-content: center;
-      color: #4c1d95; font-size: 13px; cursor: pointer; position: relative;
+      color: #4c1d95; font-size: 11px; cursor: pointer; position: relative;
       transition: all 0.2s;
-      overflow: hidden;
+      overflow: hidden; flex-shrink: 0;
     }
     .slot:hover { border-color: #a78bfa; color: #a78bfa; }
     .slot.drag-over { border-color: #fbbf24; background: #1a0e2e; color: #fbbf24; }
     .slot.filled { border-style: solid; border-color: #fbbf24;
       background: #1a0e2e; }
     .slot.filled::after {
-      content: '✓'; position: absolute; top: 4px; right: 6px;
-      color: #34d399; font-size: 12px;
+      content: '✓'; position: absolute; top: 1px; right: 3px;
+      color: #34d399; font-size: 10px;
     }
-    .slot img { width: 70%; height: 70%; }
-    .slot .lbl { position: absolute; bottom: 4px; left: 0; right: 0; text-align: center;
-      font-size: 10px; color: #a78bfa; background: rgba(15, 8, 32, 0.85);
-      padding: 2px 0; pointer-events: none; }
-    .slot.filled .lbl { color: #fbbf24; background: rgba(26, 14, 46, 0.92); }
+    .slot img { width: 78%; height: 78%; object-fit: contain; }
 
     .upload {
       background: #0f0820; border: 1px solid #2a1648;
@@ -109,7 +102,8 @@
       color: #fbbf24; font-family: ui-monospace, monospace;
       font-weight: 700; min-width: 68px;
     }
-    .stash-row .vss-name { color: #a78bfa; font-size: 11.5px; min-width: 56px; }
+    .stash-row .vss-name { color: #a78bfa; font-size: 11.5px; min-width: 56px; flex: 1; }
+    .stash-row .slot { margin-left: auto; }
     .stash-row .arrow { color: #4c1d95; }
     .stash-row a {
       color: #c4b5fd; text-decoration: none;
@@ -175,42 +169,37 @@
 
     <div class="stash-panel">
       <h2>⛓ root 预埋的 5 个嵌入页</h2>
-      <div class="sub">last sync: 2026-04-12 02:14 · 采集一个·该行会点亮</div>
+      <div class="sub">last sync: 2026-04-12 02:14 · 采集一个·对应的槽位会亮起·该行点亮</div>
       <ul class="stash-list" id="stashList">
         <li class="stash-row" data-sigil="square">
           <span class="chk">✓</span>
           <span class="vss-code">VSS-01</span>
           <span class="vss-name">方中方</span>
-          <span class="arrow">→</span>
-          <a href="../xhs-snapshot/walk.html" target="_blank" rel="noreferrer">xhs.com/p/walk-record</a>
+          <div class="slot" data-i="0"></div>
         </li>
         <li class="stash-row" data-sigil="pentagon">
           <span class="chk">✓</span>
           <span class="vss-code">VSS-02</span>
           <span class="vss-name">五边花</span>
-          <span class="arrow">→</span>
-          <a href="../xhs-snapshot/idcard.html" target="_blank" rel="noreferrer">xhs.com/p/cat-idcard</a>
+          <div class="slot" data-i="1"></div>
         </li>
         <li class="stash-row" data-sigil="hexagon">
           <span class="chk">✓</span>
           <span class="vss-code">VSS-03</span>
           <span class="vss-name">六角环</span>
-          <span class="arrow">→</span>
-          <a href="../wechat-group/monitor.html" target="_blank" rel="noreferrer">wxgroup/monitor-feed</a>
+          <div class="slot" data-i="2"></div>
         </li>
         <li class="stash-row" data-sigil="octagon">
           <span class="chk">✓</span>
           <span class="vss-code">VSS-04</span>
           <span class="vss-name">八角环</span>
-          <span class="arrow">→</span>
-          <a href="../pet-clinic/record.html" target="_blank" rel="noreferrer">vet/HJM427-2024</a>
+          <div class="slot" data-i="3"></div>
         </li>
         <li class="stash-row" data-sigil="ring">
           <span class="chk">✓</span>
           <span class="vss-code">VSS-05</span>
           <span class="vss-name">同心环</span>
-          <span class="arrow">→</span>
-          <a href="../rescue-blogger/note-durian.html" target="_blank" rel="noreferrer">blog/note-durian-rescue</a>
+          <div class="slot" data-i="4"></div>
         </li>
       </ul>
     </div>
@@ -224,17 +213,8 @@
       </div>
     </div>
 
-    <h2 style="font-size:13px; color:#a78bfa; margin:18px 0 8px;">⛓ 缺失的 5 个符号槽</h2>
-    <div class="slots" id="slots">
-      <div class="slot" data-i="0"><span class="lbl">extra01-05</span></div>
-      <div class="slot" data-i="1"><span class="lbl">05-04</span></div>
-      <div class="slot" data-i="2"><span class="lbl">07-05</span></div>
-      <div class="slot" data-i="3"><span class="lbl">10-03</span></div>
-      <div class="slot" data-i="4"><span class="lbl">18-03</span></div>
-    </div>
-
     <div class="upload">
-      🔍 <b>备用通道</b>（如自动填充失败）：在各页面找到嵌入的 VSS · 右键<b>"存储为图片"</b>下载（<b>不要改名</b>），然后<b>拖拽</b>或 <code style="cursor:default">⌘/Ctrl + V 粘贴</code> 到上方槽位<br>
+      🔍 <b>备用通道</b>（如自动填充失败）：在各页面找到嵌入的 VSS · 右键<b>"存储为图片"</b>下载（<b>不要改名</b>），然后<b>拖拽</b>或 <code style="cursor:default">⌘/Ctrl + V 粘贴</code> 到上面表格对应行的槽位<br>
       <span style="color:#d83a3a;">⚠ <b>请不要直接"复制图片"</b>——必须先<b>"存储为图片"</b>保存到本地再上传，否则文件名 / 元数据会丢失</span><br>
       未被收录的符号将被忽略 · 重复提交会被跳过
     </div>
@@ -280,7 +260,8 @@
       core.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;';
       slot.style.position = 'relative';
       slot.appendChild(core);
-      if (lbl) slot.appendChild(lbl);
+      const row = slot.closest('.stash-row');
+      if (row) row.classList.add('done');
       filled++;
       progressLbl.textContent = `${(3030 + filled).toLocaleString()} / 3,035`;
       percentLbl.textContent = `${((3030 + filled) / 3035 * 100).toFixed(2)}%`;
@@ -378,7 +359,7 @@
     window.addEventListener('storage', refreshStashPanel);
 
     mountTips({ tips: [
-      "上面「⛓ root 预埋的 5 个嵌入页」点进去·找金光闪动的图点一下",
+      "root 预埋的 5 个嵌入页·点进去·找金光闪动的图点一下：<br>· VSS-01 <a href='../xhs-snapshot/walk.html' target='_blank' rel='noreferrer'>xhs.com/p/walk-record</a><br>· VSS-02 <a href='../xhs-snapshot/idcard.html' target='_blank' rel='noreferrer'>xhs.com/p/cat-idcard</a><br>· VSS-03 <a href='../wechat-group/monitor.html' target='_blank' rel='noreferrer'>wxgroup/monitor-feed</a><br>· VSS-04 <a href='../pet-clinic/record.html' target='_blank' rel='noreferrer'>vet/HJM427-2024</a><br>· VSS-05 <a href='../rescue-blogger/note-durian.html' target='_blank' rel='noreferrer'>blog/note-durian-rescue</a>",
       "采集后回本页·槽位会自动填上"
     ] });
 

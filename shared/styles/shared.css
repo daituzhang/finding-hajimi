@@ -131,6 +131,12 @@ body[data-nexus="3"] .arg-footer .keyword {
   color: #333;
   word-break: break-word;
 }
+.arg-tips-body a {
+  color: #2563eb;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.arg-tips-body a:hover { color: #1d4ed8; }
 
 .arg-tips-foot {
   display: flex;

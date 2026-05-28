@@ -79,7 +79,7 @@ export function mountTips({ tips } = {}) {
   const dotsEl = panel.querySelector('.arg-tips-dots');
 
   function render() {
-    bodyEl.textContent = tips[currentIdx];
+    bodyEl.innerHTML = tips[currentIdx];
     countEl.textContent = `${currentIdx + 1} / ${tips.length}`;
     prevBtn.disabled = currentIdx === 0;
     if (currentIdx >= tips.length - 1) {
