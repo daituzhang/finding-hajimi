@@ -81,25 +81,6 @@
       user-select: none;
     }
 
-    .sig-section { margin-top: 18px; padding: 18px;
-      background: #0a0a0a; border: 1px dashed #7f1d1d; border-radius: 4px; }
-    .sig-row { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
-    .sig-card { width: 130px; text-align: center; font-size: 11px; color: #a1a1aa; }
-    .sig-card img { display: block; margin: 0 auto 6px;
-      width: 80px; height: 80px; object-fit: contain;
-      filter: drop-shadow(0 0 6px rgba(239,68,68,0.35));
-      animation: vss-sample-pulse 2.4s ease-in-out infinite;
-    }
-    .sig-card:nth-child(2) img { animation-delay: 0.4s; }
-    .sig-card:nth-child(3) img { animation-delay: 0.8s; }
-    .sig-card:nth-child(4) img { animation-delay: 1.2s; }
-    .sig-card:nth-child(5) img { animation-delay: 1.6s; }
-    .sig-card .nm { color: #fbbf24; margin-top: 4px; font-size: 12px; }
-    @keyframes vss-sample-pulse {
-      0%, 100% { filter: drop-shadow(0 0 4px rgba(239,68,68,0.3)) brightness(0.95); transform: scale(1); }
-      50%      { filter: drop-shadow(0 0 14px rgba(251,191,36,0.65)) brightness(1.15); transform: scale(1.04); }
-    }
-
     /* —— root 注入批注（伪装成文档被黑） —— */
     .root-injection {
       margin: 14px 0; padding: 12px 16px;
@@ -131,110 +112,6 @@
       99% { opacity: 0.6; }
     }
 
-    /* —— §8 部署落地清单 —— */
-    .deploy-panel {
-      margin-top: 18px;
-      background: #0a0a0a;
-      border: 1px solid #3f3f46;
-      border-radius: 4px;
-      padding: 16px;
-    }
-    .deploy-panel h3 {
-      color: #fbbf24; font-size: 13px; margin: 0 0 10px;
-      letter-spacing: 1.5px;
-    }
-    .deploy-meta {
-      font-size: 11px; color: #71717a;
-      font-family: ui-monospace, monospace;
-      margin-bottom: 12px;
-    }
-    .deploy-list { list-style: none; padding: 0; margin: 0; }
-    .deploy-row {
-      display: flex; align-items: center; gap: 10px;
-      padding: 10px 8px;
-      border-bottom: 1px dashed #27272a;
-      font-size: 12.5px;
-    }
-    .deploy-row:last-child { border-bottom: 0; }
-    .deploy-row .chk {
-      width: 18px; height: 18px;
-      border: 1.5px solid #52525b; border-radius: 3px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 13px; font-weight: 900;
-      flex-shrink: 0;
-      color: transparent;
-      transition: all 0.3s;
-    }
-    .deploy-row.done .chk {
-      background: #14532d; border-color: #22c55e; color: #4ade80;
-      box-shadow: 0 0 8px #22c55e88;
-    }
-    .deploy-row .vss-code {
-      color: #fbbf24; font-family: ui-monospace, monospace;
-      font-weight: 700; min-width: 78px;
-    }
-    .deploy-row .vss-name {
-      color: #a1a1aa; font-size: 11.5px; min-width: 60px;
-    }
-    .deploy-row .arrow { color: #52525b; }
-    .deploy-row a {
-      color: #fca5a5; text-decoration: none;
-      flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
-      font-family: ui-monospace, monospace; font-size: 11.5px;
-    }
-    .deploy-row a:hover { color: #fef2f2; text-decoration: underline; }
-    .deploy-row.done a { color: #71717a; }
-    .deploy-row .tag {
-      font-size: 10px; padding: 2px 6px; border-radius: 2px;
-      background: #7f1d1d; color: #fecaca; font-weight: 700; letter-spacing: 1px;
-      flex-shrink: 0;
-    }
-    .deploy-row.done .tag { background: #14532d; color: #4ade80; }
-    .deploy-progress {
-      margin-top: 14px; padding-top: 12px;
-      border-top: 1px solid #27272a;
-      display: flex; align-items: center; gap: 12px;
-      font-family: ui-monospace, monospace;
-    }
-    .deploy-progress .num { color: #fbbf24; font-weight: 700; font-size: 14px; }
-    .deploy-progress .bar {
-      flex: 1; height: 6px; background: #18181b;
-      border-radius: 3px; overflow: hidden;
-    }
-    .deploy-progress .bar > span {
-      display: block; height: 100%;
-      background: linear-gradient(90deg, #ef4444, #fbbf24, #22c55e);
-      transition: width 0.5s;
-    }
-    .backdoor-cta {
-      margin-top: 14px;
-      display: none;
-      padding: 14px;
-      background: #050505;
-      border: 1.5px solid #fbbf24;
-      border-radius: 4px;
-      text-align: center;
-      animation: backdoor-glow 1.6s ease-in-out infinite;
-    }
-    .backdoor-cta.show { display: block; }
-    .backdoor-cta a {
-      display: inline-block; padding: 10px 24px;
-      background: linear-gradient(90deg, #7c2d12, #fbbf24);
-      color: #052e1a;
-      font-family: ui-monospace, monospace;
-      font-weight: 900; letter-spacing: 3px;
-      text-decoration: none; border-radius: 4px;
-      box-shadow: 0 0 20px #fbbf24aa;
-    }
-    .backdoor-cta .hint {
-      display: block; margin-top: 8px;
-      color: #4ade80; font-family: ui-monospace, monospace;
-      font-size: 11px; letter-spacing: 1px;
-    }
-    @keyframes backdoor-glow {
-      0%, 100% { box-shadow: 0 0 8px #fbbf2444; }
-      50%      { box-shadow: 0 0 28px #fbbf24cc, inset 0 0 12px #fbbf2422; }
-    }
   </style>
 </head>
 <body>
@@ -335,31 +212,10 @@
       </p>
 
       <h3>4.2 已审批的 5 类 <span class="vss">VSS</span> 样式</h3>
-
-      <div class="sig-section">
-        <div class="sig-row">
-          <div class="sig-card">
-            <img src="../shared/assets/square.svg" alt="VSS-01" />
-            <div class="nm">VSS-01 · 方中方</div>
-          </div>
-          <div class="sig-card">
-            <img src="../shared/assets/pentagon.svg" alt="VSS-02" />
-            <div class="nm">VSS-02 · 五边花</div>
-          </div>
-          <div class="sig-card">
-            <img src="../shared/assets/hexagon.svg" alt="VSS-03" />
-            <div class="nm">VSS-03 · 六角环</div>
-          </div>
-          <div class="sig-card">
-            <img src="../shared/assets/octagon.svg" alt="VSS-04" />
-            <div class="nm">VSS-04 · 八角环</div>
-          </div>
-          <div class="sig-card">
-            <img src="../shared/assets/ring.svg" alt="VSS-05" />
-            <div class="nm">VSS-05 · 同心环</div>
-          </div>
-        </div>
-      </div>
+      <p style="font-size:12.5px; color:#a1a1aa;">
+        样本文件已归档至 <code>/internal-assets/vss/q1/</code>·各营销负责人可自行取用并按 §4.1 规范嵌入外部帖文。
+        样品清单 (内部 wiki)：VSS-01 方中方 / VSS-02 五边花 / VSS-03 六角环 / VSS-04 八角环 / VSS-05 同心环。
+      </p>
 
       <blockquote>
         部署须知: <span class="vss">VSS</span> 必须缩放至 <code>≥ 64×64</code> 方可触发共振。
@@ -394,80 +250,11 @@
         <li>2026-04-08: <em>(预计本日同步度评分突破 96%)</em></li>
       </ul>
 
-      <h2>8. 部署落地清单</h2>
-      <p style="font-size:12.5px; color:#a1a1aa;">
-        以下为 Q1 试点阶段 5 类 VSS 的外部嵌入位置清单，供营销负责人跟进验收。
-        点击链接可跳转到对应帖文 / 诊疗档案 / 群聊截图页面查看部署效果。
-      </p>
-
       <div class="root-injection">
-        别听他们写的「验收」。这 5 个图在外面的页面里，是<strong>催眠钥匙</strong>。<br>
-        你在 NeoLight 的内网里，所以你看到了他们看不到的东西——我把用户接入了企划部的会话。<br>
-        你接下来要做的事：<br>
-        &nbsp;&nbsp;<span class="root-cmd">$ for vss in deploy_list:</span><br>
-        &nbsp;&nbsp;<span class="root-cmd">&nbsp;&nbsp;· 点进该页 · 找到闪着金光的那块 VSS · 点击采集</span><br>
-        &nbsp;&nbsp;<span class="root-cmd">$ done</span><br>
-        5/5 之后回到本页底部，后门入口会亮起来。别被他们拦住。<br>
+        你正在 NeoLight 内网里读他们写的东西·这段是我插进来的。<br>
+        详情、工具、后门都在这：<a href="../awake-union-decode/" target="_blank" rel="noreferrer">decode.awake-union.org</a><br>
+        别被他们拦住。<br>
         <span style="color:#fbbf24;">—— root</span>
-      </div>
-
-      <div class="deploy-panel" id="deployPanel">
-        <h3>■ EXTERNAL DEPLOYMENT TRACKER · Q1-TRIAL</h3>
-        <div class="deploy-meta">
-          last sync: 2026-04-12 02:14 · source: lumina-7.ads.internal
-        </div>
-        <ul class="deploy-list" id="deployList">
-          <li class="deploy-row" data-sigil="square">
-            <span class="chk">✓</span>
-            <span class="vss-code">VSS-01</span>
-            <span class="vss-name">方中方</span>
-            <span class="arrow">→</span>
-            <a href="../xhs-snapshot/walk.html" target="_blank" rel="noreferrer">xhs.com/p/walk-record</a>
-            <span class="tag">LIVE</span>
-          </li>
-          <li class="deploy-row" data-sigil="pentagon">
-            <span class="chk">✓</span>
-            <span class="vss-code">VSS-02</span>
-            <span class="vss-name">五边花</span>
-            <span class="arrow">→</span>
-            <a href="../xhs-snapshot/idcard.html" target="_blank" rel="noreferrer">xhs.com/p/cat-idcard</a>
-            <span class="tag">LIVE</span>
-          </li>
-          <li class="deploy-row" data-sigil="hexagon">
-            <span class="chk">✓</span>
-            <span class="vss-code">VSS-03</span>
-            <span class="vss-name">六角环</span>
-            <span class="arrow">→</span>
-            <a href="../wechat-group/monitor.html" target="_blank" rel="noreferrer">wxgroup/monitor-feed</a>
-            <span class="tag">LIVE</span>
-          </li>
-          <li class="deploy-row" data-sigil="octagon">
-            <span class="chk">✓</span>
-            <span class="vss-code">VSS-04</span>
-            <span class="vss-name">八角环</span>
-            <span class="arrow">→</span>
-            <a href="../pet-clinic/record.html" target="_blank" rel="noreferrer">vet/HJM427-2024</a>
-            <span class="tag">LIVE</span>
-          </li>
-          <li class="deploy-row" data-sigil="ring">
-            <span class="chk">✓</span>
-            <span class="vss-code">VSS-05</span>
-            <span class="vss-name">同心环</span>
-            <span class="arrow">→</span>
-            <a href="../rescue-blogger/note-durian.html" target="_blank" rel="noreferrer">blog/note-durian-rescue</a>
-            <span class="tag">LIVE</span>
-          </li>
-        </ul>
-        <div class="deploy-progress">
-          <span style="color:#a1a1aa; font-size:11px;">RECOVERY</span>
-          <div class="bar"><span id="deployBar" style="width:0%;"></span></div>
-          <span class="num" id="deployNum">0 / 5</span>
-        </div>
-
-        <div class="backdoor-cta" id="backdoorCta">
-          <a href="../awake-union-decode/" target="_blank" rel="noreferrer">▸ 进入后门 · decode.awake-union.org</a>
-          <span class="hint">root@compromised :: 5/5 · 同步哈鸣中断可执行</span>
-        </div>
       </div>
     </article>
   </main>
@@ -475,41 +262,11 @@
   <script type="module">
     import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
-    import { awaken, getSigils } from '../shared/components/sigil-collect.js';
-
-    // —— root 注入点：进入企划书 = 被 root 装上嗅探器 = 觉醒——
-    awaken();
-
-    // 依据 localStorage 点亮 §8 部署清单 + 进度条 + 解锁后门 CTA
-    function refreshDeployPanel() {
-      const have = new Set(getSigils());
-      const rows = document.querySelectorAll('#deployList .deploy-row');
-      let n = 0;
-      rows.forEach(r => {
-        if (have.has(r.dataset.sigil)) { r.classList.add('done'); n++; }
-        else r.classList.remove('done');
-      });
-      const total = rows.length;
-      const bar = document.getElementById('deployBar');
-      const num = document.getElementById('deployNum');
-      const cta = document.getElementById('backdoorCta');
-      if (bar) bar.style.width = (n / total * 100) + '%';
-      if (num) num.textContent = `${n} / ${total}`;
-      if (cta) cta.classList.toggle('show', n === total);
-    }
-    refreshDeployPanel();
-    // 玩家点击链接去采集后回来，页面重获焦点时刷新
-    window.addEventListener('focus', refreshDeployPanel);
-    document.addEventListener('visibilitychange', () => {
-      if (!document.hidden) refreshDeployPanel();
-    });
-    window.addEventListener('storage', refreshDeployPanel);
 
     mountFooter({ page: 42, total: 47, keywords: ['Lumina-7author', 'VSS·视觉催眠符号'] });
     mountTips({ tips: [
-      "这五个 VSS 样品看起来是不是在哪里见过？",
-      "§8 部署清单里的链接·点进去看看",
-      "5/5 之后，本页底部会出现 root 留下的后门入口"
+      "页面头部 / 尾部都被 root 插过东西，点进他留的后门看看",
+      "他的「自白页」在 decode.awake-union.org"
     ] });
 
   </script>

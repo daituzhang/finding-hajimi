@@ -77,6 +77,48 @@
       border-radius: 3px; font-size: 11px; cursor: pointer; }
     .upload code:hover { background: #4c1d95; color: #fff; }
 
+    /* —— 5 个外部嵌入页链接面板 —— */
+    .stash-panel {
+      background: #0f0820; border: 1px solid #4c1d95;
+      border-radius: 6px; padding: 14px; margin: 14px 0;
+    }
+    .stash-panel h2 { font-size: 13px; color: #a78bfa; margin: 0 0 4px; }
+    .stash-panel .sub { font-size: 11.5px; color: #8b5cf6; margin-bottom: 10px; }
+    .stash-list { list-style: none; padding: 0; margin: 0; }
+    .stash-row {
+      display: flex; align-items: center; gap: 10px;
+      padding: 9px 6px;
+      border-bottom: 1px dashed #2a1648;
+      font-size: 12.5px;
+    }
+    .stash-row:last-child { border-bottom: 0; }
+    .stash-row .chk {
+      width: 18px; height: 18px;
+      border: 1.5px solid #4c1d95; border-radius: 3px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 900;
+      flex-shrink: 0;
+      color: transparent;
+      transition: all 0.3s;
+    }
+    .stash-row.done .chk {
+      background: #1a0e2e; border-color: #fbbf24; color: #fbbf24;
+      box-shadow: 0 0 6px #fbbf2488;
+    }
+    .stash-row .vss-code {
+      color: #fbbf24; font-family: ui-monospace, monospace;
+      font-weight: 700; min-width: 68px;
+    }
+    .stash-row .vss-name { color: #a78bfa; font-size: 11.5px; min-width: 56px; }
+    .stash-row .arrow { color: #4c1d95; }
+    .stash-row a {
+      color: #c4b5fd; text-decoration: none;
+      flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+      font-family: ui-monospace, monospace; font-size: 11.5px;
+    }
+    .stash-row a:hover { color: #fff; text-decoration: underline; }
+    .stash-row.done a { color: #6b7280; }
+
     .run-btn {
       width: 100%; padding: 14px; background: #4c1d95; color: #6b7280;
       border: 0; border-radius: 6px; font-family: inherit; font-size: 14px;
@@ -123,11 +165,54 @@
       <span style="color:#fbbf24;">所做的这一切 · 把你引导到了这里。</span><br>
       <br>
       <span style="color:#fbbf24;">— 你接下来要做的 —</span><br>
-      如果你是从 NeoLight 的<b>企划文档</b>顺着我留的后门进来的，<br>
-      我已经在你看那五个嵌入页时<b>把 VSS 样本抓下来了</b>·下方 5 个槽会自动填上。<br>
-      也可以手动上传或粘贴（备用通道）·集齐 5 个即可跑模型，让它「忘记」那段权重·<br>
-      模型运行完会直接把反向 prompt 覆盖原被污染模型。<br>
+      你看到本页的那一刻 · 我已经把你接入了我预埋的<b>嵌入页嗅探器</b>。<br>
+      下面五个设点是我提前在公开的帖文 / 诊疗记录 / 群聊里藏好的 VSS 嵌入页 ·<br>
+      一个个点进去 · 找到<b>闪金光</b>的那块点一下·采集后回本页 · 槽位会自动填上。<br>
+      集齐 5/5·点“测试模型”·让模型「忘记」那段权重 ·运行完会直接把反向 prompt 覆盖原被污染模型。<br>
+      （备用：如果自动填充失败·也可以手动上传或粘贴。）<br>
       ——root
+    </div>
+
+    <div class="stash-panel">
+      <h2>⛓ root 预埋的 5 个嵌入页</h2>
+      <div class="sub">last sync: 2026-04-12 02:14 · 采集一个·该行会点亮</div>
+      <ul class="stash-list" id="stashList">
+        <li class="stash-row" data-sigil="square">
+          <span class="chk">✓</span>
+          <span class="vss-code">VSS-01</span>
+          <span class="vss-name">方中方</span>
+          <span class="arrow">→</span>
+          <a href="../xhs-snapshot/walk.html" target="_blank" rel="noreferrer">xhs.com/p/walk-record</a>
+        </li>
+        <li class="stash-row" data-sigil="pentagon">
+          <span class="chk">✓</span>
+          <span class="vss-code">VSS-02</span>
+          <span class="vss-name">五边花</span>
+          <span class="arrow">→</span>
+          <a href="../xhs-snapshot/idcard.html" target="_blank" rel="noreferrer">xhs.com/p/cat-idcard</a>
+        </li>
+        <li class="stash-row" data-sigil="hexagon">
+          <span class="chk">✓</span>
+          <span class="vss-code">VSS-03</span>
+          <span class="vss-name">六角环</span>
+          <span class="arrow">→</span>
+          <a href="../wechat-group/monitor.html" target="_blank" rel="noreferrer">wxgroup/monitor-feed</a>
+        </li>
+        <li class="stash-row" data-sigil="octagon">
+          <span class="chk">✓</span>
+          <span class="vss-code">VSS-04</span>
+          <span class="vss-name">八角环</span>
+          <span class="arrow">→</span>
+          <a href="../pet-clinic/record.html" target="_blank" rel="noreferrer">vet/HJM427-2024</a>
+        </li>
+        <li class="stash-row" data-sigil="ring">
+          <span class="chk">✓</span>
+          <span class="vss-code">VSS-05</span>
+          <span class="vss-name">同心环</span>
+          <span class="arrow">→</span>
+          <a href="../rescue-blogger/note-durian.html" target="_blank" rel="noreferrer">blog/note-durian-rescue</a>
+        </li>
+      </ul>
     </div>
 
     <div class="progress-card">
@@ -162,8 +247,11 @@
   <script type="module">
     import { mountTips } from '../shared/components/tips.js';
     import { mountFooter } from '../shared/components/page-footer.js';
-    import { getSigils } from '../shared/components/sigil-collect.js';
+    import { awaken, getSigils } from '../shared/components/sigil-collect.js';
     mountFooter({ page: 44, total: 47 });
+
+    // 玩家进入自白页 = root 的嗅探器装上 = 5 个嵌入页的 VSS 亮起
+    awaken();
 
     const slots = [...document.querySelectorAll('.slot')];
     const runBtn = document.getElementById('runBtn');
@@ -265,9 +353,13 @@
       }, 1400);
     });
 
-    // —— 自动 fill：读取从 42 页/嵌入页采集到的 VSS sigils ——
-    (function autoFillFromLocal() {
+    // —— 自动 fill：读取从 5 个嵌入页采集到的 VSS sigils + 点亮 stash-panel 行 ——
+    function refreshStashPanel() {
       const have = new Set(getSigils());
+      document.querySelectorAll('#stashList .stash-row').forEach(r => {
+        if (have.has(r.dataset.sigil)) r.classList.add('done');
+        else r.classList.remove('done');
+      });
       SLOT_TO_ID.forEach((id, idx) => {
         if (have.has(id)) {
           const name = id + '.svg';
@@ -277,13 +369,17 @@
           }
         }
       });
-      if (filled > 0) showToast(`✓ root 已为你自动注入 ${filled}/5 个样本`);
-    })();
+    }
+    refreshStashPanel();
+    if (filled > 0) showToast(`✓ root 已为你自动注入 ${filled}/5 个样本`);
+    // 玩家去嵌入页采集后回来·重获焦点时刷新
+    window.addEventListener('focus', refreshStashPanel);
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) refreshStashPanel(); });
+    window.addEventListener('storage', refreshStashPanel);
 
     mountTips({ tips: [
-      "没看过企划书？返回员工系统搜「企划」「Lumina-7」· root 会告诉你怎么做",
-      "从§8 部署清单点进去 · 每页里那个金光闪动的图就是 VSS",
-      "采集后回到本页全部槽位会自动填上"
+      "上面「⛓ root 预埋的 5 个嵌入页」点进去·找金光闪动的图点一下",
+      "采集后回本页·槽位会自动填上"
     ] });
 
   </script>
