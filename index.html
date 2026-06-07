@@ -7,15 +7,143 @@
   <meta http-equiv="Expires" content="0" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="robots" content="noindex,nofollow" />
-  <meta http-equiv="refresh" content="0; url=./find-cn/" />
-  <title>find.cn</title>
+  <meta name="description" content="网页解谜游戏《寻找哈基米 / Finding Hajimi》—— 你看到一只走失小猫的帖子。或许，事情并不只是丢猫这么简单。" />
+  <title>寻找哈基米 / Finding Hajimi — 网页解谜游戏</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-  <style>html,body{margin:0;background:#fff;color:#666;font-family:-apple-system,"PingFang SC",sans-serif}.w{max-width:520px;margin:120px auto;padding:24px;line-height:1.7;text-align:center}</style>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{background:#fdf6e8;color:#3d2a14;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans CJK SC",Arial,sans-serif;line-height:1.75;-webkit-font-smoothing:antialiased}
+    body{min-height:100vh;display:flex;justify-content:center}
+    .page{max-width:680px;width:100%;padding:64px 28px 120px;position:relative}
+
+    /* ===== TOP TITLE ===== */
+    .meta-tag{font-size:12px;letter-spacing:.16em;color:#a07a4c;text-transform:uppercase;border-top:1px solid #d6c7a8;padding-top:14px;margin-bottom:8px}
+    h1.title{font-family:"Songti SC","Source Han Serif SC",serif;font-size:54px;font-weight:900;color:#5a3a1f;letter-spacing:.02em;line-height:1.15;margin-bottom:10px}
+    h1.title .accent{color:#ff8a2a}
+    .title-en{font-size:13px;letter-spacing:.3em;color:#a07a4c;margin-bottom:36px}
+
+    /* ===== POSTER ===== */
+    .poster-wrap{margin:0 -8px 40px;text-align:center}
+    .poster-wrap img{max-width:280px;width:60%;border-radius:12px;box-shadow:0 12px 36px -10px rgba(122,82,30,.28),0 2px 6px rgba(122,82,30,.18);transform:rotate(-1.2deg);transition:transform .4s ease}
+    .poster-wrap img:hover{transform:rotate(0)}
+
+    /* ===== STORY BLOCK ===== */
+    .intro-prose{font-size:16px;color:#5a3a1f;margin-bottom:48px}
+    .intro-prose p{margin-bottom:14px}
+    .intro-prose .quiet{color:#9c7a4d;font-size:14.5px}
+    .intro-prose .ominous{font-style:italic;color:#7a4a2a}
+
+    /* ===== SECTION HEADERS ===== */
+    section{margin-bottom:44px}
+    h2{font-size:19px;font-weight:700;color:#5a3a1f;margin-bottom:14px;padding-bottom:8px;border-bottom:1.5px dashed #d6c7a8;display:flex;align-items:center;gap:8px}
+    h2::before{content:"◯";color:#ff8a2a;font-weight:400;font-size:18px}
+
+    /* ===== LISTS ===== */
+    ul.checks{list-style:none;padding-left:6px}
+    ul.checks li{padding:6px 0 6px 26px;position:relative;font-size:15px;color:#5a3a1f}
+    ul.checks li::before{content:"·";color:#ff8a2a;font-size:28px;font-weight:bold;position:absolute;left:8px;top:-2px;line-height:1}
+    ul.checks li b{color:#3d2a14}
+
+    .note-block{background:#fff4dd;border-left:3px solid #ff8a2a;padding:14px 18px;font-size:14.5px;color:#7a4a2a;border-radius:0 8px 8px 0;margin-top:14px}
+    .note-block b{color:#c83e1a}
+
+    /* ===== ENTER BUTTON ===== */
+    .enter-cta{text-align:center;margin:60px 0 30px}
+    .enter-btn{display:inline-block;background:#ff8a2a;color:#fff;font-size:18px;font-weight:700;padding:18px 56px;border-radius:999px;text-decoration:none;letter-spacing:.08em;box-shadow:0 8px 24px -6px rgba(255,138,42,.55),0 2px 6px rgba(255,138,42,.3);transition:all .25s ease;border:none;cursor:pointer}
+    .enter-btn:hover{transform:translateY(-2px);box-shadow:0 12px 30px -6px rgba(255,138,42,.7),0 4px 8px rgba(255,138,42,.35)}
+    .enter-sub{font-size:13px;color:#a07a4c;margin-top:14px}
+    .enter-sub a{color:#a07a4c;text-decoration:underline;text-underline-offset:3px}
+
+    /* ===== STAFF ===== */
+    .staff{margin-top:60px;padding-top:28px;border-top:1px dashed #d6c7a8;font-size:13.5px;color:#9c7a4d;text-align:center;line-height:2}
+    .staff b{color:#5a3a1f}
+
+    /* ===== CURLED CORNER EASTER EGG ===== */
+    .curl{position:fixed;right:0;bottom:0;width:84px;height:84px;pointer-events:auto;z-index:50;cursor:default}
+    .curl-paper{position:absolute;right:0;bottom:0;width:100%;height:100%;background:#fdf6e8;clip-path:polygon(100% 0,100% 100%,0 100%);transform-origin:100% 100%;transform:rotate(0deg);box-shadow:-4px -4px 12px -4px rgba(0,0,0,.25);transition:transform .5s ease}
+    .curl-matrix{position:absolute;right:0;bottom:0;width:100%;height:100%;background:#000;clip-path:polygon(100% 0,100% 100%,0 100%);overflow:hidden;font-family:"Courier New",monospace;font-size:9px;color:#00ff41;line-height:1;letter-spacing:1px}
+    .curl-matrix::before{content:"ア 7 サ\Aツ 0 ナ\A ヨ 1 ル\A0xL7 シ\A メ 4 タ\A 9 ヲ ホ\A・ ン ア\Aサ 0 ヨ";white-space:pre;position:absolute;right:6px;bottom:4px;text-shadow:0 0 4px #00ff41;animation:rain 8s linear infinite}
+    @keyframes rain{0%{transform:translateY(0)}100%{transform:translateY(-20px)}}
+    .curl:hover .curl-paper{transform:rotate(35deg) translate(-6px,-6px)}
+    .curl-hint{position:fixed;right:96px;bottom:34px;font-size:11px;color:#a07a4c;opacity:0;transition:opacity .3s ease;pointer-events:none;white-space:nowrap;font-style:italic}
+    .curl:hover ~ .curl-hint{opacity:.7}
+
+    @media (max-width:560px){
+      .page{padding:44px 22px 100px}
+      h1.title{font-size:42px}
+      .poster-wrap img{width:75%;max-width:none}
+      .enter-btn{padding:16px 44px;font-size:16px}
+      .curl{width:64px;height:64px}
+    }
+  </style>
 </head>
 <body>
-  <div class="w">
-    正在跳转到 find.cn…<br>
-    如果没有自动跳转，请点击 <a href="./find-cn/" style="color:#06a7ff">这里</a>。
-  </div>
+  <main class="page">
+
+    <div class="meta-tag">网页解谜游戏 · 2026</div>
+    <h1 class="title">寻找<span class="accent">哈基米</span></h1>
+    <div class="title-en">FINDING&nbsp;&nbsp;HAJIMI</div>
+
+    <div class="poster-wrap">
+      <img src="./promo/poster.jpg" alt="寻找哈基米 海报" onerror="this.style.display='none'" />
+    </div>
+
+    <div class="intro-prose">
+      <p>你是不是也刷到过这样的帖子。</p>
+      <p>"成年公橘，5 岁，戴蓝色项圈，左耳有月牙缺口。朝阳公园西门走失，已经三天了。"</p>
+      <p>配图是一只圆滚滚的胖橘，仰着头看镜头，眼睛湿漉漉的。下面好多人留言，说会帮忙转，说一定能找到。失主回复每一条："谢谢，真的谢谢。"</p>
+      <p>你顺手转发了，关掉手机。可那只橘猫的脸一直在你脑子里。</p>
+      <p>晚上躺下来又翻开手机，你想再看一眼那条帖子——结果发现，<b>最近几个月，丢猫的消息突然多了起来</b>。</p>
+      <p class="ominous">几乎都是橘猫。几乎都戴着项圈。几乎，都是在朝阳公园附近。</p>
+      <p class="quiet">事情，真的有这么简单吗？</p>
+    </div>
+
+    <section>
+      <h2>游戏目的</h2>
+      <ul class="checks">
+        <li>代入一个偶然刷到走失帖子的<b>普通网友</b>，从一个搜索框开始</li>
+        <li>顺着小红书 / 微信群 / 寻猫海报 / 公园监控的线索，<b>把哈基米找回家</b></li>
+        <li>……如果你足够细心，可能会发现走失的<b>不只是一只猫</b></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>玩法说明</h2>
+      <ul class="checks">
+        <li>纯网页 · <b>不用下载、不用注册、不用付费</b>，浏览器就能玩</li>
+        <li>所有线索都<b>写在页面上</b>——不需要 F12、不需要看源代码，正常阅读 + 动脑就能解</li>
+        <li>每个页面右下角有 <code>XX/总页数</code> 序号，<b>数字越大越接近真相</b></li>
+        <li>右上角的「<b>?</b>」是卡关提示，能自己推进的话尽量别看</li>
+        <li>推荐用<b>电脑浏览器</b>，多窗口切换记线索更顺手；手机也能玩，体验稍差</li>
+        <li>主线大概需要 <b>1–2 小时</b>·完整通关含支线 <b>3–4 小时</b></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>内容预警</h2>
+      <div class="note-block">
+        本作整体是<b>温暖的寻猫故事</b>，但后半段会涉及一些<b>稍重的题材</b>——意识控制、企业阴谋、对动物的不当利用。<br>
+        含轻度<b>不安氛围 / 监控视角 / 隐晦的恐怖暗示</b>，<b>不含</b> Jump Scare、血腥画面、虐待动物的写实描绘。<br>
+        如果你介意上述任一元素，<b>建议酌情体验</b>。<b>未成年请在家长陪同下游玩。</b>
+      </div>
+    </section>
+
+    <div class="enter-cta">
+      <a class="enter-btn" href="./find-cn/">从搜索框开始 →</a>
+      <div class="enter-sub">或先看一下 <a href="./promo/poster.jpg" target="_blank" rel="noopener">推广海报</a></div>
+    </div>
+
+    <div class="staff">
+      <div>—— Staff ——</div>
+      <div><b>剧本 · 程序 · 美术</b> &nbsp;·&nbsp; 明天 ARG 小组</div>
+      <div><b>致谢</b> &nbsp;·&nbsp; 所有帮哈基米转发过的人</div>
+      <div style="margin-top:18px;font-size:12px;opacity:.7">© 2026 · 这是一个虚构故事 · 现实里请好好关心你身边的猫</div>
+    </div>
+
+  </main>
+
+  <a class="curl" href="#" onclick="return false" aria-label="纸张翘角"><div class="curl-matrix"></div><div class="curl-paper"></div></a>
+  <div class="curl-hint">…这里好像不太对？</div>
+
 </body>
 </html>
