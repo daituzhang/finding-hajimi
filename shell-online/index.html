@@ -197,7 +197,8 @@
           write('       hint: 密码是 4 位数字 · 03-07 · 04-07 · extra01-06 · 05-01', 'info');
           setPrompt();
         } else {
-          write('[err] no such user, try again', 'err');
+          write(`[err] no such user: ${line}`, 'err');
+          write('       提示：root 是这台机器的主人 · 用户名很简单，别想得太复杂', 'info');
           write('username:');
           setPrompt();
         }
@@ -211,8 +212,9 @@
           write(`[ok] authenticated. welcome ${authUser}`, 'ok');
           write(`     connected to ${connectingTo} · sandbox ready`, 'info');
         } else {
-          write('[err] wrong password, try again', 'err');
-          write('       hint: 03-07 · 04-07 · extra01-06 · 05-01', 'info');
+          write('[err] wrong password', 'err');
+          write('       密码是 4 位数字，拼接顺序：03-07 · 04-07 · extra01-06 · 05-01', 'info');
+          write('       去对应页面的对应楼层，看 @root 评论里那个数字', 'info');
           write('password:');
         }
         setPrompt();
@@ -228,8 +230,28 @@
       const args = rawArgs.map(a => a.replace(/^[<"'`\[{(]+|[>"'`\]})]+$/g, ''));
       const fn = COMMANDS[c.toLowerCase()];
       if (fn) fn(args);
-      else write(`command not found: ${c} · type \`help\``, 'err');
+      else {
+        const known = Object.keys(COMMANDS);
+        const guess = known.find(k => k.startsWith(c.toLowerCase())) || known.find(k => c.toLowerCase().includes(k));
+        write(`command not found: ${c}`, 'err');
+        if (guess) write(`       你是在找 \`${guess}\` 吗？可用命令输 \`help\` 查看`, 'info');
+        else       write('       输 `help` 看可用命令 · 命令都是小写', 'info');
+      }
     });
+
+    // 模糊匹配文件名：大小写 / 拼错一个字符 / 少后缀 都能猜出来
+    function suggestFile(input) {
+      if (!input) return null;
+      const all = Object.keys(FILE_META);
+      const low = input.toLowerCase();
+      return all.find(f => f.toLowerCase() === low)
+          || all.find(f => f.toLowerCase().startsWith(low))
+          || all.find(f => f.toLowerCase().includes(low))
+          || all.find(f => low.includes(f.toLowerCase().replace(/\.[a-z]+$/, '')));
+    }
+    function listHere() {
+      return (FS[cwd] || []).join('   ') || '(空)';
+    }
 
     const COMMANDS = {
       help() {
@@ -246,16 +268,26 @@
         write('  exit                   disconnect', 'info');
       },
       connect(args) {
-        if (!args[0]) { write('usage: connect <ip>', 'err'); return; }
+        if (!args[0]) {
+          write('usage: connect <ip>', 'err');
+          write('       例如：connect 192.0.2.77', 'info');
+          write('       提示：IP 在 root 网盘页面的 URL 里 ?ip=... 那一段', 'info');
+          return;
+        }
         let target = args[0];
         if (target === ROOT_OWN_IP) {
-          write(`[err] target ip mismatch · ${ROOT_OWN_IP} is root's lab, no service running`, 'err');
-          write('     try the ip you saw in the pan url', 'info');
+          write(`[err] target ip mismatch · ${ROOT_OWN_IP} 是 root 自己的机器，没有对外服务`, 'err');
+          write('     试试 root 网盘链接里出现过的另一个 IP', 'info');
+          return;
+        }
+        if (!/^\d{1,3}(\.\d{1,3}){3}$/.test(target)) {
+          write(`[err] not a valid IPv4: ${target}`, 'err');
+          write('     格式应该是 x.x.x.x，例如 192.0.2.77', 'info');
           return;
         }
         if (target !== VALID_IP) {
           write(`[err] could not resolve host: ${target}`, 'err');
-          write('     hint: url', 'info');
+          write('     这个 IP 没响应 · 去 root 网盘地址栏的 ?ip=... 那段拷一下', 'info');
           return;
         }
         connectingTo = target;
@@ -265,7 +297,11 @@
         setPrompt();
       },
       ls() {
-        if (!connected) { write('[err] not connected. try `connect <ip>` first', 'err'); return; }
+        if (!connected) {
+          write('[err] not connected', 'err');
+          write('       先连服务器：connect 192.0.2.77', 'info');
+          return;
+        }
         const list = FS[cwd] || [];
         write(list.join('   '));
       },
@@ -273,39 +309,85 @@
       whoami() { write(connected ? authUser : '(not logged in)'); },
       clear() { term.innerHTML = ''; },
       cd(args) {
-        if (!connected) { write('[err] not connected', 'err'); return; }
+        if (!connected) {
+          write('[err] not connected', 'err');
+          write('       先连服务器：connect 192.0.2.77', 'info');
+          return;
+        }
         const t = args[0];
         if (!t || t === '/') { cwd = '/'; setPrompt(); return; }
         if (t === '..') { cwd = '/'; setPrompt(); return; }
         const target = t.replace(/\/$/, '');
         const candidate = cwd === '/' ? `/${target}` : `${cwd}/${target}`;
         if (FS[candidate]) { cwd = candidate; setPrompt(); }
-        else write(`[err] no such directory: ${t}`, 'err');
+        else {
+          write(`[err] no such directory: ${t}`, 'err');
+          write(`       当前 ${cwd} 下有：${listHere()}`, 'info');
+          write('       试试：cd investigation/', 'info');
+        }
       },
       cat(args) {
-        if (!connected) { write('[err] not connected', 'err'); return; }
+        if (!connected) {
+          write('[err] not connected', 'err');
+          write('       先连服务器：connect 192.0.2.77', 'info');
+          return;
+        }
         const f = args[0];
-        if (!f) { write('usage: cat <file>', 'err'); return; }
+        if (!f) {
+          write('usage: cat <file>', 'err');
+          write(`       例如：cat README.md · 当前目录有：${listHere()}`, 'info');
+          return;
+        }
         const meta = FILE_META[f];
-        if (!meta) { write(`[err] no such file: ${f}`, 'err'); return; }
-        if (meta.kind === 'broken' && !fixed.has(f)) { write('[err] file is corrupted. try: fix ' + f, 'err'); return; }
+        if (!meta) {
+          const sug = suggestFile(f);
+          write(`[err] no such file: ${f}`, 'err');
+          if (sug) write(`       你是在找 \`${sug}\` 吗？试：cat ${sug}`, 'info');
+          else     write(`       当前 ${cwd} 下有：${listHere()}`, 'info');
+          return;
+        }
+        if (meta.kind === 'broken' && !fixed.has(f)) {
+          write(`[err] ${f} is corrupted · 文件损坏了，读不了`, 'err');
+          write(`       先修复：fix ${f}，再 cat ${f}`, 'info');
+          return;
+        }
         if (meta.kind === 'broken' && fixed.has(f)) {
           writeRaw('<span class="ok">AWAKE-7K9X-2026</span>     <span class="info">// 清醒者联盟邀请码</span>');
           return;
         }
         if (meta.kind === 'binary' || meta.kind === 'image') {
-          write(`[err] cannot cat binary file. try: open ${f}`, 'err'); return;
+          write(`[err] ${f} 是二进制/图片文件，cat 看不了`, 'err');
+          write(`       试：open ${f}（会在浏览器预览里打开）`, 'info');
+          return;
         }
         if (meta.kind === 'locked') { write(meta.preview, 'yellow'); return; }
         write(meta.preview);
       },
       open(args) {
-        if (!connected) { write('[err] not connected', 'err'); return; }
+        if (!connected) {
+          write('[err] not connected', 'err');
+          write('       先连服务器：connect 192.0.2.77', 'info');
+          return;
+        }
         const f = args[0];
-        if (!f) { write('usage: open <file>', 'err'); return; }
+        if (!f) {
+          write('usage: open <file>', 'err');
+          write(`       例如：open invite.pdf · 当前目录有：${listHere()}`, 'info');
+          return;
+        }
         const meta = FILE_META[f];
-        if (!meta) { write(`[err] no such file: ${f}`, 'err'); return; }
-        if (meta.kind === 'broken' && !fixed.has(f)) { write('[err] file is corrupted. try: fix ' + f, 'err'); return; }
+        if (!meta) {
+          const sug = suggestFile(f);
+          write(`[err] no such file: ${f}`, 'err');
+          if (sug) write(`       你是在找 \`${sug}\` 吗？试：open ${sug}`, 'info');
+          else     write(`       当前 ${cwd} 下有：${listHere()}`, 'info');
+          return;
+        }
+        if (meta.kind === 'broken' && !fixed.has(f)) {
+          write(`[err] ${f} is corrupted · 文件损坏了，打不开`, 'err');
+          write(`       先修复：fix ${f}`, 'info');
+          return;
+        }
         if (meta.kind === 'broken' && fixed.has(f)) {
           writeRaw('<span class="ok">AWAKE-7K9X-2026</span>     <span class="info">// 清醒者联盟邀请码</span>');
           return;
@@ -314,16 +396,39 @@
         write(meta.preview);
       },
       fix(args) {
-        if (!connected) { write('[err] not connected', 'err'); return; }
+        if (!connected) {
+          write('[err] not connected', 'err');
+          write('       先连服务器：connect 192.0.2.77', 'info');
+          return;
+        }
         const f = args[0];
-        if (!f) { write('usage: fix <file>', 'err'); return; }
+        if (!f) {
+          write('usage: fix <file>', 'err');
+          const broken = Object.keys(FILE_META).filter(k => FILE_META[k].kind === 'broken');
+          if (broken.length) {
+            write(`       例如：fix ${broken[0]}`, 'info');
+            write(`       当前可修复的损坏文件：${broken.join('   ')}`, 'info');
+          }
+          return;
+        }
         const meta = FILE_META[f];
-        if (!meta || meta.kind !== 'broken') {
-          write(`[err] file is not broken or doesn't exist: ${f}`, 'err'); return;
+        if (!meta) {
+          const sug = suggestFile(f);
+          write(`[err] no such file: ${f}`, 'err');
+          if (sug) write(`       你是在找 \`${sug}\` 吗？试：fix ${sug}`, 'info');
+          else     write(`       当前 ${cwd} 下有：${listHere()}`, 'info');
+          return;
+        }
+        if (meta.kind !== 'broken') {
+          write(`[err] ${f} 不需要修复（不是损坏状态）`, 'err');
+          if (meta.kind === 'text' || meta.kind === 'locked') write(`       直接：cat ${f}`, 'info');
+          else if (meta.kind === 'binary' || meta.kind === 'image') write(`       直接：open ${f}`, 'info');
+          return;
         }
         if (fixed.has(f)) {
           write(`[ok] already recovered: ${f}`, 'ok');
-          write(`     try: cat ${f}`, 'info'); return;
+          write(`     接下来：cat ${f}`, 'info');
+          return;
         }
         const bar = document.createElement('div');
         term.appendChild(bar);
