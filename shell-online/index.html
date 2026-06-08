@@ -224,7 +224,8 @@
 
       try { if (window.__argTrack) window.__argTrack('shell', 'cmd', line); } catch (_) {}
 
-      const [c, ...args] = line.split(/\s+/);
+      const [c, ...rawArgs] = line.split(/\s+/);
+      const args = rawArgs.map(a => a.replace(/^[<"'`\[{(]+|[>"'`\]})]+$/g, ''));
       const fn = COMMANDS[c.toLowerCase()];
       if (fn) fn(args);
       else write(`command not found: ${c} · type \`help\``, 'err');
@@ -246,7 +247,7 @@
       },
       connect(args) {
         if (!args[0]) { write('usage: connect <ip>', 'err'); return; }
-        let target = args[0].replace(/^<|>$/g, '');
+        let target = args[0];
         if (target === ROOT_OWN_IP) {
           write(`[err] target ip mismatch · ${ROOT_OWN_IP} is root's lab, no service running`, 'err');
           write('     try the ip you saw in the pan url', 'info');
