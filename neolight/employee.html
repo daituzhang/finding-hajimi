@@ -74,7 +74,13 @@
         err.textContent = '员工 ID 或密码错误';
       }
     });
-    mountTips({ tips: ["员工信息是不是在 root 的网盘里面见到过", "密码也许可以用入职日期来算算看"] });
+    mountTips({ tips: [
+      "员工信息是不是在 root 的网盘里面见到过",
+      "密码也许可以用入职日期来算算看",
+      "线索直达：<a href=\"../root-pan/employee-card.html?ip=192.0.2.77\" target=\"_blank\" rel=\"noreferrer\">员工日期文件</a> + <a href=\"../root-pan/readme-decode.html?ip=192.0.2.77\" target=\"_blank\" rel=\"noreferrer\">密码计算文件</a>",
+      "警告：下一个 tip 会给懒人直接答案。",
+      "密码是：5357"
+    ] });
 
   </script>
 </body>
